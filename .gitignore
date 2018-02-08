@@ -31,3 +31,4 @@ spec/bundle.spec.js
 *.swp
 .python-version
 .node-version
+.idea
