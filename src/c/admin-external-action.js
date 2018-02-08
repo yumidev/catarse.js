@@ -85,11 +85,11 @@ const adminExternalAction = {
                     m(`input.w-button.btn.btn-small[type="submit"][value="${btnValue}"]`)
                 ] : (!ctrl.error()) ? [
                     m('.w-form-done[style="display:block;"]', [
-                        m('p', 'Requisição feita com sucesso.')
+                        m('p', '성공적으로 요청되었습니다.')
                     ])
                 ] : [
                     m('.w-form-error[style="display:block;"]', [
-                        m('p', 'Houve um problema na requisição.')
+                        m('p', '요청을 하지 못했습니다.')
                     ])
                 ])
             ]) : ''

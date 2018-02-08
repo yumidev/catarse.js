@@ -34,12 +34,12 @@ const adminContributionDetail = {
                 transfer: {
                     property: 'user_id',
                     updateKey: 'id',
-                    callToAction: 'Transferir',
+                    callToAction: '다운로드',
                     innerLabel: 'Id do novo apoiador:',
                     outerLabel: 'Transferir Apoio',
-                    placeholder: 'ex: 129908',
-                    successMessage: 'Apoio transferido com sucesso!',
-                    errorMessage: 'O apoio não foi transferido!',
+                    placeholder: '예: 129908',
+                    successMessage: '후원이 성공적으로 이루어 졌습니다!',
+                    errorMessage: '후원을 실패하였습니다!',
                     model: models.contributionDetail
                 },
                 reward: {
@@ -48,32 +48,32 @@ const adminContributionDetail = {
                     selectKey: 'reward_id',
                     radios: 'rewards',
                     callToAction: 'Alterar Recompensa',
-                    outerLabel: 'Recompensa',
+                    outerLabel: '보상',
                     getModel: models.rewardDetail,
                     updateModel: models.contributionDetail,
                     selectedItem: loadReward(),
-                    addEmpty: { id: -1, minimum_value: 10, description: 'Sem recompensa' },
+                    addEmpty: { id: -1, minimum_value: 10, description: '보상 없음' },
                     validate(rewards, newRewardID) {
                         const reward = _.findWhere(rewards, { id: newRewardID });
-                        return (args.item.value >= reward.minimum_value) ? undefined : 'Valor mínimo da recompensa é maior do que o valor da contribuição.';
+                        return (args.item.value >= reward.minimum_value) ? undefined : '최소 보상 값이 기여 금액보다 큽니다.';
                     }
                 },
                 refund: {
                     updateKey: 'id',
-                    callToAction: 'Reembolso direto',
-                    innerLabel: 'Tem certeza que deseja reembolsar esse apoio?',
-                    outerLabel: 'Reembolsar Apoio',
+                    callToAction: '직접 상환',
+                    innerLabel: '이 지원금을 환급 받으시겠습니까?',
+                    outerLabel: '환불',
                     model: models.contributionDetail
                 },
                 remove: {
                     property: 'state',
                     updateKey: 'id',
-                    callToAction: 'Apagar',
-                    innerLabel: 'Tem certeza que deseja apagar esse apoio?',
-                    outerLabel: 'Apagar Apoio',
+                    callToAction: '삭제',
+                    innerLabel: '이 지원을 삭제 하시겠습니까?',
+                    outerLabel: '지원 삭제',
                     forceValue: 'deleted',
-                    successMessage: 'Apoio removido com sucesso!',
-                    errorMessage: 'O apoio não foi removido!',
+                    successMessage: '지원이 성공적으로 삭제되었습니다!',
+                    errorMessage: '지원이 삭제되지 않았습니다!',
                     model: models.contributionDetail
                 }
             },

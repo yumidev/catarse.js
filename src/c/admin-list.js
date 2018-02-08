@@ -26,11 +26,11 @@ const adminList = {
                         m('.w-col.w-col-9', [
                             m('.fontsize-base',
                                 list.isLoading() ?
-                              `Carregando ${label.toLowerCase()}...` : [
+                              `로드 중 ${label.toLowerCase()}...` : [
                                   m('.w-row', [
                                       m('.w-col.w-col-3', [
                                           m('.fontweight-semibold', list.total()),
-                                          ` ${label.toLowerCase()} encontrados`
+                                          ` ${label.toLowerCase()} 발견`
                                       ]),
                                       (args.vm && args.vm.hasInputAction ? m('.w-col-9.w-col', args.vm.inputActions()) : '')
                                   ])

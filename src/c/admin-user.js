@@ -13,8 +13,8 @@ const adminUser = {
                 m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-10', [
                     m(`a.alt-link[target="_blank"][href="/users/${user.id}/edit"]`, user.name || user.email)
                 ]),
-                m('.fontsize-smallest', `Usuário: ${user.id}`),
-                m('.fontsize-smallest.fontcolor-secondary', `Email: ${user.email}`),
+                m('.fontsize-smallest', `사용자: ${user.id}`),
+                m('.fontsize-smallest.fontcolor-secondary', `이메일: ${user.email}`),
                 args.additional_data
             ])
         ]);

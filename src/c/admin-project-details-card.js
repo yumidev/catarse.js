@@ -34,7 +34,7 @@ const adminProjectDetailsCard = {
         return m('.project-details-card.card.u-radius.card-terciary.u-marginbottom-20', [
             m('div', [
                 m('.fontsize-small.fontweight-semibold', [
-                    m('span.fontcolor-secondary', 'Status:'), ' ',
+                    m('span.fontcolor-secondary', '지위:'), ' ',
                     m('span', {
                         class: statusTextObj.cssClass
                     }, (ctrl.isFinalLap() && project.open_for_contributions ? 'RETA FINAL' : statusTextObj.text)), ' '
@@ -58,7 +58,7 @@ const adminProjectDetailsCard = {
                             ])
                         ]),
                         m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [
-                            m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'apoios'),
+                            m('.fontcolor-secondary.lineheight-tighter.fontsize-small', '후원'),
                             m('.fontweight-semibold.fontsize-large.lineheight-tight', project.total_contributions)
                         ]),
                         m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [

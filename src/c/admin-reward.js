@@ -34,19 +34,19 @@ const adminReward = {
             shippingFee = ctrl.shippingFee();
 
         return m('.w-col.w-col-4', [
-            m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Recompensa'),
+            m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '보상'),
             m('.fontsize-smallest.lineheight-looser', reward.id ? [
                 `ID: ${reward.id}`,
                 m('br'),
                 `Local de entrega: ${(shippingFee.destination ? `${shippingFee.destination} R$ ${shippingFee.value}` : 'Nenhum')}`,
                 m('br'),
-                `Envio: ${I18n.t(`shared.shipping_options.${reward.shipping_options}`)}`,
+                `배송: ${I18n.t(`shared.shipping_options.${reward.shipping_options}`)}`,
                 m('br'),
-                `Valor mínimo: R$${h.formatNumber(reward.minimum_value, 2, 3)}`,
+                `최소값: R$${h.formatNumber(reward.minimum_value, 2, 3)}`,
                 m('br'),
-                m.trust(`Disponíveis: ${available} / ${reward.maximum_contributions || '&infin;'}`),
+                m.trust(`사용 가능: ${available} / ${reward.maximum_contributions || '&infin;'}`),
                 m('br'),
-                `Aguardando confirmação: ${reward.waiting_payment_count}`,
+                `확인을 기다리는 중입니다.: ${reward.waiting_payment_count}`,
                 m('br'),
                 `Estimativa da Entrega: ${h.momentify(reward.deliver_at)}`,
                 m('br'),
@@ -54,11 +54,11 @@ const adminReward = {
                     'Status da Entrega: ',
                     h.contributionStatusBadge(contribution)
                 ]),
-                (reward.title ? [`Título: ${reward.title}`,
+                (reward.title ? [`제목: ${reward.title}`,
                     m('br')
                 ] : ''),
-                `Descrição: ${reward.description}`
-            ] : 'Apoio sem recompensa')
+                `상품 설명: ${reward.description}`
+            ] : '보상없는 지원')
         ]);
     }
 };

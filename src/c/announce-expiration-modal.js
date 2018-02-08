@@ -8,7 +8,7 @@ const announceExpirationModal = {
                     'Você confirma?'
                 ),
                 m('.fontsize-large.u-text-center.u-marginbottom-30', [
-                    'Sua arrecadação irá terminar no dia  ',
+                    '귀하의 컬렉션은 당일에 종료됩니다.',
                     m('span.expire-date',
                         args.expirationDate
                     ),

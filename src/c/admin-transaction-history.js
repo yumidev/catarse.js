@@ -7,10 +7,10 @@ const adminTransactionHistory = {
         const contribution = args.contribution,
             mapEvents = _.reduce([{
                 date: contribution.paid_at,
-                name: 'Apoio confirmado'
+                name: '후원 확인'
             }, {
                 date: contribution.pending_refund_at,
-                name: 'Reembolso solicitado'
+                name: '환불 요청 됨'
             }, {
                 date: contribution.refunded_at,
                 name: 'Estorno realizado'
@@ -19,13 +19,13 @@ const adminTransactionHistory = {
                 name: 'Apoio criado'
             }, {
                 date: contribution.refused_at,
-                name: 'Apoio cancelado'
+                name: '지원 중단'
             }, {
                 date: contribution.deleted_at,
-                name: 'Apoio excluído'
+                name: '후원 삭제됨'
             }, {
                 date: contribution.chargeback_at,
-                name: 'Chargeback'
+                name: '후원 거절'
             }], (memo, item) => {
                 if (item.date !== null && item.date !== undefined) {
                     item.originalDate = item.date;
@@ -42,7 +42,7 @@ const adminTransactionHistory = {
     },
     view(ctrl) {
         return m('.w-col.w-col-4', [
-            m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Histórico da transação'),
+            m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '거래 내역'),
             ctrl.orderedEvents.map(cEvent => m('.w-row.fontsize-smallest.lineheight-looser.date-event', [
                 m('.w-col.w-col-6', [
                     m('.fontcolor-secondary', cEvent.date)

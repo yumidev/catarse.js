@@ -24,21 +24,21 @@ const adminUserDetail = {
         return {
             actions: {
                 reset: {
-                    property: 'password',
-                    callToAction: 'Redefinir',
-                    innerLabel: 'Nova senha de Usuário:',
-                    outerLabel: 'Redefinir senha',
-                    placeholder: 'ex: 123mud@r',
+                    property: '비밀번호',
+                    callToAction: '재설정',
+                    innerLabel: '새 사용자 비밀번호:',
+                    outerLabel: '비밀번호 재설정',
+                    placeholder: '예: 123mud@r',
                     model: models.user
                 },
                 reactivate: {
                     property: 'deactivated_at',
                     updateKey: 'id',
                     callToAction: 'Reativar',
-                    innerLabel: 'Tem certeza que deseja reativar esse usuário?',
-                    successMessage: 'Usuário reativado com sucesso!',
-                    errorMessage: 'O usuário não pôde ser reativado!',
-                    outerLabel: 'Reativar usuário',
+                    innerLabel: '이 사용자를 다시 사용하시겠습니까?',
+                    successMessage: '사용자가 다시 활성화 되었습니다!',
+                    errorMessage: '사용자를 다시 활성화 할 수 없습니다!',
+                    outerLabel: '사용자 재 활성화',
                     forceValue: null,
                     model: models.user
                 }

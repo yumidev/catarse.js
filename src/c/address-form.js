@@ -171,40 +171,40 @@ const addressForm = {
                                     '주소 *'
                                 ),
                                 m("input.positive.text-field.w-input[required='required'][type='text']", {
-                                    class: errors.addressStreet() ? 'error' : '',
+                                    class: errors.addressStreet() ? '오류' : '',
                                     value: ctrl.fields.addressStreet(),
                                     onchange: m.withAttr('value', ctrl.fields.addressStreet)
                                 }),
                                 errors.addressStreet() ? m(inlineError, {
-                                    message: 'Please fill in an address.'
+                                    message: '주소를 입력해 주세요.'
                                 }) : ''
                             ])),
                         m('div',
                             m('.w-row', [
                                 m('.w-sub-col.w-col.w-col-4', [
                                     m('.field-label.fontweight-semibold',
-                                        'Zip Code *'
+                                        '우편 번호 *'
                                     ),
                                     m("input.positive.text-field.w-input[required='required'][type='text']", {
-                                        class: errors.addressZipCode() ? 'error' : '',
+                                        class: errors.addressZipCode() ? '오류' : '',
                                         value: ctrl.fields.addressZipCode(),
                                         onchange: m.withAttr('value', ctrl.fields.addressZipCode)
                                     }),
                                     errors.addressZipCode() ? m(inlineError, {
-                                        message: 'ZipCode is required'
+                                        message: '우편 번호를 입력해 주세요.'
                                     }) : ''
                                 ]),
                                 m('.w-sub-col.w-col.w-col-4', [
                                     m('.field-label.fontweight-semibold',
-                                        'City *'
+                                        '도시 *'
                                     ),
                                     m("input.positive.text-field.w-input[required='required'][type='text']", {
-                                        class: errors.addressCity() ? 'error' : '',
+                                        class: errors.addressCity() ? '오류' : '',
                                         value: ctrl.fields.addressCity(),
                                         onchange: m.withAttr('value', ctrl.fields.addressCity)
                                     }),
                                     errors.addressCity() ? m(inlineError, {
-                                        message: 'City is required'
+                                        message: '도시를 입력해 주세요.'
                                     }) : ''
                                 ]),
                                 m('.w-col.w-col-4', [
@@ -245,7 +245,7 @@ const addressForm = {
                                         )
                                     ]),
                                     m("input.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
-                                        class: errors.addressZipCode() ? 'error' : '',
+                                        class: errors.addressZipCode() ? '오류' : '',
                                         value: ctrl.fields.addressZipCode(),
                                         onkeyup: m.withAttr('value', value => ctrl.applyZipcodeMask(value)),
                                         oninput: (e) => {
@@ -253,7 +253,7 @@ const addressForm = {
                                         }
                                     }),
                                     errors.addressZipCode() ? m(inlineError, {
-                                        message: ctrl.zipCodeErrorMessage() ? ctrl.zipCodeErrorMessage() : 'Informe um CEP válido.'
+                                        message: ctrl.zipCodeErrorMessage() ? ctrl.zipCodeErrorMessage() : '올바른 우편 번호를 입력해 주세요.'
                                     }) : ''
                                 ]),
                                 m('.w-col.w-col-6')
@@ -263,12 +263,12 @@ const addressForm = {
                                     `${I18n.t('address_street', I18nScope())} *`
                                 ),
                                 m("input.positive.text-field.w-input[maxlength='256'][required='required'][type='text']", {
-                                    class: errors.addressStreet() ? 'error' : '',
+                                    class: errors.addressStreet() ? '오류' : '',
                                     value: ctrl.fields.addressStreet(),
                                     onchange: m.withAttr('value', ctrl.fields.addressStreet)
                                 }),
                                 errors.addressStreet() ? m(inlineError, {
-                                    message: 'Informe um endereço.'
+                                    message: '주소를 입력해 주세요.'
                                 }) : ''
                             ]),
                             m('.w-row', [
@@ -277,12 +277,12 @@ const addressForm = {
                                         `${I18n.t('address_number', I18nScope())} *`
                                     ),
                                     m("input.positive.text-field.w-input[required='required'][type='text']", {
-                                        class: errors.addressNumber() ? 'error' : '',
+                                        class: errors.addressNumber() ? '오류' : '',
                                         value: ctrl.fields.addressNumber(),
                                         onchange: m.withAttr('value', ctrl.fields.addressNumber)
                                     }),
                                     errors.addressNumber() ? m(inlineError, {
-                                        message: 'Informe um número.'
+                                        message: '번호를 입력해 주세요.'
                                     }) : ''
                                 ]),
                                 m('.w-sub-col.w-col.w-col-4', [
@@ -299,7 +299,7 @@ const addressForm = {
                                         `${I18n.t('address_neighbourhood', I18nScope())} *`
                                     ),
                                     m("input.positive.text-field.w-input[required='required'][type='text']", {
-                                        class: errors.addressNeighbourhood() ? 'error' : '',
+                                        class: errors.addressNeighbourhood() ? '오류' : '',
                                         value: ctrl.fields.addressNeighbourhood(),
                                         onchange: m.withAttr('value', ctrl.fields.addressNeighbourhood)
                                     }),
@@ -319,7 +319,7 @@ const addressForm = {
                                         onchange: m.withAttr('value', ctrl.fields.addressCity)
                                     }),
                                     errors.addressCity() ? m(inlineError, {
-                                        message: 'Informe uma cidade.'
+                                        message: '도시 입력.'
                                     }) : ''
                                 ]),
                                 m('.w-sub-col.w-col.w-col-2', [
@@ -340,7 +340,7 @@ const addressForm = {
                                             )) : '')
                                     ]),
                                     errors.stateID() ? m(inlineError, {
-                                        message: 'Informe um estado.'
+                                        message: '상태 입력.'
                                     }) : ''
                                 ]),
                                 m('.w-col.w-col-4', [
@@ -348,13 +348,13 @@ const addressForm = {
                                         `${I18n.t('phone_number', I18nScope())} *`
                                     ),
                                     m("input#phone.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
-                                        class: errors.phoneNumber() ? 'error' : '',
+                                        class: errors.phoneNumber() ? '오류' : '',
                                         value: ctrl.fields.phoneNumber(),
                                         onkeyup: m.withAttr('value', value => ctrl.applyPhoneMask(value)),
                                         onchange: m.withAttr('value', ctrl.fields.phoneNumber)
                                     }),
                                     errors.phoneNumber() ? m(inlineError, {
-                                        message: 'Informe um telefone válido.'
+                                        message: '유효한 전화 번호를 입력해 주세요.'
                                     }) : ''
                                 ])
                             ])

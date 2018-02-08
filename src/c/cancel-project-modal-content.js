@@ -31,9 +31,9 @@ const cancelProjectModalContent = {
             [
                 m('.fontsize-small.u-marginbottom-20',
                     [
-                        'Após o cancelamento, sua campanha será expirada e os seus apoiadores serão reembolsados dentro das próximas 24h horas.',
+                        '취소하면 캠페인이 만료되고 후원자는 다음 24 시간 내에 환불됩니다.',
                         m('span.fontweight-semibold',
-                                'Essa ação não poderá ser desfeita!'
+                                '이 작업은 취소할 수 없습니다!'
                             ),
                         m('br'),
                         m('span.fontweight-semibold')
@@ -41,7 +41,7 @@ const cancelProjectModalContent = {
                     ),
                 m('.fontsize-small.u-marginbottom-10',
                     [
-                        'Se você tem certeza que deseja cancelar seu projeto, confirme escrevendo ',
+                        '프로젝트를 취소 하시려면 서면으로 확인해 주시길 바랍니다.',
                         m('span.fontweight-semibold.text-error',
                                 'cancelar-projeto '
                             ),
@@ -62,7 +62,7 @@ const cancelProjectModalContent = {
                                     [
                                         m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Próximo passo >\']'),
                                         m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayModal.toggle },
-                                            'Cancelar'
+                                            '취소'
                                         )
                                     ]
                                 ),

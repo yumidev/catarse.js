@@ -86,10 +86,10 @@ const adminProjectItem = {
                             project.email
                         ),
                         m('.fontcolor-secondary.fontsize-smallest',
-                            `${project.total_published} projetos criados`
+                            `${project.total_published} 생성 된 프로젝트`
                         ),
                         m('.fontcolor-secondary.fontsize-smallest',
-                            'Ainda não apoiou projetos'
+                            '아직 프로젝트를 지원하지 않음'
                         )
                     ])
                 ])
