@@ -168,7 +168,7 @@ const addressForm = {
                         m('.w-row',
                             m('.w-col.w-col-12', [
                                 m('.field-label.fontweight-semibold',
-                                    'Address *'
+                                    '주소 *'
                                 ),
                                 m("input.positive.text-field.w-input[required='required'][type='text']", {
                                     class: errors.addressStreet() ? 'error' : '',
