@@ -99,7 +99,7 @@ const projectDashboardMenu = {
                                 I18n.t('posts_tab', I18nScope()),
                                 project.posts_count > 0 ?
                                 m('span.badge', project.posts_count) :
-                                m('span.badge.badge-attention', 'Nenhuma')
+                                m('span.badge.badge-attention', '없음')
                             ]),
                             m(`a#dashboard_surveys_link[class="dashboard-nav-link-left ${h.locationActionMatch('surveys') ? 'selected' : ''}"][href="${projectRoute}/surveys"]`, [
                                 m('span.fa.fa.fa-check-square-o.fa-lg.fa-fw'), I18n.t('surveys_tab', I18nScope())
@@ -119,12 +119,12 @@ const projectDashboardMenu = {
                                 ] : ''),
                                 m(`a#description_link[class="${editLinkClass('#description')}"][href="${editRoute}#description"]`, railsErrorsVM.errorsFor('description'), I18n.t('description_tab', linksScope())),
                                 m(`a#video_link[class="${editLinkClass('#video')}"][href="${editRoute}#video"]`, [railsErrorsVM.errorsFor('video'),
-                                    'Vídeo', m('span.fontsize-smallest.fontcolor-secondary', ' (opcional)')
+                                    '비디오', m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)')
                                 ]),
                                 m(`a#budget_link[class="${editLinkClass('#budget')}"][href="${editRoute}#budget"]`, railsErrorsVM.errorsFor('budget'), I18n.t('budget_tab', linksScope())),
                                 m(`a#card_link[class="${editLinkClass('#card')}"][href="${editRoute}#card"]`, railsErrorsVM.errorsFor('card'), I18n.t('card_tab', linksScope())),
                                 m(`a#dashboard_reward_link[class="${editLinkClass('#reward')}"][href="${editRoute}#reward"]`, [railsErrorsVM.errorsFor('reward'),
-                                    'Recompensas', optionalOpt
+                                    '보상', optionalOpt
                                 ]),
                                 m(`a#dashboard_user_about_link[class="${editLinkClass('#user_about')}"][href="${editRoute}#user_about"]`, railsErrorsVM.errorsFor('user_about'), I18n.t('about_you_tab', linksScope())),
                                 ((project.is_published || project.state === 'draft') || project.is_admin_role ? [

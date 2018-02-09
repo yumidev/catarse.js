@@ -82,7 +82,7 @@ const userAboutEdit = {
                         if (_.isArray(err.errors)) {
                             errorsArray(errorsArray().concat(err.errors));
                         } else {
-                            errors('Erro ao atualizar informações.');
+                            errors('정보 업데이트 오류.');
                         }
                         pushErrosMessage();
                         showError(true);
@@ -132,7 +132,7 @@ const userAboutEdit = {
                         parsedErrors.resetFieldErrors();
                     }
                     parsedErrors = userAboutVM.mapRailsErrors(err.errors_json);
-                    errors('Erro ao atualizar informações.');
+                    errors('정보 업데이트 오류.');
 
                     showError(true);
                     loading(false);
@@ -173,7 +173,7 @@ const userAboutEdit = {
                 }
             },
             deleteAccount = () => {
-                if (window.confirm('Tem certeza que deseja desativar a sua conta?')) {
+                if (window.confirm('계정을 비활성화 하시겠습니까?')) {
                     deleteUser();
                 }
 
@@ -182,10 +182,10 @@ const userAboutEdit = {
             onSubmit = (e) => {
                 e.preventDefault();
                 if (!validateEmailConfirmation()) {
-                    errors('Confirmação de email está incorreta.');
+                    errors('이메일 확인이 잘못되었습니다.');
                     showError(true);
                 } else if (!validatePassword()) {
-                    errors('Nova senha está incorreta.');
+                    errors('새 비밀번호가 잘못되었습니다.');
                     showError(true);
                 } else {
                     updateUser();
@@ -222,7 +222,7 @@ const userAboutEdit = {
 
         return m('#about-tab.content', [
             (ctrl.showSuccess() && !ctrl.loading() && !ctrl.uploading() ? m.component(popNotification, {
-                message: 'As suas informações foram atualizadas'
+                message: '귀하의 정보가 업데이트되었습니다.'
             }) : ''),
             (ctrl.showError() && !ctrl.loading() && !ctrl.uploading() ? m.component(popNotification, {
                 message: m.trust(ctrl.errors()),
@@ -240,7 +240,7 @@ const userAboutEdit = {
                             m('.w-col.w-col-10.w-col-push-1', [!user.is_admin ? '' : m('.w-row.u-marginbottom-30.card.card-terciary', [
                                 m('.w-col.w-col-5.w-sub-col', [
                                     m('label.field-label.fontweight-semibold',
-                                            'Endereço do seu perfil'
+                                            '내 프로필 주소'
                                         ),
                                     m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                             'Seu perfil público pode ter uma URL personalizada. Escolha uma fácil de guardar!    '
@@ -263,10 +263,10 @@ const userAboutEdit = {
                             ]),
                                 m('.w-row.u-marginbottom-30.card.card-terciary', [
                                     m('.fontsize-base.fontweight-semibold',
-                                        'Email'
+                                        '이메일'
                                     ),
                                     m('.fontsize-small.u-marginbottom-30',
-                                        'Mantenha esse email atualizado pois ele é o canal de comunicação entre você, a equipe do Catarse e a equipe dos projetos que você apoiou. '
+                                        '이 이메일은 귀하, Catarse 팀 및 귀하가 지원 한 프로젝트 팀 간의 커뮤니케이션 채널이므로 최신으로 유지해 주시길 바랍니다. '
                                     ),
                                     m('.fontsize-base.u-marginbottom-40', [
                                         m('span.fontweight-semibold.card.u-radius',
@@ -277,13 +277,13 @@ const userAboutEdit = {
                                                 ctrl.showEmailForm.toggle();
                                             }
                                         },
-                                            'Alterar email'
+                                            '이메일 변경'
                                         )
                                     ]),
                                     m(`${ctrl.showEmailForm() ? '' : '.w-hidden'}.u-marginbottom-20.w-row[id=\'email_update_form\']`, [
                                         m('.w-col.w-col-6.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
-                                                'Novo email'
+                                                '새 이메일'
                                             ),
                                             m('input.w-input.text-field.positive[id=\'new_email\'][name=\'new_email\'][type=\'email\']', {
                                                 class: ctrl.emailHasError() ? 'error' : '',
@@ -294,10 +294,10 @@ const userAboutEdit = {
                                         ]),
                                         m('.w-col.w-col-6', [
                                             m('label.field-label.fontweight-semibold',
-                                                'Confirmar novo email'
+                                                '새 이메일 확인'
                                             ),
                                             m('input.string.required.w-input.text-field.w-input.text-field.positive[id=\'new_email_confirmation\'][name=\'user[email]\'][type=\'text\']', {
-                                                class: ctrl.emailHasError() ? 'error' : '',
+                                                class: ctrl.emailHasError() ? '오류' : '',
                                                 value: fields.email_confirmation(),
                                                 onfocus: () => ctrl.emailHasError(false),
                                                 onblur: ctrl.validateEmailConfirmation,
@@ -305,17 +305,17 @@ const userAboutEdit = {
                                             })
                                         ]),
                                         ctrl.emailHasError() ? m(inlineError, {
-                                            message: 'Confirmação de email está incorreta.'
+                                            message: '이메일 확인이 잘못되었습니다.'
                                         }) : ''
                                     ])
                                 ]),
                                 m('.w-row.u-marginbottom-30.card.card-terciary', [
                                     m('.w-col.w-col-5.w-sub-col', [
                                         m('label.field-label.fontweight-semibold',
-                                            '  Nome no perfil público'
+                                            ' 공개 프로필의 이름'
                                         ),
                                         m('label.field-label.fontsize-smallest.fontcolor-secondary',
-                                            'Esse é o nome que os usuários irão ver no seu perfil.'
+                                            '사용자가 내 프로필에서 볼 수있는 이름입니다.'
                                         )
                                     ]),
                                     m('.w-col.w-col-7',
@@ -332,10 +332,10 @@ const userAboutEdit = {
                                     m('.w-row.u-marginbottom-30.card.card-terciary', [
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
-                                                '  Imagem do perfil'
+                                                ' 프로필 사진'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
-                                                '  Essa imagem será utilizada como a miniatura de seu perfil (PNG, JPG tamanho 280 x 280)'
+                                                ' 이 이미지는 프로필 미리보기 이미지 (PNG, JPG 크기 280x280)로 사용됩니다.'
                                             )
                                         ]),
                                         m('.w-col.w-col-4.w-sub-col',
@@ -346,7 +346,7 @@ const userAboutEdit = {
                                                 ),
                                                 m('input.file.optional.w-input.text-field[id="user_uploaded_image"][type="file"]', {
                                                     name: 'user[uploaded_image]',
-                                                    class: ctrl.parsedErrors.hasError('uploaded_image') ? 'error' : false
+                                                    class: ctrl.parsedErrors.hasError('uploaded_image') ? '오류' : false
                                                 }),
                                                 ctrl.parsedErrors.inlineError('uploaded_image')
                                             ])
@@ -355,10 +355,10 @@ const userAboutEdit = {
                                     (args.hideCoverImg ? '' : m('.w-row.u-marginbottom-30.card.card-terciary', [
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
-                                                '  Imagem de capa do perfil'
+                                                ' 프로필 표지 이미지'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
-                                                '  Essa imagem será utilizada como fundo do cabeçalho do seu perfil público (PNG ou JPG). Caso você não envie nenhum imagem aqui, utilizaremos sua imagem de perfil como alternativa.'
+                                                ' 이 이미지는 공개 프로필 헤더(PNG 또는 JPG)의 배경으로 사용됩니다. 여기에 이미지를 제출하지 않으면 귀하의 프로필 이미지가 대신 사용됩니다.'
                                             )
                                         ]),
                                         m('.w-col.w-col-4.w-sub-col',
@@ -380,14 +380,14 @@ const userAboutEdit = {
                                     m('.w-col',
                                         m('.card.card-terciary.u-marginbottom-30', [
                                             m('label.field-label.fontweight-semibold',
-                                                'Sobre'
+                                                '위키 소개'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20',
-                                                'Fale sobre você e tente fornecer as informações mais relevantes para que visitantes possam te conhecer melhor. '
+                                                '자신에 대해 이야기하고 방문자가 당신을 더 잘 알 수 있도록 가장 관련성있는 정보를 제공해 주시길 바랍니다. '
                                             ),
                                             m('.w-form',
                                                 m('.preview-container.u-marginbottom-40', {
-                                                    class: ctrl.parsedErrors.hasError('about_html') ? 'error' : false
+                                                    class: ctrl.parsedErrors.hasError('about_html') ? '오류' : false
                                                 }, h.redactor('user[about_html]', fields.about_html)),
                                                 ctrl.parsedErrors.inlineError('about_html')
                                             )
@@ -398,10 +398,10 @@ const userAboutEdit = {
                                     m('.w-row.u-marginbottom-10', [
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
-                                                '  Perfil do facebook'
+                                                ' Facebook 프로필'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
-                                                '  Cole o link do seu perfil'
+                                                ' 프로필 링크 붙여 넣기'
                                             )
                                         ]),
                                         m('.w-col.w-col-7',
@@ -415,10 +415,10 @@ const userAboutEdit = {
                                     m('.w-row.u-marginbottom-10', [
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
-                                                '  Perfil do twitter'
+                                                ' 트위터 프로필'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
-                                                '  Cole o link do seu perfil'
+                                                ' 프로필 링크 붙여 넣기'
                                             )
                                         ]),
                                         m('.w-col.w-col-7',
@@ -434,9 +434,9 @@ const userAboutEdit = {
                                     m('.w-row.u-marginbottom-10', [
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold[for="name-8"]',
-                                                ' Presença na internet'
+                                                '인터넷상의 존재'
                                             ),
-                                            m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', ' Inclua links que ajudem outros usuários a te conhecer melhor. ')
+                                            m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', '다른 사용자가 귀하를 더 잘 알 수 있도록 링크 포함 ')
                                         ]),
                                         m('.w-col.w-col-7', [
                                             m('.w-row', [fields.links() && fields.links().length <= 0 ? '' : m('.link', _.map(fields.links(),
@@ -477,15 +477,15 @@ const userAboutEdit = {
                                 (args.hidePasswordChange ? '' : m('.w-form.card.card-terciary.u-marginbottom-30',
                                     m('.w-row.u-marginbottom-10', [
                                         m('.fontsize-base.fontweight-semibold',
-                                            'Alterar minha senha'
+                                            '내 비밀번호 변경'
                                         ),
                                         m('.fontsize-small.u-marginbottom-20',
-                                            'Para que a senha seja alterada você precisa confirmar a sua senha atual.'
+                                            '암호를 변경하려면 현재 암호를 확인해야합니다.'
                                         ),
                                         m('.w-row.u-marginbottom-20', [
                                             m('.w-col.w-col-6.w-sub-col', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    ' Senha atual'
+                                                    ' 현재 비밀번호'
                                                 ),
                                                 m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_current_password\'][name=\'user[current_password]\'][type=\'password\']', {
                                                     value: fields.current_password(),
@@ -494,7 +494,7 @@ const userAboutEdit = {
                                             ]),
                                             m('.w-col.w-col-6', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    ' Nova senha'
+                                                    ' 새 비밀번호'
                                                 ),
                                                 m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_password\'][name=\'user[password]\'][type=\'password\']', {
                                                     class: ctrl.passwordHasError() ? 'error' : '',
@@ -503,7 +503,7 @@ const userAboutEdit = {
                                                     onblur: ctrl.validatePassword,
                                                     onchange: m.withAttr('value', fields.password)
                                                 }), !ctrl.passwordHasError() ? '' : m(inlineError, {
-                                                    message: 'A sua nova senha deve ter no mínimo 6 caracteres.'
+                                                    message: '새 비밀번호는 6자 이상이어야 합니다.'
                                                 })
                                             ])
                                         ])
@@ -513,15 +513,15 @@ const userAboutEdit = {
                                 (args.hideDisableAcc || user.total_published_projects > 0 ? '' : m('.w-form.card.card-terciary.u-marginbottom-30',
                                     m('.w-row.u-marginbottom-10', [
                                         m('.fontweight-semibold.fontsize-smaller',
-                                            'Desativar minha conta'
+                                            '내 계정 사용 중지'
                                         ),
                                         m('.fontsize-smallest',
-                                            'Todos os seus apoios serão convertidos em apoios anônimos, seus dados não serão mais visíveis, você sairá automaticamente do sistema e sua conta será desativada permanentemente.'
+                                            '모든 후원은 익명 백업으로 변환되고 데이터는 더 이상 보이지 않으며 시스템을 자동으로 종료하고 계정이 영구적으로 비활성화됩니다'
                                         ),
                                         m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}'][rel='nofollow']`, {
                                             onclick: ctrl.deleteAccount
                                         },
-                                            'Desativar minha conta no Catarse'
+                                            '내 Givingwire 계정 사용 중지'
                                         ),
                                         m('form.w-hidden', {
                                             action: `/pt/users/${user.id}`,

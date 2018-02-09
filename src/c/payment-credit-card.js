@@ -251,7 +251,7 @@ const paymentCreditCard = {
                                  ),
                                 m('input.w-input.text-field[name="credit-card-name"][type="text"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('name'),
-                                    class: ctrl.fieldHasError('name') ? 'error' : '',
+                                    class: ctrl.fieldHasError('name') ? '오류' : '',
                                     onblur: ctrl.checkCreditCardName,
                                     onkeyup: m.withAttr('value', ctrl.applyCreditCardNameMask),
                                     value: ctrl.creditCard.name()
@@ -268,7 +268,7 @@ const paymentCreditCard = {
                                   ),
                                  m('input.w-input.text-field[name="credit-card-document"]', {
                                      onfocus: ctrl.vm.resetCreditCardFieldError('cardOwnerDocument'),
-                                     class: ctrl.fieldHasError('cardOwnerDocument') ? 'error' : '',
+                                     class: ctrl.fieldHasError('cardOwnerDocument') ? '오류' : '',
                                      onblur: ctrl.checkCardOwnerDocument,
                                      onkeyup: m.withAttr('value', ctrl.applyDocumentMask),
                                      value: ctrl.creditCard.cardOwnerDocument()
@@ -287,7 +287,7 @@ const paymentCreditCard = {
                         m.component(creditCardInput, {
                             onfocus: ctrl.vm.resetCreditCardFieldError('number'),
                             onblur: ctrl.checkCreditCard,
-                            class: ctrl.fieldHasError('number') ? 'error' : '',
+                            class: ctrl.fieldHasError('number') ? '오류' : '',
                             value: ctrl.creditCard.number,
                             name: 'credit-card-number',
                             type: ctrl.creditCardType
@@ -305,7 +305,7 @@ const paymentCreditCard = {
                             m('.w-col.w-col-6.w-col-tiny-6.w-sub-col-middle',
                                 m('select.w-select.text-field[name="expiration-date_month"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('expiry'),
-                                    class: ctrl.fieldHasError('expiry') ? 'error' : '',
+                                    class: ctrl.fieldHasError('expiry') ? '오류' : '',
                                     onchange: m.withAttr('value', ctrl.creditCard.expMonth),
                                     value: ctrl.creditCard.expMonth()
                                 }, _.map(ctrl.expMonths, month => m('option', { value: month[0] }, month[1])))
@@ -334,7 +334,7 @@ const paymentCreditCard = {
                             m('.w-col.w-col-8.w-col-tiny-6.w-sub-col-middle',
                                 m('input.w-input.text-field[name="credit-card-cvv"][type="tel"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('cvv'),
-                                    class: ctrl.fieldHasError('cvv') ? 'error' : '',
+                                    class: ctrl.fieldHasError('cvv') ? '오류' : '',
                                     onkeyup: m.withAttr('value', ctrl.applyCvvMask),
                                     onblur: ctrl.checkcvv,
                                     value: ctrl.creditCard.cvv()

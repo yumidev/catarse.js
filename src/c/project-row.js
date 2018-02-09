@@ -21,12 +21,12 @@ const projectRow = {
                         m((showFriends ? '.w-col.w-col-4.w-col-small-6.w-col-tiny-6' : '.w-col.w-col-2.w-col-small-6.w-col-tiny-6'), [
                             m('.w-row', [
                                 (showFriends ? m('.w-col.w-col-6', [
-                                    m(`a.btn.btn-no-border.btn-small.btn-terciary[href="/connect-facebook?ref=${ref}"]`, 'Encontrar amigos')
+                                    m(`a.btn.btn-no-border.btn-small.btn-terciary[href="/connect-facebook?ref=${ref}"]`, '친구 찾기')
                                 ]) : ''),
                                 m((showFriends ? '.w-col.w-col-6' : '.w-col.w-col-12'),
                                     m(`a.btn.btn-small.btn-terciary[href="/explore?ref=${ref}&filter=${collection.hash}"]`, {
                                         config: m.route
-                                    }, 'Ver todos'))
+                                    }, '모두보기'))
                             ])
                         ])
                     ]) : '',

@@ -86,14 +86,14 @@ const ownerMessageContent = {
                                     m('label.fontsize-smaller', 'Seu nome'),
                                     m(`input.w-input.text-field[value='${ctrl.from_name()}'][type='text'][required='required']`, {
                                         onchange: m.withAttr('value', ctrl.from_name),
-                                        class: h.validate().hasError(ctrl.from_name) ? 'error' : ''
+                                        class: h.validate().hasError(ctrl.from_name) ? '오류' : ''
                                     })
                                 ]),
                                 m('.w-col.w-col-6', [
                                     m('label.fontsize-smaller', 'Seu email'),
                                     m(`input.w-input.text-field[value='${ctrl.from_email()}'][type='text'][required='required']`, {
                                         onchange: m.withAttr('value', ctrl.from_email),
-                                        class: h.validate().hasError(ctrl.from_email) ? 'error' : ''
+                                        class: h.validate().hasError(ctrl.from_email) ? '오류' : ''
                                     })
                                 ])
                             ]),
@@ -110,7 +110,7 @@ const ownerMessageContent = {
                             ])) : ''),
                             m('.modal-dialog-nav-bottom',
                                 m('.w-row',
-                                    m('.w-col.w-col-6.w-col-push-3', !ctrl.l() ? m('input.w-button.btn.btn-large[type="submit"][value="Enviar mensagem"]', {
+                                    m('.w-col.w-col-6.w-col-push-3', !ctrl.l() ? m('input.w-button.btn.btn-large[type="submit"][value="메시지 보내기"]', {
                                         disabled: ctrl.submitDisabled()
                                     }) : h.loader())
                                 )
@@ -122,7 +122,7 @@ const ownerMessageContent = {
 
         return m('div', [
             m('.modal-dialog-header',
-                m('.fontsize-large.u-text-center', 'Enviar mensagem')
+                m('.fontsize-large.u-text-center', '메시지 보내기')
             ),
             ctrl.sendSuccess() ? successMessage : contactForm
         ]);

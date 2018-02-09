@@ -131,7 +131,7 @@ const projectContributionReportContentCard = {
                                         m('.fontweight-semibold.fontsize-smaller.lineheight-tighter', contribution.public_user_name || contribution.user_name),
                                         m('.fontsize-smallest.lineheight-looser', [
                                             (contribution.has_another ? [
-                                                m('a.link-hidden-light.badge.badge-light', '+1 apoio ')
+                                                m('a.link-hidden-light.badge.badge-light', '+1 후원 ')
                                             ] : ''),
                                             (contribution.anonymous ? m('span.fa.fa-eye-slash.fontcolor-secondary', m('span.fontcolor-secondary[style="font-size:11px;"]', ` ${I18n.t('contribution.anonymous_contribution', contributionScope())}`)) : '')
                                         ]),
@@ -159,7 +159,7 @@ const projectContributionReportContentCard = {
                                       m('.w-col.w-col-3.w-col-push-1', [
                                           m('.fontsize-smallest', [
                                               m('a.link-hidden',
-                                                'Questionário '
+                                                '설문지 '
                                             ),
                                               m('span.fontweight-semibold.text-success',
                                                 'respondido'
@@ -172,10 +172,10 @@ const projectContributionReportContentCard = {
                                       m('.w-col.w-col-3.w-col-push-1', [
                                           m('.fontsize-smallest', [
                                               m('a.link-hidden',
-                                                'Questionário '
+                                                '설문지 '
                                             ),
                                               m('span.fontweight-semibold.text-fail',
-                                                'sem resposta'
+                                                '대답 없음'
                                             )
                                           ]),
                                           m('.fontcolor-terciary.fontsize-smallest',
@@ -185,7 +185,7 @@ const projectContributionReportContentCard = {
                                     m('.w-col.w-col-3.w-col-push-1', [
                                         m('.fontsize-smallest', [
                                             m('a.link-hidden',
-                                                'Questionário '
+                                                '설문지 '
                                             ),
                                             m('span.fontweight-semibold.text-waiting',
                                                 'enviado'
@@ -308,7 +308,7 @@ const projectContributionReportContentCard = {
                         m('.w-tab-pane',
                             m('.fontsize-small',
                                 m('p', [
-                                    `Nome completo: ${contribution.user_name}`,
+                                    `성명: ${contribution.user_name}`,
                                     m('br'),
                                     `Nome público: ${contribution.public_user_name}`,
                                     m('br'),

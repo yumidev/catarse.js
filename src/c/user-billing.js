@@ -113,7 +113,7 @@ const userBilling = {
                     if (_.isArray(err.errors)) {
                         error(err.errors.join('<br>'));
                     } else {
-                        error('Erro ao atualizar informações.');
+                        error('정보 업데이트 오류.');
                     }
 
                     showError(true);
@@ -168,7 +168,7 @@ const userBilling = {
 
         return m('[id=\'billing-tab\']', [
             (ctrl.showSuccess() ? m.component(popNotification, {
-                message: 'As suas informações foram atualizadas'
+                message: '귀하의 정보가 업데이트되었습니다.'
             }) : ''),
             (ctrl.showError() ? m.component(popNotification, {
                 message: m.trust(ctrl.error()),
@@ -180,16 +180,16 @@ const userBilling = {
                         m('input[id=\'anchor\'][name=\'anchor\'][type=\'hidden\'][value=\'billing\']'),
                         m('.w-form.card.card-terciary', [
                             m('.fontsize-base.fontweight-semibold',
-                                'Dados bancários'
+                                '은행 세부 정보'
                             ),
                             m('.fontsize-small.u-marginbottom-20', [
-                                'Caso algum projeto que você tenha apoiado ',
+                                '지원하는 프로젝트가 있다면 ',
                                 m('b',
                                     'com Boleto Bancário'
                                 ),
-                                ' não seja bem-sucedido, nós efetuaremos o reembolso de seu pagamento ',
+                                ' 귀하의 지불금을 환불해 드리겠습니다',
                                 m('b',
-                                    'automaticamente'
+                                    '자동적으로'
                                 ),
                                 ' na conta indicada abaixo.'
                             ]),
@@ -197,7 +197,7 @@ const userBilling = {
                             m('.w-row', [
                                 m('.w-col.w-col-6.w-sub-col', [
                                     m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_owner_name\']',
-                                        'Nome do titular'
+                                        '홀더의 이름'
                                     ),
                                     m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_owner_name\'][type=\'text\']', {
                                         value: fields.owner_name(),
@@ -207,7 +207,7 @@ const userBilling = {
                                 ]),
                                 m('.w-col.w-col-6', [
                                     m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_owner_document\']',
-                                        'CPF / CNPJ do titular'
+                                        '홀더의 CPF / CNPJ'
                                     ),
                                     m('input.string.tel.required.w-input.text-field.positive[data-validate-cpf-cnpj=\'true\'][id=\'user_bank_account_attributes_owner_document\'][type=\'tel\'][validation_text=\'true\']', {
                                         value: fields.owner_document(),
@@ -220,7 +220,7 @@ const userBilling = {
                                 m(`.w-col.w-col-6.w-sub-col${ctrl.showOtherBanksInput() ? '.w-hidden' : ''}[id='bank_select']`,
                                     m('.input.select.required.user_bank_account_bank_id', [
                                         m('label.field-label',
-                                            'Banco'
+                                            '은행'
                                         ),
                                         m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_bank_id\']', {
                                             name: 'user[bank_account_attributes][bank_id]',
@@ -242,11 +242,11 @@ const userBilling = {
                                                 )
                                             ),
                                             m('option[value=\'0\']',
-                                                'Outro'
+                                                '기타'
                                             )
                                         ]),
                                         m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for=\'user_bank_account_attributes_bank_id\']',
-                                            ' Selecione um banco'
+                                            ' 은행을 선택해 주시길 바랍니다.'
                                         )
                                     ])
                                 ),
@@ -271,14 +271,14 @@ const userBilling = {
                                                 m('a.w-hidden-small.w-hidden-tiny.alt-link.fontsize-smaller[href=\'javascript:void(0);\'][id=\'show_bank_list\']', {
                                                     onclick: ctrl.showOtherBanks.toggle
                                                 }, [
-                                                    'Busca por nome  ',
+                                                    '이름으로 검색 ',
                                                     m.trust('&nbsp;'),
                                                     m.trust('&gt;')
                                                 ]),
                                                 m('a.w-hidden-main.w-hidden-medium.alt-link.fontsize-smaller[href=\'javascript:void(0);\'][id=\'show_bank_list\']', {
                                                     onclick: ctrl.showOtherBanks.toggle
                                                 }, [
-                                                    'Busca por nome  ',
+                                                    '이름으로 검색 ',
                                                     m.trust('&nbsp;'),
                                                     m.trust('&gt;')
                                                 ])
@@ -295,18 +295,18 @@ const userBilling = {
                                             },
                                                 m('.card.card-terciary', [
                                                     m('.fontsize-small.fontweight-semibold.u-marginbottom-10.u-text-center',
-                                                        'Selecione o seu banco abaixo'
+                                                        '아래에서 은행을 선택하십시오.'
                                                     ),
                                                     m('.fontsize-smaller', [
                                                         m('.w-row.card.card-secondary.fontweight-semibold', [
                                                             m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
                                                                 m('div',
-                                                                    'Número'
+                                                                    '번호'
                                                                 )
                                                             ),
                                                             m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9',
                                                                 m('div',
-                                                                    'Nome'
+                                                                    '이름'
                                                                 )
                                                             )
                                                         ]),
@@ -342,7 +342,7 @@ const userBilling = {
                                     m('.w-row', [
                                         m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle', [
                                             m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_agency\']',
-                                                'Agência'
+                                                '에이전시'
                                             ),
                                             m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_agency\'][type=\'text\']', {
                                                 value: fields.agency(),
@@ -352,7 +352,7 @@ const userBilling = {
                                         ]),
                                         m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', [
                                             m('label.text.optional.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_agency_digit\']',
-                                                'Dígito agência'
+                                                '대행사 수'
                                             ),
                                             m('input.string.optional.w-input.text-field.positive[id=\'user_bank_account_attributes_agency_digit\'][type=\'text\']', {
                                                 value: fields.agency_digit(),
@@ -366,7 +366,7 @@ const userBilling = {
                             m('.w-row', [
                                 m('.w-col.w-col-6.w-sub-col', [
                                     m('label.field-label.fontweight-semibold',
-                                        'Tipo de conta'
+                                        '계정 유형'
                                     ),
                                     m('p.fontsize-smaller.u-marginbottom-20',
                                         'Só aceitamos conta corrente'
@@ -376,7 +376,7 @@ const userBilling = {
                                     m('.w-row', [
                                         m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle', [
                                             m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_account\']',
-                                                'No. da conta'
+                                                '계좌 번호'
                                             ),
                                             m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account\'][type=\'text\']', {
                                                 value: fields.account(),

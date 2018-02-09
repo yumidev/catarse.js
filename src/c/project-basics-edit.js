@@ -235,13 +235,13 @@ const projectBasicsEdit = {
                                     }),
                                     ctrl.isEditingTags() ? m('.options-list.table-outer',
                                          ctrl.tagEditingLoading()
-                                            ? m('.dropdown-link', m('.fontsize-smallest', 'Carregando...'))
+                                            ? m('.dropdown-link', m('.fontsize-smallest', '로드 중...'))
                                             : ctrl.tagOptions().length
                                                 ? _.map(ctrl.tagOptions(), tag => m('.dropdown-link',
                                                     { onclick: ctrl.addTag(tag) },
                                                     m('.fontsize-smaller', tag.name)
                                                 ))
-                                                : m('.dropdown-link', m('.fontsize-smallest', 'Nenhuma tag relacionada...'))
+                                                : m('.dropdown-link', m('.fontsize-smallest', '관련 태그 없음...'))
                                     ) : '',
                                     vm.e.inlineError('public_tags'),
                                     m('div.tag-choices',
@@ -260,13 +260,13 @@ const projectBasicsEdit = {
                                 children: [
                                     m('.w-row', [
                                         m('.w-col.w-col-4.w-col-small-6.w-col-tiny6.text-field.prefix.no-hover.medium.prefix-permalink', {
-                                            class: vm.e.hasError('permalink') ? 'error' : ''
+                                            class: vm.e.hasError('permalink') ? '오류' : ''
                                         },
                                           m('.fontcolor-secondary.u-text-center.fontcolor-secondary.u-text-center.fontsize-smallest', 'www.catarse.me/')),
                                         m('.w-col.w-col-8.w-col-small-6.w-col-tiny-6', [
                                             m('input.string.required.w-input.text-field.postfix.positive.medium[type="text"]', {
                                                 value: vm.fields.permalink(),
-                                                class: vm.e.hasError('permalink') ? 'error' : '',
+                                                class: vm.e.hasError('permalink') ? '오류' : '',
                                                 onchange: m.withAttr('value', vm.fields.permalink)
                                             })
                                         ])
@@ -292,7 +292,7 @@ const projectBasicsEdit = {
                                 children: [
                                     m('input.string.required.w-input.text-field.positive.medium[type="text"]', {
                                         value: vm.fields.city_name(),
-                                        class: vm.e.hasError('city_id') ? 'error' : '',
+                                        class: vm.e.hasError('city_id') ? '오류' : '',
                                         onkeyup: vm.generateSearchCity(ctrl.cities)
                                     }),
                                     vm.e.inlineError('city_id'),

@@ -177,13 +177,13 @@ const projectGoalEdit = {
                                                         m('input.numeric.integer.optional.disabled.w-input.text-field.postfix.positive.medium[id="project_online_days"][name="project[online_days]"][type="number"]', {
                                                             onchange: m.withAttr('value', vm.fields.online_days),
                                                             value: vm.fields.online_days(),
-                                                            class: vm.e.hasError('online_days') ? 'error' : false
+                                                            class: vm.e.hasError('online_days') ? '오류' : false
                                                         })
                                                     ])
                                                 ]),
                                                 m('.w-col.w-col-4', [
                                                     m('.text-field.medium.prefix-permalink.u-text-center', [
-                                                        m('', 'dias')])
+                                                        m('', '일')])
                                                 ])
                                             ]),
                                             vm.e.inlineError('online_days')
@@ -211,13 +211,13 @@ const projectGoalEdit = {
                                                         m('input.numeric.integer.optional.w-input.text-field.field.w-input.text-field.medium.prefix[id="project_online_days"][name="project[online_days]"][type="number"]', {
                                                             onchange: m.withAttr('value', vm.fields.online_days),
                                                             value: vm.fields.online_days(),
-                                                            class: vm.e.hasError('online_days') ? 'error' : false
+                                                            class: vm.e.hasError('online_days') ? '오류' : false
                                                         })
                                                     ])
                                                 ]),
                                                 m('.w-col.w-col-6', [
                                                     m('.text-field.medium.prefix-permalink', {
-                                                        class: vm.e.hasError('online_days') ? 'error' : false
+                                                        class: vm.e.hasError('online_days') ? '오류' : false
                                                     }, [
                                                         m('', 'dias')
                                                     ])

@@ -30,10 +30,10 @@ const projectAnnounceExpiration = {
                                     m('.u-marginbottom-30.w-row', [
                                         m('.w-sub-col.w-col.w-col-6',
                                             m('.fontsize-small.u-marginbottom-10', [
-                                                'Em quantos dias, contados a partir de agora, você quer encerrar a sua arrecadação?',
+                                                '지금부터 며칠 후에 컬렉션을 닫으시겠습니까??',
                                                 m('br'),
                                                 m('span.fontsize-smaller.fontweight-semibold',
-                                                    '(mínimo de 2 dias)'
+                                                    '(최소 2 일)'
                                                 )
                                             ])
                                         ),
@@ -52,7 +52,7 @@ const projectAnnounceExpiration = {
                                                 ),
                                                 m('.medium.no-hover.postfix.prefix-permalink.text-field.w-col.w-col-4.w-col-small-6.w-col-tiny-6',
                                                     m('.fontcolor-secondary.fontsize-base.lineheight-tightest.u-text-center',
-                                                        'Dias'
+                                                        '일'
                                                     )
                                                 )
                                             ])
@@ -86,7 +86,7 @@ const projectAnnounceExpiration = {
                                         e.preventDefault();
                                     }
                                 },
-                                    '  Confirmar'
+                                    '  확인'
                                 )
                             )
                         ])

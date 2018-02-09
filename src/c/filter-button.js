@@ -19,7 +19,7 @@ const filterButton = {
         return m('.w-col.w-col-2.w-col-small-6.w-col-tiny-6', [
             m(`a.w-inline-block.btn-category.filters${title.length > 13 ? '.double-line' : ''}[href='#${href}']`, [
                 m('div', [
-                    title
+                    제목
                 ])
             ])
         ]);

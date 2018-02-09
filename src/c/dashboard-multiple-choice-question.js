@@ -44,7 +44,7 @@ const dashboardMultipleChoiceQuestion = {
                 m('.w-row', [
                     m('.w-col.w-col-4',
                             m('label.fontsize-smaller',
-                                'Pergunta'
+                                '질문'
                             )
                         ),
                     m('.w-col.w-col-8',
@@ -57,13 +57,13 @@ const dashboardMultipleChoiceQuestion = {
                                 },
                                 value: question.question
                             }),
-                            question.error ? m(inlineError, { message: 'O campo pergunta não pode ser vazio.' }) : null
+                            question.error ? m(inlineError, { message: '입력란을 작성해 주시길 바랍니다.' }) : null
                         )
                 ]),
                 m('.w-row', [
                     m('.w-col.w-col-4',
                             m('label.fontsize-smaller[for="name-3"]',
-                                'Descrição'
+                                '상품 설명'
                             )
                         ),
                     m('.w-col.w-col-8',
@@ -76,7 +76,7 @@ const dashboardMultipleChoiceQuestion = {
                 m('.w-row', [
                     m('.w-col.w-col-4',
                             m('label.fontsize-smaller',
-                                'Opções'
+                                '옵션'
                             )
                         ),
                     m('.w-col.w-col-8', [
@@ -100,7 +100,7 @@ const dashboardMultipleChoiceQuestion = {
                             m('.w-col.w-col-11.w-col-medium-11.w-col-small-11.w-col-tiny-11',
                                     m('button.fontcolor-secondary.fontsize-smallest.link-hidden',
                                         { onclick: ctrl.addOption(question) },
-                                        'Adicionar mais uma opção'
+                                        '다른 옵션 추가'
                                     )
                                 )
                         ])

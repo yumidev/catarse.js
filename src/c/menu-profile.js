@@ -71,7 +71,7 @@ const menuProfile = {
                                                 m('li.lineheight-looser',
                                                   m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#balance']`,
                                                     m('span', [
-                                                        'Saldo ',
+                                                        '균형 ',
                                                         (ctrl.userBalance() > 0 ? m('span.fontcolor-secondary',
                                                           `R$ ${h.formatNumber(ctrl.userBalance(), 2, 3)}`) : '')
                                                     ])
@@ -84,57 +84,57 @@ const menuProfile = {
                                                 ),
                                                 m('li.lineheight-looser',
                                                   m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#projects']`,
-                                                    'Projetos criados'
+                                                    '생성 된 프로젝트'
                                                    )
                                                  ),
                                                 m('li.w-hidden-main.w-hidden-medium.lineheight-looser',
                                                     m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#projects']`,
-                                                        'Projetos criados'
+                                                        '생성 된 프로젝트'
                                                     )
                                                  )
                                             ]
                                         ),
                                         m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10',
-                                            'Configurações'
+                                            '설정'
                                         ),
                                         m('ul.w-list-unstyled.u-marginbottom-20',
                                             [
                                                 m('li.lineheight-looser',
                                                   m('a.alt-link.fontsize-smaller[href=\'/connect-facebook/\']',
-                                                    'Encontre amigos'
+                                                    '친구 찾기'
                                                    )
                                                  ),
                                                 m('li.lineheight-looser',
                                                     m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#about_me']`,
-                                                        'Perfil público'
+                                                        '공개 프로필'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',
                                                     m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#notifications']`,
-                                                        'Notificações'
+                                                        '알림'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',
                                                     m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#settings']`,
-                                                        'Dados cadastrais'
+                                                        '지적 데이터'
                                                     )
                                                 )
                                             ]
                                         ),
                                         m('.divider.u-marginbottom-20'),
                                         args.user.is_admin_role ? m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10',
-                                            'Admin'
+                                            '관리자'
                                         ) : '',
                                         args.user.is_admin_role ? m('ul.w-list-unstyled.u-marginbottom-20',
                                             [
                                                 m('li.lineheight-looser',
                                                     m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/users\']',
-                                                        'Usuários'
+                                                        '사용자'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',
                                                     m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin\']',
-                                                        'Apoios'
+                                                        '후원'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',
@@ -144,29 +144,29 @@ const menuProfile = {
                                                  ),
                                                 m('li.lineheight-looser',
                                                     m('a.alt-link.fontsize-smaller[href=\'/pt/admin/financials\']',
-                                                        'Rel. Financeiros'
+                                                        '재무 관계'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',
                                                     m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/projects\']',
-                                                        'Admin projetos'
+                                                        '관리 프로젝트'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',
                                                     m('a.alt-link.fontsize-smaller[href=\'/pt/dbhero\']',
-                                                        'Dataclips'
+                                                        '데이터 클립'
                                                     )
                                                 )
                                             ]
                                         ) : '',
-                                        m('.fontsize-mini', 'Seu e-mail de cadastro é: '),
+                                        m('.fontsize-mini', '귀하의 이메일 주소 : '),
                                         m('.fontsize-smallest.u-marginbottom-20', [
                                             m('span.fontweight-semibold', `${user.email} `),
                                             m(`a.alt-link[href='/pt/users/${user.id}/edit#about_me']`, 'alterar e-mail')
                                         ]),
                                         m('.divider.u-marginbottom-20'),
                                         m('a.alt-link[href=\'/pt/logout\']',
-                                            'Sair'
+                                            '출구'
                                         )
                                     ]
                                 ),
@@ -176,7 +176,7 @@ const menuProfile = {
                                 //            `Projetos apoiados`
                                 //        ),
                                 //        m(`ul.w-list-unstyled.u-marginbottom-20`, ctrl.contributedProjects() ?
-                                //            _.isEmpty(ctrl.contributedProjects) ? 'Nenhum projeto.' :
+                                //            _.isEmpty(ctrl.contributedProjects) ? '프로젝트 없음.' :
                                 //            m.component(quickProjectList, {
                                 //                projects: m.prop(_.map(ctrl.contributedProjects(), (contribution) => {
                                 //                    return {
@@ -190,22 +190,22 @@ const menuProfile = {
                                 //                })),
                                 //                loadMoreHref: '/pt/users/${user.id}/edit#contributions',
                                 //                ref: 'user_menu_my_contributions'
-                                //            }) : 'carregando...'
+                                //            }) : '로딩...'
                                 //        )
                                 //    ]
                                 //),
                                 //m(`.w-col.w-col-4.w-hidden-small.w-hidden-tiny`,
                                 //    [
                                 //        m(`.fontweight-semibold.fontsize-smaller.u-marginbottom-10`,
-                                //            `Projetos criados`
+                                //            `생성 된 프로젝트`
                                 //        ),
                                 //        m(`ul.w-list-unstyled.u-marginbottom-20`, ctrl.latestProjects() ?
-                                //            _.isEmpty(ctrl.latestProjects) ? 'Nenhum projeto.' :
+                                //            _.isEmpty(ctrl.latestProjects) ? '프로젝트 없음.' :
                                 //            m.component(quickProjectList, {
                                 //                projects: ctrl.latestProjects,
                                 //                loadMoreHref: '/pt/users/${user.id}/edit#contributions',
                                 //                ref: 'user_menu_my_projects'
-                                //            }) : 'carregando...'
+                                //            }) : '로딩...'
                                 //        )
                                 //    ]
                                 //)

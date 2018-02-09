@@ -22,7 +22,7 @@ const menuSearch = {
                                   )
                               ),
                             m('a.btn.btn-small.btn-terciary.see-more-projects[href=\'javascript:void(0);\']',
-                                  ' ver todos'
+                                  ' 모두보기'
                               )
                         ]
                       )

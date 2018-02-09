@@ -80,7 +80,7 @@ const projectBudgetEdit = {
                                 children: [
                                     m('input.string.required.w-input.text-field.positive.medium[type="text"]', {
                                         value: vm.fields.video_url(),
-                                        class: vm.e.hasError('video_url') ? 'error' : '',
+                                        class: vm.e.hasError('video_url') ? '오류' : '',
                                         onchange: m.withAttr('value', vm.fields.video_url)
                                     }),
                                     vm.e.inlineError('video_url')

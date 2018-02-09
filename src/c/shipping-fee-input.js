@@ -51,15 +51,15 @@ const shippingFeeInput = {
 
                         [
                             m('input[type=\'hidden\']', {
-                                value: 'international'
+                                value: '국제'
                             }),
                             m('label.field-label.fontsize-smallest',
-                                'Internacional'
+                                '국제'
                             )
                         ] :
 
                         m('select.fontsize-smallest.text-field.text-field-light.w-select', {
-                            class: ctrl.fee.error ? 'error' : false,
+                            class: ctrl.fee.error ? '오류' : false,
                             value: ctrl.fee.destination(),
                             onchange: m.withAttr('value', ctrl.fee.destination)
                         }, [

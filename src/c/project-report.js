@@ -105,33 +105,33 @@ const projectReport = {
                 ctrl.sendSuccess() ?
                        m('.w-form',
                         m('p',
-                          'Obrigado! A sua denúncia foi recebida.'
+                          '신고가 접수되었습니다.'
                         )
                       ) :
                 [
                     m('.a.w-button.btn.btn-medium.btn-terciary.btn-inline[href=\'javascript:void(0);\']', { onclick: ctrl.checkLogin },
-                        'Denunciar este projeto'
+                        '프로젝트 신고'
                       ),
                     ctrl.displayForm() ? m('#report-form.u-margintop-30',
                         m('.w-form',
                           m('form', { onsubmit: ctrl.sendReport, config: ctrl.checkScroll },
                               [
                                   m('.fontsize-small.fontweight-semibold.u-marginbottom-10',
-                                'Por que você está denunciando este projeto?'
+                                '이 프로젝트를 신고하시는 이유가 무엇인가요?'
                               ),
                                   m('select.w-select.text-field.positive[required=\'required\']', { onchange: m.withAttr('value', ctrl.reason) },
                                       [
                                           m('option[value=\'\']',
-                                    'Selecione um motivo'
+                                    '이유 선택'
                                   ),
                                           m('option[value=\'Violação de propriedade intelectual\']',
-                                    'Violação de propriedade intelectual'
+                                    '지적 재산권 침해'
                                   ),
                                           m('option[value=\'Calúnia, injúria, difamação ou discriminação\']',
-                                    'Calúnia, injúria, difamação ou discriminação'
+                                    '중상, 명예 훼손, 명예 훼손 또는 차별'
                                   ),
                                           m('option[value=\'Escopo de projeto proibido\']',
-                                    'Escopo de projeto proibido'
+                                    '금지 된 프로젝트의 범위'
                                   ),
                                           m('option[value=\'Recompensas proibidas\']',
                                     'Recompensas proibidas'
@@ -140,18 +140,18 @@ const projectReport = {
                                     'Cenas de sexo explícitas e gratuitas'
                                   ),
                                           m('option[value=\'Abuso de SPAM\']',
-                                    'Abuso de SPAM'
+                                    '스팸 남용'
                                   ),
                                           m('option[value=\'Outros\']',
-                                    'Outros'
+                                    '기타'
                                   )
                                       ]
                               ),
-                                  (ctrl.reasonError() ? m(inlineError, { message: 'Selecione um motivo' }) : ''),
-                                  m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: 'Por favor, dê mais detalhes que nos ajudem a identificar o problema', onchange: m.withAttr('value', ctrl.details) }),
+                                  (ctrl.reasonError() ? m(inlineError, { message: '이유 선택' }) : ''),
+                                  m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: '문제를 파악하는 데 도움이되는 세부 정보를 제공해주세요.', onchange: m.withAttr('value', ctrl.details) }),
                                   m('.w-row',
-                                  (ctrl.detailsError() ? m(inlineError, { message: 'Informe os detalhes da denúncia' }) : '')),
-                                  m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'Enviar denúncia\']', { disabled: ctrl.submitDisabled() })
+                                  (ctrl.detailsError() ? m(inlineError, { message: '불만 사항을 신고하십시오.' }) : '')),
+                                  m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'불만 신고\']', { disabled: ctrl.submitDisabled() })
                               ]
                           )
                         )

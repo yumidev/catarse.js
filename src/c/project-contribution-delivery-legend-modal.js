@@ -6,7 +6,7 @@ const ProjectContributionDeliveryLegendModal = {
         return m('div', [
             m('.modal-dialog-header', [
                 m('.fontsize-large.u-text-center',
-                    'Status da entrega')
+                    '배송 상태')
             ]),
             m('.modal-dialog-content', [
                 m('.fontsize-smaller.u-marginbottom-30',
@@ -14,27 +14,27 @@ const ProjectContributionDeliveryLegendModal = {
                 ),
                 m('.u-marginbottom-20', [
                     m('.fontsize-smaller.fontweight-semibold', [
-                        'Não enviada',
+                        '전송되지 않음',
                         m.trust('&nbsp;')
                     ]),
                     m('.fontsize-smaller',
-                        'Você ainda não enviou a recompensa para o apoiador.'
+                        '후원자에게 아직 보상을 보내지 않았습니다.'
                     )
                 ]),
                 m('div',
                     m('span.fontsize-smaller.badge.badge-success',
-                        'Entregue'
+                        '배달 됨'
                     )
                 ),
                 m('.u-marginbottom-20',
                     m('.fontsize-smaller',
-                        'Você já enviou a recompensa para o apoiador.'
+                        '당신은 이미 후원자에게 보상을 보냈습니다.'
                     )
                 ),
                 m('.u-marginbottom-20', [
                     m('div',
                         m('span.fontsize-smaller.badge.badge-attention',
-                            'Erro na entrega'
+                            '전송 오류'
                         )
                     ),
                     m('.fontsize-smaller',
@@ -57,7 +57,7 @@ const ProjectContributionDeliveryLegendModal = {
             ]),
             m('.divider.u-marginbottom-10'),
             m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-30', [
-                'Obs: mesmo que a recompensa não seja física (como uma cópia digital, por exemplo), você pode mesmo assim usar o sistema acima!'
+                '참고 : 보상이 실제가 아닌 경우 (예 : 디지털 사본과 같은 경우)에도 위의 시스템을 사용할 수 있습니다.'
             ])
         ]);
     }

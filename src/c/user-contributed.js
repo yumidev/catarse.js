@@ -47,7 +47,7 @@ const userContributed = {
     },
     view(ctrl, args) {
         const projects_collection = ctrl.projects.collection();
-        return (ctrl.error() ? m.component(inlineError, { message: 'Erro ao carregar os projetos.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'contributed-tab\']',
+        return (ctrl.error() ? m.component(inlineError, { message: '프로젝트 로드 오류.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'contributed-tab\']',
             [
                   (!_.isEmpty(projects_collection) ? _.map(projects_collection, project => m.component(projectCard, {
                       project,
@@ -61,13 +61,13 @@ const userContributed = {
                                 m('.w-col.w-col-6',
                                     [
                                         m('.fontsize-large.u-marginbottom-30',
-                                                'Ora, ora... você ainda não apoiou nenhum projeto no Catarse!'),
+                                                '당신은 아직 기빙와이어에서 어떤 프로젝트도 참여하지 않았습니다'),
                                         m('.w-row',
                                             [
                                                 m('.w-col.w-col-3'),
                                                 m('.w-col.w-col-6',
                                                     m('a.btn.btn-large[href=\'/explore\']',
-                                                        'Que tal apoiar agora?'
+                                                        '지금 참여해 보세요!'
                                                     )
                                                 ),
                                                 m('.w-col.w-col-3')

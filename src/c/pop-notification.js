@@ -15,9 +15,9 @@ const popNotification = {
     view(ctrl, args) {
         return (ctrl.displayNotification() ? m('.flash.w-clearfix.card.card-notification.u-radius.zindex-20', {
             config: ctrl.setPopTimeout,
-            class: args.error ? 'card-error' : ''
+            class: args.error ? '카드 오류' : ''
         }, [
-            m('img.icon-close[src="/assets/catarse_bootstrap/x.png"][width="12"][alt="fechar"]', {
+            m('img.icon-close[src="/assets/catarse_bootstrap/x.png"][width="12"][alt="닫기"]', {
                 onclick: ctrl.displayNotification.toggle
             }),
             m('.fontsize-small', m.trust(args.message))

@@ -60,7 +60,7 @@ const userPrivateContributed = {
             failedCollection = ctrl.failedPages.collection();
 
         return m('.content[id=\'private-contributed-tab\']', ctrl.error() ? m.component(inlineError, {
-            message: 'Erro ao carregar os projetos.'
+            message: '프로젝트 로드 오류.'
         }) : ctrl.loader() ? h.loader() :
             (_.isEmpty(onlineCollection) && _.isEmpty(successfulCollection) && _.isEmpty(failedCollection)) ?
             m('.w-container',
@@ -68,7 +68,7 @@ const userPrivateContributed = {
                     m('.w-col.w-col-3'),
                     m('.w-col.w-col-6', [
                         m('.fontsize-large.u-marginbottom-30', [
-                            'Você ainda não apoiou nenhum projeto no',
+                            '아직 어떤 것도 후원하지 않았습니다.',
                             m.trust('&nbsp;'),
                             'Catarse...'
                         ]),
@@ -81,7 +81,7 @@ const userPrivateContributed = {
                                         m.route('/explore');
                                     }
                                 },
-                                    'Apoie agora!'
+                                    '지금 후원!'
                                 )
                             ),
                             m('.w-col.w-col-3')
@@ -92,12 +92,12 @@ const userPrivateContributed = {
             ) :
             [
                 m.component(userContributedList, {
-                    title: 'Projetos em andamento',
+                    title: '진행중인 프로젝트',
                     collection: onlineCollection,
                     pagination: ctrl.onlinePages
                 }),
                 m.component(userContributedList, {
-                    title: 'Projetos bem-sucedidos',
+                    title: '성공적인 프로젝트',
                     collection: successfulCollection,
                     pagination: ctrl.successfulPages
                 }),

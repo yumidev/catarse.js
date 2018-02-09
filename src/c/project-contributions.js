@@ -48,7 +48,7 @@ const projectContributions = {
         lContributionsPerDay.load().then(contributionsPerDay);
 
         const contributionsPerLocationTable = [
-            ['Estado', 'Apoios', 'R$ apoiados (% do total)']
+            ['Estado', '후원', 'R$ apoiados (% do total)']
         ];
         const buildPerLocationTable = contributions => (!_.isEmpty(contributions)) ? _.map(_.first(contributions).source, (contribution) => {
             const column = [];
@@ -96,7 +96,7 @@ const projectContributions = {
                           stats.total
                          ),
                         m('.fontsize-large',
-                          'pessoas apoiam este projeto'
+                          '사람들이 이 프로젝트를 지원합니다'
                          )
                     ]),
                     m('.w-col.w-col-6',
@@ -104,13 +104,13 @@ const projectContributions = {
                         m('.w-row', [
                             m('.u-marginbottom-20.w-col.w-sub-col.w-col-6.w-col-small-6', [
                                 m('.fontweight-semibold.u-marginbottom-10',
-                                  'Apoiadores novos'
+                                  '새로운 후원자들'
                                  ),
                                 m('.fontsize-largest.u-marginbottom-10',
                                   `${Math.floor(stats.new_percent)}%`
                                  ),
                                 m('.fontsize-smallest',
-                                  'apoiadores que nunca tinham apoiado um projeto no Catarse'
+                                  '카타르에서 프로젝트를 후원해 본적이 없는 후원자들'
                                  )
                             ]),
                             m('.w-col.w-sub-col.w-col-6.w-col-small-6', [
@@ -122,7 +122,7 @@ const projectContributions = {
                                   `${Math.ceil(stats.returning_percent)}%`
                                  ),
                                 m('.fontsize-smallest',
-                                  'apoiadores que já tinham apoiado um projeto no Catarse'
+                                  '카타르에서 이미 프로젝트를 후원 한 후원자들'
                                  )
                             ])
                         ])

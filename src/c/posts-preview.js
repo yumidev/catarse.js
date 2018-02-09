@@ -32,7 +32,7 @@ const postsPreview = {
                     togglePreview();
                     m.redraw();
                 }).catch((err) => {
-                    args.errors('Erro ao enviar mensagem.'),
+                    args.errors('메시지 보내는 중 오류가 발생했습니다.'),
                     args.showError(true);
                     m.redraw();
                 });
@@ -47,20 +47,20 @@ const postsPreview = {
             title = args.title(),
             recipientsText = args.reward_id > 1 ?
             m('.fontsize-small.u-marginbottom-30', [
-                'A novidade acima será enviada por email para os ',
+                '위의 뉴스는 이메일로 발송됩니다. ',
                 m('span.fontweight-semibold',
                     args.rewardText
                 ),
                 ' e ficará ',
                 m('span.fontweight-semibold',
-                'visível na plataforma somente para esses apoiadores.'
+                '해당 서포터에게만 플랫폼에 표시됩니다.'
                 )
             ]) :
             args.reward_id === '-1' ?
             m('.fontsize-small.u-marginbottom-30', [
                 'A novidade acima será  ',
                 m('span.fontweight-semibold',
-                    'enviada por email para todos'
+                    '모든 사람에게 전자 메일로 보냄'
                 ),
                 ' os apoiadores e ficará ',
                 m('span.fontweight-semibold',
@@ -70,9 +70,9 @@ const postsPreview = {
             ]) :
             m('.fontsize-small.u-marginbottom-30', [
                 m('span', ' A novidade acima será  '),
-                m('span.fontweight-semibold', 'enviada por email para todos os apoiadores'),
+                m('span.fontweight-semibold', '모든 후원자에게 이메일로 보냄'),
                 m('span', ' e ficará '),
-                m('span.fontweight-semibold', 'visível somente para esses na plataforma.')
+                m('span.fontweight-semibold', '플랫폼에있는 사람들 만 볼 수있다.')
             ]);
 
         return m('div', [
@@ -124,14 +124,14 @@ const postsPreview = {
                             ),
                             ' ',
                             m.trust('&nbsp;'),
-                            'Enviar'
+                            '보내기'
                         ])
                     ),
                     m('.w-col.w-col-2',
                         m('button.btn.btn-large.btn-terciary', {
                             onclick: ctrl.togglePreview
                         },
-                            'Editar'
+                            '수정'
                         )
                     ),
                     m('.w-col.w-col-3')

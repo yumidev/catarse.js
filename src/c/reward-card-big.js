@@ -18,11 +18,11 @@ const rewardCardBig = {
             ),
             m('.fontcolor-secondary.fontsize-smallest', [
                 m('span.fontcolor-terciary',
-                    'Entrega prevista: '
+                    '예상 배송: '
                 ),
                 h.momentify(reward.deliver_at, 'MMMM/YYYY'),
                 m('span.fontcolor-terciary', '    |    '),
-                m('span.fontcolor-terciary', 'Envio: '),
+                m('span.fontcolor-terciary', '배송: '),
                 I18n.t(`shipping_options.${reward.shipping_options}`, I18nScope())
             ])
         ]);

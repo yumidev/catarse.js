@@ -31,7 +31,7 @@ const projectSidebar = {
                             if (progress <= parseInt(project().progress)) {
                                 progressBar.style.width = `${progress}%`;
                                 pledgedEl.innerText = `R$ ${h.formatNumber(pledged)}`;
-                                contributorsEl.innerText = `${parseInt(contributors)} pessoas`;
+                                contributorsEl.innerText = `${parseInt(contributors)} 사람들`;
                                 el.innerText = `${progress}%`;
                                 pledged += pledgedIncrement;
                                 contributors += contributorsIncrement;
@@ -148,7 +148,7 @@ const projectSidebar = {
                 m.component(categoryTag, { project }),
                 m('.u-marginbottom-30.u-text-center-small-only', m('button.btn.btn-inline.btn-medium.btn-terciary', {
                     onclick: ctrl.displayShareBox.toggle
-                }, 'Compartilhar este projeto')),
+                }, '이 프로젝트 공유')),
                 ctrl.displayShareBox() ? m(projectShareBox, {
                     project,
                     displayShareBox: ctrl.displayShareBox
