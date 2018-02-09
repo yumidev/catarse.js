@@ -147,18 +147,18 @@ const userContributedBox = {
                                         ''
                                     ),
                                     m.trust('&nbsp;'),
-                                    'Questionário',
+                                    '설문지',
                                     m('br'),
-                                    'Não respondido'
+                                    '답변 없음'
                                 ])
                             )
                         ) : answeredAt ?
                         m('.u-text-center.w-col.w-col-2', [
                             m('.fontsize-smaller.fontweight-semibold.lineheight-tighter',
                                 m(`a.link-hidden-dark[href='/contributions/${contribution.contribution_id}/surveys/${contribution.survey.survey_id}'][target='_blank']`, [
-                                    'Questionário',
+                                    '설문지',
                                     m('br'),
-                                    'Respondido'
+                                    '답변 완료'
                                 ])
                             ),
                             m('.fontcolor-secondary.fontsize-smallest',

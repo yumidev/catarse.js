@@ -86,7 +86,7 @@ const projectContributionReportContent = {
               }) : ''),
 
             (ctrl.showSuccess() ? m.component(popNotification, {
-                message: 'As informações foram atualizadas'
+                message: '정보가 업데이트 되었습니다.'
             }) : ''),
             m('.w-container', [
                 m('.u-marginbottom-40',
@@ -96,7 +96,7 @@ const projectContributionReportContent = {
                                 m('span.fontweight-semibold',
                                     (list.isLoading() ? '' : list.total())
                                 ),
-                                ' apoios'
+                                ' 후원'
                             ])
                         ),
                         m('.w-col.w-col-6', isFailed ? '' : [
@@ -104,12 +104,12 @@ const projectContributionReportContent = {
                                 m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
                                     onclick: ctrl.selectAll
                                 },
-                                    'Selecionar todos'
+                                    '모두 선택'
                                 ) :
                                 m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
                                     onclick: ctrl.unselectAll
                                 },
-                                    'Desmarcar todos'
+                                    '모두 선택 취소'
                                 )
                             ),
                             (ctrl.selectedAny() ?
@@ -117,9 +117,9 @@ const projectContributionReportContent = {
                                     m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
                                         onclick: ctrl.showSelectedMenu.toggle
                                     }, [
-                                        'Marcar ',
+                                        '전화 걸기 ',
                                         m('span.w-hidden-tiny',
-                                            'entrega'
+                                            '배달'
                                         ),
                                         ' como'
                                     ]),
@@ -128,12 +128,12 @@ const projectContributionReportContent = {
                                             m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
                                                 onclick: () => ctrl.displayDeliverModal.toggle()
                                             },
-                                                'Entregue'
+                                                '배달 됨'
                                             ),
                                             m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
                                                 onclick: () => ctrl.displayErrorModal.toggle()
                                             },
-                                                'Erro na entrega'
+                                                '전송 오류'
                                             )
                                         ]) : '')
                                 ]) : '')
@@ -143,7 +143,7 @@ const projectContributionReportContent = {
                                 m('span.fa.fa-download',
                                     ''
                                 ),
-                                ' Baixar relatórios'
+                                ' 보고서 다운로드'
                             ])
                         )
                     ])

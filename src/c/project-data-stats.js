@@ -46,14 +46,14 @@ const projectDataStats = {
                         m('.w-row.u-marginbottom-30.u-margintop-30', [
                             m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [
                                 m('.fontsize-larger.fontweight-semibold', `${visitorsTotal}`),
-                                'Visitantes'
+                                '방문객'
                             ]),
                             m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [
                                 m('.bg-triangle-funnel.fontcolor-secondary.fontsize-base', `${h.formatNumber((project.total_contributors / visitorsTotal * 100 || 0), 2)}%`)
                             ]),
                             m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [
                                 m('.fontsize-larger.fontweight-semibold', `${project.total_contributors}`),
-                                'Apoiadores'
+                                '후원자'
                             ])
                         ])
                     ]),
@@ -71,8 +71,8 @@ const projectDataStats = {
                     ])
                 ]),
                 m('.fontcolor-secondary.fontsize-smallest.u-margintop-20', [
-                    'Os dados podem levar até 24 horas para serem atualizados.',
-                    m('a.alt-link', { href: 'https://suporte.catarse.me/hc/pt-br/articles/115002214463-projeto-ONLINE#visitante', target: '_blank' }, ' Saiba mais'),
+                    '데이터를 업데이트하는 데 최대 24시간이 소요될 수 있습니다.',
+                    m('a.alt-link', { href: 'https://suporte.catarse.me/hc/pt-br/articles/115002214463-projeto-ONLINE#visitante', target: '_blank' }, ' 추가 정보'),
                     '.'
                 ])
             ])

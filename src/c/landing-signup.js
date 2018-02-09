@@ -41,15 +41,15 @@ const landingSignup = {
             onsubmit: ctrl.submit
         }, [
             m('.w-col.w-col-5', [
-                m(`input${errorClasses}.w-input.text-field.medium[name="EMAIL"][placeholder="Digite seu email"][type="text"]`, {
+                m(`input${errorClasses}.w-input.text-field.medium[name="EMAIL"][placeholder="이메일을 입력해 주시길 바랍니다."][type="text"]`, {
                     config: h.RDTracker('landing-flex'),
                     onchange: m.withAttr('value', ctrl.email),
                     value: ctrl.email()
                 }),
-                (ctrl.error() ? m('span.fontsize-smaller.text-error', 'E-mail inválido') : '')
+                (ctrl.error() ? m('span.fontsize-smaller.text-error', '이메일이 잘못되었습니다.') : '')
             ]),
             m('.w-col.w-col-3', [
-                m('input.w-button.btn.btn-large[type="submit"][value="Cadastrar"]')
+                m('input.w-button.btn.btn-large[type="submit"][value="등록"]')
             ])
         ]);
     }

@@ -34,7 +34,7 @@ const paymentForm = {
             m('.flex-row.u-marginbottom-40', [
                 m('a.w-inline-block.btn-select.flex-column.u-marginbottom-20.u-text-center[href=\'javascript:void(0);\']', {
                     onclick: () => ctrl.isSlip(false),
-                    class: !ctrl.isSlip() ? 'selected' : ''
+                    class: !ctrl.isSlip() ? '선택된' : ''
                 }, [
                     m('.fontsize-base.fontweight-semibold',
                         I18n.t('credit_card_select', ctrl.scope())
@@ -46,7 +46,7 @@ const paymentForm = {
                 ]),
                 !args.vm.isInternational() ? m('a.w-inline-block.btn-select.flex-column.u-marginbottom-20.u-text-center[href=\'javascript:void(0);\']', {
                     onclick: () => ctrl.isSlip(true),
-                    class: ctrl.isSlip() ? 'selected' : ''
+                    class: ctrl.isSlip() ? '선택된' : ''
                 }, [
                     m('.fontsize-base.fontweight-semibold.u-marginbottom-20',
                         'Boleto bancário'

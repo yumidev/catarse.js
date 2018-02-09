@@ -16,8 +16,8 @@ const successfulProjectTaxModal = {
             ]),
             m('.modal-dialog-content', [
                 m('p.fontsize-small.u-marginbottom-40', [
-                    'Confira o extrato do seu projeto, já incluindo as taxas e retenções. Se você tiver dúvidas sobre como esse cálculo é feito, ',
-                    m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/articles/202037493-FINANCIADO-Como-ser%C3%A1-feito-o-repasse-do-dinheiro-"][target="__blank"]', 'acesse aqui'),
+                    '수수료 및 공제액을 포함하여 프로젝트 결과를 확인해 주시길 바랍니다. 이 계산 방법에 대해 궁금한 점이 있으면, ',
+                    m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/articles/202037493-FINANCIADO-Como-ser%C3%A1-feito-o-repasse-do-dinheiro-"][target="__blank"]', '여기에 접속해 주세요.'),
                     '.'
                 ]),
                 m('div', [
@@ -26,7 +26,7 @@ const successfulProjectTaxModal = {
                             m('.text-success', `+ R$ ${h.formatNumber(pt.pledged, 2)}`)
                         ]),
                         m('.w-col.w-col-8', [
-                            m('div', `Arrecadação total (${pt.total_contributions} apoios)`)
+                            m('div', `총 (${pt.total_contributions} 후원)`)
                         ])
                     ]),
                     (pt.irrf_tax > 0 ?
@@ -35,7 +35,7 @@ const successfulProjectTaxModal = {
                              m('.text-success', `+ R$ ${h.formatNumber(pt.irrf_tax, 2)}`)
                          ]),
                          m('.w-col.w-col-8', [
-                             m('div', 'Retenção IRF (Imposto de Renda na Fonte)')
+                             m('div', '원천 징수 소득세 (IRF)')
                          ])
                      ]) : ''),
                     m('.w-row.fontsize-small.u-marginbottom-10', [
@@ -43,7 +43,7 @@ const successfulProjectTaxModal = {
                             m('.text-error', `- R$ ${h.formatNumber(pt.catarse_fee, 2)}`)
                         ]),
                         m('.w-col.w-col-8', [
-                            m('div', `Taxa do Catarse e meio de pagamento (${h.formatNumber((pt.service_fee * 100), 2)}%) `)
+                            m('div', `Catarse 요금 및 지불 수단 (${h.formatNumber((pt.service_fee * 100), 2)}%) `)
                         ])
                     ]),
                     m('.divider.u-marginbottom-10'),
@@ -52,7 +52,7 @@ const successfulProjectTaxModal = {
                             m('div', `R$ ${h.formatNumber(pt.total_amount, 2)}`)
                         ]),
                         m('.w-col.w-col-8', [
-                            m('div', 'Total a ser transferido')
+                            m('div', '양도 될 총계')
                         ])
                     ])
                 ])

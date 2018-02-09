@@ -25,7 +25,7 @@ const rewardSelectCard = {
             };
 
             if (!selectedDestination() && rewardVM.hasShippingOptions(rewardVM.selectedReward())) {
-                rewardVM.error('Por favor, selecione uma opção de frete válida.');
+                rewardVM.error('유효한 화물 옵션을 선택해 주시길 바랍니다.');
             } else if (valueFloat < rewardVM.selectedReward().minimum_value + shippingFee.value) {
                 rewardVM.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${rewardVM.selectedReward().minimum_value} + frete R$${h.formatNumber(shippingFee.value, 2, 3)}`);
             } else {
@@ -102,7 +102,7 @@ const rewardSelectCard = {
                     rewardVM.hasShippingOptions(reward) ?
                     m('.w-sub-col.w-col.w-col-4', [
                         m('.fontcolor-secondary.u-marginbottom-10',
-                            'Local de entrega'
+                            '배송지'
                         ),
                         m('select.positive.text-field.w-select', {
                             onchange: m.withAttr('value', ctrl.selectDestination)
@@ -140,14 +140,14 @@ const rewardSelectCard = {
                         ]),
                         m('.fontsize-smaller.text-error.u-marginbottom-20.w-hidden', [
                             m('span.fa.fa-exclamation-triangle'),
-                            ' O valor do apoio está incorreto'
+                            ' 후원 금액이 잘못되었습니다.'
                         ])
                     ]),
                     m('.submit-form.w-col.w-col-4',
                         m('button.btn.btn-medium.u-margintop-30', {
                             onclick: ctrl.submitContribution
                         }, [
-                            'Continuar  ',
+                            '계속하기  ',
                             m('span.fa.fa-chevron-right')
                         ])
                     )
@@ -167,7 +167,7 @@ const rewardSelectCard = {
                         m('.fontsize-smallest', h.momentify(reward.deliver_at, 'MMM/YYYY'))
                     ]),
                         (!rewardVM.hasShippingOptions(reward) && reward.shipping_options !== 'presential') ? '' : m('.w-col.w-col-6', [
-                            m('.fontsize-smallest.fontcolor-secondary', 'Envio:'),
+                            m('.fontsize-smallest.fontcolor-secondary', '배송:'),
                             m('.fontsize-smallest', I18n.t(`shipping_options.${reward.shipping_options}`, I18nScope()))
                         ])
                     ])

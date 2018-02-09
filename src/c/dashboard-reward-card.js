@@ -24,7 +24,7 @@ const dashboardRewardCard = {
             validate = () => {
                 limitError(false);
                 args.error(false);
-                args.errors('Erro ao salvar informações.');
+                args.errors('정보 저장 오류.');
                 if (reward.maximum_contributions() && reward.paid_count() > reward.maximum_contributions()) {
                     limitError(true);
                     args.error(true);
@@ -116,7 +116,7 @@ const dashboardRewardCard = {
                         m('.w-col.w-col-4', [
                             m('button.btn.btn-small.btn-terciary.w-button', {
                                 onclick: ctrl.toggleShowLimit
-                            }, 'Alterar limite')
+                            }, '한도 변경')
 
                         ])),
                     m('.w-col.w-col-8')
@@ -157,7 +157,7 @@ const dashboardRewardCard = {
                                         m('button.btn.btn-small.btn-terciary.w-button', {
                                             onclick: ctrl.toggleShowLimit
                                         },
-                                            'Cancelar'
+                                            '취소'
                                         )
                                     ),
                                     m('.w-clearfix.w-col.w-col-4')
@@ -168,7 +168,7 @@ const dashboardRewardCard = {
 
                 ),
                 ctrl.limitError() ? m(inlineError, {
-                    message: 'Limite deve ser maior que quantidade de apoios.'
+                    message: '한도는 후원 금액보다 커야합니다.'
                 }) : ''
             ]),
             m('.u-margintop-20', [

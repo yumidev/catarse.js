@@ -30,10 +30,10 @@ const projectHeader = {
         const hasContribution = !_.isEmpty(ctrl.projectContributions()) ? m('.card.card-terciary.u-radius.u-margintop-20', [
             m('.fontsize-small.u-text-center', [
                 m('span.fa.fa-thumbs-up'),
-                ' Você é apoiador deste projeto! ',
+                ' 당신은 이 프로젝트의 후원자입니다. ',
                 m('a.alt-link[href=\'javascript:void(0);\']', {
                     onclick: ctrl.showContributions.toggle
-                }, 'Detalhes')
+                }, '세부 정보')
             ]),
             ctrl.showContributions() ? m('.u-margintop-20.w-row',
                     _.map(ctrl.projectContributions(), contribution => m.component(userContributionDetail, {

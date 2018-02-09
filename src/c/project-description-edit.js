@@ -79,7 +79,7 @@ const projectDescriptionEdit = {
                                 label_hint: I18n.t('description_hint', I18nScope()),
                                 children: [
                                     m('.preview-container', {
-                                        class: vm.e.hasError('about_html') ? 'error' : false
+                                        class: vm.e.hasError('about_html') ? '오류' : false
                                     }, h.redactor('project[about_html]', vm.fields.about_html)),
                                     vm.e.inlineError('about_html')
                                 ]

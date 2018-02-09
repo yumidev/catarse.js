@@ -47,7 +47,7 @@ const projectHighlight = {
                         onclick: ctrl.displayShareBox.toggle
                     }, [
                         '···',
-                        ' Mais'
+                        ' 더 많은 기사'
                     ]),
                     (ctrl.displayShareBox() ? m(projectShareBox, {
                         project,

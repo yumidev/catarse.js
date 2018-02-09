@@ -133,7 +133,7 @@ const projectRewardCard = {
             m('.u-marginbottom-20.w-row', [
                 m('.w-col.w-col-6', !_.isEmpty(reward.deliver_at) ? [
                     m('.fontcolor-secondary.fontsize-smallest',
-                        m('span', 'Entrega prevista:')
+                        m('span', '예상 배송:')
                     ),
                     m('.fontsize-smallest',
                         h.momentify(reward.deliver_at, 'MMM/YYYY')
@@ -142,7 +142,7 @@ const projectRewardCard = {
                 m('.w-col.w-col-6', rewardVM.hasShippingOptions(reward) || reward.shipping_options === 'presential' ? [
                     m('.fontcolor-secondary.fontsize-smallest',
                         m('span',
-                            'Envio:'
+                            '배송:'
                         )
                     ),
                     m('.fontsize-smallest',
@@ -152,7 +152,7 @@ const projectRewardCard = {
             ]),
             reward.maximum_contributions > 0 ? [
                 (h.rewardSouldOut(reward) ? m('.u-margintop-10', [
-                    m('span.badge.badge-gone.fontsize-smaller', 'Esgotada')
+                    m('span.badge.badge-gone.fontsize-smaller', '품절')
                 ]) : m('.u-margintop-10', [
                     m('span.badge.badge-attention.fontsize-smaller', [
                         m('span.fontweight-bold', 'Limitada'),
@@ -172,7 +172,7 @@ const projectRewardCard = {
                         m('.divider.u-marginbottom-20'),
                         rewardVM.hasShippingOptions(reward) ? m('div', [
                             m('.fontcolor-secondary.u-marginbottom-10',
-                                'Local de entrega'
+                                '배송지'
                             ),
                             m('select.positive.text-field.w-select', {
                                 onchange: m.withAttr('value', ctrl.selectDestination),

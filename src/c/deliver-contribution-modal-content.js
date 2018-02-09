@@ -20,7 +20,7 @@ const deliverContributionModalContent = {
             m('.modal-dialog-content', [
                 m('p.fontsize-small.u-marginbottom-30', [
                     m('span.fontweight-semibold',
-                        `Você selecionou ${args.amount} apoios.`
+                        `선택한 ${args.amount} 후원.`
                     ),
                     ' Após sua confirmação, os apoiadores que efetuaram esses apoios ao seu projeto serão notificados de que suas recompensas serão entregues em breve.'
                 ]),
@@ -57,7 +57,7 @@ const deliverContributionModalContent = {
                         m('a.btn.btn-medium.btn-terciary.w-button', {
                             onclick: args.displayModal.toggle
                         },
-                            'Voltar'
+                            '뒤로'
                         )
                     ),
                     m('.w-col.w-col-1')

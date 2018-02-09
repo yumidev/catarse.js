@@ -28,10 +28,10 @@ const surveyCreatePreview = {
                         m('.w-col.w-col-2'),
                         m('.w-col.w-col-8', [
                             m('.fontsize-larger.fontweight-semibold.lineheight-looser',
-                                'Revise o questionário'
+                                '설문지 검토'
                             ),
                             m('.fontsize-base',
-                                'Os seus apoiadores irão receber um link para o questionário abaixo por email. Veja se está tudo correto antes de enviá-lo!'
+                                '귀하의 서포터는 이메일로 아래의 설문지에 대한 링크를 받게됩니다. 전송하기 전에 모든 것이 올바른지 확인하십시오!'
                             )
                         ]),
                         m('.w-col.w-col-2')
@@ -62,7 +62,7 @@ const surveyCreatePreview = {
                                                 ),
                                                 m('select.positive.text-field.w-select', [
                                                     m("option[value='']",
-                                                        'Selecione...'
+                                                        '선택...'
                                                     )
                                                 ])
                                             ]),
@@ -75,14 +75,14 @@ const surveyCreatePreview = {
                                         ]),
                                         m('div', [
                                             m('label.field-label.fontweight-semibold',
-                                                'Rua'
+                                                '거리'
                                             ),
                                             m("input.positive.text-field.w-input[type='email']")
                                         ]),
                                         m('.w-row', [
                                             m('.w-sub-col.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    'Número'
+                                                    '번호'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ]),
@@ -94,7 +94,7 @@ const surveyCreatePreview = {
                                             ]),
                                             m('.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    'Bairro'
+                                                    '이웃'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ])
@@ -108,17 +108,17 @@ const surveyCreatePreview = {
                                             ]),
                                             m('.w-sub-col.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    'Cidade'
+                                                    '도시'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ]),
                                             m('.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    'Estado'
+                                                    '주'
                                                 ),
                                                 m('select.positive.text-field.w-select', [
                                                     m("option[value='']",
-                                                        'Selecione...'
+                                                        '선택...'
                                                     )
                                                 ])
                                             ])
@@ -126,7 +126,7 @@ const surveyCreatePreview = {
                                         m('.w-row', [
                                             m('.w-sub-col.w-col.w-col-6', [
                                                 m('label.field-label.fontweight-semibold',
-                                                    'Telefone'
+                                                    '전화'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ]),
@@ -162,7 +162,7 @@ const surveyCreatePreview = {
                                         question.description
                                     ),
                                     m('form',
-                                        m("input.positive.text-field.w-input[placeholder='Sua resposta'][type='text']")
+                                        m("input.positive.text-field.w-input[placeholder='귀하의 답변'][type='text']")
                                     )
                                 ]))
                             ])
@@ -186,7 +186,7 @@ const surveyCreatePreview = {
                                 'OBS:'
                             ),
                             m.trust('&nbsp;'),
-                            'As perguntas serão reenviadas automaticamente para aqueles que não responderem em até 4 dias. Caso os apoiadores continuem sem enviar as respostas, o questionário será reenviado mais duas vezes.'
+                            '질문은 자동으로 4일 이내에 응답하지 않는 사람들에게 다시 제출됩니다. 서포터가 응답을 제출하지 않고 계속 진행하면 설문지가 두 번 더 재전송됩니다.'
                         ])
                     ]),
                     m('.w-col.w-col-2')
@@ -200,12 +200,12 @@ const surveyCreatePreview = {
                             ),
                             ' ',
                             m.trust('&nbsp;'),
-                            'Enviar'
+                            '보내기'
                         ])
                     ),
                     m('.w-col.w-col-2',
                         m("a.btn.btn-large.btn-terciary[href='javascript:void(0);']", { onclick: ctrl.togglePreview },
-                            'Editar'
+                            '수정'
                         )
                     ),
                     m('.w-col.w-col-3')

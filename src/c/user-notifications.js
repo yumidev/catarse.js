@@ -104,7 +104,7 @@ const userNotifications = {
                                 m('.w-row.u-marginbottom-20', [
                                     m('.w-col.w-col-4',
                                         m('.fontweight-semibold.fontsize-small.u-marginbottom-10',
-                                            'Newsletters:'
+                                            '뉴스레터:'
                                         )
                                     ),
                                     m('.w-col.w-col-8', (_.isEmpty(marketing_lists) ? h.loader() : _.map(marketing_lists, (_item, i) => {
@@ -160,7 +160,7 @@ const userNotifications = {
                                 m('.w-row.u-marginbottom-20', [
                                     m('.w-col.w-col-4',
                                         m('.fontweight-semibold.fontsize-small.u-marginbottom-10',
-                                            'Projetos que você apoiou:'
+                                            '후원한 프로젝트:'
                                         )
                                     ),
                                     m('.w-col.w-col-8',
@@ -168,7 +168,7 @@ const userNotifications = {
                                             m('input[name=user[subscribed_to_project_posts]][type=\'hidden\'][value=\'0\']'),
                                             m(`input.w-checkbox-input${user.subscribed_to_project_posts ? '[checked=\'checked\']' : ''}[id='user_subscribed_to_project_posts'][name=user[subscribed_to_project_posts]][type='checkbox'][value='1']`),
                                             m('label.w-form-label.fontsize-base.fontweight-semibold',
-                                                ' Quero receber atualizações dos projetos'
+                                                ' 프로젝트 업데이트를 받고 싶습니다.'
                                             ),
                                             m('.u-marginbottom-20',
                                                 m('a.alt-link[href=\'javascript:void(0);\']', {
@@ -208,7 +208,7 @@ const userNotifications = {
                                             m('input[name=user[subscribed_to_friends_contributions]][type=\'hidden\'][value=\'0\']'),
                                             m(`input.w-checkbox-input${user.subscribed_to_friends_contributions ? '[checked=\'checked\']' : ''}[id='user_subscribed_to_friends_contributions'][name=user[subscribed_to_friends_contributions]][type='checkbox'][value='1']`),
                                             m('label.w-form-label.fontsize-small',
-                                                'Um amigo apoiou ou lançou um projeto'
+                                                '친구가 프로젝트를 지원하거나 시작했습니다.'
                                             )
                                         ])
                                     ),
@@ -225,7 +225,7 @@ const userNotifications = {
                                 m('.w-row.u-marginbottom-20', [
                                     m('.w-col.w-col-4',
                                         m('.fontweight-semibold.fontsize-small.u-marginbottom-10',
-                                            'Lembretes de projetos:'
+                                            '프로젝트 미리 알림:'
                                         )
                                     ),
                                     m('.w-col.w-col-8', [

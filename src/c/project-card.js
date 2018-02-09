@@ -60,7 +60,7 @@ const projectCard = {
         const cardCopy = (project) => {
             if (project.expires_at) {
                 return isFinished(project) ? [
-                    m('.fontsize-smaller.fontweight-loose', 'Encerrado'),
+                    m('.fontsize-smaller.fontweight-loose', '휴무일'),
                     m('.fontsize-smallest.lineheight-tightest', h.momentify(project.expires_at))
                 ] : [
                     m('.fontsize-smaller.fontweight-semibold', `${remainingTextObj.total} ${remainingTextObj.unit}`),

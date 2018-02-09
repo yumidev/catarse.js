@@ -79,7 +79,7 @@ const projectBudgetEdit = {
                                 label: I18n.t('budget_label', I18nScope()),
                                 children: [
                                     m('.preview-container', {
-                                        class: vm.e.hasError('budget') ? 'error' : false
+                                        class: vm.e.hasError('budget') ? '오류' : false
                                     }, h.redactor('project[budget]', vm.fields.budget)),
                                     vm.e.inlineError('budget')
                                 ]

@@ -55,7 +55,7 @@ const projectTabs = {
                                 style: 'float: left;',
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_rewards_view', project: project() })
-                            }, 'Recompensas') : m(`a[id="rewards-link"][class="w-hidden-main w-hidden-medium dashboard-nav-link mf ${(h.hashMatch('#contribution_suggestions') || (h.mobileScreen() && h.hashMatch('')) ? 'selected' : '')}"][href="/${project().permalink}#contribution_suggestions"]`, {
+                            }, '보상') : m(`a[id="rewards-link"][class="w-hidden-main w-hidden-medium dashboard-nav-link mf ${(h.hashMatch('#contribution_suggestions') || (h.mobileScreen() && h.hashMatch('')) ? 'selected' : '')}"][href="/${project().permalink}#contribution_suggestions"]`, {
                                 style: 'float: left;',
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_contribsuggestions_view', project: project() })
@@ -64,13 +64,13 @@ const projectTabs = {
                                 style: 'float: left;',
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_about_view', project: project() })
-                            }, 'Sobre'),
+                            }, '위키 소개'),
                             m(`a[id="posts-link"][class="dashboard-nav-link mf ${(h.hashMatch('#posts') ? 'selected' : '')}"][href="/${project().permalink}#posts"]`, {
                                 style: 'float: left;',
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_posts_view', project: project() })
                             }, [
-                                'Novidades ',
+                                '새로운 기능 ',
                                 m('span.badge', project() ? project().posts_count : '')
                             ]),
                             m(`a[id="contributions-link"][class="w-hidden-small w-hidden-tiny dashboard-nav-link mf ${(h.hashMatch('#contributions') ? 'selected' : '')}"][href="#contributions"]`, {
@@ -78,7 +78,7 @@ const projectTabs = {
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_contributions_view', project: project() })
                             }, [
-                                'Apoiadores ',
+                                '후원자 ',
                                 m('span.badge.w-hidden-small.w-hidden-tiny', project() ? project().total_contributors : '-')
                             ]),
                             m(`a[id="comments-link"][class="dashboard-nav-link mf ${(h.hashMatch('#comments') ? 'selected' : '')}"][href="#comments"]`, {
@@ -86,7 +86,7 @@ const projectTabs = {
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_comments_view', project: project() })
                             }, [
-                                'Comentários ',
+                                '자기 소개 ',
                                 project() ? m(`fb:comments-count[href="http://www.catarse.me/${project().permalink}"][class="badge project-fb-comment w-hidden-small w-hidden-tiny"][style="display: inline"]`, m.trust('&nbsp;')) : '-'
                             ])
                         ]),
@@ -95,7 +95,7 @@ const projectTabs = {
                                 m('.w-col.w-col-6.w-col-medium-8', [
                                     m(`a.w-button.btn[href="/projects/${project().project_id}/contributions/new"]`, {
                                         onclick: h.analytics.event({ cat: 'contribution_create', act: 'contribution_floatingbtn_click', project: project() })
-                                    }, 'Apoiar ‍este projeto')
+                                    }, '이 프로젝트 후원')
                                 ]),
                                 m('.w-col.w-col-6.w-col-medium-4', {
                                     onclick: h.analytics.event({ cat: 'project_view', act: 'project_floatingreminder_click', project: project() })

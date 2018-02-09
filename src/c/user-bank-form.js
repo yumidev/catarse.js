@@ -83,11 +83,11 @@ const userBankForm = {
                 m(`.w-col.w-col-5.w-sub-col${ctrl.showOtherBanksInput() ? '.w-hidden' : ''}[id='bank_select']`,
                   m('.input.select.required.user_bank_account_bank_id', [
                       m('label.field-label.fontsize-smaller',
-                        'Banco'
+                        '은행'
                        ),
                       m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_bank_id\']', {
                           name: 'user[bank_account_attributes][bank_id]',
-                          class: ctrl.parsedErrors.hasError('bank_id') ? 'error' : false,
+                          class: ctrl.parsedErrors.hasError('bank_id') ? '오류' : false,
                           onchange: (e) => {
                               m.withAttr('value', ctrl.bankCode)(e);
                               ctrl.showOtherBanksInput(ctrl.bankCode() == '0');
@@ -108,11 +108,11 @@ const userBankForm = {
                             )
                           ),
                           m('option[value=\'0\']',
-                            'Outro'
+                            '기타'
                            )
                       ]),
                       m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for=\'user_bank_account_attributes_bank_id\']',
-                        ' Selecione um banco'
+                        ' 은행을 선택해 주시길 바랍니다.'
                        ),
                       ctrl.parsedErrors.inlineError('bank_id')
                   ])
@@ -145,7 +145,7 @@ const userBankForm = {
                          m('a.w-hidden-main.w-hidden-medium.alt-link.fontsize-smaller[href=\'javascript:void(0);\'][id=\'show_bank_list\']', {
                              onclick: ctrl.showOtherBanks.toggle
                          }, [
-                             'Busca por nome  ',
+                             '이름으로 검색  ',
                              m.trust('&nbsp;'),
                              m.trust('&gt;')
                          ])
@@ -162,18 +162,18 @@ const userBankForm = {
                      },
                        m('.card.card-terciary', [
                            m('.fontsize-small.fontweight-semibold.u-marginbottom-10.u-text-center',
-                             'Selecione o seu banco abaixo'
+                             '아래에서 은행을 선택하십시오.'
                             ),
                            m('.fontsize-smaller', [
                                m('.w-row.card.card-secondary.fontweight-semibold', [
                                    m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
                                      m('div',
-                                       'Número'
+                                       '번호'
                                       )
                                     ),
                                    m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9',
                                      m('div',
-                                       'Nome'
+                                       '이름'
                                       )
                                     )
                                ]),
@@ -221,7 +221,7 @@ const userBankForm = {
                       ]),
                       m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [
                           m('label.text.optional.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency_digit\']',
-                            'Dígito agência'
+                            '대행사 수'
                            ),
                           m('input.string.optional.w-input.text-field.positive[id=\'user_bank_account_attributes_agency_digit\'][type=\'text\']', {
                               value: fields.agency_digit(),
@@ -237,7 +237,7 @@ const userBankForm = {
             m('.w-row', [
                 m('.w-col.w-col-5.w-sub-col', [
                     m('label.field-label.fontweight-semibold.fontsize-smaller',
-                      'Tipo de conta'
+                      '계정 유형'
                      ),
                     m('.input.select.required.user_bank_account_account_type', [
                         m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_account_type\']', {
@@ -265,7 +265,7 @@ const userBankForm = {
                   m('.w-row', [
                       m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [
                           m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_account\']',
-                            'No. da conta'
+                            '계좌 번호'
                            ),
                           m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account\'][type=\'text\']', {
                               value: fields.account(),
