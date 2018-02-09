@@ -1359,7 +1359,7 @@ var adminList = {
             label = args.label || '',
             itemComponent = args.itemComponent || adminItem;
 
-        return m('.w-section.section', [m('.w-container', error() ? m('.card.card-error.u-radius.fontweight-bold', error()) : [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-9', [m('.fontsize-base', list.isLoading() ? 'Carregando ' + label.toLowerCase() + '...' : [m('.w-row', [m('.w-col.w-col-3', [m('.fontweight-semibold', list.total()), ' ' + label.toLowerCase() + ' encontrados']), args.vm && args.vm.hasInputAction ? m('.w-col-9.w-col', args.vm.inputActions()) : ''])])])]), m('#admin-contributions-list.w-container', [list.collection().map(function (item) {
+        return m('.w-section.section', [m('.w-container', error() ? m('.card.card-error.u-radius.fontweight-bold', error()) : [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-9', [m('.fontsize-base', list.isLoading() ? '\uB85C\uB4DC \uC911 ' + label.toLowerCase() + '...' : [m('.w-row', [m('.w-col.w-col-3', [m('.fontweight-semibold', list.total()), ' ' + label.toLowerCase() + ' \uBC1C\uACAC']), args.vm && args.vm.hasInputAction ? m('.w-col-9.w-col', args.vm.inputActions()) : ''])])])]), m('#admin-contributions-list.w-container', [list.collection().map(function (item) {
             return m.component(itemComponent, {
                 listItem: args.listItem,
                 listDetail: args.listDetail,
@@ -1377,7 +1377,7 @@ var adminUser = {
     view: function view(ctrl, args) {
         var user = args.item;
 
-        return m('.w-row.admin-user', [m('.w-col.w-col-3.w-col-small-3.u-marginbottom-10', [m('img.user-avatar[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"]')]), m('.w-col.w-col-9.w-col-small-9', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-10', [m('a.alt-link[target="_blank"][href="/users/' + user.id + '/edit"]', user.name || user.email)]), m('.fontsize-smallest', 'Usu\xE1rio: ' + user.id), m('.fontsize-smallest.fontcolor-secondary', 'Email: ' + user.email), args.additional_data])]);
+        return m('.w-row.admin-user', [m('.w-col.w-col-3.w-col-small-3.u-marginbottom-10', [m('img.user-avatar[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"]')]), m('.w-col.w-col-9.w-col-small-9', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-10', [m('a.alt-link[target="_blank"][href="/users/' + user.id + '/edit"]', user.name || user.email)]), m('.fontsize-smallest', '\uC0AC\uC6A9\uC790: ' + user.id), m('.fontsize-smallest.fontcolor-secondary', '\uC774\uBA54\uC77C: ' + user.email), args.additional_data])]);
     }
 };
 
@@ -1814,7 +1814,7 @@ var adminResetPassword = {
     },
     view: function view(ctrl, args) {
         var data = args.data,
-            btnValue = ctrl.l() ? 'por favor, aguarde...' : data.callToAction;
+            btnValue = ctrl.l() ? '기다려 주시길 바랍니다...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -1825,7 +1825,7 @@ var adminResetPassword = {
         }, !ctrl.complete() ? [m('label', data.innerLabel), m('input.w-input.text-field[type="text"][name="' + data.property + '"][placeholder="' + data.placeholder + '"]', {
             onchange: m.withAttr('value', ctrl.newPassword),
             value: ctrl.newPassword()
-        }), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Senha alterada com sucesso.')])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error_message())])])]) : '']);
+        }), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '암호가 성공적으로 변경되었습니다.')])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error_message())])])]) : '']);
     }
 };
 
@@ -1880,7 +1880,7 @@ var adminInputAction = {
     },
     view: function view(ctrl, args) {
         var data = args.data,
-            btnValue = ctrl.l() ? 'por favor, aguarde...' : data.callToAction;
+            btnValue = ctrl.l() ? '기다려 주시기 바랍니다...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -1891,7 +1891,7 @@ var adminInputAction = {
         }, !ctrl.complete() ? [m('label', data.innerLabel), data.forceValue === undefined ? m('input.w-input.text-field[type="text"][placeholder="' + data.placeholder + '"]', {
             onchange: m.withAttr('value', ctrl.newValue),
             value: ctrl.newValue()
-        }) : '', m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', data.successMessage)])] : [m('.w-form-error[style="display:block;"]', [m('p', 'Houve um problema na requisi\xE7\xE3o. ' + data.errorMessage)])])]) : '']);
+        }) : '', m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', data.successMessage)])] : [m('.w-form-error[style="display:block;"]', [m('p', '\uC694\uCCAD\uC5D0 \uBB38\uC81C\uAC00 \uC788\uC2B5\uB2C8\uB2E4. ' + data.errorMessage)])])]) : '']);
     }
 };
 
@@ -1924,7 +1924,7 @@ var adminNotificationHistory = {
         };
     },
     view: function view(ctrl) {
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Histórico de notificações'), ctrl.notifications().map(function (cEvent) {
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '알림 기록'), ctrl.notifications().map(function (cEvent) {
             return m('.w-row.fontsize-smallest.lineheight-looser.date-event', [m('.w-col.w-col-24', [m('.fontcolor-secondary', h.momentify(cEvent.sent_at, 'DD/MM/YYYY, HH:mm'), ' - ', m('a[target="blank"][href="/notifications/' + cEvent.relation + '/' + cEvent.id + '"]', cEvent.template_name), cEvent.origin ? ' - ' + cEvent.origin : '')])]);
         })]);
     }
@@ -1985,21 +1985,21 @@ var adminUserDetail = {
         return {
             actions: {
                 reset: {
-                    property: 'password',
-                    callToAction: 'Redefinir',
-                    innerLabel: 'Nova senha de Usuário:',
-                    outerLabel: 'Redefinir senha',
-                    placeholder: 'ex: 123mud@r',
+                    property: '비밀번호',
+                    callToAction: '재설정',
+                    innerLabel: '새 사용자 비밀번호:',
+                    outerLabel: '비밀번호 재설정',
+                    placeholder: '예: 123mud@r',
                     model: models.user
                 },
                 reactivate: {
                     property: 'deactivated_at',
                     updateKey: 'id',
                     callToAction: 'Reativar',
-                    innerLabel: 'Tem certeza que deseja reativar esse usuário?',
-                    successMessage: 'Usuário reativado com sucesso!',
-                    errorMessage: 'O usuário não pôde ser reativado!',
-                    outerLabel: 'Reativar usuário',
+                    innerLabel: '이 사용자를 다시 사용하시겠습니까?',
+                    successMessage: '사용자가 다시 활성화 되었습니다!',
+                    errorMessage: '사용자를 다시 활성화 할 수 없습니다!',
+                    outerLabel: '사용자 재 활성화',
                     forceValue: null,
                     model: models.user
                 }
@@ -2587,7 +2587,7 @@ var adminProjectItem = {
             recommended = ctrl.recommended;
         return m('.w-row', [m('.w-col.w-col-4', m('.w-row', [m('.w-col.w-col-2', m('a.btn-star.fa.fa-lg.fa-star.w-inline-block', { onclick: function onclick() {
                 ctrl.toggleRecommend();
-            }, class: recommended() ? 'selected' : '' })), m('.w-col.w-col-10', m('.w-row', [m('.u-marginbottom-10.w-col.w-col-3.w-col-small-3', m('img.thumb-project.u-radius[src=' + project.project_img + '][width=50]')), m('.w-col.w-col-9.w-col-small-9', [m('a.alt-link.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-10[href=\'/' + project.permalink + '\'][target=\'_blank\']', project.project_name), m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', project.category_name)])]))])), m('.admin-project-meter.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller.fontweight-semibold.text-success', project.state)), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', h.momentify(project.project_online_date) + ' a ' + h.momentify(project.project_expires_at)))]), m('.u-marginbottom-10', m(progressMeter, { project: project, progress: project.progress })), m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller', project.progress.toFixed(2) + '%')), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', 'R$' + project.pledged + ' de R$' + project.goal))])]), m('.w-col.w-col-4', m('.w-row', [m('.w-col.w-col-2', m('img.user-avatar[src=\'' + userVM.displayImage({ profile_img_thumbnail: project.profile_img_thumbnail }) + '\']')), m('.w-col.w-col-10', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', project.owner_name), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', project.email), m('.fontcolor-secondary.fontsize-smallest', project.total_published + ' projetos criados'), m('.fontcolor-secondary.fontsize-smallest', 'Ainda não apoiou projetos')])]))]);
+            }, class: recommended() ? 'selected' : '' })), m('.w-col.w-col-10', m('.w-row', [m('.u-marginbottom-10.w-col.w-col-3.w-col-small-3', m('img.thumb-project.u-radius[src=' + project.project_img + '][width=50]')), m('.w-col.w-col-9.w-col-small-9', [m('a.alt-link.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-10[href=\'/' + project.permalink + '\'][target=\'_blank\']', project.project_name), m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', project.category_name)])]))])), m('.admin-project-meter.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller.fontweight-semibold.text-success', project.state)), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', h.momentify(project.project_online_date) + ' a ' + h.momentify(project.project_expires_at)))]), m('.u-marginbottom-10', m(progressMeter, { project: project, progress: project.progress })), m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller', project.progress.toFixed(2) + '%')), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', 'R$' + project.pledged + ' de R$' + project.goal))])]), m('.w-col.w-col-4', m('.w-row', [m('.w-col.w-col-2', m('img.user-avatar[src=\'' + userVM.displayImage({ profile_img_thumbnail: project.profile_img_thumbnail }) + '\']')), m('.w-col.w-col-10', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', project.owner_name), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', project.email), m('.fontcolor-secondary.fontsize-smallest', project.total_published + ' \uC0DD\uC131 \uB41C \uD504\uB85C\uC81D\uD2B8'), m('.fontcolor-secondary.fontsize-smallest', '아직 프로젝트를 지원하지 않음')])]))]);
     }
 };
 
@@ -2633,7 +2633,7 @@ var adminRadioAction = {
                 selectedItem(newItem);
             } else {
                 error({
-                    message: 'Nenhum item atualizado'
+                    message: '항목이 업데이트되지 않았습니다.'
                 });
             }
             complete(true);
@@ -2701,7 +2701,7 @@ var adminRadioAction = {
     view: function view(ctrl, args) {
         var data = args.data,
             item = args.item(),
-            btnValue = ctrl.setLoader() || ctrl.getLoader() ? 'por favor, aguarde...' : data.callToAction;
+            btnValue = ctrl.setLoader() || ctrl.getLoader() ? '기다려 주시길 바랍니다...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -2717,7 +2717,7 @@ var adminRadioAction = {
                     ctrl.setDescription(radio.description);
                 }
             }), m('label.w-form-label[for="r-' + index + '"]', 'R$' + radio.minimum_value)]);
-        }) : h.loader(), m('strong', 'Descrição'), m('p', ctrl.description()), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Recompensa alterada com sucesso!')])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error().message)])])]) : '']);
+        }) : h.loader(), m('strong', '상품 설명'), m('p', ctrl.description()), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '보상이 성공적으로 변경되었습니다.!')])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error().message)])])]) : '']);
     }
 };
 
@@ -2798,7 +2798,7 @@ var adminExternalAction = {
             config: ctrl.unload
         }, [m('form.w-form', {
             onsubmit: ctrl.submit
-        }, !ctrl.complete() ? [m('label', data.innerLabel), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Requisição feita com sucesso.')])] : [m('.w-form-error[style="display:block;"]', [m('p', 'Houve um problema na requisição.')])])]) : '']);
+        }, !ctrl.complete() ? [m('label', data.innerLabel), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '성공적으로 요청되었습니다.')])] : [m('.w-form-error[style="display:block;"]', [m('p', '요청을 하지 못했습니다.')])])]) : '']);
     }
 };
 
@@ -2894,12 +2894,12 @@ var adminProjectDetail = {
             config: ctrl.actionUnload(ctrl.actions.changeUserAction)
         }, [m('form.w-form', {
             onsubmit: ctrl.actions.changeUserAction.submit
-        }, !ctrl.actions.changeUserAction.complete() ? [m('label', 'Id do novo realizador:'), m('input.w-input.text-field[type="tel"][placeholder="ex: 239049"]', {
+        }, !ctrl.actions.changeUserAction.complete() ? [m('label', 'Id do novo realizador:'), m('input.w-input.text-field[type="tel"][placeholder="\uC608: 239049"]', {
             onchange: m.withAttr('value', ctrl.actions.changeUserAction.newValue),
             value: ctrl.actions.changeUserAction.newValue()
-        }), m('input.w-button.btn.btn-small[type="submit"][value="Transferir"]', {
+        }), m('input.w-button.btn.btn-small[type="submit"][value="다운로드"]', {
             onclick: ctrl.actions.changeUserAction.submit(ctrl.actions.changeUserAction.newValue())
-        })] : !ctrl.actions.changeUserAction.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Usuário transferido com sucesso')])] : [m('.w-form-error[style="display:block;"]', [m('p', 'Houve um problema na requisição. Verifique se o usuário que vai receber o projeto possui dados válidos.')])])]) : '']), m('.w-col.w-col-2', [m('a.btn.btn-small.btn-terciary', { href: '/projects/' + item.project_id + '/contributions_report' }, 'Relatório de apoios')])]), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Detalhes do projeto'), m('.fontsize-smallest.fontweight-semibold.u-marginbottom-20', 'catarse.me/' + item.permalink), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', 'Meta:'), ' R$ ' + h.formatNumber(item.goal, 2, 3) + ' ', m('br'), m('span.fontweight-semibold', 'Alcançado:'), ' R$ ' + h.formatNumber(item.pledged, 2, 3) + ' ']), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', 'Início: '), h.momentify(item.project_online_date, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', 'Término: '), h.momentify(item.project_expires_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', 'Últ. atualização: '), h.momentify(item.updated_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', 'Novidades: '), item.posts_count, m('br'), m('span.fontweight-semibold', 'Últ. novidade: '), h.momentify(item.last_post, 'DD/MM/YYYY, HH:mm')])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Dados bancários'), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', 'Banco: '), bankAccount.bank_name, m('br'), m('span.fontweight-semibold', 'Agencia: '), bankAccount.agency + '-' + bankAccount.agency_digit, m('br'), m('span.fontweight-semibold', 'Conta: '), bankAccount.account + '-' + bankAccount.account_digit, m('br'), bankAccount.account_type, m('br'), m('span.fontweight-semibold', 'Nome: '), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF: '), bankAccount.owner_document])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Detalhes do realizador'), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', 'Nome: '), user.name, m('br'), m('span.fontweight-semibold', 'CPF: '), user.owner_document, m('br'), m('span.fontweight-semibold', 'Inscrição estadual: '), user.state_inscription, m('br'), m('span.fontweight-semibold', 'Email: '), user.email, m('br'), m('span.fontweight-semibold', 'Endereço: '), m.trust('&nbsp;'), ' ' + userAddress.address_street + ', ' + userAddress.address_number + ' ' + userAddress.address_complement + ' - ' + userAddress.address_city + ' - ' + userAddress.address_state + ' ' + userAddress.address_zip_code, m('br'), m('span.fontweight-semibold', 'Telefone:'), userAddress.phone_number]), m('.fontsize-smallest.lineheight-looser', [user.total_published_projects + ' projetos criados ', m('br'), m.trust('&nbsp;'), m('br')])])])]);
+        })] : !ctrl.actions.changeUserAction.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Usuário transferido com sucesso')])] : [m('.w-form-error[style="display:block;"]', [m('p', '요청에 문제가 발생했습니다. 프로젝트를 받을 사용자가 유효한 데이터를 가지고 있는지 확인해 주세요.')])])]) : '']), m('.w-col.w-col-2', [m('a.btn.btn-small.btn-terciary', { href: '/projects/' + item.project_id + '/contributions_report' }, '후원 보고서')])]), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '프로젝트 세부 정보'), m('.fontsize-smallest.fontweight-semibold.u-marginbottom-20', 'catarse.me/' + item.permalink), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', 'Meta:'), ' R$ ' + h.formatNumber(item.goal, 2, 3) + ' ', m('br'), m('span.fontweight-semibold', 'Alcançado:'), ' R$ ' + h.formatNumber(item.pledged, 2, 3) + ' ']), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '항공편: '), h.momentify(item.project_online_date, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '기간: '), h.momentify(item.project_expires_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '마지막 업데이트: '), h.momentify(item.updated_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '새로운 기능: '), item.posts_count, m('br'), m('span.fontweight-semibold', 'Últ. novidade: '), h.momentify(item.last_post, 'DD/MM/YYYY, HH:mm')])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '은행: '), bankAccount.bank_name, m('br'), m('span.fontweight-semibold', '에이전시: '), bankAccount.agency + '-' + bankAccount.agency_digit, m('br'), m('span.fontweight-semibold', '계정: '), bankAccount.account + '-' + bankAccount.account_digit, m('br'), bankAccount.account_type, m('br'), m('span.fontweight-semibold', '이름: '), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF: '), bankAccount.owner_document])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Detalhes do realizador'), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', '이름: '), user.name, m('br'), m('span.fontweight-semibold', 'CPF: '), user.owner_document, m('br'), m('span.fontweight-semibold', 'Inscrição estadual: '), user.state_inscription, m('br'), m('span.fontweight-semibold', '이메일: '), user.email, m('br'), m('span.fontweight-semibold', '주소: '), m.trust('&nbsp;'), ' ' + userAddress.address_street + ', ' + userAddress.address_number + ' ' + userAddress.address_complement + ' - ' + userAddress.address_city + ' - ' + userAddress.address_state + ' ' + userAddress.address_zip_code, m('br'), m('span.fontweight-semibold', '전화:'), userAddress.phone_number]), m('.fontsize-smallest.lineheight-looser', [user.total_published_projects + ' \uC0DD\uC131 \uB41C \uD504\uB85C\uC81D\uD2B8 ', m('br'), m.trust('&nbsp;'), m('br')])])])]);
     }
 };
 
@@ -3292,7 +3292,7 @@ var adminContributionItem = {
 var adminTransaction = {
     view: function view(ctrl, args) {
         var contribution = args.contribution;
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Detalhes do apoio'), m('.fontsize-smallest.lineheight-looser', ['Valor: R$' + h.formatNumber(contribution.value, 2, 3), m('br'), 'Taxa: R$' + h.formatNumber(contribution.gateway_fee, 2, 3), m('br'), 'Aguardando Confirma\xE7\xE3o: ' + (contribution.waiting_payment ? 'Sim' : 'Não'), m('br'), 'An\xF4nimo: ' + (contribution.anonymous ? 'Sim' : 'Não'), m('br'), 'Id pagamento: ' + contribution.gateway_id, m('br'), 'Apoio: ' + contribution.contribution_id, m('br'), 'Chave: \n', m('br'), contribution.key, m('br'), 'Meio: ' + contribution.gateway, m('br'), 'Operadora: ' + (contribution.gateway_data && contribution.gateway_data.acquirer_name), m('br'), contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2a via')] : ''])]);
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '지원 세부 정보'), m('.fontsize-smallest.lineheight-looser', ['\uAC00\uCE58: R$' + h.formatNumber(contribution.value, 2, 3), m('br'), '\uBD84\uB958\uAD70: R$' + h.formatNumber(contribution.gateway_fee, 2, 3), m('br'), '\uD655\uC778 \uB300\uAE30\uC911: ' + (contribution.waiting_payment ? 'Sim' : 'Não'), m('br'), '\uC775\uBA85: ' + (contribution.anonymous ? 'Sim' : 'Não'), m('br'), '\uC9C0\uBD88 Id: ' + contribution.gateway_id, m('br'), '\uD6C4\uC6D0: ' + contribution.contribution_id, m('br'), '열쇠: \n', m('br'), contribution.key, m('br'), '\uB9E4\uCCB4: ' + contribution.gateway, m('br'), '\uC5F0\uC0B0\uC790: ' + (contribution.gateway_data && contribution.gateway_data.acquirer_name), m('br'), contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2a via')] : ''])]);
     }
 };
 
@@ -3301,10 +3301,10 @@ var adminTransactionHistory = {
         var contribution = args.contribution,
             mapEvents = _$1.reduce([{
             date: contribution.paid_at,
-            name: 'Apoio confirmado'
+            name: '후원 확인'
         }, {
             date: contribution.pending_refund_at,
-            name: 'Reembolso solicitado'
+            name: '환불 요청 됨'
         }, {
             date: contribution.refunded_at,
             name: 'Estorno realizado'
@@ -3313,13 +3313,13 @@ var adminTransactionHistory = {
             name: 'Apoio criado'
         }, {
             date: contribution.refused_at,
-            name: 'Apoio cancelado'
+            name: '지원 중단'
         }, {
             date: contribution.deleted_at,
-            name: 'Apoio excluído'
+            name: '후원 삭제됨'
         }, {
             date: contribution.chargeback_at,
-            name: 'Chargeback'
+            name: '후원 거절'
         }], function (memo, item) {
             if (item.date !== null && item.date !== undefined) {
                 item.originalDate = item.date;
@@ -3335,7 +3335,7 @@ var adminTransactionHistory = {
         };
     },
     view: function view(ctrl) {
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Histórico da transação'), ctrl.orderedEvents.map(function (cEvent) {
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '거래 내역'), ctrl.orderedEvents.map(function (cEvent) {
             return m('.w-row.fontsize-smallest.lineheight-looser.date-event', [m('.w-col.w-col-6', [m('.fontcolor-secondary', cEvent.date)]), m('.w-col.w-col-6', [m('div', cEvent.name)])]);
         })]);
     }
@@ -3367,7 +3367,7 @@ var adminReward = {
             available = parseInt(reward.paid_count) + parseInt(reward.waiting_payment_count),
             shippingFee = ctrl.shippingFee();
 
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Recompensa'), m('.fontsize-smallest.lineheight-looser', reward.id ? ['ID: ' + reward.id, m('br'), 'Local de entrega: ' + (shippingFee.destination ? shippingFee.destination + ' R$ ' + shippingFee.value : 'Nenhum'), m('br'), 'Envio: ' + I18n.t('shared.shipping_options.' + reward.shipping_options), m('br'), 'Valor m\xEDnimo: R$' + h.formatNumber(reward.minimum_value, 2, 3), m('br'), m.trust('Dispon\xEDveis: ' + available + ' / ' + (reward.maximum_contributions || '&infin;')), m('br'), 'Aguardando confirma\xE7\xE3o: ' + reward.waiting_payment_count, m('br'), 'Estimativa da Entrega: ' + h.momentify(reward.deliver_at), m('br'), m('div', ['Status da Entrega: ', h.contributionStatusBadge(contribution)]), reward.title ? ['T\xEDtulo: ' + reward.title, m('br')] : '', 'Descri\xE7\xE3o: ' + reward.description] : 'Apoio sem recompensa')]);
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '보상'), m('.fontsize-smallest.lineheight-looser', reward.id ? ['ID: ' + reward.id, m('br'), 'Local de entrega: ' + (shippingFee.destination ? shippingFee.destination + ' R$ ' + shippingFee.value : 'Nenhum'), m('br'), '\uBC30\uC1A1: ' + I18n.t('shared.shipping_options.' + reward.shipping_options), m('br'), '\uCD5C\uC18C\uAC12: R$' + h.formatNumber(reward.minimum_value, 2, 3), m('br'), m.trust('\uC0AC\uC6A9 \uAC00\uB2A5: ' + available + ' / ' + (reward.maximum_contributions || '&infin;')), m('br'), '\uD655\uC778\uC744 \uAE30\uB2E4\uB9AC\uB294 \uC911\uC785\uB2C8\uB2E4.: ' + reward.waiting_payment_count, m('br'), 'Estimativa da Entrega: ' + h.momentify(reward.deliver_at), m('br'), m('div', ['Status da Entrega: ', h.contributionStatusBadge(contribution)]), reward.title ? ['\uC81C\uBAA9: ' + reward.title, m('br')] : '', '\uC0C1\uD488 \uC124\uBA85: ' + reward.description] : '보상없는 지원')]);
     }
 };
 
@@ -3395,12 +3395,12 @@ var adminContributionDetail = {
                 transfer: {
                     property: 'user_id',
                     updateKey: 'id',
-                    callToAction: 'Transferir',
+                    callToAction: '다운로드',
                     innerLabel: 'Id do novo apoiador:',
                     outerLabel: 'Transferir Apoio',
-                    placeholder: 'ex: 129908',
-                    successMessage: 'Apoio transferido com sucesso!',
-                    errorMessage: 'O apoio não foi transferido!',
+                    placeholder: '예: 129908',
+                    successMessage: '후원이 성공적으로 이루어 졌습니다!',
+                    errorMessage: '후원을 실패하였습니다!',
                     model: models.contributionDetail
                 },
                 reward: {
@@ -3409,32 +3409,32 @@ var adminContributionDetail = {
                     selectKey: 'reward_id',
                     radios: 'rewards',
                     callToAction: 'Alterar Recompensa',
-                    outerLabel: 'Recompensa',
+                    outerLabel: '보상',
                     getModel: models.rewardDetail,
                     updateModel: models.contributionDetail,
                     selectedItem: loadReward(),
-                    addEmpty: { id: -1, minimum_value: 10, description: 'Sem recompensa' },
+                    addEmpty: { id: -1, minimum_value: 10, description: '보상 없음' },
                     validate: function validate(rewards, newRewardID) {
                         var reward = _$1.findWhere(rewards, { id: newRewardID });
-                        return args.item.value >= reward.minimum_value ? undefined : 'Valor mínimo da recompensa é maior do que o valor da contribuição.';
+                        return args.item.value >= reward.minimum_value ? undefined : '최소 보상 값이 기여 금액보다 큽니다.';
                     }
                 },
                 refund: {
                     updateKey: 'id',
-                    callToAction: 'Reembolso direto',
-                    innerLabel: 'Tem certeza que deseja reembolsar esse apoio?',
-                    outerLabel: 'Reembolsar Apoio',
+                    callToAction: '직접 상환',
+                    innerLabel: '이 지원금을 환급 받으시겠습니까?',
+                    outerLabel: '환불',
                     model: models.contributionDetail
                 },
                 remove: {
                     property: 'state',
                     updateKey: 'id',
-                    callToAction: 'Apagar',
-                    innerLabel: 'Tem certeza que deseja apagar esse apoio?',
-                    outerLabel: 'Apagar Apoio',
+                    callToAction: '삭제',
+                    innerLabel: '이 지원을 삭제 하시겠습니까?',
+                    outerLabel: '지원 삭제',
                     forceValue: 'deleted',
-                    successMessage: 'Apoio removido com sucesso!',
-                    errorMessage: 'O apoio não foi removido!',
+                    successMessage: '지원이 성공적으로 삭제되었습니다!',
+                    errorMessage: '지원이 삭제되지 않았습니다!',
                     model: models.contributionDetail
                 }
             },
@@ -3806,7 +3806,7 @@ var adminBalanceTransferItemDetail = {
     view: function view(ctrl, args) {
         var bankAccount = _$1.isUndefined(ctrl.metaBank) ? ctrl.userBankAccount() : ctrl.transitionBankAccount();
 
-        return m('#admin-balance-transfer-item-detail-box', [m('.divider.u-margintop-20.u-marginbottom-20'), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [bankAccount ? [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Dados bancários'), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', 'Banco:'), bankAccount.bank_code + ' - ' + (bankAccount.bank_name ? bankAccount.bank_name : ''), m('br'), m('span.fontweight-semibold', 'Agencia:'), ' ' + bankAccount.agency + ' - ' + (bankAccount.agency_digit ? bankAccount.agency_digit : ''), m('br'), m('span.fontweight-semibold', "Conta:"), ' ' + bankAccount.account + ' - ' + (bankAccount.account_digit ? bankAccount.account_digit : ''), m('br'), m('span.fontweight-semibold', 'Nome:'), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF:'), bankAccount.owner_document])] : h.loader(), ctrl.loadingNotes() ? h.loader() : m('', [m('textarea.text-field.height-mini.w-input', {
+        return m('#admin-balance-transfer-item-detail-box', [m('.divider.u-margintop-20.u-marginbottom-20'), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [bankAccount ? [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '은행:'), bankAccount.bank_code + ' - ' + (bankAccount.bank_name ? bankAccount.bank_name : ''), m('br'), m('span.fontweight-semibold', '에이전시:'), ' ' + bankAccount.agency + ' - ' + (bankAccount.agency_digit ? bankAccount.agency_digit : ''), m('br'), m('span.fontweight-semibold', "계정:"), ' ' + bankAccount.account + ' - ' + (bankAccount.account_digit ? bankAccount.account_digit : ''), m('br'), m('span.fontweight-semibold', '이름:'), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF:'), bankAccount.owner_document])] : h.loader(), ctrl.loadingNotes() ? h.loader() : m('', [m('textarea.text-field.height-mini.w-input', {
             value: ctrl.fields.admin_notes(),
             onkeyup: m.withAttr('value', ctrl.fields.admin_notes)
         }), m('.u-text-center', m('button.btn.btn-terciary', {
@@ -4669,13 +4669,13 @@ var adminProjectDetailsCard = {
             remainingTextObj = ctrl.remainingTextObj,
             elapsedTextObj = ctrl.elapsedTextObj;
 
-        return m('.project-details-card.card.u-radius.card-terciary.u-marginbottom-20', [m('div', [m('.fontsize-small.fontweight-semibold', [m('span.fontcolor-secondary', 'Status:'), ' ', m('span', {
+        return m('.project-details-card.card.u-radius.card-terciary.u-marginbottom-20', [m('div', [m('.fontsize-small.fontweight-semibold', [m('span.fontcolor-secondary', '지위:'), ' ', m('span', {
             class: statusTextObj.cssClass
         }, ctrl.isFinalLap() && project.open_for_contributions ? 'RETA FINAL' : statusTextObj.text), ' ']), project.is_published ? [m('.meter.u-margintop-20.u-marginbottom-10', [m('.meter-fill', {
             style: {
                 width: (progress > 100 ? 100 : progress) + '%'
             }
-        })]), m('.w-row', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'financiado'), m('.fontweight-semibold.fontsize-large.lineheight-tight', progress + '%')]), m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'levantados'), m('.fontweight-semibold.fontsize-large.lineheight-tight', ['R$ ' + h.formatNumber(project.pledged, 2)])]), m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'apoios'), m('.fontweight-semibold.fontsize-large.lineheight-tight', project.total_contributions)]), m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [_.isNull(project.expires_at) ? [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'iniciado há'), m('.fontweight-semibold.fontsize-large.lineheight-tight', elapsedTextObj.total + ' ' + elapsedTextObj.unit)] : [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'restam'), m('.fontweight-semibold.fontsize-large.lineheight-tight', remainingTextObj.total + ' ' + remainingTextObj.unit)]])])] : ''])]);
+        })]), m('.w-row', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'financiado'), m('.fontweight-semibold.fontsize-large.lineheight-tight', progress + '%')]), m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'levantados'), m('.fontweight-semibold.fontsize-large.lineheight-tight', ['R$ ' + h.formatNumber(project.pledged, 2)])]), m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', '후원'), m('.fontweight-semibold.fontsize-large.lineheight-tight', project.total_contributions)]), m('.w-col.w-col-3.w-col-small-3.w-col-tiny-6', [_.isNull(project.expires_at) ? [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'iniciado há'), m('.fontweight-semibold.fontsize-large.lineheight-tight', elapsedTextObj.total + ' ' + elapsedTextObj.unit)] : [m('.fontcolor-secondary.lineheight-tighter.fontsize-small', 'restam'), m('.fontweight-semibold.fontsize-large.lineheight-tight', remainingTextObj.total + ' ' + remainingTextObj.unit)]])])] : ''])]);
     }
 };
 
@@ -4802,7 +4802,7 @@ var cancelProjectModalContent = {
         };
     },
     view: function view(ctrl, args) {
-        return m('form.cancel-project-modal.modal-dialog-content', { onsubmit: ctrl.showNextModal }, [m('.fontsize-small.u-marginbottom-20', ['Após o cancelamento, sua campanha será expirada e os seus apoiadores serão reembolsados dentro das próximas 24h horas.', m('span.fontweight-semibold', 'Essa ação não poderá ser desfeita!'), m('br'), m('span.fontweight-semibold')]), m('.fontsize-small.u-marginbottom-10', ['Se você tem certeza que deseja cancelar seu projeto, confirme escrevendo ', m('span.fontweight-semibold.text-error', 'cancelar-projeto '), 'no campo abaixo. Em seguida lhe pediremos para escrever uma mensagem aos apoiadores e seu projeto será então cancelado.', m('span.fontweight-semibold.text-error')]), m('.w-form', [m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : 'error', placeholder: 'cancelar-projeto', onchange: m.withAttr('value', ctrl.check) })]), m('div', m('.w-row', [m('.w-col.w-col-3'), m('.u-text-center.w-col.w-col-6', [m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Próximo passo >\']'), m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayModal.toggle }, 'Cancelar')]), m('.w-col.w-col-3')]))]);
+        return m('form.cancel-project-modal.modal-dialog-content', { onsubmit: ctrl.showNextModal }, [m('.fontsize-small.u-marginbottom-20', ['취소하면 캠페인이 만료되고 후원자는 다음 24 시간 내에 환불됩니다.', m('span.fontweight-semibold', '이 작업은 취소할 수 없습니다!'), m('br'), m('span.fontweight-semibold')]), m('.fontsize-small.u-marginbottom-10', ['프로젝트를 취소 하시려면 서면으로 확인해 주시길 바랍니다.', m('span.fontweight-semibold.text-error', 'cancelar-projeto '), 'no campo abaixo. Em seguida lhe pediremos para escrever uma mensagem aos apoiadores e seu projeto será então cancelado.', m('span.fontweight-semibold.text-error')]), m('.w-form', [m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : 'error', placeholder: 'cancelar-projeto', onchange: m.withAttr('value', ctrl.check) })]), m('div', m('.w-row', [m('.w-col.w-col-3'), m('.u-text-center.w-col.w-col-6', [m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Próximo passo >\']'), m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayModal.toggle }, '취소')]), m('.w-col.w-col-3')]))]);
     }
 };
 
@@ -9818,24 +9818,24 @@ var addressForm = {
             international: international,
             defaultCountryID: defaultCountryID,
             defaultForeignCountryID: defaultForeignCountryID
-        }), m('div', [m('.w-row', m('.w-col.w-col-12', [m('.field-label.fontweight-semibold', 'Address *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressStreet() ? 'error' : '',
+        }), m('div', [m('.w-row', m('.w-col.w-col-12', [m('.field-label.fontweight-semibold', '주소 *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
+            class: errors.addressStreet() ? '오류' : '',
             value: ctrl.fields.addressStreet(),
             onchange: m.withAttr('value', ctrl.fields.addressStreet)
         }), errors.addressStreet() ? m(inlineError, {
-            message: 'Please fill in an address.'
-        }) : ''])), m('div', m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', 'Zip Code *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressZipCode() ? 'error' : '',
+            message: '주소를 입력해 주세요.'
+        }) : ''])), m('div', m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', '우편 번호 *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
+            class: errors.addressZipCode() ? '오류' : '',
             value: ctrl.fields.addressZipCode(),
             onchange: m.withAttr('value', ctrl.fields.addressZipCode)
         }), errors.addressZipCode() ? m(inlineError, {
-            message: 'ZipCode is required'
-        }) : '']), m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', 'City *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressCity() ? 'error' : '',
+            message: '우편 번호를 입력해 주세요.'
+        }) : '']), m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', '도시 *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
+            class: errors.addressCity() ? '오류' : '',
             value: ctrl.fields.addressCity(),
             onchange: m.withAttr('value', ctrl.fields.addressCity)
         }), errors.addressCity() ? m(inlineError, {
-            message: 'City is required'
+            message: '도시를 입력해 주세요.'
         }) : '']), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', 'State *'), m("input#address-state.positive.text-field.w-input[required='required'][type='text']", {
             class: errors.addressState() ? 'error' : '',
             value: ctrl.fields.addressState(),
@@ -9849,7 +9849,7 @@ var addressForm = {
             defaultCountryID: defaultCountryID,
             defaultForeignCountryID: defaultForeignCountryID
         }), m('div', [m('.w-row', [m('.w-col.w-col-6', [m('.field-label', [m('span.fontweight-semibold', I18n$1.t('address_zip_code', I18nScope$31()) + ' *'), m("a.fontsize-smallest.alt-link.u-right[href='http://www.buscacep.correios.com.br/sistemas/buscacep/'][target='_blank']", I18n$1.t('zipcode_unknown', I18nScope$31()))]), m("input.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
-            class: errors.addressZipCode() ? 'error' : '',
+            class: errors.addressZipCode() ? '오류' : '',
             value: ctrl.fields.addressZipCode(),
             onkeyup: m.withAttr('value', function (value) {
                 return ctrl.applyZipcodeMask(value);
@@ -9858,24 +9858,24 @@ var addressForm = {
                 ctrl.lookupZipCode(e.target.value);
             }
         }), errors.addressZipCode() ? m(inlineError, {
-            message: ctrl.zipCodeErrorMessage() ? ctrl.zipCodeErrorMessage() : 'Informe um CEP válido.'
+            message: ctrl.zipCodeErrorMessage() ? ctrl.zipCodeErrorMessage() : '올바른 우편 번호를 입력해 주세요.'
         }) : '']), m('.w-col.w-col-6')]), m('.w-row', [m('.field-label.fontweight-semibold', I18n$1.t('address_street', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[maxlength='256'][required='required'][type='text']", {
-            class: errors.addressStreet() ? 'error' : '',
+            class: errors.addressStreet() ? '오류' : '',
             value: ctrl.fields.addressStreet(),
             onchange: m.withAttr('value', ctrl.fields.addressStreet)
         }), errors.addressStreet() ? m(inlineError, {
-            message: 'Informe um endereço.'
+            message: '주소를 입력해 주세요.'
         }) : '']), m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('address_number', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressNumber() ? 'error' : '',
+            class: errors.addressNumber() ? '오류' : '',
             value: ctrl.fields.addressNumber(),
             onchange: m.withAttr('value', ctrl.fields.addressNumber)
         }), errors.addressNumber() ? m(inlineError, {
-            message: 'Informe um número.'
+            message: '번호를 입력해 주세요.'
         }) : '']), m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('address_complement', I18nScope$31())), m("input.positive.text-field.w-input[required='required'][type='text']", {
             value: ctrl.fields.addressComplement(),
             onchange: m.withAttr('value', ctrl.fields.addressComplement)
         })]), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('address_neighbourhood', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressNeighbourhood() ? 'error' : '',
+            class: errors.addressNeighbourhood() ? '오류' : '',
             value: ctrl.fields.addressNeighbourhood(),
             onchange: m.withAttr('value', ctrl.fields.addressNeighbourhood)
         }), errors.addressNeighbourhood() ? m(inlineError, {
@@ -9885,7 +9885,7 @@ var addressForm = {
             value: ctrl.fields.addressCity(),
             onchange: m.withAttr('value', ctrl.fields.addressCity)
         }), errors.addressCity() ? m(inlineError, {
-            message: 'Informe uma cidade.'
+            message: '도시 입력.'
         }) : '']), m('.w-sub-col.w-col.w-col-2', [m('.field-label.fontweight-semibold', I18n$1.t('address_state', I18nScope$31()) + ' *'), m('select#address-state.positive.text-field.w-select', {
             class: errors.stateID() ? 'error' : '',
             onchange: m.withAttr('value', ctrl.fields.stateID)
@@ -9895,16 +9895,16 @@ var addressForm = {
                 selected: state.id === ctrl.fields.stateID()
             }, state.acronym);
         }) : '']), errors.stateID() ? m(inlineError, {
-            message: 'Informe um estado.'
+            message: '상태 입력.'
         }) : '']), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('phone_number', I18nScope$31()) + ' *'), m("input#phone.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
-            class: errors.phoneNumber() ? 'error' : '',
+            class: errors.phoneNumber() ? '오류' : '',
             value: ctrl.fields.phoneNumber(),
             onkeyup: m.withAttr('value', function (value) {
                 return ctrl.applyPhoneMask(value);
             }),
             onchange: m.withAttr('value', ctrl.fields.phoneNumber)
         }), errors.phoneNumber() ? m(inlineError, {
-            message: 'Informe um telefone válido.'
+            message: '유효한 전화 번호를 입력해 주세요.'
         }) : ''])])])])])]);
     }
 };
@@ -13212,7 +13212,7 @@ var projectPreview = {
 
 var announceExpirationModal = {
     view: function view(ctrl, args) {
-        return m('div', [m('.modal-dialog-content', [m('.fontsize-large.u-text-center.u-marginbottom-30.fontweight-semibold', 'Você confirma?'), m('.fontsize-large.u-text-center.u-marginbottom-30', ['Sua arrecadação irá terminar no dia  ', m('span.expire-date', args.expirationDate), ', as 23h59. Até lá, você pode captar recursos e seguir firme na sua campanha! Assim que o seu prazo chegar ao fim, você deverá confirmar os seus dados bancários. A partir de então, depositaremos o dinheiro na sua conta em até 10 dias úteis.'])]), m('.modal-dialog-nav-bottom', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-4', [m("input[id='anchor'][name='anchor'][type='hidden'][value='announce_expiration']"), m("input.btn.btn.btn-large[id='budget-save'][name='commit'][type='submit'][value='Sim']")]), m('.w-col.w-col-4', m('button.btn.btn-large.btn-terciary', {
+        return m('div', [m('.modal-dialog-content', [m('.fontsize-large.u-text-center.u-marginbottom-30.fontweight-semibold', 'Você confirma?'), m('.fontsize-large.u-text-center.u-marginbottom-30', ['귀하의 컬렉션은 당일에 종료됩니다.', m('span.expire-date', args.expirationDate), ', as 23h59. Até lá, você pode captar recursos e seguir firme na sua campanha! Assim que o seu prazo chegar ao fim, você deverá confirmar os seus dados bancários. A partir de então, depositaremos o dinheiro na sua conta em até 10 dias úteis.'])]), m('.modal-dialog-nav-bottom', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-4', [m("input[id='anchor'][name='anchor'][type='hidden'][value='announce_expiration']"), m("input.btn.btn.btn-large[id='budget-save'][name='commit'][type='submit'][value='Sim']")]), m('.w-col.w-col-4', m('button.btn.btn-large.btn-terciary', {
             onclick: args.displayModal.toggle
         }, ' Não')), m('.w-col.w-col-2')]))]);
     }
