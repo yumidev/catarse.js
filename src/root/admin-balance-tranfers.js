@@ -24,46 +24,46 @@ const adminBalanceTranfers = {
                       component: filterMain,
                       data: {
                           vm: filterVM.full_text_index,
-                          placeholder: 'Busque pelo email, ids do usuario, ids de transferencia e eventos de saldo'
+                          placeholder: '이메일, 사용자 ID, 전송 ID 및 잔액 이벤트 검색'
                       }
                   },
                   {
                       component: filterDropdown,
                       data: {
-                          label: 'Status',
+                          label: '상태',
                           name: 'state',
                           vm: filterVM.state,
                           options: [{
                               value: '',
-                              option: 'Qualquer um'
+                              option: '누구나'
                           }, {
                               value: 'pending',
-                              option: 'Pendente'
+                              option: '대기중인'
                           }, {
                               value: 'authorized',
-                              option: 'Autorizado'
+                              option: '공인 된'
                           }, {
                               value: 'processing',
-                              option: 'Processando'
+                              option: '가공'
                           }, {
                               value: 'transferred',
-                              option: 'Concluido'
+                              option: '완료 됨'
                           }, {
                               value: 'error',
-                              option: 'Erro'
+                              option: '오류'
                           }, {
                               value: 'rejected',
-                              option: 'Rejeitado'
+                              option: '거부 됨'
                           }, {
                               value: 'gateway_error',
-                              option: 'Erro no gateway'
+                              option: '게이트웨이 오류'
                           }]
                       }
                   },
                   {
                       component: filterDateRange,
                       data: {
-                          label: 'Data da solicitação',
+                          label: '요청 날짜',
                           first: filterVM.created_date.gte,
                           last: filterVM.created_date.lte
                       }
@@ -72,7 +72,7 @@ const adminBalanceTranfers = {
                   {
                       component: filterDateRange,
                       data: {
-                          label: 'Data da confirmação',
+                          label: '확인일',
                           first: filterVM.transferred_date.gte,
                           last: filterVM.transferred_date.lte
                       }
@@ -81,7 +81,7 @@ const adminBalanceTranfers = {
                   {
                       component: filterNumberRange,
                       data: {
-                          label: 'Valores entre',
+                          label: '사이의 값',
                           first: filterVM.amount.gte,
                           last: filterVM.amount.lte
                       }
@@ -132,9 +132,9 @@ const adminBalanceTranfers = {
                               ]),
                               m('.modal-dialog-content', [
                                   m('.w-row.fontweight-semibold', [
-                                      m('.w-col.w-col-6', 'Nome'),
-                                      m('.w-col.w-col-3', 'Valor'),
-                                      m('.w-col.w-col-3', 'Solicitado em')
+                                      m('.w-col.w-col-6', '이름'),
+                                      m('.w-col.w-col-3', '가치'),
+                                      m('.w-col.w-col-3', '요청 시간')
                                   ]),
                                   _.map(selectedItemsIDs(), (item, index) => {
                                       return m('.divider.fontsize-smallest.lineheight-looser', [
@@ -152,7 +152,7 @@ const adminBalanceTranfers = {
                                       ]);
                                   }),
                                   m('.w-row.fontweight-semibold.divider', [
-                                      m('.w-col.w-col-6', 'Total'),
+                                      m('.w-col.w-col-6', '합계'),
                                       m('.w-col.w-col-3', 
                                         `R$ ${h.formatNumber(_.reduce(selectedItemsIDs(), (t, i) => {
                                             return t + i.amount;
@@ -169,7 +169,7 @@ const adminBalanceTranfers = {
                                       m('.w-col.w-col-5',
                                         m('a.btn.btn-medium.btn-terciary.w-button', {
                                             onclick: args.displayModal.toggle
-                                        }, 'Voltar')
+                                        }, '뒤로')
                                        ),
                                       m('.w-col.w-col-1')
                                   ])
@@ -246,23 +246,23 @@ const adminBalanceTranfers = {
               },
               inputActions = () => {
                   return m('', [
-                      m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, (selectAllLoading() ? 'carregando...' : `Selecionar todos`)),
-                      (selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, `Desmarcar todos (${selectedItemsIDs().length})`) : ''),
+                      m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, (selectAllLoading() ? '로딩...' : `모두 선택`)),
+                      (selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, `모두 선택 취소 (${selectedItemsIDs().length})`) : ''),
                       (selectedAny() ?
                        m('.w-inline-block', [
                            m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
                                onclick: actionMenuToggle.toggle
                            }, [
-                               `Marcar como (${selectedItemsIDs().length})`
+                               `다음으로 표시 (${selectedItemsIDs().length})`
                            ]),
                            (actionMenuToggle() ?
                             m('.card.dropdown-list.dropdown-list-medium.u-radius.zindex-10[id=\'transfer\']', [
                                 m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                                     onclick: event => displayApprovalModal.toggle()
-                                }, 'Aprovada'),
+                                }, '승인됨'),
                                 m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                                     onclick: event => displayManualModal.toggle()
-                                }, 'Transferencia manual'),
+                                }, '수동 전송'),
                                 m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                                     onclick: event => displayRejectModal.toggle()
                                 }, 'Recusada')
@@ -294,7 +294,7 @@ const adminBalanceTranfers = {
                 error
             },
             data: {
-                label: 'Pedidos de saque'
+                label: '인출 요청'
             },
             submit
         };
@@ -308,8 +308,8 @@ const adminBalanceTranfers = {
             (ctrl.displayApprovalModal() ? m(modalBox, {
                 displayModal: ctrl.displayApprovalModal,
                 content: ctrl.generateWrapperModal({
-                    modalTitle: 'Aprovar saques',
-                    ctaText: 'Aprovar',
+                    modalTitle: '인출 승인',
+                    ctaText: '승인하려면',
                     displayModal: ctrl.displayApprovalModal,
                     onClickCallback: ctrl.approveSelectedIDs
                 })
@@ -317,8 +317,8 @@ const adminBalanceTranfers = {
             (ctrl.displayManualModal() ? m(modalBox, {
                 displayModal: ctrl.displayManualModal,
                 content: ctrl.generateWrapperModal({
-                    modalTitle: 'Transferencia manual de saques',
-                    ctaText: 'Aprovar',
+                    modalTitle: '인출 수동 양도',
+                    ctaText: '승인하려면',
                     displayModal: ctrl.displayManualModal,
                     onClickCallback: ctrl.manualTransferSelectedIDs
                 })
@@ -326,8 +326,8 @@ const adminBalanceTranfers = {
             (ctrl.displayRejectModal() ? m(modalBox, {
                 displayModal: ctrl.displayRejectModal,
                 content: ctrl.generateWrapperModal({
-                    modalTitle: 'Rejeitar saques',
-                    ctaText: 'Rejeitar',
+                    modalTitle: '인출 거부',
+                    ctaText: '거부하려면',
                     displayModal: ctrl.displayRejectModal,
                     onClickCallback: ctrl.rejectSelectedIDs
                 })

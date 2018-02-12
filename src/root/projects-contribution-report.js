@@ -27,52 +27,52 @@ const projectContributionReport = {
             reloadSelectOptions = (projectState) => {
                 let opts = [{
                     value: '',
-                    option: 'Todos'
+                    option: '모두'
                 }];
 
                 const optionsMap = {
                     online: [{
                         value: 'paid',
-                        option: 'Confirmado'
+                        option: '확인됨'
                     },
                     {
                         value: 'pending',
-                        option: 'Iniciado'
+                        option: '시작됨'
                     },
                     {
                         value: 'refunded,chargeback,deleted,pending_refund',
-                        option: 'Contestado'
+                        option: '답변됨'
                     }
                     ],
                     waiting_funds: [{
                         value: 'paid',
-                        option: 'Confirmado'
+                        option: '확인됨'
                     },
                     {
                         value: 'pending',
-                        option: 'Iniciado'
+                        option: '시작됨'
                     },
                     {
                         value: 'refunded,chargeback,deleted,pending_refund',
-                        option: 'Contestado'
+                        option: '답변됨'
                     }
                     ],
                     failed: [{
                         value: 'refunded',
-                        option: 'Reembolsado'
+                        option: '환불됨'
                     },
                     {
                         value: 'paid',
-                        option: 'Reembolso não iniciado'
+                        option: '환불이 시작되지 않았습니다.'
                     }
                     ],
                     successful: [{
                         value: 'paid',
-                        option: 'Confirmado'
+                        option: '확인됨'
                     },
                     {
                         value: 'refunded,chargeback,deleted,pending_refund',
-                        option: 'Contestado'
+                        option: '답변됨'
                     }
                     ]
                 };
@@ -96,14 +96,14 @@ const projectContributionReport = {
                     inputWrapperClass: '.w-input.text-field',
                     btnClass: '.btn.btn-medium',
                     vm: filterVM.full_text_index,
-                    placeholder: 'Busque por nome ou email do apoiador'
+                    placeholder: '후원자의 이름 또는 이메일로 검색'
                 }
             },
             {
                 label: 'reward_filter',
                 component: FilterDropdown,
                 data: {
-                    label: 'Recompensa',
+                    label: '보상',
                     onchange: submit,
                     name: 'reward_id',
                     vm: filterVM.reward_id,
@@ -117,7 +117,7 @@ const projectContributionReport = {
                 data: {
                     custom_label: [InfoProjectContributionLegend, {
                         content: [ProjectContributionDeliveryLegendModal],
-                        text: 'Status da entrega'
+                        text: '배송 상태'
                     }],
                     onchange: submit,
                     name: 'delivery_status',
@@ -125,23 +125,23 @@ const projectContributionReport = {
                     wrapper_class: '.w-sub-col.w-col.w-col-3',
                     options: [{
                         value: '',
-                        option: 'Todos'
+                        option: '모두'
                     },
                     {
                         value: 'undelivered',
-                        option: 'Não entregue'
+                        option: '배달되지 않음'
                     },
                     {
                         value: 'delivered',
-                        option: 'Entregue'
+                        option: '배달됨'
                     },
                     {
                         value: 'error',
-                        option: 'Erro no envio'
+                        option: '발신 오류'
                     },
                     {
                         value: 'received',
-                        option: 'Recebida'
+                        option: '받은'
                     }
                     ]
                 }
@@ -157,23 +157,23 @@ const projectContributionReport = {
                     wrapper_class: '.w-col.w-col-3',
                     options: [{
                         value: '',
-                        option: 'Todos'
+                        option: '모두'
                     },
                     {
                         value: 'not_sent',
-                        option: 'Não enviado'
+                        option: '전송되지 않음'
                     },
                     {
                         value: 'sent,answered',
-                        option: 'Enviado'
+                        option: '전송됨'
                     },
                     {
                         value: 'sent',
-                        option: 'Não Respondido'
+                        option: '대답이 없다.'
                     },
                     {
                         value: 'answered',
-                        option: 'Respondido'
+                        option: '답변됨'
                     }
                     ]
                 }
@@ -183,7 +183,7 @@ const projectContributionReport = {
                 component: FilterDropdown,
                 data: {
                     custom_label: [InfoProjectContributionLegend, {
-                        text: 'Status do apoio',
+                        text: '지원 상태',
                         content: [ProjectContributionStateLegendModal, {
                             project
                         }]
@@ -223,12 +223,12 @@ const projectContributionReport = {
 
             options.unshift({
                 value: null,
-                option: 'Sem recompensa'
+                option: '보상 없음'
             });
 
             options.unshift({
                 value: '',
-                option: 'Todas'
+                option: '모두'
             });
 
             return options;

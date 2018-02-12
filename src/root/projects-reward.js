@@ -20,7 +20,7 @@ const projectsReward = {
             const valueFloat = h.monetaryToFloat(vm.contributionValue);
 
             if (valueFloat < vm.selectedReward().minimum_value) {
-                vm.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${vm.selectedReward().minimum_value}`);
+                vm.error(`이 보상에 대한 지원 금액은 적어도 R$${vm.selectedReward().minimum_value}`);
             } else if (!h.getUser()) {
                 h.storeObject(storeKey, { value: valueFloat, reward: vm.selectedReward() });
 
@@ -71,7 +71,7 @@ const projectsReward = {
             m('.w-section.header-cont-new',
                     m('.w-container',
                         m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only',
-                            'Escolha a recompensa e em seguida o valor do apoio'
+                            '보상을 선택한 다음 지원액을 선택하십시오.'
                         )
                     )
                 ),
@@ -140,7 +140,7 @@ const projectsReward = {
                                                     m('.back-reward-reward-description',
                                                         [
                                                             m('.fontsize-smaller.u-marginbottom-10', reward.description),
-                                                            reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', `Estimativa de entrega: ${h.momentify(reward.deliver_at, 'MMM/YYYY')}`) : ''
+                                                            reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', `배송 예정: ${h.momentify(reward.deliver_at, 'MMM/YYYY')}`) : ''
                                                         ]
                                                                 )
                                                 ]

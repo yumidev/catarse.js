@@ -55,10 +55,10 @@ const CheckEmail = {
                         m('.w-col.w-col-3', [
                             m('button.btn.btn-medium.btn-terciary.w-button', {
                                 onclick: ctrl.checkEmail
-                            }, 'Sim!')
+                            }, '예!')
                         ]),
                         m('.w-col.w-col-3', [
-                            m(`a.btn.btn-medium.w-button[href="/users/${user.id}/edit#about_me"]`, 'Editar o email')
+                            m(`a.btn.btn-medium.w-button[href="/users/${user.id}/edit#about_me"]`, '이메일 수정')
                         ]),
                         m('.w-col.w-col-3')
                     ])

@@ -107,7 +107,7 @@ const projectEditReward = {
                 m('.w-section.section',
                     m('.w-container', [
                         (ctrl.showSuccess() ? m.component(popNotification, {
-                            message: 'Recompensa salva com sucesso'
+                            message: '보상이 성공적으로 저장되었습니다.'
                         }) : ''),
                         (ctrl.error() ? m.component(popNotification, {
                             message: ctrl.errors(),

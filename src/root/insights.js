@@ -132,21 +132,21 @@ const insights = {
     view(ctrl) {
         const project = _.first(ctrl.projectDetails()) || {
                 user: {
-                    name: 'Realizador'
+                    name: '감독'
                 }
             },
 
             buildTooltip = el => m.component(tooltip, {
                 el,
                 text: [
-                    'Informa de onde vieram os apoios de seu projeto. Saiba como usar essa tabela e planejar melhor suas ações de comunicação ',
+                    '귀하의 프로젝트가 어디서 왔는지 알려주십시오. 이 테이블을 사용하고 의사 소통을보다 잘 계획하는 방법을 배우십시오. ',
                     m(`a[href="${I18n.t('ref_table.help_url', I18nScope())}"][target='_blank']`, 'aqui.')
                 ],
                 width: 380
             });
 
         if (!ctrl.l()) {
-            project.user.name = project.user.name || 'Realizador';
+            project.user.name = project.user.name || '감독';
         }
 
         return m('.project-insights', !ctrl.l() ? [

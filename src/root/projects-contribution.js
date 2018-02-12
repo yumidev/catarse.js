@@ -16,7 +16,7 @@ const projectsContribution = {
         const rewards = () => _.union(
             [{
                 id: null,
-                description: 'Obrigado. Eu só quero ajudar o projeto.',
+                description: '고마워. 나는이 프로젝트를 돕고 싶다..',
                 minimum_value: 10,
                 shipping_options: null,
                 row_order: -9999999
@@ -28,7 +28,7 @@ const projectsContribution = {
             const valueFloat = h.monetaryToFloat(rewardVM.contributionValue);
 
             if (valueFloat < rewardVM.selectedReward().minimum_value) {
-                rewardVM.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${rewardVM.selectedReward().minimum_value}`);
+                rewardVM.error(`이 보상에 대한 지원 금액은 적어도 R$${rewardVM.selectedReward().minimum_value}`);
             } else {
                 rewardVM.error('');
                 h.navigateTo(`/projects/${projectVM.currentProject().project_id}/contributions/fallback_create?contribution%5Breward_id%5D=${rewardVM.selectedReward().id}&contribution%5Bvalue%5D=${valueFloat}`);

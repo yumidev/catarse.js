@@ -45,7 +45,7 @@ const FollowFoundFriends = {
                         m('.w-col.w-col-1'),
                         m('.w-col.w-col-10.u-text-center', [
                             m('.fontsize-larger.fontweight-semibold.u-marginbottom-10', 'Descubra projetos com seus amigos'),
-                            m('.fontsize-small', 'Siga os seus amigos e nós iremos te notificar sempre que eles lançarem ou apoiarem algum projeto')
+                            m('.fontsize-small', '친구를 따라 가면 프로젝트를 시작하거나 후원할 때마다 알려드립니다.')
                         ]),
                         m('.w-col.w-col-1')
                     ])
@@ -56,14 +56,14 @@ const FollowFoundFriends = {
               m('.u-text-center.w-container',
                   [
                       m(`a[id="creators-link"][class="dashboard-nav-link ${h.hashMatch('#creators') ? 'selected' : ''}"] [href="#creators"]`,
-                      'Encontre realizadores'
+                      '영화 제작자 찾기'
                      ),
                       m(`a[id="friends-link"][class="dashboard-nav-link ${h.hashMatch('#friends') || h.hashMatch('') ? 'selected' : ''}"] [href="#friends"]`,
-                      'Encontre amigos'
+                      '친구 찾기'
                      ),
                       m(`a[id="follows-link"][class="dashboard-nav-link ${h.hashMatch('#follows') ? 'selected' : ''}"] [href="#follows"]`,
                           [
-                              'Seguindo',
+                              '팔로잉',
                               m.trust('&nbsp;'),
                               m('span.w-hidden-small.w-hidden-tiny.badge',
                             ctrl.user.follows_count

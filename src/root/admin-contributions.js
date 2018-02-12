@@ -20,17 +20,17 @@ const adminContributions = {
                 component: filterMain,
                 data: {
                     vm: filterVM.full_text_index,
-                    placeholder: 'Busque por projeto, email, Ids do usuário e do apoio...'
+                    placeholder: '디자인, 이메일, 사용자 및 지원 ID별로 검색...'
                 }
             }, { // delivery_status
                 component: filterDropdown,
                 data: {
-                    label: 'Status da entrega',
+                    label: '배송 상태',
                     name: 'delivery_status',
                     vm: filterVM.delivery_status,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: 'delivered',
                         option: 'delivered'
@@ -53,7 +53,7 @@ const adminContributions = {
                     vm: filterVM.state,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: 'paid',
                         option: 'paid'
@@ -85,7 +85,7 @@ const adminContributions = {
                     vm: filterVM.gateway,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: 'Pagarme',
                         option: 'Pagarme'
@@ -103,14 +103,14 @@ const adminContributions = {
             }, { // value
                 component: filterNumberRange,
                 data: {
-                    label: 'Valores entre',
+                    label: '사이의 값',
                     first: filterVM.value.gte,
                     last: filterVM.value.lte
                 }
             }, { // created_at
                 component: filterDateRange,
                 data: {
-                    label: 'Período do apoio',
+                    label: '지원 기간',
                     first: filterVM.created_at.gte,
                     last: filterVM.created_at.lte
                 }
@@ -131,7 +131,7 @@ const adminContributions = {
                 error
             },
             data: {
-                label: 'Apoios'
+                label: '후원'
             },
             submit
         };
