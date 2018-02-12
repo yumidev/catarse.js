@@ -23,24 +23,24 @@ const adminUsers = {
                 component: filterMain,
                 data: {
                     vm: filterVM.full_text_index,
-                    placeholder: 'Busque por nome, e-mail, Ids do usuário...',
+                    placeholder: '이름, 이메일, 사용자 ID 별로 검색...',
                 },
             }, { // status
                 component: filterDropdown,
                 data: {
-                    label: 'Com o estado',
+                    label: '누구나',
                     index: 'status',
                     name: 'deactivated_at',
                     vm: filterVM.deactivated_at,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: null,
-                        option: 'ativo'
+                        option: '활동적인'
                     }, {
                         value: !null,
-                        option: 'desativado'
+                        option: '장애인'
                     }]
                 }
             }],
@@ -62,7 +62,7 @@ const adminUsers = {
         };
     },
     view(ctrl) {
-        const label = 'Usuários';
+        const label = '사용자';
 
         return m('', [
             m.component(adminFilter, {

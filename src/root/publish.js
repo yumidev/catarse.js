@@ -67,10 +67,10 @@ const publish = {
                     m('div', [
                         m('span.fontsize-smallest.fontcolor-secondary', '1/9'),
                         ' ',
-                        m('span.fontweight-semibold', 'O que pode e não pode alterar na página do projeto a partir da publicação?')
+                        m('span.fontweight-semibold', '출판물의 프로젝트 페이지에서 무엇을 바꿀 수 있고 바꿀 수 없습니까?')
                     ]),
                     m('div', [
-                        m('span.fontweight-semibold', 'Você não poderá alterar'),
+                        m('span.fontweight-semibold', '변경할 수 없습니다.'),
                         ': a identidade do responsável pelo projeto (Nome / CPF ou Razão Social / CNPJ), a Modalidade de financiamento, o título do projeto, a URL (link) do projeto, a categoria do projeto, a meta de arrecadação,  o prazo (caso já tenha definido), e as recompensas onde existirem apoios já efetuados.',
                         m('br'), m('br'),
                         m('span.fontweight-semibold', 'Você poderá alterar'),

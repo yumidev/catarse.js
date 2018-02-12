@@ -24,18 +24,18 @@ const adminProjects = {
                 component: filterMain,
                 data: {
                     vm: filterVM.full_text_index,
-                    placeholder: 'Busque por projeto, permalink, email, nome do realizador...',
+                    placeholder: '프로젝트, 퍼머 링크, 전자 메일, 이사의 이름으로 검색...',
                 },
             }, { // status
                 component: filterDropdown,
                 data: {
-                    label: 'Com o estado',
+                    label: '누구나',
                     index: 'state',
                     name: 'state',
                     vm: filterVM.state,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: 'successful',
                         option: 'successful'
@@ -57,13 +57,13 @@ const adminProjects = {
             { // mode
                 component: filterDropdown,
                 data: {
-                    label: 'Modalidade',
+                    label: '양식',
                     index: 'mode',
                     name: 'mode',
                     vm: filterVM.mode,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: 'aon',
                         option: 'Tudo ou nada'
@@ -77,16 +77,16 @@ const adminProjects = {
             { // recommended
                 component: filterDropdown,
                 data: {
-                    label: 'Recomendado',
+                    label: '추천',
                     index: 'recommended',
                     name: 'recommended',
                     vm: filterVM.recommended,
                     options: [{
                         value: '',
-                        option: 'Qualquer um'
+                        option: '누구나'
                     }, {
                         value: true,
-                        option: 'Sim'
+                        option: '예'
                     }, {
                         value: false,
                         option: 'Não'
@@ -96,7 +96,7 @@ const adminProjects = {
             }, { // goal
                 component: filterNumberRange,
                 data: {
-                    label: 'Meta entre',
+                    label: '목표 중',
                     first: filterVM.goal.gte,
                     last: filterVM.goal.lte
                 }
@@ -120,7 +120,7 @@ const adminProjects = {
             { // expires_at
                 component: filterDateRange,
                 data: {
-                    label: 'Expira entre',
+                    label: '만료',
                     first: filterVM.project_expires_at.gte,
                     last: filterVM.project_expires_at.lte
                 }
@@ -139,12 +139,12 @@ const adminProjects = {
             }).parameters()).then((data) => {
                 categories(data);
                 const options = _.map(categories(), category => ({ value: category.name, option: category.name }));
-                options.unshift({ value: '', option: 'Qualquer uma' });
+                options.unshift({ value: '', option: '누구나' });
                 filterBuilder.unshift(
                     { // category
                         component: filterDropdown,
                         data: {
-                            label: 'Categoria',
+                            label: '범주',
                             index: 'category',
                             name: 'category_name',
                             vm: filterVM.category_name,

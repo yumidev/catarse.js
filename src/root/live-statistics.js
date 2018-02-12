@@ -31,11 +31,11 @@ const liveStatistics = {
             m('.w-container.u-text-center', _.map(ctrl.pageStatistics(), stat => [m('img.u-marginbottom-60[src="https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/55ada5dd11b36a52616d97df_symbol-catarse.png"]'),
                 m('.fontcolor-negative.u-marginbottom-40', [
                     m('.fontsize-megajumbo.fontweight-semibold', `R$ ${h.formatNumber(stat.total_contributed, 2, 3)}`),
-                    m('.fontsize-large', 'Doados para projetos publicados por aqui')
+                    m('.fontsize-large', '여기에 게시된 프로젝트에 기부')
                 ]),
                 m('.fontcolor-negative.u-marginbottom-60', [
                     m('.fontsize-megajumbo.fontweight-semibold', stat.total_contributors),
-                    m('.fontsize-large', 'Pessoas já apoiaram pelo menos 1 projeto no Catarse')
+                    m('.fontsize-large', '사람들은 이미 Givingwire에서 최소 1개의 프로젝트를 지원했습니다.')
                 ])
             ])), (!_.isEmpty(data) ? m('.w-container', [
                 m('div', [
@@ -52,7 +52,7 @@ const liveStatistics = {
                                 ])
                             ]),
                             m('.w-col.w-col-4.u-text-center.fontsize-base.u-margintop-20', [
-                                m('div', 'acabou de apoiar o')
+                                m('div', '방금 후원')
                             ]),
                             m('.w-col.w-col-4', [
                                 m('.w-row', [
