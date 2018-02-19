@@ -179,19 +179,19 @@ const surveysShow = {
                                 ),
                                 m('.u-text-center',
                                     m('.fontsize-larger.u-marginbottom-10',
-                                        'Valeu!'
+                                        '고마워!'
                                     )
                                 ),
                                 m('.fontsize-base.u-text-center', [
-                                    `As respostas abaixo foram enviadas para ${project.user.name}! Qualquer dúvida sobre o andamento do projeto, visite a `,
+                                    `아래 답변은 ${project.user.name}로 전송되었습니다! 프로젝트 진행에 대한 의구심이 있으면 `,
                                     m(`a.alt-link[href='/${project.permalink}#posts'][target='_blank']`,
-                                        'aba de novidades da campanha'
+                                        '캠페인 뉴스 탭'
                                     ),
                                     ' ou ',
                                     m('a.alt-link[href=\'javascript:void(0);\']', {
                                         onclick: ctrl.sendMessage
                                     },
-                                        'envie uma mensagem'
+                                        '메시지를 보낸다.'
                                     ),
                                     '.'
                                 ])
@@ -219,7 +219,7 @@ const surveysShow = {
                                 ),
                                 m('.u-text-center',
                                     m('.fontsize-larger',
-                                        'Você confirma as respostas abaixo?'
+                                        '아래 답변을 확인하십니까?'
                                     )
                                 )
                             ]),
@@ -245,14 +245,14 @@ const surveysShow = {
                                         m('a.btn.btn-large.btn-terciary', {
                                             onclick: ctrl.showPreview.toggle
                                         },
-                                            'Não'
+                                            '아니요'
                                         )
                                     ),
                                     m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6',
                                         m('a.btn.btn-large', {
                                             onclick: ctrl.sendAnswer
                                         },
-                                            'Sim'
+                                            '예'
                                         )
                                     )
                                 ])
@@ -300,7 +300,7 @@ const surveysShow = {
                                                             m('a.alt-link[href=\'javascript:void(0);\']', {
                                                                 onclick: ctrl.sendMessage
                                                             },
-                                                                `envie uma mensagem para ${project.user.name}`
+                                                                ` ${project.user.name}에 메시지를 보내라.`
                                                             )
                                                         ) :
                                                         m('span',
@@ -310,7 +310,7 @@ const surveysShow = {
                                                             },
                                                                 `envie uma mensagem para ${project.user.name}`
                                                             ),
-                                                            ' para saber como é possível resolver o seu caso! ')
+                                                            ' 어떻게하면 사건을 해결할 수 있는지 알 수 있습니다! ')
                                                     )
                                                 ])
                                             )
@@ -345,7 +345,7 @@ const surveysShow = {
                                                         m('span.fa.fa-exclamation-circle',
                                                             ''
                                                         ),
-                                                        ` Você já enviou as respostas abaixo no dia ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Se notou algo errado, não tem problema: basta alterar as informações necessárias abaixo e reenviar as respostas.`
+                                                        ` 이미 아래 답변을 제출하셨습니다. ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Se notou algo errado, não tem problema: basta alterar as informações necessárias abaixo e reenviar as respostas.`
                                                     ])
                                                 ) : ''),
                                             (survey.confirm_address ? [
@@ -410,7 +410,7 @@ const surveysShow = {
                                                 ctrl.preview();
                                             }
                                         },
-                                            'Enviar'
+                                            '보내기'
                                         )
                                     ),
                                     m('.w-col.w-col-4')

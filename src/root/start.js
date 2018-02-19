@@ -143,7 +143,7 @@ const start = {
         return m('#start', { config: h.setPageTitle(I18n.t('header_html', I18nScope())) }, [
             m('.w-section.hero-full.hero-start', [
                 m('.w-container.u-text-center', [
-                    m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('slogan', I18nScope())),
+                    m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('슬로건', I18nScope())),
                     m('.w-row.u-marginbottom-40', [
                         m('.w-col.w-col-4.w-col-push-4', [
                             m('a.btn.btn-large.u-marginbottom-10[href="#start-form"]', {
@@ -158,7 +158,7 @@ const start = {
                             m('p.fontsize-small.start-stats', I18n.t('header.people', I18nScope()))
                         ]),
                         m('.w-col.w-col-4', [
-                            m('.fontsize-largest.lineheight-loose', `${stats.total_contributed.toString().slice(0, 2)} milhões`),
+                            m('.fontsize-largest.lineheight-loose', `${stats.total_contributed.toString().slice(0, 2)} 백만`),
                             m('p.fontsize-small.start-stats', I18n.t('header.money', I18nScope()))
                         ]),
                         m('.w-col.w-col-4', [
@@ -349,9 +349,9 @@ const start = {
                                     ]),
                                     m('.w-col.w-col-7', [
                                         m('.fontsize-megajumbo.fontcolor-negative', `R$ ${category.total_successful_value ? h.formatNumber(category.total_successful_value, 2, 3) : '...'}`),
-                                        m('.fontsize-large.u-marginbottom-20', 'Doados para projetos'),
+                                        m('.fontsize-large.u-marginbottom-20', '프로젝트에 기부'),
                                         m('.fontsize-megajumbo.fontcolor-negative', (category.successful_projects) ? category.successful_projects : '...'),
-                                        m('.fontsize-large.u-marginbottom-30', 'Projetos financiados'),
+                                        m('.fontsize-large.u-marginbottom-30', '재정 지원 프로젝트'),
                                         !_.isEmpty(ctrl.featuredProjects()) ? _.map(ctrl.featuredProjects(), project => !_.isUndefined(project) ? m('.w-row.u-marginbottom-10', [
                                             m('.w-col.w-col-1', [
                                                 m(`img.user-avatar[src="${h.useAvatarOrDefault(project.userThumb)}"]`)
@@ -396,7 +396,7 @@ const start = {
             ]),
             m('#start-form.w-section.section-large.u-text-center.bg-purple.before-footer', [
                 m('.w-container', [
-                    m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', 'Crie o seu rascunho gratuitamente!'),
+                    m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', '초안을 무료로 만들어 보세요!'),
                     m('form[action="/projects/fallback_create"][method="GET"].w-row.w-form', {
                         onsubmit: (e) => {
                             h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_submit' })(e);
@@ -411,17 +411,17 @@ const start = {
                                 m(`input[name="authenticity_token"][type="hidden"][value="${h.authenticityToken()}"]`),
                                 m('input.w-input.text-field.medium.u-marginbottom-30[type="text"]', {
                                     name: 'project[name]',
-                                    class: ctrl.projectNameError() ? 'error' : '',
+                                    class: ctrl.projectNameError() ? '오류' : '',
                                     onfocus: () => ctrl.projectNameError(false),
                                     onchange: (e) => {
                                         h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_change', lbl: 'name' })(e);
                                         m.withAttr('value', ctrl.projectName)(e);
                                     }
                                 }),
-                                m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', 'na categoria'),
+                                m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', '카테고리'),
                                 m('select.w-select.text-field.medium.u-marginbottom-40', {
                                     name: 'project[category_id]',
-                                    class: ctrl.projectCategoryError() ? 'error' : '',
+                                    class: ctrl.projectCategoryError() ? '오류' : '',
                                     onfocus: () => ctrl.projectCategoryError(false),
                                     onchange: (e) => {
                                         h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_change', lbl: 'category' })(e);
@@ -438,7 +438,7 @@ const start = {
                                     m(`input[type="submit"][value="${I18n.t('form.submit', I18nScope())}"].w-button.btn.btn-large`)
                                 ])
                             ]),
-                            m('.w-row.u-marginbottom-80', (ctrl.projectNameError() || ctrl.projectCategoryError()) ? m.component(inlineError, { message: 'Por favor, verifique novamente os campos acima!' }) : '')
+                            m('.w-row.u-marginbottom-80', (ctrl.projectNameError() || ctrl.projectCategoryError()) ? m.component(inlineError, { message: '위의 필드를 다시 확인하십시오!' }) : '')
                         ])
                 ])
             ])

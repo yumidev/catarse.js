@@ -79,7 +79,7 @@ const menuProfile = {
                                                  ),
                                                 m('li.lineheight-looser',
                                                     m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#contributions']`,
-                                                        'Histórico de apoio'
+                                                        '후원 내역'
                                                     )
                                                 ),
                                                 m('li.lineheight-looser',

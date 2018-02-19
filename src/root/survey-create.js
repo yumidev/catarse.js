@@ -45,11 +45,11 @@ const surveyCreate = {
         const choice = {
             multiple: [
                 m('span.fa.fa-dot-circle-o'),
-                '  Múltipla escolha'
+                '  다중 선택'
             ],
             open: [
                 m('span.fa.fa-align-left'),
-                '  Resposta aberta'
+                '  공개 대답'
             ]
         };
 
@@ -141,7 +141,7 @@ const surveyCreate = {
                             m('.w-col.w-col-8.w-col-push-2',
                                 m('div', [
                                     m('.fontsize-small.fontweight-semibold.u-marginbottom-20',
-                                        `Questionário para os ${reward.paid_count} apoiadores da recompensa`
+                                        `설문지 ${reward.paid_count} 보상 지지자들`
                                     ),
                                     m(rewardCardBig, { reward })
                                 ])
@@ -157,7 +157,7 @@ const surveyCreate = {
                         m('.card.card-terciary.medium.u-marginbottom-20.u-text-center', [
                             m('.u-marginbottom-20', [
                                 m('.fontsize-base.fontweight-semibold.u-marginbottom-10',
-                                    'Confirmar endereço de entrega?'
+                                    '배달 주소를 확인 하시겠습니까?'
                                 ),
                                 m('a.toggle.w-clearfix.w-inline-block', {
                                     class: ctrl.confirmAddress() ? 'toggle-on' : 'toggle-off',
@@ -166,7 +166,7 @@ const surveyCreate = {
                                     m('.toggle-btn', {
                                         class: ctrl.confirmAddress() ? null : 'toggle-btn--off'
                                     }),
-                                    ctrl.confirmAddress() ? m('.u-right', 'SIM') : m('.u-left', 'NÃO')
+                                    ctrl.confirmAddress() ? m('.u-right', '예') : m('.u-left', '아니요')
                                 ]
                                 ),
                                 m('input[type="hidden"]', {
@@ -176,7 +176,7 @@ const surveyCreate = {
                             m('.w-row', [
                                 m('.w-col.w-col-8.w-col-push-2',
                                     m('p.fontcolor-secondary.fontsize-small',
-                                        'Se essa recompensa será entregue na casa dos apoiadores, deixe essa opção como "SIM". Dessa forma, incluíremos uma pergunta no questionário para que eles confirmem o endereço de entrega.'
+                                        '이 보상이 후원자 집에 전달 될 경우이 옵션을 "예"로 남겨 둡니다. 그렇게하면 설문지에 질문을 포함시켜 배달 주소를 확인합니다.'
                                     )
                                 )
                             ])
@@ -198,7 +198,7 @@ const surveyCreate = {
                             onclick: ctrl.addDashboardQuestion
                         }, [
                             m('span.fa.fa-plus-circle'),
-                            '  Adicionar pergunta'
+                            '  질문 추가'
                         ])
                     ])
                 ])
@@ -210,10 +210,10 @@ const surveyCreate = {
                             m('a.btn.btn-large[href=\'javascript:void(0);\']', {
                                 onclick: ctrl.toggleShowPreview
                             },
-                                'Pré-visualizar'
+                                '미리보기'
                             ),
                             ctrl.showError() 
-                                ? m('.u-text-center.u-margintop-10', m(inlineError, { message: 'Erro ao salvar formulário.' }))
+                                ? m('.u-text-center.u-margintop-10', m(inlineError, { message: '양식 저장 오류.' }))
                                 : null
                         )
                     ])
