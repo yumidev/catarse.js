@@ -102,7 +102,7 @@ const surveys = {
                             }, [
                                 m('.toggle-btn'),
                                 m('.u-right',
-                                    'SIM'
+                                    '예'
                                 )
                             ])
                         ),
@@ -121,7 +121,7 @@ const surveys = {
             return m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
                 m('.u-right', [
                     m('.fontcolor-secondary.fontsize-smallest.lineheight-tighter.u-marginbottom-10',
-                        'Aceitando respostas?'
+                        '답변을 수락 하시겠습니까?'
                     ),
                     m('.u-marginbottom-10.w-clearfix',
                         m('a.toggle.toggle-off.u-right.w-inline-block', {
@@ -130,7 +130,7 @@ const surveys = {
                             }
                         }, [
                             m('div',
-                                'NÃO'
+                                '아니요'
                             ),
                             m('.toggle-btn.toggle-btn--off')
                         ])
@@ -198,7 +198,7 @@ const surveys = {
                         m('.fontweight-semibold.header.table-row.w-hidden-small.w-hidden-tiny.w-row', [
                             m('.table-col.w-col.w-col-3',
                                 m('div',
-                                    'Recompensa'
+                                    '보상'
                                 )
                             ),
                             m('.table-col.w-col.w-col-9',
@@ -219,7 +219,7 @@ const surveys = {
                                     ),
                                     m('.u-text-center-big-only.w-col.w-col-5.w-col-small-5.w-col-tiny-5',
                                         m('div',
-                                            'Resultados'
+                                            '결과'
                                         )
                                     ),
                                     m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
@@ -232,7 +232,7 @@ const surveys = {
                             (_.map(ctrl.rewardVM.rewards(), reward => m('.table-row.w-row', [
                                 m('.table-col.w-col.w-col-3', [
                                     m('.fontsize-base.fontweight-semibold',
-                                        `R$ ${reward.minimum_value} ou mais`
+                                        `R$ ${reward.minimum_value} 이상`
                                     ),
                                     m('.fontsize-smallest.fontweight-semibold',
                                         reward.title
@@ -242,14 +242,14 @@ const surveys = {
                                     ),
                                     m('.fontcolor-secondary.fontsize-smallest', [
                                         m('span.fontcolor-terciary',
-                                            'Entrega prevista:'
+                                            '예상 배송:'
                                         ),
                                         m.trust('&nbsp;'),
                                         h.momentify(reward.deliver_at, 'MMMM/YYYY')
                                     ]),
                                     m('.fontcolor-secondary.fontsize-smallest', [
                                         m('span.fontcolor-terciary',
-                                            'Envio:'
+                                            '배송:'
                                         ),
                                         m.trust('&nbsp;'),
                                         I18n.t(`shipping_options.${reward.shipping_options}`, I18nScope())

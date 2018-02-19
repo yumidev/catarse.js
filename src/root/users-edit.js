@@ -83,16 +83,16 @@ const usersEdit = {
                                 'Criados'
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#about_me' ? '.selected' : '')}[data-target='#dashboard_about_me'][href='#about_me'][id='dashboard_about_me_link']`,
-                              'Perfil Público'
+                              '공개 프로필'
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#settings' ? '.selected' : '')}[data-target='#dashboard_settings'][href='#settings'][id='dashboard_settings_link']`,
-                              'Dados cadastrais'
+                              '지적 데이터'
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#notifications' ? '.selected' : '')}[data-target='#dashboard_notifications'][href='#notifications'][id='dashboard_notifications_link']`,
-                                'Notificações'
+                                '알림'
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#balance' ? '.selected' : '')}[data-target='#dashboard_balance'][href='#balance'][id='dashboard_balance_link']`,
-                              'Saldo'
+                              '균형'
                              ),
                             m(`a.dashboard-nav-link.u-right-big-only[href='/pt/users/${user.id}']`, {
                                 config: m.route,
@@ -102,7 +102,7 @@ const usersEdit = {
                                     });
                                 }
                             },
-                                'Ir para o perfil público'
+                                '공개 프로필로 이동'
                             )
                         ])
                     ),
