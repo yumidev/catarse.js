@@ -96,7 +96,7 @@ const projectContributions = {
                           stats.total
                          ),
                         m('.fontsize-large',
-                          '사람들이 이 프로젝트를 지원합니다'
+                          '사람들이 이 프로젝트를 후원합니다'
                          )
                     ]),
                     m('.w-col.w-col-6',
@@ -133,7 +133,7 @@ const projectContributions = {
              ),
             m('.divider.w-section'),
             m('.section.w-section', m('.w-container', [
-                m('.fontsize-large.fontweight-semibold.u-marginbottom-40.u-text-center', 'Apoiadores'),
+                m('.fontsize-large.fontweight-semibold.u-marginbottom-40.u-text-center', '후원자'),
                 m('.project-contributions.w-clearfix', _.map(groupedCollection, (group, idx) => m('.w-row', _.map(group, contribution => m('.project-contribution-item.w-col.w-col-4', [
                         // here new card
                     m('.card.card-backer.u-marginbottom-20.u-radius.u-text-center', [

@@ -61,7 +61,7 @@ const userFriends = {
                             (ctrl.allLoading() ? h.loader()
                              : m('a.w-button.btn.btn-medium', {
                                  onclick: ctrl.followAll
-                             }, `Siga todos os seus ${listVM.total() ? listVM.total() : ''} amigos`))
+                             }, `Siga todos os seus ${listVM.total() ? listVM.total() : ''} 친구`))
                     ])
                 ]),
                 m('.w-row', [

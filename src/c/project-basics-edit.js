@@ -217,7 +217,7 @@ const projectBasicsEdit = {
                                 children: [
                                     m('input.string.required.w-input.text-field.positive.medium[type="text"][maxlength="50"]', {
                                         value: vm.fields.name(),
-                                        class: vm.e.hasError('name') ? 'error' : '',
+                                        class: vm.e.hasError('name') ? '오류' : '',
                                         onchange: m.withAttr('value', vm.fields.name)
                                     }),
                                     vm.e.inlineError('name')
@@ -230,7 +230,7 @@ const projectBasicsEdit = {
                                 children: [
                                     m('input.string.optional.w-input.text-field.positive.medium[type="text"]', {
                                         config: ctrl.editTag,
-                                        class: vm.e.hasError('public_tags') ? 'error' : '',
+                                        class: vm.e.hasError('public_tags') ? '오류' : '',
                                         onfocus: () => vm.e.inlineError('public_tags', false)
                                     }),
                                     ctrl.isEditingTags() ? m('.options-list.table-outer',
@@ -280,7 +280,7 @@ const projectBasicsEdit = {
                                 children: [
                                     m('select.required.w-input.text-field.w-select.positive.medium', {
                                         value: vm.fields.category_id(),
-                                        class: vm.e.hasError('category_id') ? 'error' : '',
+                                        class: vm.e.hasError('category_id') ? '오류' : '',
                                         onchange: m.withAttr('value', vm.fields.category_id)
                                     }, ctrl.categories()),
                                     vm.e.inlineError('category_id')

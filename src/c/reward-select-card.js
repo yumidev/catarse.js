@@ -140,7 +140,7 @@ const rewardSelectCard = {
                         ]),
                         m('.fontsize-smaller.text-error.u-marginbottom-20.w-hidden', [
                             m('span.fa.fa-exclamation-triangle'),
-                            ' 후원 금액이 잘못되었습니다.'
+                            ' 후원금액이 잘못되었습니다.'
                         ])
                     ]),
                     m('.submit-form.w-col.w-col-4',
@@ -173,7 +173,7 @@ const rewardSelectCard = {
                     ])
                 ])
             ])
-                                                  ));
+         ));
     }
 };
 

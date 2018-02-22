@@ -60,7 +60,7 @@ const projectAnnounceExpiration = {
                                     ]),
                                     m('.fontcolor-secondary.u-text-center', [
                                         m('.fontsize-smaller',
-                                            'Você poderá receber apoios até:'
+                                            '후원을 받을 때까지:'
                                         ),
                                         m('.fontsize-base', [
                                             m('span.expire-date',

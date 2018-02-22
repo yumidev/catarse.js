@@ -112,7 +112,7 @@ const projectsReward = {
                                                                                         ),
                                                                             m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9',
                                                                                             m('input.user-reward-value.back-reward-input-reward[autocomplete=\'off\'][type=\'tel\']', {
-                                                                                                class: ctrl.error() ? 'error' : '',
+                                                                                                class: ctrl.error() ? '오류' : '',
                                                                                                 min: monetaryMinimum,
                                                                                                 placeholder: monetaryMinimum,
                                                                                                 onkeyup: m.withAttr('value', ctrl.applyMask),

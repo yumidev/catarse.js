@@ -20,7 +20,7 @@ const adminContributions = {
                 component: filterMain,
                 data: {
                     vm: filterVM.full_text_index,
-                    placeholder: '디자인, 이메일, 사용자 및 지원 ID별로 검색...'
+                    placeholder: '디자인, 이메일, 사용자 및 지원 ID 별로 검색...'
                 }
             }, { // delivery_status
                 component: filterDropdown,
@@ -33,16 +33,16 @@ const adminContributions = {
                         option: '누구나'
                     }, {
                         value: 'delivered',
-                        option: 'delivered'
+                        option: '배송완료'
                     }, {
                         value: 'undelivered',
-                        option: 'undelivered'
+                        option: '배송안됨'
                     }, {
                         value: 'error',
-                        option: 'error'
+                        option: '오류'
                     }, {
                         value: 'received',
-                        option: 'received'
+                        option: '받음'
                     }]
                 }
             }, { // state

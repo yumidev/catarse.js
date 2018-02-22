@@ -136,7 +136,7 @@ const Flex = {
                                     answer: '네, 전자 메일을 등록하고 프로젝트를 flex에 등록하는 방법을 배우십시오!'
                                 }),
                                 m.component(landingQA, {
-                                    question: '왜 Givingwire flex를하고 싶습니까?',
+                                    question: '왜 Givingwire flex를 하고 싶습니까?',
                                     answer: 'Acreditamos que o ambiente do crowdfunding brasileiro ainda tem espaço para muitas ações, testes e experimentações para entender de fato o que as pessoas precisam. Sonhamos com tornar o financiamento coletivo um hábito no Brasil. O Catarse flex é mais um passo nessa direção.'
                                 }),
                                 m.component(landingQA, {
@@ -175,7 +175,7 @@ const Flex = {
                 ]),
                 m('.w-section.section.bg-blue-one.fontcolor-negative', [
                     m('.w-container', [
-                        m('.fontsize-large.u-text-center.u-marginbottom-20', '친구에게 Givingwire Flex를 추천합니다.! '),
+                        m('.fontsize-large.u-text-center.u-marginbottom-20', '친구에게 Givingwire Flex를 추천합니다! '),
                         m('.w-row', [
                             m('.w-col.w-col-2'),
                             m('.w-col.w-col-8', [
@@ -183,7 +183,7 @@ const Flex = {
                                     m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle', [
                                         m('div', [
                                             m('img.icon-share-mobile[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/53a3f66e05eb6144171d8edb_facebook-xxl.png\']'),
-                                            m(`a.w-button.btn.btn-large.btn-fb[href="http://www.facebook.com/sharer/sharer.php?u=https://www.catarse.me/flex?ref=facebook&title=${encodeURIComponent('Conheça o novo Catarse Flex!')}"][target="_blank"]`, '이것을 공유하십시오')
+                                            m(`a.w-button.btn.btn-large.btn-fb[href="http://www.facebook.com/sharer/sharer.php?u=https://www.catarse.me/flex?ref=facebook&title=${encodeURIComponent('새로운 Givingwire Flex를 만나십시오!')}"][target="_blank"]`, '이것을 공유하십시오')
                                         ])
                                     ]),
                                     m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', [

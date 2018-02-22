@@ -310,7 +310,7 @@ const projectContributionReportContentCard = {
                                 m('p', [
                                     `성명: ${contribution.user_name}`,
                                     m('br'),
-                                    `Nome público: ${contribution.public_user_name}`,
+                                    `공용 이름: ${contribution.public_user_name}`,
                                     m('br'),
                                     contribution.email,
                                     m('br'),

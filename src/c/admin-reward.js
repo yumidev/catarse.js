@@ -38,7 +38,7 @@ const adminReward = {
             m('.fontsize-smallest.lineheight-looser', reward.id ? [
                 `ID: ${reward.id}`,
                 m('br'),
-                `Local de entrega: ${(shippingFee.destination ? `${shippingFee.destination} R$ ${shippingFee.value}` : 'Nenhum')}`,
+                `배송지: ${(shippingFee.destination ? `${shippingFee.destination} R$ ${shippingFee.value}` : 'Nenhum')}`,
                 m('br'),
                 `배송: ${I18n.t(`shared.shipping_options.${reward.shipping_options}`)}`,
                 m('br'),
@@ -48,10 +48,10 @@ const adminReward = {
                 m('br'),
                 `확인을 기다리는 중입니다.: ${reward.waiting_payment_count}`,
                 m('br'),
-                `Estimativa da Entrega: ${h.momentify(reward.deliver_at)}`,
+                `예상 배달: ${h.momentify(reward.deliver_at)}`,
                 m('br'),
                 m('div', [
-                    'Status da Entrega: ',
+                    '배송 상태: ',
                     h.contributionStatusBadge(contribution)
                 ]),
                 (reward.title ? [`제목: ${reward.title}`,

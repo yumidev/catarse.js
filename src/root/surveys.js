@@ -92,7 +92,8 @@ const surveys = {
                 return m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
                     m('.u-right.w-clearfix', [
                         m('.fontcolor-secondary.fontsize-smallest.lineheight-tighter.u-marginbottom-10',
-                            'Aceitando respostas?'
+                            '답변을 수락 하시겠습니까?'
+                            //coffee  'Aceitando respostas?'
                         ),
                         m('.u-marginbottom-10.w-clearfix',
                             m('a.toggle.toggle-on.u-right.w-clearfix.w-inline-block', {

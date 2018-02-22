@@ -270,7 +270,8 @@ const surveysShow = {
                             m('.w-col.w-col-8', [
                                 m(`img.big.thumb.u-marginbottom-20.u-round[src='${profileImage}']`),
                                 m('.fontsize-larger.u-marginbottom-10',
-                                    `Oi, ${userVM.displayName(user)}`
+                                    `안녕하세요, ${userVM.displayName(user)}`
+                                    //coffee `Oi, ${userVM.displayName(user)}`
                                 ),
                                 m('.fontsize-base.u-marginbottom-20',
                                     `${project.user.name}, do projeto ${project.name}, enviou algumas perguntas para que possa seguir com a produção e entrega da recompensa que você apoiou com R$${reward.minimum_value}:`
@@ -297,6 +298,7 @@ const surveysShow = {
                                                     ),
                                                     (ctrl.answeredAt() ?
                                                         m('span', ` Esse questionário não está mais aberto para receber respostas. Segue abaixo as respostas que você enviou no dia ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Qualquer dúvida, `,
+                                                        //coffee  m('span', ` Esse questionário não está mais aberto para receber respostas. Segue abaixo as respostas que você enviou no dia ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Qualquer dúvida, `,
                                                             m('a.alt-link[href=\'javascript:void(0);\']', {
                                                                 onclick: ctrl.sendMessage
                                                             },
@@ -308,7 +310,8 @@ const surveysShow = {
                                                             m('a.alt-link[href=\'javascript:void(0);\']', {
                                                                 onclick: ctrl.sendMessage
                                                             },
-                                                                `envie uma mensagem para ${project.user.name}`
+                                                                `${project.user.name}에게 메시지 보내기`
+                                                                //coffee `envie uma mensagem para ${project.user.name}`
                                                             ),
                                                             ' 어떻게하면 사건을 해결할 수 있는지 알 수 있습니다! ')
                                                     )
@@ -345,7 +348,7 @@ const surveysShow = {
                                                         m('span.fa.fa-exclamation-circle',
                                                             ''
                                                         ),
-                                                        ` 이미 아래 답변을 제출하셨습니다. ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Se notou algo errado, não tem problema: basta alterar as informações necessárias abaixo e reenviar as respostas.`
+                                                        ` Você já enviou as respostas abaixo no dia ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Se notou algo errado, não tem problema: basta alterar as informações necessárias abaixo e reenviar as respostas.`
                                                     ])
                                                 ) : ''),
                                             (survey.confirm_address ? [
@@ -389,7 +392,8 @@ const surveysShow = {
                                                     m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-20',
                                                         item.question.description
                                                     ),
-                                                    m("input.positive.text-field.w-input[maxlength='256'][placeholder='Sua resposta'][required='required'][type='text']", {
+                                                    m("input.positive.text-field.w-input[maxlength='256'][placeholder='귀하의 답변'][required='required'][type='text']", {
+                                                    //coffee   m("input.positive.text-field.w-input[maxlength='256'][placeholder='Sua resposta'][required='required'][type='text']", {
                                                         value: item.value(),
                                                         onchange: m.withAttr('value', item.value)
                                                     })

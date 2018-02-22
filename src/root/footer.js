@@ -192,7 +192,7 @@ const footer = {
                             m('img.u-marginbottom-20[alt=\'Logo footer\'][src=\'/assets/logo-footer.png\']'),
                             m('.lineheight-loose',
                                 m('a.link-footer-inline[href=\'http://github.com/catarse/catarse\']',
-                                   ` Feito com amor | ${new Date().getFullYear()} | Open source`
+                                   ` Feito com amor | ${new Date().getFullYear()} | 오픈 소스`
                                 )
                             )
                         ]

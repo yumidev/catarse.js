@@ -109,7 +109,7 @@ const inviteEmailsFromImport = {
                      m('a.btn.btn-inline.btn-medium.w-button[href="javascript:void(0)"]', {
                          onclick: ctrl.submitInvites
                      }, `Enviar ${ctrl.checkedList().length} convites`)
-                 ]) : (!ctrl.loading() ? '연락처 로드 중...' : '초대장 보내기...'))
+                 ]) : (!ctrl.loading() ? '연락처 로드 중...' : '초대장 보내기'))
             ])
         ]);
     }

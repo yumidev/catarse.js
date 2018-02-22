@@ -74,7 +74,7 @@ const projectDashboardMenu = {
             projectRoute = `/projects/${project.project_id}`,
             editRoute = `${projectRoute}/edit`,
             editLinkClass = hash => `dashboard-nav-link-left ${project.is_published ? 'indent' : ''} ${h.hashMatch(hash) ? 'selected' : ''}`;
-        const optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (opcional)');
+        const optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)');
 
         ctrl.body.className = ctrl.bodyToggleForNav();
 

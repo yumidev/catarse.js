@@ -14,7 +14,7 @@ const errorContributionModalContent = {
                     m('span.fa.fa-exclamation-triangle',
                         ''
                     ),
-                    ' Ops. Erro no envio!'
+                    ' 발신 오류!'
                 ])
             ),
             m('.modal-dialog-content', [
@@ -29,7 +29,7 @@ const errorContributionModalContent = {
                         m('.fontsize-smaller',
                             '이 메시지에 정보를 추가하려면 아래의 공란을 사용해 주시길 바랍니다 (예 : 배달 주소를 확인하거나 오류의 원인을 설명 할 수 있음)'
                         ),
-                        m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
+                        m("textarea.height-mini.text-field.w-input[placeholder='메시지 입력 (선택 사항)']", {
                             value: args.message(),
                             onchange: m.withAttr('value', args.message)
                         })
