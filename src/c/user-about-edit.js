@@ -401,7 +401,7 @@ const userAboutEdit = {
                                                 ' Facebook 프로필'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
-                                                ' 프로필 링크 붙여 넣기'
+                                                ' 프로필 링크 붙여넣기'
                                             )
                                         ]),
                                         m('.w-col.w-col-7',

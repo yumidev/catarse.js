@@ -55,7 +55,8 @@ const projectsExplore = {
                     tooltipText = 'O nosso fator popularidade é uma mistura da seleção do time do Catarse com um valor que é calculado pela velocidade de arrecadação do projeto';
                 } else if (currentFilter().keyName === 'finished') {
                     hasHint = true;
-                    hintText = 'Ordenados por R$ alcançado ';
+                    hintText = '달성 한 R $로 정렬 ';
+                    //cofffee   hintText = 'Ordenados por R$ alcançado ';
                     tooltipText = '가장 높은 목표를 달성한 프로젝트가 가장 위에 표시됩니다.';
                 } else if (currentFilter().keyName === 'contributed_by_friends') {
                     hasHint = true;

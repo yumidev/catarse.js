@@ -212,7 +212,7 @@ const addressForm = {
                                         'State *'
                                     ),
                                     m("input#address-state.positive.text-field.w-input[required='required'][type='text']", {
-                                        class: errors.addressState() ? 'error' : '',
+                                        class: errors.addressState() ? '오류' : '',
                                         value: ctrl.fields.addressState(),
                                         onchange: m.withAttr('value', ctrl.fields.addressState)
                                     }),
@@ -314,7 +314,7 @@ const addressForm = {
                                         `${I18n.t('address_city', I18nScope())} *`
                                     ),
                                     m("input.positive.text-field.w-input[required='required'][type='text']", {
-                                        class: errors.addressCity() ? 'error' : '',
+                                        class: errors.addressCity() ? '오류' : '',
                                         value: ctrl.fields.addressCity(),
                                         onchange: m.withAttr('value', ctrl.fields.addressCity)
                                     }),
@@ -327,7 +327,7 @@ const addressForm = {
                                         `${I18n.t('address_state', I18nScope())} *`
                                     ),
                                     m('select#address-state.positive.text-field.w-select', {
-                                        class: errors.stateID() ? 'error' : '',
+                                        class: errors.stateID() ? '오류' : '',
                                         onchange: m.withAttr('value', ctrl.fields.stateID)
                                     }, [
                                         m('option', { value: '' }),
@@ -347,14 +347,14 @@ const addressForm = {
                                     m('.field-label.fontweight-semibold',
                                         `${I18n.t('phone_number', I18nScope())} *`
                                     ),
-                                    m("input#phone.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
+                                    m("input#phone.positive.text-field.w-input[placeholder='숫자만 입력해 주세요.'][required='required'][type='text']", {
                                         class: errors.phoneNumber() ? '오류' : '',
                                         value: ctrl.fields.phoneNumber(),
                                         onkeyup: m.withAttr('value', value => ctrl.applyPhoneMask(value)),
                                         onchange: m.withAttr('value', ctrl.fields.phoneNumber)
                                     }),
                                     errors.phoneNumber() ? m(inlineError, {
-                                        message: '유효한 전화 번호를 입력해 주세요.'
+                                        message: '유효한 전화번호를 입력해 주세요.'
                                     }) : ''
                                 ])
                             ])

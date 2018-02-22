@@ -174,7 +174,7 @@ const userNotifications = {
                                                 m('a.alt-link[href=\'javascript:void(0);\']', {
                                                     onclick: ctrl.showNotifications.toggle
                                                 },
-                                                    ` Gerenciar as notificações de ${user.total_contributed_projects} projetos`
+                                                    ` ${user.total_contributed_projects}개의 프로젝트에 대한 알림 관리`
                                                 )
                                             ),
                                             (ctrl.showNotifications() ?

@@ -26,7 +26,7 @@ const announceExpirationModal = {
                         m('button.btn.btn-large.btn-terciary', {
                             onclick: args.displayModal.toggle
                         },
-                            ' Não'
+                            ' 아니요'
                         )
                     ),
                     m('.w-col.w-col-2')

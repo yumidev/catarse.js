@@ -162,7 +162,7 @@ const projectRewardCard = {
             ] : '',
             m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', h.pluralize(reward.paid_count, ' apoio', ' apoios')),
             reward.waiting_payment_count > 0 ? m('.maximum_contributions.in_time_to_confirm.clearfix', [
-                m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, ' apoio em prazo de confirmação', ' apoios em prazo de confirmação.'))
+                m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, '확인 기간에 후원', ' 확인 기간에 후원.'))
             ]) : '',
             project.open_for_contributions && !h.rewardSouldOut(reward) ? [
                 ctrl.isRewardOpened() ? m('.w-form', [
@@ -191,7 +191,7 @@ const projectRewardCard = {
                             )
                         ]) : '',
                         m('.fontcolor-secondary.u-marginbottom-10',
-                            'Valor do apoio'
+                            '후원의 가치'
                         ),
                         m('.w-row.u-marginbottom-20', [
                             m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3',

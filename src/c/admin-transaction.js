@@ -11,9 +11,9 @@ const adminTransaction = {
                 m('br'),
                 `분류군: R$${h.formatNumber(contribution.gateway_fee, 2, 3)}`,
                 m('br'),
-                `확인 대기중: ${contribution.waiting_payment ? 'Sim' : 'Não'}`,
+                `확인 대기중: ${contribution.waiting_payment ? '예' : '아니요'}`,
                 m('br'),
-                `익명: ${contribution.anonymous ? 'Sim' : 'Não'}`,
+                `익명: ${contribution.anonymous ? '예' : '아니요'}`,
                 m('br'),
                 `지불 Id: ${contribution.gateway_id}`,
                 m('br'),
@@ -27,7 +27,7 @@ const adminTransaction = {
                 m('br'),
                 `연산자: ${contribution.gateway_data && contribution.gateway_data.acquirer_name}`,
                 m('br'),
-                contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2a via')] : ''
+                contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2차 노선')] : ''
             ])
         ]);
     }

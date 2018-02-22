@@ -64,7 +64,7 @@ const UserFollowBtn = {
                         onmouseover: () => ctrl.hover(true),
                         onmouseout: () => ctrl.hover(false)
                     },
-                         (ctrl.hover() ? 'Deixar de seguir' : 'Seguindo'));
+                         (ctrl.hover() ? '팔로우 해제' : '팔로잉'));
             }
             return m(`a${disableClass}`,
                          { onclick: ctrl.follow },

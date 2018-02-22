@@ -83,7 +83,7 @@ const postsPreview = {
                         m('.w-col.w-col-3'),
                         m('.w-col.w-col-6',
                             m('.fontsize-larger.fontweight-semibold.lineheight-tight',
-                                'Revise sua novidade antes de enviar!'
+                                '보내기 전에 뉴스를 확인하십시오!'
                             )
                         ),
                         m('.w-col.w-col-3')

@@ -45,7 +45,7 @@ const projectPosts = {
                 (project.is_owner_or_admin ? [
                     (!list.isLoading()) ?
                     (_.isEmpty(list.collection()) ? m('.w-hidden-small.w-hidden-tiny', [
-                        m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Catarse에 게시 된 모든 뉴스는 프로젝트를 이미 후원 한 사람들의 이메일로 직접 전송되며 웹 사이트에서도 볼 수 있습니다. 공개로 하거나 이 탭의 서포터에게만 표시되도록 선택할 수 있습니다.')
+                        m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Givingwire에 게시 된 모든 뉴스는 프로젝트를 이미 후원 한 사람들의 이메일로 직접 전송되며 웹 사이트에서도 볼 수 있습니다. 공개로 하거나 이 탭의 서포터에게만 표시되도록 선택할 수 있습니다.')
                     ]) : '') : '',
                     m('.w-row.u-marginbottom-20', [
                         m('.w-col.w-col-4.w-col-push-4', [

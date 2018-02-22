@@ -69,7 +69,7 @@ const adminExternalAction = {
     },
     view(ctrl, args) {
         const data = args.data,
-            btnValue = (ctrl.l()) ? 'por favor, aguarde...' : data.callToAction;
+            btnValue = (ctrl.l()) ? '기다려주시길 바랍니다...' : data.callToAction;
 
         return m('.w-col.w-col-2', [
             m('button.btn.btn-small.btn-terciary', {

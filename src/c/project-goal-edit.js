@@ -97,7 +97,7 @@ const projectGoalEdit = {
                                     ]),
                                     m('.u-text-center.fontsize-smaller', [
                                         m('a.mode-diff-toggle.link-hidden-light.fontweight-semibold[href="javascript:void(0);"]', { onclick: ctrl.showModeDiff.toggle }, [
-                                            'Veja a diferença entre os modelos ',
+                                            '모델의 차이점보기',
                                             m('span.fa.fa-chevron-down')
                                         ])
                                     ]),
@@ -130,7 +130,7 @@ const projectGoalEdit = {
                                                         m('.input.tel.optional.project_goal', [
                                                             m('label.field-label'),
                                                             m('input.string.optional.w-input.text-field.postfix.positive.medium[autocomplete="off"][id="project-goal-input"][name="project[goal]"][type="tel"]', {
-                                                                class: vm.e.hasError('goal') ? 'error' : false,
+                                                                class: vm.e.hasError('goal') ? '오류' : false,
                                                                 value: vm.fields.goal(),
                                                                 maxlength: 14,
                                                                 onkeyup: m.withAttr('value', ctrl.applyGoalMask)

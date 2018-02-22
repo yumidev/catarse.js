@@ -60,7 +60,7 @@ const cancelProjectModalContent = {
                                 m('.w-col.w-col-3'),
                                 m('.u-text-center.w-col.w-col-6',
                                     [
-                                        m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Próximo passo >\']'),
+                                        m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'다음 단계 >\']'),
                                         m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayModal.toggle },
                                             '취소'
                                         )

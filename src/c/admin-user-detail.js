@@ -34,7 +34,7 @@ const adminUserDetail = {
                 reactivate: {
                     property: 'deactivated_at',
                     updateKey: 'id',
-                    callToAction: 'Reativar',
+                    callToAction: '재활성',
                     innerLabel: '이 사용자를 다시 사용하시겠습니까?',
                     successMessage: '사용자가 다시 활성화 되었습니다!',
                     errorMessage: '사용자를 다시 활성화 할 수 없습니다!',

@@ -47,7 +47,7 @@ const adminContributionDetail = {
                     updateKey: 'contribution_id',
                     selectKey: 'reward_id',
                     radios: 'rewards',
-                    callToAction: 'Alterar Recompensa',
+                    callToAction: '보상 변경',
                     outerLabel: '보상',
                     getModel: models.rewardDetail,
                     updateModel: models.contributionDetail,

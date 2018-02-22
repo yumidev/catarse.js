@@ -64,7 +64,7 @@ const menuProfile = {
                                 m('.w-col.w-col-12',
                                     [
                                         m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10',
-                                            'Meu histórico'
+                                            '내 역사'
                                         ),
                                         m('ul.w-list-unstyled.u-marginbottom-20',
                                             [
@@ -84,12 +84,12 @@ const menuProfile = {
                                                 ),
                                                 m('li.lineheight-looser',
                                                   m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#projects']`,
-                                                    '생성 된 프로젝트'
+                                                    '생성된 프로젝트'
                                                    )
                                                  ),
                                                 m('li.w-hidden-main.w-hidden-medium.lineheight-looser',
                                                     m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}/edit#projects']`,
-                                                        '생성 된 프로젝트'
+                                                        '생성된 프로젝트'
                                                     )
                                                  )
                                             ]

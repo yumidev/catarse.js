@@ -58,7 +58,8 @@ const projectsContribution = {
                      m('.w-section.header-cont-new',
                     m('.w-container',
                         m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only',
-                            'Escolha a recompensa e em seguida o valor do apoio'
+                            '보상을 선택한 다음 지원액을 선택하십시오.'
+                            //coffee  'Escolha a recompensa e em seguida o valor do apoio'
                         )
                     )
                 ),

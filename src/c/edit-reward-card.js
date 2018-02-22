@@ -218,7 +218,7 @@ const editRewardCard = {
                                     m('.w-row', [
                                         m('input[type=\'hidden\'][value=\'1\']'),
                                         m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
-                                            class: ctrl.deliverAtError() ? 'error' : false,
+                                            class: ctrl.deliverAtError() ? '오류' : false,
                                             onchange: (e) => {
                                                 ctrl.reward.deliver_at(moment(ctrl.reward.deliver_at()).month(parseInt(e.target.value) - 1).format());
                                             }
@@ -231,7 +231,7 @@ const editRewardCard = {
                                             ))
                                         ]),
                                         m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
-                                            class: ctrl.deliverAtError() ? 'error' : false,
+                                            class: ctrl.deliverAtError() ? '오류' : false,
                                             onchange: (e) => {
                                                 ctrl.reward.deliver_at(moment(reward.deliver_at()).year(parseInt(e.target.value)).format());
                                             }
@@ -266,11 +266,11 @@ const editRewardCard = {
                             '설명은 비워 둘 수 없습니다.'
                         )
                     ]),
-                    ctrl.descriptionError() ? inlineError('Descrição não pode ficar em branco.') : '', ,
+                    ctrl.descriptionError() ? inlineError('설명은 비워 둘 수 없습니다.') : '', ,
                     m('.u-marginbottom-30.w-row', [
                         m('.w-col.w-col-3',
                             m("label.fontsize-smaller[for='field-2']",
-                                'Tipo de entrega'
+                                '배송 유형'
                             )
                         ),
                         m('.w-col.w-col-9', [
@@ -314,7 +314,7 @@ const editRewardCard = {
                                                 return false;
                                             }
                                         },
-                                            'Adicionar destino'
+                                            '목적지 추가'
                                         )
                                     )
                                 ]) : '')

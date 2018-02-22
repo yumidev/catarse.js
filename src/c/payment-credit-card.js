@@ -313,7 +313,7 @@ const paymentCreditCard = {
                             m('.w-col.w-col-6.w-col-tiny-6',
                                 m('select.w-select.text-field[name="expiration-date_year"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('expiry'),
-                                    class: ctrl.fieldHasError('expiry') ? 'error' : '',
+                                    class: ctrl.fieldHasError('expiry') ? '오류' : '',
                                     onchange: m.withAttr('value', ctrl.creditCard.expYear),
                                     onblur: ctrl.checkExpiry,
                                     value: ctrl.creditCard.expYear()

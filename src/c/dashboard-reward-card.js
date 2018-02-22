@@ -151,7 +151,7 @@ const dashboardRewardCard = {
                                 ]),
                                 m('.w-row', [
                                     m('.w-sub-col.w-col.w-col-4',
-                                        m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, 'Salvar')
+                                        m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, '저장')
                                     ),
                                     m('.w-sub-col.w-col.w-col-4',
                                         m('button.btn.btn-small.btn-terciary.w-button', {

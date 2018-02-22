@@ -132,7 +132,7 @@ const insights = {
     view(ctrl) {
         const project = _.first(ctrl.projectDetails()) || {
                 user: {
-                    name: '감독'
+                    name: '감독' //sub
                 }
             },
 
