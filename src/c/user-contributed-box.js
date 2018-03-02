@@ -148,8 +148,10 @@ const userContributedBox = {
                                     ),
                                     m.trust('&nbsp;'),
                                     '설문지',
+                                    //coffee 'Questionário',
                                     m('br'),
                                     '답변 없음'
+                                    //coffee 'Não respondido'
                                 ])
                             )
                         ) : answeredAt ?
@@ -157,8 +159,10 @@ const userContributedBox = {
                             m('.fontsize-smaller.fontweight-semibold.lineheight-tighter',
                                 m(`a.link-hidden-dark[href='/contributions/${contribution.contribution_id}/surveys/${contribution.survey.survey_id}'][target='_blank']`, [
                                     '설문지',
+                                    //coffee 'Questionário',
                                     m('br'),
                                     '답변 완료'
+                                    //coffee 'Respondido'
                                 ])
                             ),
                             m('.fontcolor-secondary.fontsize-smallest',

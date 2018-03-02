@@ -31,9 +31,11 @@ const projectAnnounceExpiration = {
                                         m('.w-sub-col.w-col.w-col-6',
                                             m('.fontsize-small.u-marginbottom-10', [
                                                 '지금부터 며칠 후에 컬렉션을 닫으시겠습니까??',
+                                                //coffee 'Em quantos dias, contados a partir de agora, você quer encerrar a sua arrecadação?',
                                                 m('br'),
                                                 m('span.fontsize-smaller.fontweight-semibold',
                                                     '(최소 2 일)'
+                                                    //coffee '(mínimo de 2 dias)'
                                                 )
                                             ])
                                         ),
@@ -53,6 +55,7 @@ const projectAnnounceExpiration = {
                                                 m('.medium.no-hover.postfix.prefix-permalink.text-field.w-col.w-col-4.w-col-small-6.w-col-tiny-6',
                                                     m('.fontcolor-secondary.fontsize-base.lineheight-tightest.u-text-center',
                                                         '일'
+                                                        //coffee 'Dias'
                                                     )
                                                 )
                                             ])
@@ -61,6 +64,7 @@ const projectAnnounceExpiration = {
                                     m('.fontcolor-secondary.u-text-center', [
                                         m('.fontsize-smaller',
                                             '후원을 받을 때까지:'
+                                            //coffee 'Você poderá receber apoios até:'
                                         ),
                                         m('.fontsize-base', [
                                             m('span.expire-date',
@@ -87,6 +91,7 @@ const projectAnnounceExpiration = {
                                     }
                                 },
                                     '  확인'
+                                    //coffee '  Confirmar'
                                 )
                             )
                         ])

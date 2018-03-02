@@ -48,6 +48,7 @@ const projectHighlight = {
                     }, [
                         '···',
                         ' 더 많은 기사'
+                        //coffee ' Mais'
                     ]),
                     (ctrl.displayShareBox() ? m(projectShareBox, {
                         project,

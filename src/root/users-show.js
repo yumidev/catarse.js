@@ -66,6 +66,7 @@ const usersShow = {
                               m('span.fa.fa-cog'),
                               m.trust('&nbsp;'),
                               ' 프로필 수정'
+                              //coffee ' Editar perfil'
                           ]
                       ) : '') : h.loader()),
                       m(`a[data-target=\'#contributed-tab\'][href=\'#contributed\'][id=\'contributed_link\'][class=\'dashboard-nav-link ${(ctrl.hash() === '#contributed' ? 'selected' : '')}\']`,
@@ -88,6 +89,7 @@ const usersShow = {
                       ),
                       m(`a[data-target=\'#about-tab\'][href=\'#about\'][id=\'about_link\'][class=\'dashboard-nav-link ${(ctrl.hash() === '#about' ? 'selected' : '')}\']`,
                           '위키 소개'
+                          //coffee 'Sobre'
                       )
                   ]
               )

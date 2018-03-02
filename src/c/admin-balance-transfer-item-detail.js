@@ -95,14 +95,19 @@ const adminBalanceTransferItemDetail = {
                 m('.w-col.w-col-4', [
                     (bankAccount ? [
                         m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'),
+                        //coffee   m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Dados bancários'),
                         m('.fontsize-smallest.lineheight-looser', [
                             m('span.fontweight-semibold', '은행:'),
+                            //coffee   m('span.fontweight-semibold', 'Banco:'),
                             `${bankAccount.bank_code} - ${(bankAccount.bank_name ? bankAccount.bank_name : '' )}`,m('br'),
                             m('span.fontweight-semibold', '에이전시:'),
+                            //coffee   m('span.fontweight-semibold', 'Agencia:'),
                             ` ${bankAccount.agency} - ${bankAccount.agency_digit ? bankAccount.agency_digit : ''}`,m('br'),
                             m('span.fontweight-semibold', "계정:"),
+                            //coffee   m('span.fontweight-semibold', "Conta:"),
                             ` ${bankAccount.account} - ${bankAccount.account_digit ? bankAccount.account_digit : ''}`,m('br'),
                             m('span.fontweight-semibold', '이름:'),
+                            //coffee   m('span.fontweight-semibold', 'Nome:'),
                             bankAccount.owner_name, m('br'),
                             m('span.fontweight-semibold', 'CPF:'),
                             bankAccount.owner_document

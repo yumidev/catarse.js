@@ -46,10 +46,12 @@ const surveyCreate = {
             multiple: [
                 m('span.fa.fa-dot-circle-o'),
                 '  다중 선택'
+                //coffee '  Múltipla escolha'
             ],
             open: [
                 m('span.fa.fa-align-left'),
                 '  공개 대답'
+                //coffee '  Resposta aberta'
             ]
         };
 
@@ -142,6 +144,7 @@ const surveyCreate = {
                                 m('div', [
                                     m('.fontsize-small.fontweight-semibold.u-marginbottom-20',
                                         `설문지 ${reward.paid_count} 보상 지지자들`
+                                        //coffee `Questionário para os ${reward.paid_count} apoiadores da recompensa`
                                     ),
                                     m(rewardCardBig, { reward })
                                 ])
@@ -158,6 +161,7 @@ const surveyCreate = {
                             m('.u-marginbottom-20', [
                                 m('.fontsize-base.fontweight-semibold.u-marginbottom-10',
                                     '배달 주소를 확인 하시겠습니까?'
+                                    //coffee 'Confirmar endereço de entrega?'
                                 ),
                                 m('a.toggle.w-clearfix.w-inline-block', {
                                     class: ctrl.confirmAddress() ? 'toggle-on' : 'toggle-off',
@@ -167,6 +171,7 @@ const surveyCreate = {
                                         class: ctrl.confirmAddress() ? null : 'toggle-btn--off'
                                     }),
                                     ctrl.confirmAddress() ? m('.u-right', '예') : m('.u-left', '아니요')
+                                    //coffee ctrl.confirmAddress() ? m('.u-right', 'SIM') : m('.u-left', 'NÃO')
                                 ]
                                 ),
                                 m('input[type="hidden"]', {
@@ -177,6 +182,7 @@ const surveyCreate = {
                                 m('.w-col.w-col-8.w-col-push-2',
                                     m('p.fontcolor-secondary.fontsize-small',
                                         '이 보상이 후원자 집에 전달 될 경우이 옵션을 "예"로 남겨 둡니다. 그렇게하면 설문지에 질문을 포함시켜 배달 주소를 확인합니다.'
+                                        //coffee 'Se essa recompensa será entregue na casa dos apoiadores, deixe essa opção como "SIM". Dessa forma, incluíremos uma pergunta no questionário para que eles confirmem o endereço de entrega.'
                                     )
                                 )
                             ])
@@ -199,6 +205,7 @@ const surveyCreate = {
                         }, [
                             m('span.fa.fa-plus-circle'),
                             '  질문 추가'
+                            //coffee '  Adicionar pergunta'
                         ])
                     ])
                 ])
@@ -211,9 +218,11 @@ const surveyCreate = {
                                 onclick: ctrl.toggleShowPreview
                             },
                                 '미리보기'
+                                //coffee 'Pré-visualizar'
                             ),
                             ctrl.showError() 
                                 ? m('.u-text-center.u-margintop-10', m(inlineError, { message: '양식 저장 오류.' }))
+                                //coffee ? m('.u-text-center.u-margintop-10', m(inlineError, { message: 'Erro ao salvar formulário.' }))
                                 : null
                         )
                     ])

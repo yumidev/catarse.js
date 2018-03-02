@@ -31,9 +31,12 @@ const userHeader = {
                               `Chegou junto em ${h.momentify(user.created_at, 'MMMM [de] YYYY')}`,
                               m('br'),
                              (user.total_contributed_projects === 0 ? '아직 프로젝트를 후원하지 않음' :
+                             //coffee (user.total_contributed_projects === 0 ? 'Ainda não apoiou projetos' :
                               `Apoiou ${h.pluralize(user.total_contributed_projects, ' 그래픽', ' 집')}`),
+                              //coffee `Apoiou ${h.pluralize(user.total_contributed_projects, ' projeto', ' projetos')}`),
                              (user.total_published_projects > 0 ?
                               ` e já criou ${h.pluralize(user.total_published_projects, ' 그래픽', ' 집')}` : '')
+                              //coffee ` e já criou ${h.pluralize(user.total_published_projects, ' projeto', ' projetos')}` : '')
                           ]
                         ),
                           m('.w-row',

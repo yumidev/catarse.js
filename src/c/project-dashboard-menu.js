@@ -75,6 +75,7 @@ const projectDashboardMenu = {
             editRoute = `${projectRoute}/edit`,
             editLinkClass = hash => `dashboard-nav-link-left ${project.is_published ? 'indent' : ''} ${h.hashMatch(hash) ? 'selected' : ''}`;
         const optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)');
+        //coffee const optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (Nenhuma)');
 
         ctrl.body.className = ctrl.bodyToggleForNav();
 
@@ -100,6 +101,7 @@ const projectDashboardMenu = {
                                 project.posts_count > 0 ?
                                 m('span.badge', project.posts_count) :
                                 m('span.badge.badge-attention', '없음')
+                                //coffee m('span.badge.badge-attention', 'Nenhuma')
                             ]),
                             m(`a#dashboard_surveys_link[class="dashboard-nav-link-left ${h.locationActionMatch('surveys') ? 'selected' : ''}"][href="${projectRoute}/surveys"]`, [
                                 m('span.fa.fa.fa-check-square-o.fa-lg.fa-fw'), I18n.t('surveys_tab', I18nScope())
@@ -120,11 +122,13 @@ const projectDashboardMenu = {
                                 m(`a#description_link[class="${editLinkClass('#description')}"][href="${editRoute}#description"]`, railsErrorsVM.errorsFor('description'), I18n.t('description_tab', linksScope())),
                                 m(`a#video_link[class="${editLinkClass('#video')}"][href="${editRoute}#video"]`, [railsErrorsVM.errorsFor('video'),
                                     '비디오', m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)')
+                                    //coffee 'Vídeo', m('span.fontsize-smallest.fontcolor-secondary', ' (opcional)')
                                 ]),
                                 m(`a#budget_link[class="${editLinkClass('#budget')}"][href="${editRoute}#budget"]`, railsErrorsVM.errorsFor('budget'), I18n.t('budget_tab', linksScope())),
                                 m(`a#card_link[class="${editLinkClass('#card')}"][href="${editRoute}#card"]`, railsErrorsVM.errorsFor('card'), I18n.t('card_tab', linksScope())),
                                 m(`a#dashboard_reward_link[class="${editLinkClass('#reward')}"][href="${editRoute}#reward"]`, [railsErrorsVM.errorsFor('reward'),
                                     '보상', optionalOpt
+                                    //coffee 'Recompensas', optionalOpt
                                 ]),
                                 m(`a#dashboard_user_about_link[class="${editLinkClass('#user_about')}"][href="${editRoute}#user_about"]`, railsErrorsVM.errorsFor('user_about'), I18n.t('about_you_tab', linksScope())),
                                 ((project.is_published || project.state === 'draft') || project.is_admin_role ? [

@@ -10,6 +10,7 @@ const dashboardOpenQuestion = {
                     m('.w-col.w-col-4',
                         m('label.fontsize-smaller[for="name-3"]',
                             '질문'
+                            //coffee 'Pergunta'
                         )
                     ),
                     m('.w-col.w-col-8',
@@ -23,6 +24,7 @@ const dashboardOpenQuestion = {
                             }
                         }),
                         question.error ? m(inlineError, { message: '입력란을 작성해 주시길 바랍니다.' }) : null
+                        //coffee question.error ? m(inlineError, { message: 'O campo pergunta não pode ser vazio.' }) : null
                     )
                 ]),
                 m('.w-row', [

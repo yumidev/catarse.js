@@ -33,6 +33,7 @@ const postsPreview = {
                     m.redraw();
                 }).catch((err) => {
                     args.errors('메시지 보내는 중 오류가 발생했습니다.'),
+                    //coffee args.errors('Erro ao enviar mensagem.'),
                     args.showError(true);
                     m.redraw();
                 });
@@ -48,12 +49,14 @@ const postsPreview = {
             recipientsText = args.reward_id > 1 ?
             m('.fontsize-small.u-marginbottom-30', [
                 '위의 뉴스는 이메일로 발송됩니다. ',
+                //coffee 'A novidade acima será enviada por email para os ',
                 m('span.fontweight-semibold',
                     args.rewardText
                 ),
                 ' e ficará ',
                 m('span.fontweight-semibold',
                 '해당 서포터에게만 플랫폼에 표시됩니다.'
+                    //coffee 'visível na plataforma somente para esses apoiadores.'
                 )
             ]) :
             args.reward_id === '-1' ?
@@ -61,6 +64,7 @@ const postsPreview = {
                 'A novidade acima será  ',
                 m('span.fontweight-semibold',
                     '모든 사람에게 전자 메일로 보냄'
+                    //coffee 'enviada por email para todos'
                 ),
                 ' os apoiadores e ficará ',
                 m('span.fontweight-semibold',
@@ -71,8 +75,10 @@ const postsPreview = {
             m('.fontsize-small.u-marginbottom-30', [
                 m('span', ' A novidade acima será  '),
                 m('span.fontweight-semibold', '모든 후원자에게 이메일로 보냄'),
+                //coffee m('span.fontweight-semibold', 'enviada por email para todos os apoiadores'),
                 m('span', ' e ficará '),
                 m('span.fontweight-semibold', '플랫폼에있는 사람들 만 볼 수있다.')
+                //coffee m('span.fontweight-semibold', 'visível somente para esses na plataforma.')
             ]);
 
         return m('div', [
@@ -84,6 +90,7 @@ const postsPreview = {
                         m('.w-col.w-col-6',
                             m('.fontsize-larger.fontweight-semibold.lineheight-tight',
                                 '보내기 전에 뉴스를 확인하십시오!'
+                                //coffee 'Revise sua novidade antes de enviar!'
                             )
                         ),
                         m('.w-col.w-col-3')
@@ -125,6 +132,7 @@ const postsPreview = {
                             ' ',
                             m.trust('&nbsp;'),
                             '보내기'
+                            //coffee 'Enviar'
                         ])
                     ),
                     m('.w-col.w-col-2',
@@ -132,6 +140,7 @@ const postsPreview = {
                             onclick: ctrl.togglePreview
                         },
                             '수정'
+                            //coffee 'Editar'
                         )
                     ),
                     m('.w-col.w-col-3')

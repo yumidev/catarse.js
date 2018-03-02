@@ -35,6 +35,7 @@ const adminProjectDetailsCard = {
             m('div', [
                 m('.fontsize-small.fontweight-semibold', [
                     m('span.fontcolor-secondary', '지위:'), ' ',
+                    //coffee m('span.fontcolor-secondary', 'Status:'), ' ',
                     m('span', {
                         class: statusTextObj.cssClass
                     }, (ctrl.isFinalLap() && project.open_for_contributions ? 'RETA FINAL' : statusTextObj.text)), ' '

@@ -87,9 +87,11 @@ const adminProjectItem = {
                         ),
                         m('.fontcolor-secondary.fontsize-smallest',
                             `${project.total_published} 생성 된 프로젝트`
+                            //coffee `${project.total_published} projetos criados`
                         ),
                         m('.fontcolor-secondary.fontsize-smallest',
                             '아직 프로젝트를 지원하지 않음'
+                            //coffee 'Ainda não apoiou projetos'
                         )
                     ])
                 ])

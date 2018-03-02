@@ -21,28 +21,35 @@ const adminContributions = {
                 data: {
                     vm: filterVM.full_text_index,
                     placeholder: '디자인, 이메일, 사용자 및 지원 ID 별로 검색...'
+                    //coffee placeholder: 'Busque por projeto, email, Ids do usuário e do apoio...'
                 }
             }, { // delivery_status
                 component: filterDropdown,
                 data: {
                     label: '배송 상태',
+                    //coffee label: 'Status da entrega',
                     name: 'delivery_status',
                     vm: filterVM.delivery_status,
                     options: [{
                         value: '',
                         option: '누구나'
+                        //coffee option: 'Qualquer um'
                     }, {
                         value: 'delivered',
                         option: '배송완료'
+                        //coffee option: 'delivered'
                     }, {
                         value: 'undelivered',
                         option: '배송안됨'
+                        //coffee option: 'undelivered'
                     }, {
                         value: 'error',
                         option: '오류'
+                        //coffee option: 'error'
                     }, {
                         value: 'received',
                         option: '받음'
+                        //coffee option: 'received'
                     }]
                 }
             }, { // state
@@ -54,6 +61,7 @@ const adminContributions = {
                     options: [{
                         value: '',
                         option: '누구나'
+                        //coffee option: 'Qualquer um'
                     }, {
                         value: 'paid',
                         option: 'paid'
@@ -86,6 +94,7 @@ const adminContributions = {
                     options: [{
                         value: '',
                         option: '누구나'
+                        //coffee option: 'Qualquer um'
                     }, {
                         value: 'Pagarme',
                         option: 'Pagarme'
@@ -104,6 +113,7 @@ const adminContributions = {
                 component: filterNumberRange,
                 data: {
                     label: '사이의 값',
+                    //coffee label: 'Valores entre',
                     first: filterVM.value.gte,
                     last: filterVM.value.lte
                 }
@@ -111,6 +121,7 @@ const adminContributions = {
                 component: filterDateRange,
                 data: {
                     label: '지원 기간',
+                    //coffee label: 'Período do apoio',
                     first: filterVM.created_at.gte,
                     last: filterVM.created_at.lte
                 }
@@ -132,6 +143,7 @@ const adminContributions = {
             },
             data: {
                 label: '후원'
+                //coffee label: 'Apoios'
             },
             submit
         };

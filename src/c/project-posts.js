@@ -46,6 +46,7 @@ const projectPosts = {
                     (!list.isLoading()) ?
                     (_.isEmpty(list.collection()) ? m('.w-hidden-small.w-hidden-tiny', [
                         m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Givingwire에 게시 된 모든 뉴스는 프로젝트를 이미 후원 한 사람들의 이메일로 직접 전송되며 웹 사이트에서도 볼 수 있습니다. 공개로 하거나 이 탭의 서포터에게만 표시되도록 선택할 수 있습니다.')
+                        //coffee m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Toda novidade publicada no Catarse é enviada diretamente para o email de quem já apoiou seu projeto e também fica disponível para visualização no site. Você pode optar por deixá-la pública, ou visível somente para seus apoiadores aqui nesta aba.')
                     ]) : '') : '',
                     m('.w-row.u-marginbottom-20', [
                         m('.w-col.w-col-4.w-col-push-4', [
@@ -87,6 +88,7 @@ const projectPosts = {
                             : m('.w-col.w-col-2.w-col-push-5',
                                 (list.isLastPage() ?
                                     list.collection().length === 0 ? '뉴스 없음.' : ''
+                                    //coffee list.collection().length === 0 ? 'Nenhuma novidade.' : ''
                                  : m('button#load-more.btn.btn-medium.btn-terciary', {
                                      onclick: list.nextPage
                                  }, 'Carregar mais'))

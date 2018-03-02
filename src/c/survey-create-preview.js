@@ -29,9 +29,11 @@ const surveyCreatePreview = {
                         m('.w-col.w-col-8', [
                             m('.fontsize-larger.fontweight-semibold.lineheight-looser',
                                 '설문지 검토'
+                                //coffee 'Revise o questionário'
                             ),
                             m('.fontsize-base',
                                 '귀하의 서포터는 이메일로 아래의 설문지에 대한 링크를 받게됩니다. 전송하기 전에 모든 것이 올바른지 확인하십시오!'
+                                //coffee 'Os seus apoiadores irão receber um link para o questionário abaixo por email. Veja se está tudo correto antes de enviá-lo!'
                             )
                         ]),
                         m('.w-col.w-col-2')
@@ -63,6 +65,7 @@ const surveyCreatePreview = {
                                                 m('select.positive.text-field.w-select', [
                                                     m("option[value='']",
                                                         '선택...'
+                                                        //coffee 'Selecione...'
                                                     )
                                                 ])
                                             ]),
@@ -76,6 +79,7 @@ const surveyCreatePreview = {
                                         m('div', [
                                             m('label.field-label.fontweight-semibold',
                                                 '거리'
+                                                //coffee 'Rua'
                                             ),
                                             m("input.positive.text-field.w-input[type='email']")
                                         ]),
@@ -83,6 +87,7 @@ const surveyCreatePreview = {
                                             m('.w-sub-col.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
                                                     '번호'
+                                                    //coffee 'Número'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ]),
@@ -95,6 +100,7 @@ const surveyCreatePreview = {
                                             m('.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
                                                     '이웃'
+                                                    //coffee 'Bairro'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ])
@@ -109,16 +115,19 @@ const surveyCreatePreview = {
                                             m('.w-sub-col.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
                                                     '도시'
+                                                    //coffee 'Cidade'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ]),
                                             m('.w-col.w-col-4', [
                                                 m('label.field-label.fontweight-semibold',
                                                     '주'
+                                                    //coffee '주'
                                                 ),
                                                 m('select.positive.text-field.w-select', [
                                                     m("option[value='']",
                                                         '선택...'
+                                                        //coffee '선택...'
                                                     )
                                                 ])
                                             ])
@@ -127,6 +136,7 @@ const surveyCreatePreview = {
                                             m('.w-sub-col.w-col.w-col-6', [
                                                 m('label.field-label.fontweight-semibold',
                                                     '전화'
+                                                    //coffee '전화'
                                                 ),
                                                 m("input.positive.text-field.w-input[type='email']")
                                             ]),
@@ -163,6 +173,7 @@ const surveyCreatePreview = {
                                     ),
                                     m('form',
                                         m("input.positive.text-field.w-input[placeholder='귀하의 답변'][type='text']")
+                                        //coffee m("input.positive.text-field.w-input[placeholder='Sua resposta'][type='text']")
                                     )
                                 ]))
                             ])
@@ -187,6 +198,7 @@ const surveyCreatePreview = {
                             ),
                             m.trust('&nbsp;'),
                             '질문은 자동으로 4일 이내에 응답하지 않는 사람들에게 다시 제출됩니다. 서포터가 응답을 제출하지 않고 계속 진행하면 설문지가 두 번 더 재전송됩니다.'
+                            //coffee 'As perguntas serão reenviadas automaticamente para aqueles que não responderem em até 4 dias. Caso os apoiadores continuem sem enviar as respostas, o questionário será reenviado mais duas vezes.'
                         ])
                     ]),
                     m('.w-col.w-col-2')
@@ -201,11 +213,13 @@ const surveyCreatePreview = {
                             ' ',
                             m.trust('&nbsp;'),
                             '보내기'
+                            //coffee 'Enviar'
                         ])
                     ),
                     m('.w-col.w-col-2',
                         m("a.btn.btn-large.btn-terciary[href='javascript:void(0);']", { onclick: ctrl.togglePreview },
                             '수정'
+                            //coffee 'Editar'
                         )
                     ),
                     m('.w-col.w-col-3')

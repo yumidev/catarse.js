@@ -104,9 +104,11 @@ const projectSuccessfulOnboardConfirmAccount = {
                 m('.w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-hidden-small.w-hidden-tiny'),
                 m('.w-col.w-col-3.w-col-small-6.w-col-tiny-6', [
                     m('a#confirm-account.btn.btn-large', { href: '#confirm_account', onclick: ctrl.changeToAction('accept') }, '예')
+                    //coffee m('a#confirm-account.btn.btn-large', { href: '#confirm_account', onclick: ctrl.changeToAction('accept') }, 'Sim')
                 ]),
                 m('.w-col.w-col-3.w-col-small-6.w-col-tiny-6', [
                     m('a#refuse-account.btn.btn-large.btn-terciary', { href: `/projects/${projectAccount.project_id}/edit#user_settings` }, '아니요')
+                    //coffee m('a#refuse-account.btn.btn-large.btn-terciary', { href: `/projects/${projectAccount.project_id}/edit#user_settings` }, 'Não')
                 ]),
                 m('.w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-hidden-small.w-hidden-tiny')
             ]) : m.component(actionStage(), {

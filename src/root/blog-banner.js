@@ -39,6 +39,7 @@ const blogBanner : Component = {
                         );
                     })),
                     ctrl.error() ? m('.w-row', m('.w-col.w-col-12.u-text-center', '로드 중 오류가 발생했습니다...')) : ''
+                    //coffee ctrl.error() ? m('.w-row', m('.w-col.w-col-12.u-text-center', 'Erro ao carregar posts...')) : ''
                 ]
             )
         );

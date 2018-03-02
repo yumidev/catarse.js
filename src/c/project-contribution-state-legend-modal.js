@@ -57,6 +57,7 @@ const ProjectContributionStateLegendModal = {
             m('.modal-dialog-header', [
                 m('.fontsize-large.u-text-center',
                   '후원 상태')
+                  //coffee 'Status do apoio')
             ]),
             m('.modal-dialog-content', _.map(ctrl.stages[project_stage], (item, i) => m('.u-marginbottom-20', [
                 m('.fontsize-small.fontweight-semibold', [

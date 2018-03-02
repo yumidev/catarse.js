@@ -73,6 +73,7 @@ const thankYou = {
                                ),
                               m('.fontsize-base.fontweight-semibold.u-marginbottom-20',
                                 '친구들과 공유하고 이 프로젝트가 목표를 달성하도록 도와주세요!'
+                                //coffee 'Compartilhe com seus amigos e ajude esse projeto a bater a meta!'
                                )
                           ] : [
                               m('#slip-thank-you.fontsize-largest.text-success.u-marginbottom-20', I18n.t('thank_you_slip.thank_you', I18nScope())),
@@ -99,6 +100,7 @@ const thankYou = {
                                           })),
                                           m('.w-col.w-col-4', m(`a.btn.btn-large.btn-tweet.u-marginbottom-20[href="https://twitter.com/intent/tweet?text=Acabei%20de%20apoiar%20o%20projeto%20${encodeURIComponent(args.contribution.project.name)}%20https://www.catarse.me/${args.contribution.project.permalink}%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share"][target="_blank"]`, [
                                               m('span.fa.fa-twitter'), ' 트위터'
+                                              //coffee m('span.fa.fa-twitter'), ' Twitter'
                                           ]))
                                       ]
                                                   ),
@@ -106,6 +108,7 @@ const thankYou = {
                                       m('.u-marginbottom-30.u-text-center-small-only', m('button.btn.btn-large.btn-terciary.u-marginbottom-40', {
                                           onclick: ctrl.displayShareBox.toggle
                                       }, '이것을 공유하십시오')),
+                                      //coffee }, 'Compartilhe')),
                                       ctrl.displayShareBox() ? m(projectShareBox, {
                                                          // Mocking a project m.prop
                                           project: m.prop({

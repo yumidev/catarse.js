@@ -21,6 +21,7 @@ const projectsReward = {
 
             if (valueFloat < vm.selectedReward().minimum_value) {
                 vm.error(`이 보상에 대한 지원 금액은 적어도 R$${vm.selectedReward().minimum_value}`);
+                //coffee vm.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${vm.selectedReward().minimum_value}`);
             } else if (!h.getUser()) {
                 h.storeObject(storeKey, { value: valueFloat, reward: vm.selectedReward() });
 
@@ -72,6 +73,7 @@ const projectsReward = {
                     m('.w-container',
                         m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only',
                             '보상을 선택한 다음 지원액을 선택하십시오.'
+                            //coffee 'Escolha a recompensa e em seguida o valor do apoio'
                         )
                     )
                 ),
@@ -113,6 +115,7 @@ const projectsReward = {
                                                                             m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9',
                                                                                             m('input.user-reward-value.back-reward-input-reward[autocomplete=\'off\'][type=\'tel\']', {
                                                                                                 class: ctrl.error() ? '오류' : '',
+                                                                                                    //coffee class: ctrl.error() ? 'error' : '',
                                                                                                 min: monetaryMinimum,
                                                                                                 placeholder: monetaryMinimum,
                                                                                                 onkeyup: m.withAttr('value', ctrl.applyMask),
@@ -141,6 +144,7 @@ const projectsReward = {
                                                         [
                                                             m('.fontsize-smaller.u-marginbottom-10', reward.description),
                                                             reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', `배송 예정: ${h.momentify(reward.deliver_at, 'MMM/YYYY')}`) : ''
+                                                            //coffee reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', `Estimativa de entrega: ${h.momentify(reward.deliver_at, 'MMM/YYYY')}`) : ''
                                                         ]
                                                                 )
                                                 ]

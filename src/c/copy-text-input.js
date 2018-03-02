@@ -50,6 +50,7 @@ const copyTextInput = {
                 config: ctrl.setClickHandler
             })),
             ctrl.showSuccess() ? m.component(popNotification, { message: '링크 복사 됨' }) : ''
+            //coffee ctrl.showSuccess() ? m.component(popNotification, { message: 'Link copiado' }) : ''
         ]);
     }
 };

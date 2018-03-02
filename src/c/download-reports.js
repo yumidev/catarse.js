@@ -20,11 +20,13 @@ const downloadReports = {
                                                 m.trust('&nbsp;')
                                             ),
                                             '보고서 다운로드'
+                                            //coffee 'Baixar relatórios'
                                         ]),
                                         m('ul.w-list-unstyled', [
                                             m('li.fontsize-smaller.u-marginbottom-10',
                                                 m('div', [
                                                     '후원자 확인 ',
+                                                    //coffee 'Apoiadores confirmados ',
                                                     m.trust('&nbsp;'),
                                                     m(`a.alt-link[href='/pt/reports/contribution_reports_for_project_owners.csv?project_id=${project.project_id}&amp;state=paid']`,
                                                         'CSV'

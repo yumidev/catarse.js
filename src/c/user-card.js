@@ -47,8 +47,10 @@ const userCard = {
                 m('ul.w-list-unstyled.fontsize-smaller.fontweight-semibold', [
                     (!_.isEmpty(user.facebook_link) ? m('li', [
                         m(`a.link-hidden[itemprop="url"][href="${user.facebook_link}"][target="_blank"]`, '페이스북 프로필')
+                        //coffee m(`a.link-hidden[itemprop="url"][href="${user.facebook_link}"][target="_blank"]`, 'Perfil no Facebook')
                     ]) : ''), (!_.isEmpty(user.twitter_username) ? m('li', [
                         m(`a.link-hidden[itemprop="url"][href="https://twitter.com/${user.twitter_username}"][target="_blank"]`, '트위터 프로필')
+                        //coffee m(`a.link-hidden[itemprop="url"][href="https://twitter.com/${user.twitter_username}"][target="_blank"]`, 'Perfil no Twitter')
                     ]) : ''),
                     _.map(user.links, link => m('li', [
                         m(`a.link-hidden[itemprop="url"][href="${link.link}"][target="_blank"]`, link.link)
@@ -61,6 +63,7 @@ const userCard = {
             }) : ''),
             m(UserFollowBtn, { follow_id: user.id, following: user.follwing_this_user, enabledClass: '.btn.btn-medium.btn-message.u-marginbottom-10', disabledClass: '.btn.btn-medium.btn-message.u-marginbottom-10' }),
             (!_.isEmpty(user.email) ? m('a.btn.btn-medium.btn-message[href=\'javascript:void(0);\']', { onclick: ctrl.displayModal.toggle }, '메시지 보내기') : '')
+            //coffee (!_.isEmpty(user.email) ? m('a.btn.btn-medium.btn-message[href=\'javascript:void(0);\']', { onclick: ctrl.displayModal.toggle }, 'Enviar mensagem') : '')
         ]));
     }
 };

@@ -31,9 +31,11 @@ const projectHeader = {
             m('.fontsize-small.u-text-center', [
                 m('span.fa.fa-thumbs-up'),
                 ' 당신은 이 프로젝트의 후원자입니다. ',
+                //coffee ' Você é apoiador deste projeto! ',
                 m('a.alt-link[href=\'javascript:void(0);\']', {
                     onclick: ctrl.showContributions.toggle
                 }, '세부 정보')
+                //coffee }, 'Detalhes')
             ]),
             ctrl.showContributions() ? m('.u-margintop-20.w-row',
                     _.map(ctrl.projectContributions(), contribution => m.component(userContributionDetail, {

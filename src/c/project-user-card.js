@@ -35,6 +35,7 @@ const projectUserCard = {
         const userDetail = args.userDetails();
 
         return m('#user-card', _.isEmpty(userDetail) ? '로딩...' : m('.u-marginbottom-30.u-text-center-small-only', [
+        //coffee return m('#user-card', _.isEmpty(userDetail) ? 'carregando...' : m('.u-marginbottom-30.u-text-center-small-only', [
                 (ctrl.displayModal() ? m.component(modalBox, {
                     displayModal: ctrl.displayModal,
                     content: contactModalC
@@ -63,8 +64,10 @@ const projectUserCard = {
                     (!_.isNull(userDetail.deactivated_at) ? '' : m('ul.w-hidden-tiny.w-hidden-small.w-list-unstyled.fontsize-smaller.fontweight-semibold.u-margintop-20.u-marginbottom-20', [
                             (!_.isEmpty(userDetail.facebook_link) ? m('li', [
                                 m(`a.link-hidden[itemprop="url"][href="${userDetail.facebook_link}"][target="_blank"]`, { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_fb', lbl: userDetail.facebook_link, project: project() }) }, '페이스북 프로필')
+                                //coffee m(`a.link-hidden[itemprop="url"][href="${userDetail.facebook_link}"][target="_blank"]`, { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_fb', lbl: userDetail.facebook_link, project: project() }) }, 'Perfil no Facebook')
                             ]) : ''), (!_.isEmpty(userDetail.twitter_username) ? m('li', [
                                 m(`a.link-hidden[itemprop="url"][href="https://twitter.com/${userDetail.twitter_username}"][target="_blank"]`, { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_twitter', lbl: userDetail.twitter_username, project: project() }) }, '트위터 프로필')
+                            //coffee m(`a.link-hidden[itemprop="url"][href="https://twitter.com/${userDetail.twitter_username}"][target="_blank"]`, { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_twitter', lbl: userDetail.twitter_username, project: project() }) }, 'Perfil no Twitter')
                             ]) : ''),
                         _.map(userDetail.links, (link) => {
                             const parsedLink = h.parseUrl(link.link);
@@ -81,6 +84,7 @@ const projectUserCard = {
                             follow_id: userDetail.id,
                             following: userDetail.following_this_user })),
                         m('a.w-button.btn.btn-terciary.btn-small[href=\'javascript:void(0);\']', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_sendmsg', lbl: userDetail.id, project: project() }, ctrl.sendMessage) }, '연락처')
+                        //coffee m('a.w-button.btn.btn-terciary.btn-small[href=\'javascript:void(0);\']', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_sendmsg', lbl: userDetail.id, project: project() }, ctrl.sendMessage) }, 'Contato')
                     ] : ''),
                     args.project().is_admin_role ?
                         m('p', userDetail.email) : ''

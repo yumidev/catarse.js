@@ -25,17 +25,20 @@ const adminProjects = {
                 data: {
                     vm: filterVM.full_text_index,
                     placeholder: '프로젝트, 퍼머 링크, 전자 메일, 이사의 이름으로 검색...',
+                    //coffee placeholder: 'Busque por projeto, permalink, email, nome do realizador...',
                 },
             }, { // status
                 component: filterDropdown,
                 data: {
                     label: '누구나',
+                    //coffee label: 'Com o estado',
                     index: 'state',
                     name: 'state',
                     vm: filterVM.state,
                     options: [{
                         value: '',
                         option: '누구나'
+                        //coffee option: 'Qualquer um'
                     }, {
                         value: 'successful',
                         option: 'successful'
@@ -58,12 +61,14 @@ const adminProjects = {
                 component: filterDropdown,
                 data: {
                     label: '양식',
+                    //coffee label: 'Modalidade',
                     index: 'mode',
                     name: 'mode',
                     vm: filterVM.mode,
                     options: [{
                         value: '',
                         option: '누구나'
+                        //coffee option: 'Qualquer um'
                     }, {
                         value: 'aon',
                         option: 'Tudo ou nada'
@@ -78,18 +83,22 @@ const adminProjects = {
                 component: filterDropdown,
                 data: {
                     label: '추천',
+                    //coffee label: 'Recomendado',
                     index: 'recommended',
                     name: 'recommended',
                     vm: filterVM.recommended,
                     options: [{
                         value: '',
                         option: '누구나'
+                        //coffee option: 'Qualquer um'
                     }, {
                         value: true,
                         option: '예'
+                        //coffee option: 'Sim'
                     }, {
                         value: false,
-                        option: 'Não'
+                        option: '아니요'
+                        //coffee option: 'Não'
                     }
                     ]
                 }
@@ -97,6 +106,7 @@ const adminProjects = {
                 component: filterNumberRange,
                 data: {
                     label: '목표 중',
+                    //coffee label: 'Meta entre',
                     first: filterVM.goal.gte,
                     last: filterVM.goal.lte
                 }
@@ -121,6 +131,7 @@ const adminProjects = {
                 component: filterDateRange,
                 data: {
                     label: '만료',
+                    //coffee label: 'Expira entre',
                     first: filterVM.project_expires_at.gte,
                     last: filterVM.project_expires_at.lte
                 }
@@ -140,11 +151,13 @@ const adminProjects = {
                 categories(data);
                 const options = _.map(categories(), category => ({ value: category.name, option: category.name }));
                 options.unshift({ value: '', option: '누구나' });
+                //coffee options.unshift({ value: '', option: 'Qualquer uma' });
                 filterBuilder.unshift(
                     { // category
                         component: filterDropdown,
                         data: {
                             label: '범주',
+                            //coffee label: 'Categoria',
                             index: 'category',
                             name: 'category_name',
                             vm: filterVM.category_name,

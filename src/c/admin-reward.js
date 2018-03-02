@@ -39,26 +39,36 @@ const adminReward = {
                 `ID: ${reward.id}`,
                 m('br'),
                 `배송지: ${(shippingFee.destination ? `${shippingFee.destination} R$ ${shippingFee.value}` : 'Nenhum')}`,
+                //coffee `Local de entrega: ${(shippingFee.destination ? `${shippingFee.destination} R$ ${shippingFee.value}` : 'Nenhum')}`,
                 m('br'),
                 `배송: ${I18n.t(`shared.shipping_options.${reward.shipping_options}`)}`,
+                //coffee `Envio: ${I18n.t(`shared.shipping_options.${reward.shipping_options}`)}`,
                 m('br'),
                 `최소값: R$${h.formatNumber(reward.minimum_value, 2, 3)}`,
+                //coffee `Valor mínimo: R$${h.formatNumber(reward.minimum_value, 2, 3)}`,
                 m('br'),
                 m.trust(`사용 가능: ${available} / ${reward.maximum_contributions || '&infin;'}`),
+                //coffee m.trust(`Disponíveis: ${available} / ${reward.maximum_contributions || '&infin;'}`),
                 m('br'),
                 `확인을 기다리는 중입니다.: ${reward.waiting_payment_count}`,
+                //coffee `Aguardando confirmação.: ${reward.waiting_payment_count}`,
                 m('br'),
                 `예상 배달: ${h.momentify(reward.deliver_at)}`,
+                //coffee `Estimativa da Entrega: ${h.momentify(reward.deliver_at)}`,
                 m('br'),
                 m('div', [
                     '배송 상태: ',
+                    //coffee 'Status da Entrega: ',
                     h.contributionStatusBadge(contribution)
                 ]),
                 (reward.title ? [`제목: ${reward.title}`,
+                //coffee (reward.title ? [`Título: ${reward.title}`,
                     m('br')
                 ] : ''),
                 `상품 설명: ${reward.description}`
+                //coffee `Descrição: ${reward.description}`
             ] : '보상없는 지원')
+            //coffee ] : 'Apoio sem recompensa')
         ]);
     }
 };

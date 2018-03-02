@@ -28,51 +28,62 @@ const projectContributionReport = {
                 let opts = [{
                     value: '',
                     option: '모두'
+                    //coffee option: 'Todos'
                 }];
 
                 const optionsMap = {
                     online: [{
                         value: 'paid',
                         option: '확인됨'
+                        //coffee option: 'Confirmado'
                     },
                     {
                         value: 'pending',
                         option: '시작됨'
+                        //coffee option: 'Iniciado'
                     },
                     {
                         value: 'refunded,chargeback,deleted,pending_refund',
                         option: '답변됨'
+                        //coffee option: 'Contestado'
                     }
                     ],
                     waiting_funds: [{
                         value: 'paid',
                         option: '확인됨'
+                        //coffee option: 'Confirmado'
                     },
                     {
                         value: 'pending',
                         option: '시작됨'
+                        //coffee option: 'Iniciado'
                     },
                     {
                         value: 'refunded,chargeback,deleted,pending_refund',
                         option: '답변됨'
+                        //coffee option: 'Contestado'
                     }
                     ],
                     failed: [{
                         value: 'refunded',
                         option: '환불됨'
+                        //coffee option: 'Reembolsado'
                     },
                     {
                         value: 'paid',
                         option: '환불이 시작되지 않았습니다.'
+                        //coffee option: 'Reembolso não iniciado'
                     }
                     ],
                     successful: [{
                         value: 'paid',
                         option: '확인됨'
+                        //coffee option: 'Confirmado'
                     },
                     {
                         value: 'refunded,chargeback,deleted,pending_refund',
                         option: '답변됨'
+                        //coffee option: 'Contestado'
                     }
                     ]
                 };
@@ -97,6 +108,7 @@ const projectContributionReport = {
                     btnClass: '.btn.btn-medium',
                     vm: filterVM.full_text_index,
                     placeholder: '후원자의 이름 또는 이메일로 검색'
+                    //coffee placeholder: 'Busque por nome ou email do apoiador'
                 }
             },
             {
@@ -104,6 +116,7 @@ const projectContributionReport = {
                 component: FilterDropdown,
                 data: {
                     label: '보상',
+                    //coffee label: 'Recompensa',
                     onchange: submit,
                     name: 'reward_id',
                     vm: filterVM.reward_id,
@@ -118,6 +131,7 @@ const projectContributionReport = {
                     custom_label: [InfoProjectContributionLegend, {
                         content: [ProjectContributionDeliveryLegendModal],
                         text: '배송 상태'
+                        //coffee text: 'Status da entrega'
                     }],
                     onchange: submit,
                     name: 'delivery_status',
@@ -126,22 +140,27 @@ const projectContributionReport = {
                     options: [{
                         value: '',
                         option: '모두'
+                        //coffee option: 'Todos'
                     },
                     {
                         value: 'undelivered',
                         option: '배달되지 않음'
+                        //coffee option: 'Não entregue'
                     },
                     {
                         value: 'delivered',
                         option: '배달됨'
+                        //coffee option: 'Entregue'
                     },
                     {
                         value: 'error',
                         option: '발신 오류'
+                        //coffee option: 'Erro no envio'
                     },
                     {
                         value: 'received',
                         option: '받은'
+                        //coffee option: 'Recebida'
                     }
                     ]
                 }
@@ -158,22 +177,27 @@ const projectContributionReport = {
                     options: [{
                         value: '',
                         option: '모두'
+                        //coffee option: 'Todos'
                     },
                     {
                         value: 'not_sent',
                         option: '전송되지 않음'
+                        //coffee option: 'Não enviado'
                     },
                     {
                         value: 'sent,answered',
                         option: '전송됨'
+                        //coffee option: 'Enviado'
                     },
                     {
                         value: 'sent',
                         option: '대답이 없다.'
+                        //coffee option: 'Não Respondido'
                     },
                     {
                         value: 'answered',
                         option: '답변됨'
+                        //coffee option: 'Respondido'
                     }
                     ]
                 }
@@ -184,6 +208,7 @@ const projectContributionReport = {
                 data: {
                     custom_label: [InfoProjectContributionLegend, {
                         text: '지원 상태',
+                        //coffee text: 'Status do apoio',
                         content: [ProjectContributionStateLegendModal, {
                             project
                         }]
@@ -224,11 +249,13 @@ const projectContributionReport = {
             options.unshift({
                 value: null,
                 option: '보상 없음'
+                //coffee option: 'Sem recompensa'
             });
 
             options.unshift({
                 value: '',
                 option: '모두'
+                //coffee option: 'Todas'
             });
 
             return options;

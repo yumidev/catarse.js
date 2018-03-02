@@ -16,7 +16,8 @@ const projectsContribution = {
         const rewards = () => _.union(
             [{
                 id: null,
-                description: '고마워. 나는이 프로젝트를 돕고 싶다..',
+                description: '고마워. 나는이 프로젝트를 돕고 싶다.',
+                //coffee description: 'Obrigado. Eu só quero ajudar o projeto.',
                 minimum_value: 10,
                 shipping_options: null,
                 row_order: -9999999
@@ -29,6 +30,7 @@ const projectsContribution = {
 
             if (valueFloat < rewardVM.selectedReward().minimum_value) {
                 rewardVM.error(`이 보상에 대한 지원 금액은 적어도 R$${rewardVM.selectedReward().minimum_value}`);
+                //coffee rewardVM.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${rewardVM.selectedReward().minimum_value}`);
             } else {
                 rewardVM.error('');
                 h.navigateTo(`/projects/${projectVM.currentProject().project_id}/contributions/fallback_create?contribution%5Breward_id%5D=${rewardVM.selectedReward().id}&contribution%5Bvalue%5D=${valueFloat}`);
@@ -59,6 +61,7 @@ const projectsContribution = {
                     m('.w-container',
                         m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only',
                             '보상을 선택한 다음 지원액을 선택하십시오.'
+                            //coffee '보상을 선택한 다음 지원액을 선택하십시오.'
                             //coffee  'Escolha a recompensa e em seguida o valor do apoio'
                         )
                     )

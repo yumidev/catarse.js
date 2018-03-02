@@ -21,6 +21,7 @@ const deliverContributionModalContent = {
                 m('p.fontsize-small.u-marginbottom-30', [
                     m('span.fontweight-semibold',
                         `선택한 ${args.amount} 후원.`
+                        //coffee `Você selecionou ${args.amount} apoios.`
                     ),
                     ' Após sua confirmação, os apoiadores que efetuaram esses apoios ao seu projeto serão notificados de que suas recompensas serão entregues em breve.'
                 ]),
@@ -51,6 +52,7 @@ const deliverContributionModalContent = {
                             onclick: () => args.updateStatus('delivered')
                         },
                             '네!'
+                            //coffee 'Sim!'
                         )
                     ),
                     m('.w-col.w-col-5',
@@ -58,6 +60,7 @@ const deliverContributionModalContent = {
                             onclick: args.displayModal.toggle
                         },
                             '뒤로'
+                            //coffee 'Voltar'
                         )
                     ),
                     m('.w-col.w-col-1')

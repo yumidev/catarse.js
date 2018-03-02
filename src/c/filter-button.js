@@ -20,6 +20,7 @@ const filterButton = {
             m(`a.w-inline-block.btn-category.filters${title.length > 13 ? '.double-line' : ''}[href='#${href}']`, [
                 m('div', [
                     제목
+                    //coffee title
                 ])
             ])
         ]);

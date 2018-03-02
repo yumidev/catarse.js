@@ -25,38 +25,48 @@ const adminBalanceTranfers = {
                       data: {
                           vm: filterVM.full_text_index,
                           placeholder: '이메일, 사용자 ID, 전송 ID 및 잔액 이벤트 검색'
+                          //coffee placeholder: 'Busque pelo email, ids do usuario, ids de transferencia e eventos de saldo'
                       }
                   },
                   {
                       component: filterDropdown,
                       data: {
                           label: '상태',
+                          //coffee label: 'Status',
                           name: 'state',
                           vm: filterVM.state,
                           options: [{
                               value: '',
                               option: '누구나'
+                              //coffee option: 'Qualquer um'
                           }, {
                               value: 'pending',
                               option: '대기중인'
+                              //coffee option: 'Pendente'
                           }, {
                               value: 'authorized',
                               option: '공인 된'
+                              //coffee option: 'Autorizado'
                           }, {
                               value: 'processing',
                               option: '가공'
+                              //coffee option: 'Processando'
                           }, {
                               value: 'transferred',
                               option: '완료 됨'
+                              //coffee option: 'Concluido'
                           }, {
                               value: 'error',
                               option: '오류'
+                              //coffee option: 'Erro'
                           }, {
                               value: 'rejected',
                               option: '거부 됨'
+                              //coffee option: 'Rejeitado'
                           }, {
                               value: 'gateway_error',
                               option: '게이트웨이 오류'
+                              //coffee option: 'Erro no gateway'
                           }]
                       }
                   },
@@ -64,6 +74,7 @@ const adminBalanceTranfers = {
                       component: filterDateRange,
                       data: {
                           label: '요청 날짜',
+                          //coffee label: 'Data da solicitação',
                           first: filterVM.created_date.gte,
                           last: filterVM.created_date.lte
                       }
@@ -73,6 +84,7 @@ const adminBalanceTranfers = {
                       component: filterDateRange,
                       data: {
                           label: '확인일',
+                          //coffee label: 'Data da confirmação',
                           first: filterVM.transferred_date.gte,
                           last: filterVM.transferred_date.lte
                       }
@@ -81,7 +93,8 @@ const adminBalanceTranfers = {
                   {
                       component: filterNumberRange,
                       data: {
-                          label: '사이의 값',
+                          label: 'Valores entre',
+                          //coffee label: '사이의 값',
                           first: filterVM.amount.gte,
                           last: filterVM.amount.lte
                       }
@@ -133,8 +146,11 @@ const adminBalanceTranfers = {
                               m('.modal-dialog-content', [
                                   m('.w-row.fontweight-semibold', [
                                       m('.w-col.w-col-6', '이름'),
+                                      //coffee m('.w-col.w-col-6', 'Nome'),
                                       m('.w-col.w-col-3', '가치'),
+                                      //coffee m('.w-col.w-col-3', 'Valor'),
                                       m('.w-col.w-col-3', '요청 시간')
+                                      //coffee m('.w-col.w-col-3', 'Solicitado em')
                                   ]),
                                   _.map(selectedItemsIDs(), (item, index) => {
                                       return m('.divider.fontsize-smallest.lineheight-looser', [
@@ -153,7 +169,8 @@ const adminBalanceTranfers = {
                                   }),
                                   m('.w-row.fontweight-semibold.divider', [
                                       m('.w-col.w-col-6', '합계'),
-                                      m('.w-col.w-col-3', 
+                                      //coffee m('.w-col.w-col-6', 'Total'),
+                                      m('.w-col.w-col-3',
                                         `R$ ${h.formatNumber(_.reduce(selectedItemsIDs(), (t, i) => {
                                             return t + i.amount;
                                         }, 0), 2, 3)}`),
@@ -170,6 +187,7 @@ const adminBalanceTranfers = {
                                         m('a.btn.btn-medium.btn-terciary.w-button', {
                                             onclick: args.displayModal.toggle
                                         }, '뒤로')
+                                          //coffee }, 'Voltar')
                                        ),
                                       m('.w-col.w-col-1')
                                   ])
@@ -247,22 +265,27 @@ const adminBalanceTranfers = {
               inputActions = () => {
                   return m('', [
                       m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, (selectAllLoading() ? '로딩...' : `모두 선택`)),
+                      //coffee m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, (selectAllLoading() ? 'carregando...' : `Selecionar todos`)),
                       (selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, `모두 선택 취소 (${selectedItemsIDs().length})`) : ''),
+                      //coffee (selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, `Desmarcar todos (${selectedItemsIDs().length})`) : ''),
                       (selectedAny() ?
                        m('.w-inline-block', [
                            m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
                                onclick: actionMenuToggle.toggle
                            }, [
                                `다음으로 표시 (${selectedItemsIDs().length})`
+                               //coffee `Marcar como (${selectedItemsIDs().length})`
                            ]),
                            (actionMenuToggle() ?
                             m('.card.dropdown-list.dropdown-list-medium.u-radius.zindex-10[id=\'transfer\']', [
                                 m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                                     onclick: event => displayApprovalModal.toggle()
                                 }, '승인됨'),
+                                //coffee }, 'Aprovada'),
                                 m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                                     onclick: event => displayManualModal.toggle()
                                 }, '수동 전송'),
+                                //coffee }, 'Transferencia manual'),
                                 m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                                     onclick: event => displayRejectModal.toggle()
                                 }, 'Recusada')
@@ -295,6 +318,7 @@ const adminBalanceTranfers = {
             },
             data: {
                 label: '인출 요청'
+                //coffee label: 'Pedidos de saque'
             },
             submit
         };
@@ -309,7 +333,9 @@ const adminBalanceTranfers = {
                 displayModal: ctrl.displayApprovalModal,
                 content: ctrl.generateWrapperModal({
                     modalTitle: '인출 승인',
+                    //coffee modalTitle: 'Aprovar saques',
                     ctaText: '승인하려면',
+                    //coffee ctaText: 'Aprovar',
                     displayModal: ctrl.displayApprovalModal,
                     onClickCallback: ctrl.approveSelectedIDs
                 })
@@ -318,7 +344,9 @@ const adminBalanceTranfers = {
                 displayModal: ctrl.displayManualModal,
                 content: ctrl.generateWrapperModal({
                     modalTitle: '인출 수동 양도',
+                    //coffee modalTitle: 'Transferencia manual de saques',
                     ctaText: '승인하려면',
+                    //coffee ctaText: 'Aprovar',
                     displayModal: ctrl.displayManualModal,
                     onClickCallback: ctrl.manualTransferSelectedIDs
                 })
@@ -327,7 +355,9 @@ const adminBalanceTranfers = {
                 displayModal: ctrl.displayRejectModal,
                 content: ctrl.generateWrapperModal({
                     modalTitle: '인출 거부',
+                    //coffee modalTitle: 'Rejeitar saques',
                     ctaText: '거부하려면',
+                    //coffee ctaText: 'Rejeitar',
                     displayModal: ctrl.displayRejectModal,
                     onClickCallback: ctrl.rejectSelectedIDs
                 })

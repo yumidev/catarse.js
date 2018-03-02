@@ -32,10 +32,12 @@ const liveStatistics = {
                 m('.fontcolor-negative.u-marginbottom-40', [
                     m('.fontsize-megajumbo.fontweight-semibold', `R$ ${h.formatNumber(stat.total_contributed, 2, 3)}`),
                     m('.fontsize-large', '여기에 게시된 프로젝트에 기부')
+                    //coffee m('.fontsize-large', 'Doados para projetos publicados por aqui')
                 ]),
                 m('.fontcolor-negative.u-marginbottom-60', [
                     m('.fontsize-megajumbo.fontweight-semibold', stat.total_contributors),
                     m('.fontsize-large', '사람들은 이미 Givingwire에서 최소 1개의 프로젝트를 지원했습니다.')
+                    //coffee m('.fontsize-large', 'Pessoas já apoiaram pelo menos 1 projeto no Catarse')
                 ])
             ])), (!_.isEmpty(data) ? m('.w-container', [
                 m('div', [
@@ -53,6 +55,7 @@ const liveStatistics = {
                             ]),
                             m('.w-col.w-col-4.u-text-center.fontsize-base.u-margintop-20', [
                                 m('div', '방금 후원')
+                                //coffee m('div', 'acabou de apoiar o')
                             ]),
                             m('.w-col.w-col-4', [
                                 m('.w-row', [

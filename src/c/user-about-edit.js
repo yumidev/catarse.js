@@ -83,6 +83,7 @@ const userAboutEdit = {
                             errorsArray(errorsArray().concat(err.errors));
                         } else {
                             errors('정보 업데이트 오류.');
+                            //coffee errors('Erro ao atualizar informações');
                         }
                         pushErrosMessage();
                         showError(true);
@@ -133,6 +134,7 @@ const userAboutEdit = {
                     }
                     parsedErrors = userAboutVM.mapRailsErrors(err.errors_json);
                     errors('정보 업데이트 오류.');
+                    //coffee errors('Erro ao atualizar informações.');
 
                     showError(true);
                     loading(false);
@@ -174,6 +176,7 @@ const userAboutEdit = {
             },
             deleteAccount = () => {
                 if (window.confirm('계정을 비활성화 하시겠습니까?')) {
+                    //coffee if (window.confirm('Tem certeza que deseja desativar a sua conta?')) {
                     deleteUser();
                 }
 
@@ -183,9 +186,11 @@ const userAboutEdit = {
                 e.preventDefault();
                 if (!validateEmailConfirmation()) {
                     errors('이메일 확인이 잘못되었습니다.');
+                    //coffee errors('Confirmação de email está incorreta.');
                     showError(true);
                 } else if (!validatePassword()) {
                     errors('새 비밀번호가 잘못되었습니다.');
+                    //coffee errors('Nova senha está incorreta.');
                     showError(true);
                 } else {
                     updateUser();
@@ -223,6 +228,7 @@ const userAboutEdit = {
         return m('#about-tab.content', [
             (ctrl.showSuccess() && !ctrl.loading() && !ctrl.uploading() ? m.component(popNotification, {
                 message: '귀하의 정보가 업데이트되었습니다.'
+                //coffee message: 'As suas informações foram atualizadas'
             }) : ''),
             (ctrl.showError() && !ctrl.loading() && !ctrl.uploading() ? m.component(popNotification, {
                 message: m.trust(ctrl.errors()),
@@ -241,6 +247,7 @@ const userAboutEdit = {
                                 m('.w-col.w-col-5.w-sub-col', [
                                     m('label.field-label.fontweight-semibold',
                                             '내 프로필 주소'
+                                        //coffee 'Endereço do seu perfil'
                                         ),
                                     m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                             'Seu perfil público pode ter uma URL personalizada. Escolha uma fácil de guardar!    '
@@ -264,9 +271,11 @@ const userAboutEdit = {
                                 m('.w-row.u-marginbottom-30.card.card-terciary', [
                                     m('.fontsize-base.fontweight-semibold',
                                         '이메일'
+                                        //coffee 'Email'
                                     ),
                                     m('.fontsize-small.u-marginbottom-30',
-                                        '이 이메일은 귀하, Catarse 팀 및 귀하가 지원 한 프로젝트 팀 간의 커뮤니케이션 채널이므로 최신으로 유지해 주시길 바랍니다. '
+                                        '이 이메일은 귀하, Givingwire팀 및 귀하가 지원 한 프로젝트 팀 간의 커뮤니케이션 채널이므로 최신으로 유지해 주시길 바랍니다. '
+                                        //coffee 'Mantenha esse email atualizado pois ele é o canal de comunicação entre você, a equipe do Catarse e a equipe dos projetos que você apoiou.'
                                     ),
                                     m('.fontsize-base.u-marginbottom-40', [
                                         m('span.fontweight-semibold.card.u-radius',
@@ -278,12 +287,14 @@ const userAboutEdit = {
                                             }
                                         },
                                             '이메일 변경'
+                                            //coffee 'Alterar email'
                                         )
                                     ]),
                                     m(`${ctrl.showEmailForm() ? '' : '.w-hidden'}.u-marginbottom-20.w-row[id=\'email_update_form\']`, [
                                         m('.w-col.w-col-6.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
                                                 '새 이메일'
+                                                //coffee 'Novo email'
                                             ),
                                             m('input.w-input.text-field.positive[id=\'new_email\'][name=\'new_email\'][type=\'email\']', {
                                                 class: ctrl.emailHasError() ? 'error' : '',
@@ -295,9 +306,11 @@ const userAboutEdit = {
                                         m('.w-col.w-col-6', [
                                             m('label.field-label.fontweight-semibold',
                                                 '새 이메일 확인'
+                                                //coffee 'Confirmar novo email'
                                             ),
                                             m('input.string.required.w-input.text-field.w-input.text-field.positive[id=\'new_email_confirmation\'][name=\'user[email]\'][type=\'text\']', {
                                                 class: ctrl.emailHasError() ? '오류' : '',
+                                                //coffee class: ctrl.emailHasError() ? 'error' : '',
                                                 value: fields.email_confirmation(),
                                                 onfocus: () => ctrl.emailHasError(false),
                                                 onblur: ctrl.validateEmailConfirmation,
@@ -306,6 +319,7 @@ const userAboutEdit = {
                                         ]),
                                         ctrl.emailHasError() ? m(inlineError, {
                                             message: '이메일 확인이 잘못되었습니다.'
+                                            //coffee message: 'Confirmação de email está incorreta.'
                                         }) : ''
                                     ])
                                 ]),
@@ -313,15 +327,18 @@ const userAboutEdit = {
                                     m('.w-col.w-col-5.w-sub-col', [
                                         m('label.field-label.fontweight-semibold',
                                             ' 공개 프로필의 이름'
+                                            //coffee ' Nome no perfil público'
                                         ),
                                         m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                             '사용자가 내 프로필에서 볼 수있는 이름입니다.'
+                                            //coffee 'Esse é o nome que os usuários irão ver no seu perfil.'
                                         )
                                     ]),
                                     m('.w-col.w-col-7',
                                         m('input.string.optional.w-input.text-field.positive[id="user_public_name"][type="text"]', {
                                             name: 'user[public_name]',
-                                            class: ctrl.parsedErrors.hasError('public_name') ? 'error' : false,
+                                            class: ctrl.parsedErrors.hasError('public_name') ? '오류' : false,
+                                            //coffee class: ctrl.parsedErrors.hasError('public_name') ? 'error' : false,
                                             value: fields.public_name(),
                                             onchange: m.withAttr('value', fields.public_name)
                                         }),
@@ -333,9 +350,11 @@ const userAboutEdit = {
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
                                                 ' 프로필 사진'
+                                                //coffee '  Imagem do perfil'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                                 ' 이 이미지는 프로필 미리보기 이미지 (PNG, JPG 크기 280x280)로 사용됩니다.'
+                                                //coffee ' Essa imagem será utilizada como a miniatura de seu perfil (PNG, JPG tamanho 280 x 280)'
                                             )
                                         ]),
                                         m('.w-col.w-col-4.w-sub-col',
@@ -347,6 +366,7 @@ const userAboutEdit = {
                                                 m('input.file.optional.w-input.text-field[id="user_uploaded_image"][type="file"]', {
                                                     name: 'user[uploaded_image]',
                                                     class: ctrl.parsedErrors.hasError('uploaded_image') ? '오류' : false
+                                                    //coffee class: ctrl.parsedErrors.hasError('uploaded_image') ? 'error' : false
                                                 }),
                                                 ctrl.parsedErrors.inlineError('uploaded_image')
                                             ])
@@ -356,9 +376,11 @@ const userAboutEdit = {
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
                                                 ' 프로필 표지 이미지'
+                                                //coffee ' Imagem de capa do perfil'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                                 ' 이 이미지는 공개 프로필 헤더(PNG 또는 JPG)의 배경으로 사용됩니다. 여기에 이미지를 제출하지 않으면 귀하의 프로필 이미지가 대신 사용됩니다.'
+                                                //coffee ' Essa imagem será utilizada como fundo do cabeçalho do seu perfil público (PNG ou JPG). Caso você não envie nenhum imagem aqui, utilizaremos sua imagem de perfil como alternativa.'
                                             )
                                         ]),
                                         m('.w-col.w-col-4.w-sub-col',
@@ -380,14 +402,17 @@ const userAboutEdit = {
                                     m('.w-col',
                                         m('.card.card-terciary.u-marginbottom-30', [
                                             m('label.field-label.fontweight-semibold',
-                                                '위키 소개'
+                                                '위키 정보'
+                                                //coffee 'Sobre'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20',
                                                 '자신에 대해 이야기하고 방문자가 당신을 더 잘 알 수 있도록 가장 관련성있는 정보를 제공해 주시길 바랍니다. '
+                                                //coffee 'Fale sobre você e tente fornecer as informações mais relevantes para que visitantes possam te conhecer melhor. '
                                             ),
                                             m('.w-form',
                                                 m('.preview-container.u-marginbottom-40', {
                                                     class: ctrl.parsedErrors.hasError('about_html') ? '오류' : false
+                                                    //coffee class: ctrl.parsedErrors.hasError('about_html') ? 'error' : false
                                                 }, h.redactor('user[about_html]', fields.about_html)),
                                                 ctrl.parsedErrors.inlineError('about_html')
                                             )
@@ -399,9 +424,11 @@ const userAboutEdit = {
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
                                                 ' Facebook 프로필'
+                                                //coffee 'Perfil do facebook'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                                 ' 프로필 링크 붙여넣기'
+                                                //coffee '  Cole o link do seu perfil'
                                             )
                                         ]),
                                         m('.w-col.w-col-7',
@@ -416,9 +443,11 @@ const userAboutEdit = {
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold',
                                                 ' 트위터 프로필'
+                                                //coffee '  Perfil do twitter'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary',
                                                 ' 프로필 링크 붙여 넣기'
+                                                //coffee '  Cole o link do seu perfil'
                                             )
                                         ]),
                                         m('.w-col.w-col-7',
@@ -435,8 +464,10 @@ const userAboutEdit = {
                                         m('.w-col.w-col-5.w-sub-col', [
                                             m('label.field-label.fontweight-semibold[for="name-8"]',
                                                 '인터넷상의 존재'
+                                                //coffee ' Presença na internet'
                                             ),
                                             m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', '다른 사용자가 귀하를 더 잘 알 수 있도록 링크 포함 ')
+                                            //coffee m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', 'Inclua links que ajudem outros usuários a te conhecer melhor. ')
                                         ]),
                                         m('.w-col.w-col-7', [
                                             m('.w-row', [fields.links() && fields.links().length <= 0 ? '' : m('.link', _.map(fields.links(),
@@ -478,14 +509,17 @@ const userAboutEdit = {
                                     m('.w-row.u-marginbottom-10', [
                                         m('.fontsize-base.fontweight-semibold',
                                             '내 비밀번호 변경'
+                                            //coffee 'Alterar minha senha'
                                         ),
                                         m('.fontsize-small.u-marginbottom-20',
                                             '암호를 변경하려면 현재 암호를 확인해야합니다.'
+                                            //coffee 'Para que a senha seja alterada você precisa confirmar a sua senha atual.'
                                         ),
                                         m('.w-row.u-marginbottom-20', [
                                             m('.w-col.w-col-6.w-sub-col', [
                                                 m('label.field-label.fontweight-semibold',
                                                     ' 현재 비밀번호'
+                                                    //coffee ' Senha atual'
                                                 ),
                                                 m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_current_password\'][name=\'user[current_password]\'][type=\'password\']', {
                                                     value: fields.current_password(),
@@ -495,15 +529,18 @@ const userAboutEdit = {
                                             m('.w-col.w-col-6', [
                                                 m('label.field-label.fontweight-semibold',
                                                     ' 새 비밀번호'
+                                                    //coffee ' Nova senha'
                                                 ),
                                                 m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_password\'][name=\'user[password]\'][type=\'password\']', {
-                                                    class: ctrl.passwordHasError() ? 'error' : '',
+                                                    class: ctrl.passwordHasError() ? '오류' : '',
+                                                    //coffee class: ctrl.passwordHasError() ? 'error' : '',
                                                     value: fields.password(),
                                                     onfocus: () => ctrl.passwordHasError(false),
                                                     onblur: ctrl.validatePassword,
                                                     onchange: m.withAttr('value', fields.password)
                                                 }), !ctrl.passwordHasError() ? '' : m(inlineError, {
                                                     message: '새 비밀번호는 6자 이상이어야 합니다.'
+                                                    //coffee message: 'A sua nova senha deve ter no mínimo 6 caracteres.'
                                                 })
                                             ])
                                         ])
@@ -514,14 +551,17 @@ const userAboutEdit = {
                                     m('.w-row.u-marginbottom-10', [
                                         m('.fontweight-semibold.fontsize-smaller',
                                             '내 계정 사용 중지'
+                                            //coffee 'Desativar minha conta'
                                         ),
                                         m('.fontsize-smallest',
                                             '모든 후원은 익명 백업으로 변환되고 데이터는 더 이상 보이지 않으며 시스템을 자동으로 종료하고 계정이 영구적으로 비활성화됩니다'
+                                            //coffee 'Todos os seus apoios serão convertidos em apoios anônimos, seus dados não serão mais visíveis, você sairá automaticamente do sistema e sua conta será desativada permanentemente.'
                                         ),
                                         m(`a.alt-link.fontsize-smaller[href='/pt/users/${user.id}'][rel='nofollow']`, {
                                             onclick: ctrl.deleteAccount
                                         },
                                             '내 Givingwire 계정 사용 중지'
+                                            //coffee 'Desativar minha conta no Catarse'
                                         ),
                                         m('form.w-hidden', {
                                             action: `/pt/users/${user.id}`,
@@ -529,7 +569,7 @@ const userAboutEdit = {
                                             config: ctrl.setDeleteForm
                                         }, [
                                             m(`input[name='authenticity_token'][type='hidden'][value='${h.authenticityToken()}']`),
-                                            m('input[name=\'_method\'][type=\'hidden\'][value=\'delete\']')
+                                            //coffee m('input[name=\'_method\'][type=\'hidden\'][value=\'delete\']')
                                         ])
 
                                     ])

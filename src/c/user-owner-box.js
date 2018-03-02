@@ -14,6 +14,7 @@ const UserOwnerBox = {
                 m('.w-col.w-col-10.w-col-small-10.w-col-tiny-10', [
                     m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', [
                          (project ? 'Dados do apoiador ' : '사용자 데이터 '),
+                         (project ? 'Dados do apoiador ' : 'Dados do usuário '),
                         m(`a.alt-link[href="/not-my-account${project ? `?project_id=${project.project_id}` : ''}${args.reward ? `&reward_id=${args.reward.id}` : ''}${args.value ? `&value=${args.value}` : ''}"]`, 'Não é você?')
                     ]),
                     m('.fontsize-base.fontweight-semibold', user.name),

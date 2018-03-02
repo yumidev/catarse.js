@@ -84,10 +84,12 @@ const userBankForm = {
                   m('.input.select.required.user_bank_account_bank_id', [
                       m('label.field-label.fontsize-smaller',
                         '은행'
+                        //coffee 'Banco'
                        ),
                       m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_bank_id\']', {
                           name: 'user[bank_account_attributes][bank_id]',
                           class: ctrl.parsedErrors.hasError('bank_id') ? '오류' : false,
+                          //coffee class: ctrl.parsedErrors.hasError('bank_id') ? 'error' : false,
                           onchange: (e) => {
                               m.withAttr('value', ctrl.bankCode)(e);
                               ctrl.showOtherBanksInput(ctrl.bankCode() == '0');
@@ -109,10 +111,12 @@ const userBankForm = {
                           ),
                           m('option[value=\'0\']',
                             '기타'
+                              //coffee 'Outro'
                            )
                       ]),
                       m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for=\'user_bank_account_attributes_bank_id\']',
                         ' 은행을 선택해 주시길 바랍니다.'
+                          //coffee ' Selecione um banco'
                        ),
                       ctrl.parsedErrors.inlineError('bank_id')
                   ])
@@ -139,6 +143,7 @@ const userBankForm = {
                              onclick: ctrl.showOtherBanks.toggle
                          }, [
                              '이름으로 검색  ',
+                             //coffee 'Busca por nome  ',
                              m.trust('&nbsp;'),
                              m.trust('&gt;')
                          ]),
@@ -146,6 +151,7 @@ const userBankForm = {
                              onclick: ctrl.showOtherBanks.toggle
                          }, [
                              '이름으로 검색  ',
+                             //coffee 'Busca por nome  ',
                              m.trust('&nbsp;'),
                              m.trust('&gt;')
                          ])
@@ -163,17 +169,20 @@ const userBankForm = {
                        m('.card.card-terciary', [
                            m('.fontsize-small.fontweight-semibold.u-marginbottom-10.u-text-center',
                              '아래에서 은행을 선택하십시오.'
+                               //coffee 'Selecione o seu banco abaixo'
                             ),
                            m('.fontsize-smaller', [
                                m('.w-row.card.card-secondary.fontweight-semibold', [
                                    m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
                                      m('div',
                                        '번호'
+                                         //coffee 'Número'
                                       )
                                     ),
                                    m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9',
                                      m('div',
                                        '이름'
+                                         //coffee 'Nome'
                                       )
                                     )
                                ]),
@@ -210,10 +219,12 @@ const userBankForm = {
                       m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [
                           m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency\']',
                             '에이전시'
+                              //coffee 'Agência'
                            ),
                           m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_agency\'][type=\'text\']', {
                               value: fields.agency(),
                               class: ctrl.parsedErrors.hasError('agency') ? '오류' : false,
+                              //coffee class: ctrl.parsedErrors.hasError('agency') ? '오류' : false,
                               name: 'user[bank_account_attributes][agency]',
                               onchange: m.withAttr('value', fields.agency)
                           }),
@@ -222,10 +233,12 @@ const userBankForm = {
                       m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [
                           m('label.text.optional.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency_digit\']',
                             '대행사 수'
+                              //coffee 'Dígito agência'
                            ),
                           m('input.string.optional.w-input.text-field.positive[id=\'user_bank_account_attributes_agency_digit\'][type=\'text\']', {
                               value: fields.agency_digit(),
                               class: ctrl.parsedErrors.hasError('agency_digit') ? '오류' : false,
+                              //coffee class: ctrl.parsedErrors.hasError('agency_digit') ? '오류' : false,
                               name: 'user[bank_account_attributes][agency_digit]',
                               onchange: m.withAttr('value', fields.agency_digit)
                           }),
@@ -238,25 +251,31 @@ const userBankForm = {
                 m('.w-col.w-col-5.w-sub-col', [
                     m('label.field-label.fontweight-semibold.fontsize-smaller',
                       '계정 유형'
+                        //coffee 'Tipo de conta'
                      ),
                     m('.input.select.required.user_bank_account_account_type', [
                         m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_account_type\']', {
                             name: 'user[bank_account_attributes][account_type]',
                             class: ctrl.parsedErrors.hasError('account_type') ? '오류' : false,
+                            //coffee class: ctrl.parsedErrors.hasError('account_type') ? '오류' : false,
                             onchange: m.withAttr('value', fields.bank_account_type)
                         }, [
                             m('option[value=\'conta_corrente\']', {
                                 selected: fields.bank_account_type() === 'conta_corrente'
                             }, '당좌 계정'),
+                            //coffee }, 'Conta corrente'),
                             m('option[value=\'conta_poupanca\']', {
                                 Selected: fields.bank_account_type() === 'conta_poupanca'
                             }, '저축 예금'),
+                            //coffee }, 'Conta poupança'),
                             m('option[value=\'conta_corrente_conjunta\']', {
                                 selected: fields.bank_account_type() === 'conta_corrente_conjunta'
                             }, '공동 당좌 예금 계좌'),
+                            //coffee }, 'Conta corrente conjunta'),
                             m('option[value=\'conta_poupanca_conjunta\']', {
                                 selected: fields.bank_account_type() === 'conta_poupanca_conjunta'
                             }, '공동 저축 계좌')
+                            //coffee }, 'Conta poupança conjunta')
                         ]),
                         ctrl.parsedErrors.inlineError('account_type')
                     ])
@@ -266,10 +285,12 @@ const userBankForm = {
                       m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [
                           m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_account\']',
                             '계좌 번호'
+                              //coffee 'No. da conta'
                            ),
                           m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account\'][type=\'text\']', {
                               value: fields.account(),
                               class: ctrl.parsedErrors.hasError('account') ? '오류' : false,
+                              //coffee class: ctrl.parsedErrors.hasError('account') ? '오류' : false,
                               onchange: m.withAttr('value', fields.account),
                               name: 'user[bank_account_attributes][account]'
                           }),
@@ -282,6 +303,7 @@ const userBankForm = {
                           m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account_digit\'][type=\'text\']', {
                               value: fields.account_digit(),
                               class: ctrl.parsedErrors.hasError('account_digit') ? '오류' : false,
+                              //coffee class: ctrl.parsedErrors.hasError('account_digit') ? 'error' : false,
                               onchange: m.withAttr('value', fields.account_digit),
                               name: 'user[bank_account_attributes][account_digit]'
                           }),

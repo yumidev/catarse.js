@@ -37,6 +37,7 @@ const editRewardCard = {
             validate = () => {
                 args.error(false);
                 args.errors('정보를 저장하는 중 오류가 발생했습니다. 보고 된 데이터 확인.');
+                //coffee args.errors('Erro ao salvar informações. Confira os dados informados');
                 descriptionError(false);
                 minimumValueError(false);
                 deliverAtError(false);
@@ -168,6 +169,7 @@ const editRewardCard = {
                         m('.w-col.w-col-5',
                             m('label.fontsize-smaller',
                                 '제목:'
+                                //coffee 'Título:'
                             )
                         ),
                         m('.w-col.w-col-7',
@@ -181,6 +183,7 @@ const editRewardCard = {
                         m('.w-col.w-col-5',
                             m('label.fontsize-smaller',
                                 '최솟값:'
+                                //coffee 'Valor mínimo:'
                             )
                         ),
                         m('.w-col.w-col-7', [
@@ -194,6 +197,7 @@ const editRewardCard = {
                                     m('input.string.tel.required.w-input.text-field.project-edit-reward.positive.postfix[aria-required=\'true\'][autocomplete=\'off\'][required=\'required\'][type=\'tel\']', {
 
                                         class: ctrl.minimumValueError() ? '오류' : false,
+                                        //coffee class: ctrl.minimumValueError() ? 'error' : false,
                                         value: ctrl.reward.minimum_value(),
                                         oninput: e => ctrl.acceptNumeric(e)
                                     })
@@ -203,6 +207,7 @@ const editRewardCard = {
 
                             m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_minimum_value']",
                                 '10보다 크거나 같은 최솟값을 입력하십시오.'
+                                //coffee 'Informe um valor mínimo maior ou igual a 10'
                             )
                         ])
                     ]),
@@ -219,6 +224,7 @@ const editRewardCard = {
                                         m('input[type=\'hidden\'][value=\'1\']'),
                                         m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
                                             class: ctrl.deliverAtError() ? '오류' : false,
+                                            //coffee class: ctrl.deliverAtError() ? 'error' : false,
                                             onchange: (e) => {
                                                 ctrl.reward.deliver_at(moment(ctrl.reward.deliver_at()).month(parseInt(e.target.value) - 1).format());
                                             }
@@ -232,6 +238,7 @@ const editRewardCard = {
                                         ]),
                                         m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
                                             class: ctrl.deliverAtError() ? '오류' : false,
+                                            //coffee class: ctrl.deliverAtError() ? '오류' : false,
                                             onchange: (e) => {
                                                 ctrl.reward.deliver_at(moment(reward.deliver_at()).year(parseInt(e.target.value)).format());
                                             }
@@ -254,6 +261,7 @@ const editRewardCard = {
                     m('.w-row',
                         m('label.fontsize-smaller',
                             '상품 설명:'
+                            //coffee 'Descrição:'
                         )
                     ),
                     m('.w-row', [
@@ -264,13 +272,16 @@ const editRewardCard = {
                         }),
                         m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_description']",
                             '설명은 비워 둘 수 없습니다.'
+                            //coffee 'Descrição não pode ficar em branco'
                         )
                     ]),
                     ctrl.descriptionError() ? inlineError('설명은 비워 둘 수 없습니다.') : '', ,
+                        //coffee ctrl.descriptionError() ? inlineError('Descrição não pode ficar em branco.') : '', ,
                     m('.u-marginbottom-30.w-row', [
                         m('.w-col.w-col-3',
                             m("label.fontsize-smaller[for='field-2']",
                                 '배송 유형'
+                                //coffee 'Tipo de entrega'
                             )
                         ),
                         m('.w-col.w-col-9', [
@@ -283,6 +294,7 @@ const editRewardCard = {
                             }, [
                                 m('option[value=\'international\']',
                                     '국내 및 국제화물'
+                                    //coffee 'Frete Nacional e Internacional'
                                 ),
                                 m('option[value=\'national\']',
                                     'Frete Nacional'
@@ -315,6 +327,7 @@ const editRewardCard = {
                                             }
                                         },
                                             '목적지 추가'
+                                            //coffee 'Adicionar destino'
                                         )
                                     )
                                 ]) : '')
@@ -327,6 +340,7 @@ const editRewardCard = {
                                         ctrl.saveReward();
                                     }
                                 }, '저장')
+                            //coffee }, 'Salvar')
                             ),
                         (reward.newReward ? '' :
                             m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5.w-sub-col-middle',
@@ -335,6 +349,7 @@ const editRewardCard = {
                                         reward.edit.toggle();
                                     }
                                 }, '취소')
+                                //coffee }, 'Cancelar')
                             )),
                         m('.w-col.w-col-1.w-col-small-1.w-col-tiny-1', [
                             m('input[type=\'hidden\'][value=\'false\']'),
