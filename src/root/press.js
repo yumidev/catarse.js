@@ -82,6 +82,7 @@ const press = {
                                 m('.w-col.w-col-4.u-marginbottom-20', [
                                     m('.text-success.lineheight-loose.fontsize-larger',
                                         `${stats.total_contributed.toString().slice(0, 2)} 백만`
+                                        //coffee `${stats.total_contributed.toString().slice(0, 2)} milhões`
                                     ),
                                     m('.fontsize-smaller', m.trust(I18n.t('stats.money_html', I18nScope())))
                                 ])
@@ -124,18 +125,21 @@ const press = {
                             m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://www.facebook.com/Catarse.me\'][target=\'_blank\']', [
                                 m('span.fa.fa-facebook'),
                                 ' 페이스북'
+                                //coffee ' Facebook'
                             ])
                         ),
                         m('.w-col.w-col-3',
                             m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://twitter.com/catarse\'][target=\'_blank\']', [
                                 m('span.fa.fa-twitter'),
                                 ' 트위터'
+                                //coffee ' Twitter'
                             ])
                         ),
                         m('.w-col.w-col-3',
                             m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://instagram.com/catarse/\'][target=\'_blank\']', [
                                 m('span.fa.fa-instagram'),
                                 ' 인스타그램'
+                                //coffee ' Instagram'
                             ])
                         ),
                         m('.w-col.w-col-3',

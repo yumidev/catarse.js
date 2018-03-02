@@ -89,6 +89,7 @@ const projectCardEdit = {
                                     children: [
                                         m('input.file.optional.w-input.text-field[id="project_uploaded_image"][name="project[uploaded_image]"][type="file"]', {
                                             class: vm.e.hasError('uploaded_image') ? '오류' : false,
+                                            //coffee class: vm.e.hasError('uploaded_image') ? 'error' : false,
                                             onchange: vm.prepareForUpload
                                         }),
                                         vm.e.inlineError('uploaded_image')
@@ -101,6 +102,7 @@ const projectCardEdit = {
                                         m('textarea.text.optional.w-input.text-field.positive[id="project_headline"][maxlength="100"][name="project[headline]"][rows="3"]', {
                                             onchange: m.withAttr('value', vm.fields.headline),
                                             class: vm.e.hasError('headline') ? '오류' : false
+                                            //coffee class: vm.e.hasError('headline') ? 'error' : false
                                         }, vm.fields.headline()),
                                         vm.e.inlineError('headline')
                                     ]

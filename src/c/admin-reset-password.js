@@ -74,6 +74,7 @@ const adminResetPassword = {
     view(ctrl, args) {
         const data = args.data,
             btnValue = (ctrl.l()) ? '기다려 주시길 바랍니다...' : data.callToAction;
+            //coffee btnValue = (ctrl.l()) ? 'por favor, aguarde...' : data.callToAction;
 
         return m('.w-col.w-col-2', [
             m('button.btn.btn-small.btn-terciary', {
@@ -94,6 +95,7 @@ const adminResetPassword = {
                 ] : (!ctrl.error()) ? [
                     m('.w-form-done[style="display:block;"]', [
                         m('p', '암호가 성공적으로 변경되었습니다.')
+                        //coffee m('p', 'Senha alterada com sucesso.')
                     ])
                 ] : [
                     m('.w-form-error[style="display:block;"]', [

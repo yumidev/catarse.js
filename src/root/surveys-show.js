@@ -180,18 +180,22 @@ const surveysShow = {
                                 m('.u-text-center',
                                     m('.fontsize-larger.u-marginbottom-10',
                                         '고마워!'
+                                        //coffee 'Valeu!'
                                     )
                                 ),
                                 m('.fontsize-base.u-text-center', [
                                     `아래 답변은 ${project.user.name}로 전송되었습니다! 프로젝트 진행에 대한 의구심이 있으면 `,
+                                        //coffee `As respostas abaixo foram enviadas para ${project.user.name}! Qualquer dúvida sobre o andamento do projeto, visite a ` `,
                                     m(`a.alt-link[href='/${project.permalink}#posts'][target='_blank']`,
                                         '캠페인 뉴스 탭'
+                                        //coffee 'aba de novidades da campanha'
                                     ),
                                     ' ou ',
                                     m('a.alt-link[href=\'javascript:void(0);\']', {
                                         onclick: ctrl.sendMessage
                                     },
                                         '메시지를 보낸다.'
+                                        //coffee 'envie uma mensagem'
                                     ),
                                     '.'
                                 ])
@@ -220,6 +224,7 @@ const surveysShow = {
                                 m('.u-text-center',
                                     m('.fontsize-larger',
                                         '아래 답변을 확인하십니까?'
+                                        //coffee 'Você confirma as respostas abaixo?'
                                     )
                                 )
                             ]),
@@ -246,6 +251,7 @@ const surveysShow = {
                                             onclick: ctrl.showPreview.toggle
                                         },
                                             '아니요'
+                                            //coffee 'Não'
                                         )
                                     ),
                                     m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6',
@@ -253,6 +259,7 @@ const surveysShow = {
                                             onclick: ctrl.sendAnswer
                                         },
                                             '예'
+                                            //coffee 'Sim'
                                         )
                                     )
                                 ])
@@ -303,6 +310,7 @@ const surveysShow = {
                                                                 onclick: ctrl.sendMessage
                                                             },
                                                                 ` ${project.user.name}에 메시지를 보내라.`
+                                                                //coffee ` envie uma mensagem para ${project.user.name}`
                                                             )
                                                         ) :
                                                         m('span',
@@ -314,6 +322,7 @@ const surveysShow = {
                                                                 //coffee `envie uma mensagem para ${project.user.name}`
                                                             ),
                                                             ' 어떻게하면 사건을 해결할 수 있는지 알 수 있습니다! ')
+                                                        //coffee ' para saber como é possível resolver o seu caso! ')
                                                     )
                                                 ])
                                             )
@@ -415,6 +424,7 @@ const surveysShow = {
                                             }
                                         },
                                             '보내기'
+                                            //coffee 'Enviar'
                                         )
                                     ),
                                     m('.w-col.w-col-4')

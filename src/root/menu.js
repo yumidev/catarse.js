@@ -42,13 +42,16 @@ const menu = {
                         ),
                         args.menuShort ? '' : m('div#menu-components', [
                             m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/start?ref=ctrse_header\']', { config: m.route }, '새 프로젝트 시작하기'),
+                            //coffee m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/start?ref=ctrse_header\']', { config: m.route }, '새 프로젝트 시작하기'),
                             m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/explore?ref=ctrse_header\']', { config: m.route }, '프로젝트 검색'),
+                            //coffee m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/explore?ref=ctrse_header\']', { config: m.route }, '프로젝트 검색'),
                             m.component(menuSearch)
                         ])
                     ]
                 ),
                 m('.text-align-right.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [
                     ctrl.user ? m.component(menuProfile, { user: ctrl.user }) : m('a.w-nav-link.header-link.w-nav-link.btn-edit.u-right[href=\'/en/login?ref=ctrse_header\']', '로그인')
+                    //coffee ctrl.user ? m.component(menuProfile, { user: ctrl.user }) : m('a.w-nav-link.header-link.w-nav-link.btn-edit.u-right[href=\'/en/login?ref=ctrse_header\']', '로그인')
                 ])
 
             ]),
@@ -57,10 +60,12 @@ const menu = {
                     m('a.header-link.w-nav-link[href=\'/en/start?ref=ctrse_header\']',
                         { onclick: () => m.route('/start') },
                         '새 프로젝트 시작하기'
+                        //coffee '새 프로젝트 시작하기'
                     ),
                     m('a.header-link.w-nav-link[href=\'/en/explore?ref=ctrse_header\']',
                         { onclick: () => m.route('/explore') },
                         '프로젝트 검색'
+                        //coffee '프로젝트 검색'
                     )
                 ]
             )

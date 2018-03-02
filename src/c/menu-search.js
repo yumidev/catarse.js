@@ -12,6 +12,7 @@ const menuSearch = {
                                   m('input[name=\'utf8\'][type=\'hidden\'][value=\'✓\']')
                               ),
                             m('input.w-input.text-field.prefix.search-input[autocomplete=\'off\'][id=\'pg_search\'][name=\'pg_search\'][placeholder=\'검색어를 입력하세요\'][type=\'text\']')
+                            //coffee m('input.w-input.text-field.prefix.search-input[autocomplete=\'off\'][id=\'pg_search\'][name=\'pg_search\'][placeholder=\'검색어를 입력하세요\'][type=\'text\']')
                         ]
                       ),
                     m('.search-pre-result.w-hidden[data-searchpath=\'/pt/auto_complete_projects\']',
@@ -23,6 +24,7 @@ const menuSearch = {
                               ),
                             m('a.btn.btn-small.btn-terciary.see-more-projects[href=\'javascript:void(0);\']',
                                   ' 모두보기'
+                                //coffee ' ver todos'
                               )
                         ]
                       )

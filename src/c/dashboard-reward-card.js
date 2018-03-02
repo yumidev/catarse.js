@@ -25,6 +25,7 @@ const dashboardRewardCard = {
                 limitError(false);
                 args.error(false);
                 args.errors('정보 저장 오류.');
+                //coffee args.errors('Erro ao salvar informações.');
                 if (reward.maximum_contributions() && reward.paid_count() > reward.maximum_contributions()) {
                     limitError(true);
                     args.error(true);
@@ -117,6 +118,7 @@ const dashboardRewardCard = {
                             m('button.btn.btn-small.btn-terciary.w-button', {
                                 onclick: ctrl.toggleShowLimit
                             }, '한도 변경')
+                            //coffee }, 'Alterar limite')
 
                         ])),
                     m('.w-col.w-col-8')
@@ -158,6 +160,7 @@ const dashboardRewardCard = {
                                             onclick: ctrl.toggleShowLimit
                                         },
                                             '취소'
+                                            //coffee 'Cancelar'
                                         )
                                     ),
                                     m('.w-clearfix.w-col.w-col-4')
@@ -169,6 +172,7 @@ const dashboardRewardCard = {
                 ),
                 ctrl.limitError() ? m(inlineError, {
                     message: '한도는 후원 금액보다 커야합니다.'
+                    //coffee message: 'Limite deve ser maior que quantidade de apoios.'
                 }) : ''
             ]),
             m('.u-margintop-20', [

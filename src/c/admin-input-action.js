@@ -53,6 +53,7 @@ const adminInputAction = {
     view(ctrl, args) {
         const data = args.data,
             btnValue = (ctrl.l()) ? '기다려 주시기 바랍니다...' : data.callToAction;
+            //coffee btnValue = (ctrl.l()) ? 'por favor, aguarde...' : data.callToAction;
 
         return m('.w-col.w-col-2', [
             m('button.btn.btn-small.btn-terciary', {
@@ -77,6 +78,7 @@ const adminInputAction = {
                 ] : [
                     m('.w-form-error[style="display:block;"]', [
                         m('p', `요청에 문제가 있습니다. ${data.errorMessage}`)
+                        //coffee m('p', `Houve um problema na requisição. ${data.errorMessage}`)
                     ])
                 ])
             ]) : ''

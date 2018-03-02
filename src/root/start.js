@@ -144,6 +144,7 @@ const start = {
             m('.w-section.hero-full.hero-start', [
                 m('.w-container.u-text-center', [
                     m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('슬로건', I18nScope())),
+                    //coffee m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('slogan', I18nScope())),
                     m('.w-row.u-marginbottom-40', [
                         m('.w-col.w-col-4.w-col-push-4', [
                             m('a.btn.btn-large.u-marginbottom-10[href="#start-form"]', {
@@ -159,6 +160,7 @@ const start = {
                         ]),
                         m('.w-col.w-col-4', [
                             m('.fontsize-largest.lineheight-loose', `${stats.total_contributed.toString().slice(0, 2)} 백만`),
+                            //coffee m('.fontsize-largest.lineheight-loose', `${stats.total_contributed.toString().slice(0, 2)} milhões`),
                             m('p.fontsize-small.start-stats', I18n.t('header.money', I18nScope()))
                         ]),
                         m('.w-col.w-col-4', [
@@ -350,8 +352,10 @@ const start = {
                                     m('.w-col.w-col-7', [
                                         m('.fontsize-megajumbo.fontcolor-negative', `R$ ${category.total_successful_value ? h.formatNumber(category.total_successful_value, 2, 3) : '...'}`),
                                         m('.fontsize-large.u-marginbottom-20', '프로젝트에 기부'),
+                                        //coffee m('.fontsize-large.u-marginbottom-20', 'Doados para projetos'),
                                         m('.fontsize-megajumbo.fontcolor-negative', (category.successful_projects) ? category.successful_projects : '...'),
                                         m('.fontsize-large.u-marginbottom-30', '재정 지원 프로젝트'),
+                                        //coffee m('.fontsize-large.u-marginbottom-30', 'Projetos financiados'),
                                         !_.isEmpty(ctrl.featuredProjects()) ? _.map(ctrl.featuredProjects(), project => !_.isUndefined(project) ? m('.w-row.u-marginbottom-10', [
                                             m('.w-col.w-col-1', [
                                                 m(`img.user-avatar[src="${h.useAvatarOrDefault(project.userThumb)}"]`)
@@ -397,6 +401,7 @@ const start = {
             m('#start-form.w-section.section-large.u-text-center.bg-purple.before-footer', [
                 m('.w-container', [
                     m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', '초안을 무료로 만들어 보세요!'),
+                    //coffee m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', 'Crie o seu rascunho gratuitamente!'),
                     m('form[action="/projects/fallback_create"][method="GET"].w-row.w-form', {
                         onsubmit: (e) => {
                             h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_submit' })(e);
@@ -412,6 +417,7 @@ const start = {
                                 m('input.w-input.text-field.medium.u-marginbottom-30[type="text"]', {
                                     name: 'project[name]',
                                     class: ctrl.projectNameError() ? '오류' : '',
+                                    //coffee class: ctrl.projectNameError() ? 'error' : '',
                                     onfocus: () => ctrl.projectNameError(false),
                                     onchange: (e) => {
                                         h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_change', lbl: 'name' })(e);
@@ -419,9 +425,11 @@ const start = {
                                     }
                                 }),
                                 m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', '카테고리'),
+                                //coffee m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', 'na categoria'),
                                 m('select.w-select.text-field.medium.u-marginbottom-40', {
                                     name: 'project[category_id]',
                                     class: ctrl.projectCategoryError() ? '오류' : '',
+                                    //coffee class: ctrl.projectCategoryError() ? 'error' : '',
                                     onfocus: () => ctrl.projectCategoryError(false),
                                     onchange: (e) => {
                                         h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_change', lbl: 'category' })(e);
@@ -439,6 +447,7 @@ const start = {
                                 ])
                             ]),
                             m('.w-row.u-marginbottom-80', (ctrl.projectNameError() || ctrl.projectCategoryError()) ? m.component(inlineError, { message: '위의 필드를 다시 확인하십시오!' }) : '')
+                            //coffee m('.w-row.u-marginbottom-80', (ctrl.projectNameError() || ctrl.projectCategoryError()) ? m.component(inlineError, { message: 'Por favor, verifique novamente os campos acima!' }) : '')
                         ])
                 ])
             ])

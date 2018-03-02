@@ -55,6 +55,7 @@ const projectEmailInvite = {
 
         return m('.email-invite-box', [
             (ctrl.showSuccess() ? m.component(popNotification, { message: '초대장이 전송되었습니다.' }) : ''),
+            //coffee (ctrl.showSuccess() ? m.component(popNotification, { message: 'Convites enviados.' }) : ''),
             (ctrl.loading() ? h.loader()
              : [
                  m('.w-form', [
@@ -66,6 +67,7 @@ const projectEmailInvite = {
                              })
                          //    m("a.btn.btn-inline.btn-no-border.btn-terciary.w-inline-block[href='#']", [
                          //        m("._w-inline-block.fontsize-smallest", "CSV 업로드")
+                         //        //coffee m("._w-inline-block.fontsize-smallest", "Upload CSV")
                          //    ])
                          ]),
                          m('textarea.positive.text-field.w-input[maxlength="5000"][placeholder="Adicione um ou mais emails, separados por linha."]', {
@@ -78,6 +80,7 @@ const projectEmailInvite = {
                      m('a.btn.btn-inline.btn-medium.w-button[href="javascript:void(0)"]', {
                          onclick: ctrl.submitInvite
                      }, '초대장 보내기')
+                     //coffee }, 'Enviar convites')
                  ])
              ])
         ]);

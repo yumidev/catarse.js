@@ -14,7 +14,9 @@ const adminUser = {
                     m(`a.alt-link[target="_blank"][href="/users/${user.id}/edit"]`, user.name || user.email)
                 ]),
                 m('.fontsize-smallest', `사용자: ${user.id}`),
+                //coffee m('.fontsize-smallest', `Usuário: ${user.id}`),
                 m('.fontsize-smallest.fontcolor-secondary', `이메일: ${user.email}`),
+                //coffee m('.fontsize-smallest.fontcolor-secondary', `Email: ${user.email}`),
                 args.additional_data
             ])
         ]);

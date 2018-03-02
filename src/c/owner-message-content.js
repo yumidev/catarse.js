@@ -65,6 +65,7 @@ const ownerMessageContent = {
         const successMessage = m('.modal-dialog-content.u-text-center', [
                 m('.fa.fa-check-circle.fa-5x.text-success.u-marginbottom-40'),
                 m('p.fontsize-large', `귀하의 메시지는 ${ctrl.userDetails().name}(으)로 전송되었습니다. 당신은 당신의 이메일에 사본을 받게되며 거기 대화를 따라갈 수 있습니다!`)
+                //coffee m('p.fontsize-large', `Sua mensagem foi enviada com sucesso para ${ctrl.userDetails().name}. Você vai receber uma cópia no seu email e pode seguir a conversa por lá!`)
             ]),
             contactForm = [
                 m('.modal-dialog-content', [
@@ -87,6 +88,7 @@ const ownerMessageContent = {
                                     m(`input.w-input.text-field[value='${ctrl.from_name()}'][type='text'][required='required']`, {
                                         onchange: m.withAttr('value', ctrl.from_name),
                                         class: h.validate().hasError(ctrl.from_name) ? '오류' : ''
+                                        //coffee class: h.validate().hasError(ctrl.from_name) ? 'error' : ''
                                     })
                                 ]),
                                 m('.w-col.w-col-6', [
@@ -94,6 +96,7 @@ const ownerMessageContent = {
                                     m(`input.w-input.text-field[value='${ctrl.from_email()}'][type='text'][required='required']`, {
                                         onchange: m.withAttr('value', ctrl.from_email),
                                         class: h.validate().hasError(ctrl.from_email) ? '오류' : ''
+                                        //coffee class: h.validate().hasError(ctrl.from_email) ? 'error' : ''
                                     })
                                 ])
                             ]),
@@ -103,6 +106,7 @@ const ownerMessageContent = {
                                 class: h.validate().hasError(ctrl.content) ? '오류' : ''
                             }),
                             m('.u-marginbottom-10.fontsize-smallest.fontcolor-terciary', '이메일에 이 메시지의 사본이 전송됩니다.'),
+                            //coffee m('.u-marginbottom-10.fontsize-smallest.fontcolor-terciary', '이메일에 이 메시지의 사본이 전송됩니다.'),
                             m('.w-row', h.validationErrors().length ? _.map(h.validationErrors(), errors => m('span.fontsize-smallest.text-error', [
                                 m('span.fa.fa-exclamation-triangle'),
                                 ` ${errors.message}`,
@@ -111,6 +115,7 @@ const ownerMessageContent = {
                             m('.modal-dialog-nav-bottom',
                                 m('.w-row',
                                     m('.w-col.w-col-6.w-col-push-3', !ctrl.l() ? m('input.w-button.btn.btn-large[type="submit"][value="메시지 보내기"]', {
+                                        //coffee m('.w-col.w-col-6.w-col-push-3', !ctrl.l() ? m('input.w-button.btn.btn-large[type="submit"][value="메시지 보내기"]', {
                                         disabled: ctrl.submitDisabled()
                                     }) : h.loader())
                                 )
@@ -123,6 +128,7 @@ const ownerMessageContent = {
         return m('div', [
             m('.modal-dialog-header',
                 m('.fontsize-large.u-text-center', '메시지 보내기')
+                //coffee m('.fontsize-large.u-text-center', '메시지 보내기')
             ),
             ctrl.sendSuccess() ? successMessage : contactForm
         ]);

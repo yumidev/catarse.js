@@ -49,6 +49,7 @@ const userCreated = {
         return m('.content[id=\'created-tab\']',
             (ctrl.error() ? m.component(inlineError, {
                 message: '프로젝트 로드 오류.'
+                //coffee message: 'Erro ao carregar os projetos.'
             }) : !ctrl.loader() ? [
                 (!_.isEmpty(projects_collection) ? _.map(projects_collection, project => m.component(projectCard, {
                     project,
@@ -66,6 +67,7 @@ const userCreated = {
                                     m('.w-col.w-col-6',
                                         m('a.btn.btn-large[href=\'/start\']',
                                             '지금 시작하십시오!'
+                                            //coffee 'Comece agora!'
                                         )
                                     ),
                                     m('.w-col.w-col-3')

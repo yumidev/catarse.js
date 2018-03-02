@@ -46,9 +46,11 @@ const posts = {
             togglePreview = () => {
                 if (!validateTitle()) {
                     errors('제목은 입력해 주세요.');
+                    //coffee errors('Título não pode ficar em branco.');
                     showError(true);
                 } else if (!validateComment()) {
                     errors('메시지를 입력해 주세요.');
+                    //coffee errors('Mensagem não pode ficar em branco.');
                     showError(true);
                 } else {
                     h.scrollTop();
@@ -65,8 +67,10 @@ const posts = {
             showRecipientes = (post) => {
                 if (post.recipients === 'public') {
                     return '모든 사람 (후원자 및 비후원자)';
+                    //coffee return 'Todo mundo (apoiadores e não apoiadores)';
                 } else if (post.recipients === 'backers') {
                     return '모든 후원자들';
+                    //coffee return 'Todos os apoiadores';
                 }
                 const reward = _.find(rewardVM.rewards(), r => r.id === post.reward_id);
                 if (reward) {
@@ -144,6 +148,7 @@ const posts = {
                 m(`.w-section.section-product.${project.mode}`),
                 (ctrl.showSuccess() ? m.component(popNotification, {
                     message: '메시지를 성공적으로 보냈습니다.'
+                    //coffee message: 'Mensagem enviada com sucesso'
                 }) : ''),
                 (ctrl.showError() ? m.component(popNotification, {
                     message: ctrl.errors(),
@@ -156,6 +161,7 @@ const posts = {
                             m('.w-col.w-col-6',
                                 m('.fontsize-larger.fontweight-semibold.lineheight-tight',
                                     '후원자에게 뉴스 기사 제출'
+                                    //coffee 'Envie uma novidade para seus apoiadores'
                                 )
                             ),
                             m('.w-col.w-col-3')
@@ -173,6 +179,7 @@ const posts = {
                                     ' Veja ótimo motivos para ',
                                     m('a.alt-link[href=\'https://catarse.attach.io/B1AHAGm1x\'][target=\'_blank\']',
                                         '지금 당신 지지자들과 이야기하십시오!'
+                                        //coffee 'falar com seus apoiadores agora mesmo!'
                                     )
                                 ])
                             ),
@@ -180,6 +187,7 @@ const posts = {
                                 m('form', [
                                     m('label.field-label.fontweight-semibold',
                                         '수신자'
+                                        //coffee 'Destinatários'
                                     ),
                                     m('select.positive.text-field.w-select', {
                                         onchange: m.withAttr('value', ctrl.fields.reward_id)
@@ -188,9 +196,11 @@ const posts = {
                                             selected: true
                                         },
                                             '모든 사람 (후원자 및 비후원자)'
+                                            //coffee 'Todo mundo (apoiadores e não apoiadores)'
                                         ),
                                         m('option[value=\'0\']',
                                             '모든 후원자들'
+                                            //coffee 'Todos os apoiadores'
                                         ),
                                         (_.map(paidRewards, reward => m(`option[value='${reward.id}']`,
                                               ctrl.rewardText(reward.id)
@@ -198,6 +208,7 @@ const posts = {
                                     ]),
                                     m('label.field-label.fontweight-semibold',
                                         '제목'
+                                        //coffee 'Título'
                                     ),
                                     m('input.positive.text-field.w-input[id=\'post_title\'][maxlength=\'256\'][type=\'text\']', {
                                         name: 'posts[title]',
@@ -208,9 +219,11 @@ const posts = {
                                     }),
                                     m('label.field-label.fontweight-semibold',
                                         '텍스트'
+                                        //coffee 'Texto'
                                     ),
                                     m('.preview-container.u-marginbottom-40', {
                                         class: ctrl.commentHasError() ? '오류' : '',
+                                        //coffee class: ctrl.commentHasError() ? 'error' : '',
                                         onclick: () => ctrl.commentHasError(false)
                                     }, h.redactor('posts[comment_html]', ctrl.fields.comment_html)),
                                     m('.u-marginbottom-20.w-row', [
@@ -220,6 +233,7 @@ const posts = {
                                                 onclick: ctrl.togglePreview
                                             },
                                                 '미리보기'
+                                                //coffee 'Pré-visualizar'
                                             )
                                         ),
                                         m('.w-col.w-col-3')
@@ -228,22 +242,26 @@ const posts = {
                             ]),
                             m('.fontsize-large.fontweight-semibold.u-marginbottom-40',
                                 '뉴스가 이미 전송되었습니다.'
+                                //coffee 'Novidades já enviadas'
                             ),
                             m('.table-outer.u-marginbottom-60', [
                                 m('.fontsize-smaller.fontweight-semibold.header.table-row.w-row', [
                                     m('.table-col.w-col.w-col-5',
                                         m('div',
                                             '제목'
+                                            //coffee 'Título'
                                         )
                                     ),
                                     m('.table-col.u-text-center.w-col.w-col-3',
                                         m('div',
                                             '전송됨'
+                                            //coffee 'Enviadas'
                                         )
                                     ),
                                     m('.table-col.u-text-center.w-col.w-col-3',
                                         m('div',
                                             '열기'
+                                            //coffee 'Abertas'
                                         )
                                     ),
                                     m('.table-col.w-col.w-col-1')
@@ -257,12 +275,14 @@ const posts = {
                                             m('.fontcolor-secondary.fontsize-smallest', [
                                                 m('span.fontweight-semibold',
                                                         '전송됨: '
+                                                        //coffee 'Enviada em: '
                                                     ),
                                                 h.momentify(post.created_at, 'DD/MM/YYYY, h:mm A')
                                             ]),
                                             m('.fontcolor-secondary.fontsize-smallest', [
                                                 m('span.fontweight-semibold',
                                                         '수신자: '
+                                                        //coffee 'Destinatários: '
                                                     ),
                                                 ctrl.showRecipientes(post)
                                             ])

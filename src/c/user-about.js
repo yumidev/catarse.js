@@ -28,6 +28,7 @@ const userAbout = {
     view(ctrl, args) {
         const user = ctrl.userDetails();
         return (ctrl.error() ? m.component(inlineError, { message: '데이터로드 중 오류가 발생했습니다.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'about-tab\']',
+        //coffee return (ctrl.error() ? m.component(inlineError, { message: 'Erro ao carregar dados.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'about-tab\']',
             m('.w-container[id=\'about-content\']',
                 m('.w-row',
                     [

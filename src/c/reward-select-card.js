@@ -26,6 +26,7 @@ const rewardSelectCard = {
 
             if (!selectedDestination() && rewardVM.hasShippingOptions(rewardVM.selectedReward())) {
                 rewardVM.error('유효한 화물 옵션을 선택해 주시길 바랍니다.');
+                //coffee rewardVM.error('Por favor, selecione uma opção de frete válida.');
             } else if (valueFloat < rewardVM.selectedReward().minimum_value + shippingFee.value) {
                 rewardVM.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${rewardVM.selectedReward().minimum_value} + frete R$${h.formatNumber(shippingFee.value, 2, 3)}`);
             } else {
@@ -103,6 +104,7 @@ const rewardSelectCard = {
                     m('.w-sub-col.w-col.w-col-4', [
                         m('.fontcolor-secondary.u-marginbottom-10',
                             '배송지'
+                            //coffee 'Local de entrega'
                         ),
                         m('select.positive.text-field.w-select', {
                             onchange: m.withAttr('value', ctrl.selectDestination)
@@ -141,6 +143,7 @@ const rewardSelectCard = {
                         m('.fontsize-smaller.text-error.u-marginbottom-20.w-hidden', [
                             m('span.fa.fa-exclamation-triangle'),
                             ' 후원금액이 잘못되었습니다.'
+                            //coffee ' O valor do apoio está incorreto'
                         ])
                     ]),
                     m('.submit-form.w-col.w-col-4',
@@ -148,6 +151,7 @@ const rewardSelectCard = {
                             onclick: ctrl.submitContribution
                         }, [
                             '계속하기  ',
+                            //coffee 'Continuar  ',
                             m('span.fa.fa-chevron-right')
                         ])
                     )

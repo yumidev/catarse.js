@@ -17,6 +17,7 @@ const projectAbout = {
             };
         const fundingPeriod = () => (project.is_published && h.existy(project.zone_expires_at)) ? m('.funding-period', [
             m('.fontsize-small.fontweight-semibold.u-text-center-small-only', '캠페인 기간'),
+            //coffee m('.fontsize-small.fontweight-semibold.u-text-center-small-only', 'Período de campanha'),
             m('.fontsize-small.u-text-center-small-only', `${h.momentify(project.zone_online_date)} - ${h.momentify(project.zone_expires_at)} (${onlineDays()} 일)`)
         ]) : '';
 
@@ -26,22 +27,26 @@ const projectAbout = {
             }, [
                 m('p.fontsize-base', [
                     m('strong', '프로젝트')
+                    //coffee m('strong', 'O projeto')
                 ]),
                 m('.fontsize-base[itemprop="about"]', m.trust(h.selfOrEmpty(project.about_html, '...'))),
                 project.budget ? [
                     m('p.fontsize-base.fontweight-semibold', '예산 편성'),
+                    //coffee m('p.fontsize-base.fontweight-semibold', 'Orçamento'),
                     m('p.fontsize-base', m.trust(project.budget))
                 ] : '',
                 m.component(projectReport)
             ]),
             m('.w-col.w-col-4.w-hidden-small.w-hidden-tiny', !_.isEmpty(args.rewardDetails()) ? [
                 m('.fontsize-base.fontweight-semibold.u-marginbottom-30', '보상'),
+                //coffee m('.fontsize-base.fontweight-semibold.u-marginbottom-30', 'Recompensas'),
                 m.component(projectRewardList, {
                     project: args.project,
                     rewardDetails: args.rewardDetails
                 }), fundingPeriod()
             ] : [
                 m('.fontsize-base.fontweight-semibold.u-marginbottom-30', '후원 제안'),
+                //coffee m('.fontsize-base.fontweight-semibold.u-marginbottom-30', 'Sugestões de apoio'),
                 m.component(projectSuggestedContributions, { project: args.project }),
                 fundingPeriod()
             ])

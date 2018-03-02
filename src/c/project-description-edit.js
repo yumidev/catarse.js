@@ -80,6 +80,7 @@ const projectDescriptionEdit = {
                                 children: [
                                     m('.preview-container', {
                                         class: vm.e.hasError('about_html') ? '오류' : false
+                                        //coffee class: vm.e.hasError('about_html') ? 'error' : false
                                     }, h.redactor('project[about_html]', vm.fields.about_html)),
                                     vm.e.inlineError('about_html')
                                 ]

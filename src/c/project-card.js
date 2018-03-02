@@ -61,6 +61,7 @@ const projectCard = {
             if (project.expires_at) {
                 return isFinished(project) ? [
                     m('.fontsize-smaller.fontweight-loose', '휴무일'),
+                    //coffee m('.fontsize-smaller.fontweight-loose', 'Encerrado'),
                     m('.fontsize-smallest.lineheight-tightest', h.momentify(project.expires_at))
                 ] : [
                     m('.fontsize-smaller.fontweight-semibold', `${remainingTextObj.total} ${remainingTextObj.unit}`),

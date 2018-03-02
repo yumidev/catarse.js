@@ -80,6 +80,7 @@ const projectBudgetEdit = {
                                 children: [
                                     m('.preview-container', {
                                         class: vm.e.hasError('budget') ? '오류' : false
+                                        //coffee class: vm.e.hasError('budget') ? 'error' : false
                                     }, h.redactor('project[budget]', vm.fields.budget)),
                                     vm.e.inlineError('budget')
                                 ]

@@ -105,6 +105,7 @@ const userNotifications = {
                                     m('.w-col.w-col-4',
                                         m('.fontweight-semibold.fontsize-small.u-marginbottom-10',
                                             '뉴스레터:'
+                                            //coffee 'Newsletters:'
                                         )
                                     ),
                                     m('.w-col.w-col-8', (_.isEmpty(marketing_lists) ? h.loader() : _.map(marketing_lists, (_item, i) => {
@@ -161,6 +162,7 @@ const userNotifications = {
                                     m('.w-col.w-col-4',
                                         m('.fontweight-semibold.fontsize-small.u-marginbottom-10',
                                             '후원한 프로젝트:'
+                                            //coffee 'Projetos que você apoiou:'
                                         )
                                     ),
                                     m('.w-col.w-col-8',
@@ -169,12 +171,14 @@ const userNotifications = {
                                             m(`input.w-checkbox-input${user.subscribed_to_project_posts ? '[checked=\'checked\']' : ''}[id='user_subscribed_to_project_posts'][name=user[subscribed_to_project_posts]][type='checkbox'][value='1']`),
                                             m('label.w-form-label.fontsize-base.fontweight-semibold',
                                                 ' 프로젝트 업데이트를 받고 싶습니다.'
+                                                //coffee ' Quero receber atualizações dos projetos'
                                             ),
                                             m('.u-marginbottom-20',
                                                 m('a.alt-link[href=\'javascript:void(0);\']', {
                                                     onclick: ctrl.showNotifications.toggle
                                                 },
                                                     ` ${user.total_contributed_projects}개의 프로젝트에 대한 알림 관리`
+                                                    //coffee ` Gerenciar as notificações de ${user.total_contributed_projects} projetos`
                                                 )
                                             ),
                                             (ctrl.showNotifications() ?
@@ -209,6 +213,7 @@ const userNotifications = {
                                             m(`input.w-checkbox-input${user.subscribed_to_friends_contributions ? '[checked=\'checked\']' : ''}[id='user_subscribed_to_friends_contributions'][name=user[subscribed_to_friends_contributions]][type='checkbox'][value='1']`),
                                             m('label.w-form-label.fontsize-small',
                                                 '친구가 프로젝트를 지원하거나 시작했습니다.'
+                                                //coffee 'Um amigo apoiou ou lançou um projeto'
                                             )
                                         ])
                                     ),
@@ -226,6 +231,7 @@ const userNotifications = {
                                     m('.w-col.w-col-4',
                                         m('.fontweight-semibold.fontsize-small.u-marginbottom-10',
                                             '프로젝트 미리 알림:'
+                                            //coffee '프로젝트 미리 알림:'
                                         )
                                     ),
                                     m('.w-col.w-col-8', [

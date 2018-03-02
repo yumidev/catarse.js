@@ -52,16 +52,21 @@ const projectsExplore = {
                 if (currentFilter().keyName === 'all') {
                     hasHint = true;
                     hintText = '인기순으로 정렬 ';
+                    //coffee hintText = 'Ordenados por popularidade ';
                     tooltipText = 'O nosso fator popularidade é uma mistura da seleção do time do Catarse com um valor que é calculado pela velocidade de arrecadação do projeto';
                 } else if (currentFilter().keyName === 'finished') {
                     hasHint = true;
                     hintText = '달성 한 R $로 정렬 ';
+                    //coffee hintText = '달성 한 R $로 정렬 ';
                     //cofffee   hintText = 'Ordenados por R$ alcançado ';
                     tooltipText = '가장 높은 목표를 달성한 프로젝트가 가장 위에 표시됩니다.';
+                    //coffee tooltipText = 'Os projetos com maior meta de arrecadação alcançada ficam no topo';
                 } else if (currentFilter().keyName === 'contributed_by_friends') {
                     hasHint = true;
                     hintText = '친구가 지원하는 프로젝트';
+                    //coffee hintText = 'Projetos apoiados por amigos';
                     tooltipText = '친구가 지원하는 프로젝트';
+                    //coffee tooltipText = 'Projetos apoiados por amigos';
                 }
 
                 return hasHint ? m('.fontsize-smaller.fontcolor-secondary', [hintText, buildTooltip(tooltipText)]) : '';
@@ -139,6 +144,7 @@ const projectsExplore = {
                 if (_.isString(search) && search.length > 0 && route === null) {
                     isSearch(true);
                     title(`검색 ${search}`);
+                    //coffee title(`Busca ${search}`);
                     projects(searchProjects());
                 } else if (currentFilter().keyName === 'finished') {
                     isSearch(false);
@@ -221,6 +227,7 @@ const projectsExplore = {
                         m('a#explore-open.link-hidden-white.fontweight-light.fontsize-larger[href="javascript:void(0);"]',
                             { onclick: () => ctrl.toggleCategories.toggle() },
                             ['놀라운 프로젝트 탐구 ', m(`span#explore-btn.fa.fa-angle-down${ctrl.toggleCategories() ? '.opened' : ''}`, '')])
+                        //coffee ['Explore projetos incríveis ', m(`span#explore-btn.fa.fa-angle-down${ctrl.toggleCategories() ? '.opened' : ''}`, '')])
                     ]),
                     m(`#categories.category-slider${ctrl.toggleCategories() ? '.opened' : ''}`, [
                         m('.w-row.u-marginbottom-30', [
@@ -290,6 +297,7 @@ const projectsExplore = {
                             return (_.indexOf(widowProjects, idx) > -1 && !ctrl.projects().isLastPage()) ? '' : m.component(projectCard, { project, ref, type: cardType, showFriends: isContributedByFriendsFilter });
                         })),
                         ctrl.projects().isLoading() ? h.loader() : (_.isEmpty(projectsCollection) && ctrl.hasFBAuth ? m('.fontsize-base.w-col.w-col-12', '표시할 프로젝트가 없습니다.') : '')
+                        //coffee ctrl.projects().isLoading() ? h.loader() : (_.isEmpty(projectsCollection) && ctrl.hasFBAuth ? m('.fontsize-base.w-col.w-col-12', 'Nenhum projeto para mostrar.') : '')
                     ])
                 ])
             ]),
@@ -313,11 +321,13 @@ const projectsExplore = {
                     }),
                     m('h2.fontsize-larger.u-marginbottom-60',
                         hasSpecialFooter ? ctrl.externalLinkCategories[categoryId()].title : 'Givingwire 캠페인 시작!'),
+                    //coffee hasSpecialFooter ? ctrl.externalLinkCategories[categoryId()].title : 'Lance sua campanha no Catarse!'),
                     m('.w-row', [
                         m('.w-col.w-col-4.w-col-push-4', [
                             hasSpecialFooter
                                 ? m('a.w-button.btn.btn-large', { href: `${ctrl.externalLinkCategories[categoryId()].link}?ref=ctrse_explore` }, ctrl.externalLinkCategories[categoryId()].cta)
                                 : m('a.w-button.btn.btn-large', { href: '/start?ref=ctrse_explore' }, '방법 배우기')
+                            //coffee : m('a.w-button.btn.btn-large', { href: '/start?ref=ctrse_explore' }, 'Aprenda como')
                         ])
                     ])
                 ])

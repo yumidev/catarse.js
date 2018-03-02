@@ -106,11 +106,13 @@ const projectReport = {
                        m('.w-form',
                         m('p',
                           '신고가 접수되었습니다.'
+                          //coffee 'Obrigado! A sua denúncia foi recebida.'
                         )
                       ) :
                 [
                     m('.a.w-button.btn.btn-medium.btn-terciary.btn-inline[href=\'javascript:void(0);\']', { onclick: ctrl.checkLogin },
                         '프로젝트 신고'
+                        //coffee 'Denunciar este projeto'
                       ),
                     ctrl.displayForm() ? m('#report-form.u-margintop-30',
                         m('.w-form',
@@ -118,20 +120,25 @@ const projectReport = {
                               [
                                   m('.fontsize-small.fontweight-semibold.u-marginbottom-10',
                                 '이 프로젝트를 신고하시는 이유가 무엇인가요?'
+                                 //coffee 'Por que você está denunciando este projeto?'
                               ),
                                   m('select.w-select.text-field.positive[required=\'required\']', { onchange: m.withAttr('value', ctrl.reason) },
                                       [
                                           m('option[value=\'\']',
                                     '이유 선택'
+                                     //coffee 'Selecione um motivo'
                                   ),
                                           m('option[value=\'Violação de propriedade intelectual\']',
                                     '지적 재산권 침해'
+                                     //coffee 'Violação de propriedade intelectual'
                                   ),
                                           m('option[value=\'Calúnia, injúria, difamação ou discriminação\']',
                                     '중상, 명예 훼손, 명예 훼손 또는 차별'
+                                     //coffee 'Calúnia, injúria, difamação ou discriminação'
                                   ),
                                           m('option[value=\'Escopo de projeto proibido\']',
                                     '금지 된 프로젝트의 범위'
+                                    //coffee 'Escopo de projeto proibido'
                                   ),
                                           m('option[value=\'Recompensas proibidas\']',
                                     'Recompensas proibidas'
@@ -141,17 +148,23 @@ const projectReport = {
                                   ),
                                           m('option[value=\'Abuso de SPAM\']',
                                     '스팸 남용'
+                                    //coffee 'Abuso de SPAM용'
                                   ),
                                           m('option[value=\'Outros\']',
                                     '기타'
+                                     //coffee 'Outros'
                                   )
                                       ]
                               ),
                                   (ctrl.reasonError() ? m(inlineError, { message: '이유 선택' }) : ''),
-                                  m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: '문제를 파악하는 데 도움이되는 세부 정보를 제공해주세요.', onchange: m.withAttr('value', ctrl.details) }),
+                                  //coffee (ctrl.reasonError() ? m(inlineError, { message: 'Selecione um motivo' }) : ''),
+                                  m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: 'Por favor, dê mais detalhes que nos ajudem a identificar o problema.', onchange: m.withAttr('value', ctrl.details) }),
+                                  //coffee m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: '문제를 파악하는 데 도움이되는 세부 정보를 제공해주세요.', onchange: m.withAttr('value', ctrl.details) }),
                                   m('.w-row',
                                   (ctrl.detailsError() ? m(inlineError, { message: '불만 사항을 신고하십시오.' }) : '')),
+                                  //coffee (ctrl.detailsError() ? m(inlineError, { message: 'Informe os detalhes da denúncia.' }) : '')),
                                   m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'불만 신고\']', { disabled: ctrl.submitDisabled() })
+                                  //coffee m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'Enviar denúncia\']', { disabled: ctrl.submitDisabled() })
                               ]
                           )
                         )

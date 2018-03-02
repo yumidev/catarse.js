@@ -43,12 +43,14 @@ const projectSuccessfulOnboardConfirmAccountError = {
                         m('textarea.w-input.text-field', {
                             placeholder: I18n.t('placeholder', I18nScope()),
                             class: ctrl.error() ? '오류' : '',
+                            //coffee class: ctrl.error() ? 'error' : '',
                             onfocus: () => ctrl.error(false),
                             onchange: m.withAttr('value', ctrl.errorReasonM)
                         }),
                         ctrl.error() ? m('.w-row', [
                             m('.w-col.w-col-6.w-col-push-3.u-text-center', [
                                 m('span.fontsize-smallest.text-error', '필수 입력란')
+                                //coffee m('span.fontsize-smallest.text-error', 'Campo Obrigatório')
                             ])
                         ]) : '',
                         m('.w-row', [

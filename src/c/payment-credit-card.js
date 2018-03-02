@@ -252,6 +252,7 @@ const paymentCreditCard = {
                                 m('input.w-input.text-field[name="credit-card-name"][type="text"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('name'),
                                     class: ctrl.fieldHasError('name') ? '오류' : '',
+                                    //coffee class: ctrl.fieldHasError('name') ? 'error' : '',
                                     onblur: ctrl.checkCreditCardName,
                                     onkeyup: m.withAttr('value', ctrl.applyCreditCardNameMask),
                                     value: ctrl.creditCard.name()
@@ -269,6 +270,7 @@ const paymentCreditCard = {
                                  m('input.w-input.text-field[name="credit-card-document"]', {
                                      onfocus: ctrl.vm.resetCreditCardFieldError('cardOwnerDocument'),
                                      class: ctrl.fieldHasError('cardOwnerDocument') ? '오류' : '',
+                                     //coffee class: ctrl.fieldHasError('cardOwnerDocument') ? 'error' : '',
                                      onblur: ctrl.checkCardOwnerDocument,
                                      onkeyup: m.withAttr('value', ctrl.applyDocumentMask),
                                      value: ctrl.creditCard.cardOwnerDocument()
@@ -288,6 +290,7 @@ const paymentCreditCard = {
                             onfocus: ctrl.vm.resetCreditCardFieldError('number'),
                             onblur: ctrl.checkCreditCard,
                             class: ctrl.fieldHasError('number') ? '오류' : '',
+                            //coffee class: ctrl.fieldHasError('number') ? 'error' : '',
                             value: ctrl.creditCard.number,
                             name: 'credit-card-number',
                             type: ctrl.creditCardType
@@ -306,6 +309,7 @@ const paymentCreditCard = {
                                 m('select.w-select.text-field[name="expiration-date_month"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('expiry'),
                                     class: ctrl.fieldHasError('expiry') ? '오류' : '',
+                                    //coffee class: ctrl.fieldHasError('expiry') ? 'error' : '',
                                     onchange: m.withAttr('value', ctrl.creditCard.expMonth),
                                     value: ctrl.creditCard.expMonth()
                                 }, _.map(ctrl.expMonths, month => m('option', { value: month[0] }, month[1])))
@@ -314,6 +318,7 @@ const paymentCreditCard = {
                                 m('select.w-select.text-field[name="expiration-date_year"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('expiry'),
                                     class: ctrl.fieldHasError('expiry') ? '오류' : '',
+                                    //coffee class: ctrl.fieldHasError('expiry') ? 'error' : '',
                                     onchange: m.withAttr('value', ctrl.creditCard.expYear),
                                     onblur: ctrl.checkExpiry,
                                     value: ctrl.creditCard.expYear()
@@ -335,6 +340,7 @@ const paymentCreditCard = {
                                 m('input.w-input.text-field[name="credit-card-cvv"][type="tel"]', {
                                     onfocus: ctrl.vm.resetCreditCardFieldError('cvv'),
                                     class: ctrl.fieldHasError('cvv') ? '오류' : '',
+                                    //coffee class: ctrl.fieldHasError('cvv') ? 'error' : '',
                                     onkeyup: m.withAttr('value', ctrl.applyCvvMask),
                                     onblur: ctrl.checkcvv,
                                     value: ctrl.creditCard.cvv()

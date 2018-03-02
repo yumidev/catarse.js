@@ -132,6 +132,7 @@ const projectContributionReportContentCard = {
                                         m('.fontsize-smallest.lineheight-looser', [
                                             (contribution.has_another ? [
                                                 m('a.link-hidden-light.badge.badge-light', '+1 후원 ')
+                                                //coffee m('a.link-hidden-light.badge.badge-light', '+1 apoio ')
                                             ] : ''),
                                             (contribution.anonymous ? m('span.fa.fa-eye-slash.fontcolor-secondary', m('span.fontcolor-secondary[style="font-size:11px;"]', ` ${I18n.t('contribution.anonymous_contribution', contributionScope())}`)) : '')
                                         ]),
@@ -160,6 +161,7 @@ const projectContributionReportContentCard = {
                                           m('.fontsize-smallest', [
                                               m('a.link-hidden',
                                                 '설문지 '
+                                                  //coffee 'Questionário '
                                             ),
                                               m('span.fontweight-semibold.text-success',
                                                 'respondido'
@@ -173,9 +175,11 @@ const projectContributionReportContentCard = {
                                           m('.fontsize-smallest', [
                                               m('a.link-hidden',
                                                 '설문지 '
+                                                  //coffee 'Questionário '
                                             ),
                                               m('span.fontweight-semibold.text-fail',
                                                 '대답 없음'
+                                                  //coffee 'sem resposta'
                                             )
                                           ]),
                                           m('.fontcolor-terciary.fontsize-smallest',
@@ -186,6 +190,7 @@ const projectContributionReportContentCard = {
                                         m('.fontsize-smallest', [
                                             m('a.link-hidden',
                                                 '설문지 '
+                                                //coffee 'Questionário '
                                             ),
                                             m('span.fontweight-semibold.text-waiting',
                                                 'enviado'
@@ -309,8 +314,10 @@ const projectContributionReportContentCard = {
                             m('.fontsize-small',
                                 m('p', [
                                     `성명: ${contribution.user_name}`,
+                                    //coffee `Nome completo: ${contribution.user_name}`,
                                     m('br'),
                                     `공용 이름: ${contribution.public_user_name}`,
+                                    //coffee `Nome público: ${contribution.public_user_name}`,
                                     m('br'),
                                     contribution.email,
                                     m('br'),

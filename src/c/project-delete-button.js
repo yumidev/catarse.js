@@ -27,6 +27,7 @@ const projectDeleteButton = {
                     [
                         m.trust('&nbsp;'),
                         '프로젝트 삭제 ',
+                        //coffee 'Deletar projeto ',
                         m('span.fa.fa-trash', ''
                     )
                     ]

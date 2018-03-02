@@ -35,11 +35,15 @@ const adminContributionDetail = {
                     property: 'user_id',
                     updateKey: 'id',
                     callToAction: '다운로드',
+                    //coffee   callToAction: 'Transferir',
                     innerLabel: 'Id do novo apoiador:',
                     outerLabel: 'Transferir Apoio',
                     placeholder: '예: 129908',
-                    successMessage: '후원이 성공적으로 이루어 졌습니다!',
+                    //coffee  placeholder: 'ex: 129908',
+                    successMessage: 'Apoio transferido com sucesso!',
+                    //coffee   successMessage: '후원이 성공적으로 이루어 졌습니다!',
                     errorMessage: '후원을 실패하였습니다!',
+                    //coffee   errorMessage: 'O apoio não foi transferido!',
                     model: models.contributionDetail
                 },
                 reward: {
@@ -48,32 +52,44 @@ const adminContributionDetail = {
                     selectKey: 'reward_id',
                     radios: 'rewards',
                     callToAction: '보상 변경',
+                    //coffee   callToAction: 'Alterar Recompensa',
                     outerLabel: '보상',
+                    //coffee   outerLabel: 'Recompensa',
                     getModel: models.rewardDetail,
                     updateModel: models.contributionDetail,
                     selectedItem: loadReward(),
                     addEmpty: { id: -1, minimum_value: 10, description: '보상 없음' },
+                    //coffee   addEmpty: { id: -1, minimum_value: 10, description: 'Sem recompensa' },
                     validate(rewards, newRewardID) {
                         const reward = _.findWhere(rewards, { id: newRewardID });
                         return (args.item.value >= reward.minimum_value) ? undefined : '최소 보상 값이 기여 금액보다 큽니다.';
+                        //coffee   return (args.item.value >= reward.minimum_value) ? undefined : 'Valor mínimo da recompensa é maior do que o valor da contribuição.';
                     }
                 },
                 refund: {
                     updateKey: 'id',
                     callToAction: '직접 상환',
+                    //coffee   callToAction: 'Reembolso direto',
                     innerLabel: '이 지원금을 환급 받으시겠습니까?',
+                    //coffee   innerLabel: 'Tem certeza que deseja reembolsar esse apoio?',
                     outerLabel: '환불',
+                    //coffee   outerLabel: 'Reembolsar Apoio',
                     model: models.contributionDetail
                 },
                 remove: {
                     property: 'state',
                     updateKey: 'id',
                     callToAction: '삭제',
-                    innerLabel: '이 지원을 삭제 하시겠습니까?',
-                    outerLabel: '지원 삭제',
+                    //coffee   callToAction: 'Apagar',
+                    innerLabel: '이 후원을 삭제 하시겠습니까?',
+                    //coffee   innerLabel: 'Tem certeza que deseja apagar esse apoio?',
+                    outerLabel: '후원 삭제',
+                    //coffee   outerLabel: 'Apagar Apoio',
                     forceValue: 'deleted',
-                    successMessage: '지원이 성공적으로 삭제되었습니다!',
-                    errorMessage: '지원이 삭제되지 않았습니다!',
+                    successMessage: '후원이 성공적으로 삭제되었습니다!',
+                    //coffee   successMessage: 'Apoio removido com sucesso!',
+                    errorMessage: '후원이 삭제되지 않았습니다!',
+                    //coffee   errorMessage: 'O apoio não foi removido!',
                     model: models.contributionDetail
                 }
             },

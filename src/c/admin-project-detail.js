@@ -108,10 +108,12 @@ const adminProjectDetail = {
                         }, (!ctrl.actions.changeUserAction.complete()) ? [
                             m('label', 'Id do novo realizador:'),
                             m(`input.w-input.text-field[type="tel"][placeholder="예: 239049"]`, {
+                            //coffee m(`input.w-input.text-field[type="tel"][placeholder="ex: 239049"]`, {
                                 onchange: m.withAttr('value', ctrl.actions.changeUserAction.newValue),
                                 value: ctrl.actions.changeUserAction.newValue()
                             }),
                             m('input.w-button.btn.btn-small[type="submit"][value="다운로드"]', {
+                            //coffee m('input.w-button.btn.btn-small[type="submit"][value="Transferir"]', {
                                 onclick: ctrl.actions.changeUserAction.submit(ctrl.actions.changeUserAction.newValue())
                             })
                         ] : (!ctrl.actions.changeUserAction.error()) ? [
@@ -121,18 +123,21 @@ const adminProjectDetail = {
                         ] : [
                             m('.w-form-error[style="display:block;"]', [
                                 m('p', '요청에 문제가 발생했습니다. 프로젝트를 받을 사용자가 유효한 데이터를 가지고 있는지 확인해 주세요.')
+                                //coffee m('p', 'Houve um problema na requisição. Verifique se o usuário que vai receber o projeto possui dados válidos.')
                             ])
                         ])
                     ]) : ''
                 ]),
                 m('.w-col.w-col-2', [
                     m('a.btn.btn-small.btn-terciary', {href: `/projects/${item.project_id}/contributions_report`}, '후원 보고서')
+                    //coffee m('a.btn.btn-small.btn-terciary', {href: `/projects/${item.project_id}/contributions_report`}, 'Relatório de apoios')
                 ])
             ]),
             m('.w-row.card.card-terciary.u-radius', [
                 m('.w-col.w-col-4', [
                     m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20',
                         '프로젝트 세부 정보'
+                        //coffee 'Detalhes do projeto'
                     ),
                     m('.fontsize-smallest.fontweight-semibold.u-marginbottom-20',
                         `catarse.me/${item.permalink}`
@@ -151,21 +156,25 @@ const adminProjectDetail = {
                     m('.fontsize-smallest.lineheight-looser', [
                         m('span.fontweight-semibold',
                             '항공편: '
+                            //coffee 'Início: '
                         ),
                         h.momentify(item.project_online_date, 'DD/MM/YYYY, HH:mm'),
                         m('br'),
                         m('span.fontweight-semibold',
                             '기간: '
+                            //coffee 'Término: '
                         ),
                         h.momentify(item.project_expires_at, 'DD/MM/YYYY, HH:mm'),
                         m('br'),
                         m('span.fontweight-semibold',
                             '마지막 업데이트: '
+                            //coffee 'Últ. atualização: '
                         ),
                         h.momentify(item.updated_at, 'DD/MM/YYYY, HH:mm'),
                         m('br'),
                         m('span.fontweight-semibold',
                             '새로운 기능: '
+                            //coffee '새로운 기능: '
                         ),
                         item.posts_count,
                         m('br'),
@@ -178,20 +187,24 @@ const adminProjectDetail = {
                 m('.w-col.w-col-4', [
                     m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20',
                         '은행 세부 정보'
+                        //coffee 'Dados bancários'
                     ),
                     m('.fontsize-smallest.lineheight-looser', [
                         m('span.fontweight-semibold',
                             '은행: '
+                            //coffee 'Banco: '
                         ),
                         bankAccount.bank_name,
                         m('br'),
                         m('span.fontweight-semibold',
                             '에이전시: '
+                            //coffee 'Agencia: '
                         ),
                         `${bankAccount.agency}-${bankAccount.agency_digit}`,
                         m('br'),
                         m('span.fontweight-semibold',
                             '계정: '
+                            //coffee 'Conta: '
                         ),
                         `${bankAccount.account}-${bankAccount.account_digit}`,
                         m('br'),
@@ -199,6 +212,7 @@ const adminProjectDetail = {
                         m('br'),
                         m('span.fontweight-semibold',
                             '이름: '
+                            //coffee 'Nome: '
                         ),
                         bankAccount.owner_name,
                         m('br'),
@@ -215,6 +229,7 @@ const adminProjectDetail = {
                     m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [
                         m('span.fontweight-semibold',
                             '이름: '
+                            //coffee 'Nome: '
                         ),
                         user.name,
                         m('br'),
@@ -230,22 +245,26 @@ const adminProjectDetail = {
                         m('br'),
                         m('span.fontweight-semibold',
                             '이메일: '
+                            //coffee 'Email: '
                         ),
                         user.email,
                         m('br'),
                         m('span.fontweight-semibold',
                             '주소: '
+                            //coffee 'Endereço: '
                         ),
                         m.trust('&nbsp;'),
                         ` ${userAddress.address_street}, ${userAddress.address_number} ${userAddress.address_complement} - ${userAddress.address_city} - ${userAddress.address_state} ${userAddress.address_zip_code}`,
                         m('br'),
                         m('span.fontweight-semibold',
                             '전화:'
+                            //coffee 'Telefone:'
                         ),
                         userAddress.phone_number
                     ]),
                     m('.fontsize-smallest.lineheight-looser', [
                         `${user.total_published_projects} 생성 된 프로젝트 `,
+                        //coffee `${user.total_published_projects} projetos criados `,
                         m('br'),
                         m.trust('&nbsp;'),
                         m('br')

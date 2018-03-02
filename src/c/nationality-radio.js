@@ -21,6 +21,7 @@ const nationalityRadio = {
                 m('.w-col.w-col-4',
                     m('.fontsize-small.fontweight-semibold',
                         '국적:'
+                        //coffee 'Nacionalidade:'
                     )
                 ),
                 m('.w-col.w-col-4',
@@ -50,6 +51,7 @@ const nationalityRadio = {
                         }),
                         m('label.w-form-label',
                             '국제'
+                            //coffee 'International'
                         )
                     ])
                 )

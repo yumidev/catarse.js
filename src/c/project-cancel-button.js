@@ -28,6 +28,7 @@ const projectCancelButton = {
                             m('span.fa.fa-times-circle', ''),
                             m.trust('&nbsp;'),
                             '프로젝트 취소'
+                            //coffee 'Cancelar projeto'
                         ]
                     )
                 ))

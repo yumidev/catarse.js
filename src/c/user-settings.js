@@ -83,6 +83,7 @@ const userSettings = {
                     }
                     parsedErrors = userSettingsVM.mapRailsErrors(err.errors_json);
                     error('정보 업데이트 오류.');
+                    //coffee error('Erro ao atualizar informações.');
                     loading(false);
                     if (showSuccess()) {
                         showSuccess.toggle();
@@ -199,6 +200,7 @@ const userSettings = {
                                                 value: fields.name(),
                                                 name: 'user[name]',
                                                 class: ctrl.parsedErrors.hasError('name') ? '오류' : false,
+                                                //coffee class: ctrl.parsedErrors.hasError('name') ? 'error' : false,
                                                 onchange: m.withAttr('value', fields.name),
                                                 disabled: disableFields
                                             }),
@@ -213,6 +215,7 @@ const userSettings = {
                                                     m(`input.string.tel.required.w-input.text-field.positive${(disableFields ? '.text-field-disabled' : '')}[data-validate-cpf-cnpj='true'][id='user_bank_account_attributes_owner_document'][type='tel'][validation_text='true']`, {
                                                         value: fields.owner_document(),
                                                         class: ctrl.parsedErrors.hasError('owner_document') ? '오류' : false,
+                                                        //coffee class: ctrl.parsedErrors.hasError('owner_document') ? 'error' : false,
                                                         disabled: disableFields,
                                                         name: 'user[cpf]',
                                                         onchange: m.withAttr('value', ctrl.applyDocumentMask),
@@ -228,6 +231,7 @@ const userSettings = {
                                                         value: fields.birth_date(),
                                                         name: 'user[birth_date]',
                                                         class: ctrl.parsedErrors.hasError('birth_date') ? '오류' : false,
+                                                        //coffee class: ctrl.parsedErrors.hasError('birth_date') ? 'error' : false,
                                                         disabled: (disableFields && !_.isEmpty(user.birth_date)),
                                                         onchange: m.withAttr('value', ctrl.applyBirthDateMask),
                                                         onkeyup: m.withAttr('value', ctrl.applyBirthDateMask)
@@ -240,6 +244,7 @@ const userSettings = {
                                                     m('input.string.tel.required.w-input.text-field.positive[data-validate-cpf-cnpj=\'true\'][id=\'user_bank_account_attributes_owner_document\'][type=\'tel\'][validation_text=\'true\']', {
                                                         value: fields.state_inscription(),
                                                         class: ctrl.parsedErrors.hasError('state_inscription') ? '오류' : false,
+                                                        //coffee class: ctrl.parsedErrors.hasError('state_inscription') ? 'error' : false,
                                                         name: 'user[state_inscription]',
                                                         onchange: m.withAttr('value', fields.state_inscription)
                                                     }),

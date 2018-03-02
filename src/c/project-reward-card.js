@@ -134,6 +134,7 @@ const projectRewardCard = {
                 m('.w-col.w-col-6', !_.isEmpty(reward.deliver_at) ? [
                     m('.fontcolor-secondary.fontsize-smallest',
                         m('span', '예상 배송:')
+                        //coffee m('span', 'Entrega prevista:')
                     ),
                     m('.fontsize-smallest',
                         h.momentify(reward.deliver_at, 'MMM/YYYY')
@@ -143,6 +144,7 @@ const projectRewardCard = {
                     m('.fontcolor-secondary.fontsize-smallest',
                         m('span',
                             '배송:'
+                            //coffee 'Envio:'
                         )
                     ),
                     m('.fontsize-smallest',
@@ -153,6 +155,7 @@ const projectRewardCard = {
             reward.maximum_contributions > 0 ? [
                 (h.rewardSouldOut(reward) ? m('.u-margintop-10', [
                     m('span.badge.badge-gone.fontsize-smaller', '품절')
+                    //coffee m('span.badge.badge-gone.fontsize-smaller', 'Esgotada')
                 ]) : m('.u-margintop-10', [
                     m('span.badge.badge-attention.fontsize-smaller', [
                         m('span.fontweight-bold', 'Limitada'),
@@ -163,6 +166,7 @@ const projectRewardCard = {
             m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', h.pluralize(reward.paid_count, ' apoio', ' apoios')),
             reward.waiting_payment_count > 0 ? m('.maximum_contributions.in_time_to_confirm.clearfix', [
                 m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, '확인 기간에 후원', ' 확인 기간에 후원.'))
+                //coffee m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, 'apoio em prazo de confirmação', ' apoios em prazo de confirmação.'))
             ]) : '',
             project.open_for_contributions && !h.rewardSouldOut(reward) ? [
                 ctrl.isRewardOpened() ? m('.w-form', [
@@ -173,6 +177,7 @@ const projectRewardCard = {
                         rewardVM.hasShippingOptions(reward) ? m('div', [
                             m('.fontcolor-secondary.u-marginbottom-10',
                                 '배송지'
+                                //coffee 'Local de entrega'
                             ),
                             m('select.positive.text-field.w-select', {
                                 onchange: m.withAttr('value', ctrl.selectDestination),
@@ -192,6 +197,7 @@ const projectRewardCard = {
                         ]) : '',
                         m('.fontcolor-secondary.u-marginbottom-10',
                             '후원의 가치'
+                            //coffee 'Valor do apoio'
                         ),
                         m('.w-row.u-marginbottom-20', [
                             m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3',

@@ -98,6 +98,7 @@ const projectGoalEdit = {
                                     m('.u-text-center.fontsize-smaller', [
                                         m('a.mode-diff-toggle.link-hidden-light.fontweight-semibold[href="javascript:void(0);"]', { onclick: ctrl.showModeDiff.toggle }, [
                                             '모델의 차이점보기',
+                                            //coffee 'Veja a diferença entre os modelos',
                                             m('span.fa.fa-chevron-down')
                                         ])
                                     ]),
@@ -131,6 +132,7 @@ const projectGoalEdit = {
                                                             m('label.field-label'),
                                                             m('input.string.optional.w-input.text-field.postfix.positive.medium[autocomplete="off"][id="project-goal-input"][name="project[goal]"][type="tel"]', {
                                                                 class: vm.e.hasError('goal') ? '오류' : false,
+                                                                //coffee class: vm.e.hasError('goal') ? 'error' : false,
                                                                 value: vm.fields.goal(),
                                                                 maxlength: 14,
                                                                 onkeyup: m.withAttr('value', ctrl.applyGoalMask)
@@ -178,12 +180,14 @@ const projectGoalEdit = {
                                                             onchange: m.withAttr('value', vm.fields.online_days),
                                                             value: vm.fields.online_days(),
                                                             class: vm.e.hasError('online_days') ? '오류' : false
+                                                            //coffee class: vm.e.hasError('online_days') ? 'error' : false
                                                         })
                                                     ])
                                                 ]),
                                                 m('.w-col.w-col-4', [
                                                     m('.text-field.medium.prefix-permalink.u-text-center', [
                                                         m('', '일')])
+                                                        //coffee m('', 'dias')])
                                                 ])
                                             ]),
                                             vm.e.inlineError('online_days')
@@ -212,12 +216,14 @@ const projectGoalEdit = {
                                                             onchange: m.withAttr('value', vm.fields.online_days),
                                                             value: vm.fields.online_days(),
                                                             class: vm.e.hasError('online_days') ? '오류' : false
+                                                            //coffee class: vm.e.hasError('online_days') ? 'error' : false
                                                         })
                                                     ])
                                                 ]),
                                                 m('.w-col.w-col-6', [
                                                     m('.text-field.medium.prefix-permalink', {
                                                         class: vm.e.hasError('online_days') ? '오류' : false
+                                                        //coffee class: vm.e.hasError('online_days') ? 'error' : false
                                                     }, [
                                                         m('', 'dias')
                                                     ])

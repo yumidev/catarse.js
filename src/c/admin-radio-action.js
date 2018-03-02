@@ -45,6 +45,7 @@ const adminRadioAction = {
             } else {
                 error({
                     message: '항목이 업데이트되지 않았습니다.'
+                    //coffee message: 'Nenhum item atualizado'
                 });
             }
             complete(true);
@@ -112,7 +113,8 @@ const adminRadioAction = {
     view(ctrl, args) {
         const data = args.data,
             item = args.item(),
-            btnValue = (ctrl.setLoader() || ctrl.getLoader()) ? '기다려 주시길 바랍니다...' : data.callToAction;
+            btnValue = (ctrl.setLoader() || ctrl.getLoader()) ? 'por favor, aguarde...' : data.callToAction;
+            //coffee btnValue = (ctrl.setLoader() || ctrl.getLoader()) ? '기다려 주시길 바랍니다...' : data.callToAction;
 
         return m('.w-col.w-col-2', [
             m('button.btn.btn-small.btn-terciary', {
@@ -136,11 +138,13 @@ const adminRadioAction = {
                         m(`label.w-form-label[for="r-${index}"]`, `R$${radio.minimum_value}`)
                     ])) : h.loader(),
                     m('strong', '상품 설명'),
+                    //coffee m('strong', 'Descrição'),
                     m('p', ctrl.description()),
                     m(`input.w-button.btn.btn-small[type="submit"][value="${btnValue}"]`)
                 ] : (!ctrl.error()) ? [
                     m('.w-form-done[style="display:block;"]', [
                         m('p', '보상이 성공적으로 변경되었습니다.!')
+                        //coffee m('p', 'Recompensa alterada com sucesso!')
                     ])
                 ] : [
                     m('.w-form-error[style="display:block;"]', [

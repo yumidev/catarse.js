@@ -87,6 +87,7 @@ const projectContributionReportContent = {
 
             (ctrl.showSuccess() ? m.component(popNotification, {
                 message: '정보가 업데이트 되었습니다.'
+                //coffee message: 'As informações foram atualizadas'
             }) : ''),
             m('.w-container', [
                 m('.u-marginbottom-40',
@@ -97,6 +98,7 @@ const projectContributionReportContent = {
                                     (list.isLoading() ? '' : list.total())
                                 ),
                                 ' 후원'
+                                //coffee ' apoios'
                             ])
                         ),
                         m('.w-col.w-col-6', isFailed ? '' : [
@@ -105,11 +107,13 @@ const projectContributionReportContent = {
                                     onclick: ctrl.selectAll
                                 },
                                     '모두 선택'
+                                    //coffee 'Selecionar todos'
                                 ) :
                                 m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
                                     onclick: ctrl.unselectAll
                                 },
                                     '모두 선택 취소'
+                                    //coffee 'Desmarcar todos'
                                 )
                             ),
                             (ctrl.selectedAny() ?
@@ -118,8 +122,10 @@ const projectContributionReportContent = {
                                         onclick: ctrl.showSelectedMenu.toggle
                                     }, [
                                         '전화 걸기 ',
+                                            //coffee 'Marcar ',
                                         m('span.w-hidden-tiny',
                                             '배달'
+                                            //coffee 'entrega'
                                         ),
                                         ' como'
                                     ]),
@@ -129,11 +135,13 @@ const projectContributionReportContent = {
                                                 onclick: () => ctrl.displayDeliverModal.toggle()
                                             },
                                                 '배달 됨'
+                                                //coffee 'Entregue'
                                             ),
                                             m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
                                                 onclick: () => ctrl.displayErrorModal.toggle()
                                             },
                                                 '전송 오류'
+                                                //coffee 'Erro na entrega'
                                             )
                                         ]) : '')
                                 ]) : '')
@@ -144,6 +152,7 @@ const projectContributionReportContent = {
                                     ''
                                 ),
                                 ' 보고서 다운로드'
+                                //coffee ' Baixar relatórios'
                             ])
                         )
                     ])

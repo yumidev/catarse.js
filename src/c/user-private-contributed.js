@@ -61,6 +61,7 @@ const userPrivateContributed = {
 
         return m('.content[id=\'private-contributed-tab\']', ctrl.error() ? m.component(inlineError, {
             message: '프로젝트 로드 오류.'
+            //coffee message: 'Erro ao carregar os projetos.'
         }) : ctrl.loader() ? h.loader() :
             (_.isEmpty(onlineCollection) && _.isEmpty(successfulCollection) && _.isEmpty(failedCollection)) ?
             m('.w-container',
@@ -69,6 +70,7 @@ const userPrivateContributed = {
                     m('.w-col.w-col-6', [
                         m('.fontsize-large.u-marginbottom-30', [
                             '아직 어떤 것도 후원하지 않았습니다.',
+                            //coffee 'Você ainda não apoiou nenhum projeto no.',
                             m.trust('&nbsp;'),
                             'Catarse...'
                         ]),
@@ -82,6 +84,7 @@ const userPrivateContributed = {
                                     }
                                 },
                                     '지금 후원!'
+                                    //coffee 'Apoie agora!'
                                 )
                             ),
                             m('.w-col.w-col-3')
@@ -93,11 +96,13 @@ const userPrivateContributed = {
             [
                 m.component(userContributedList, {
                     title: '진행중인 프로젝트',
+                    //coffee title: 'Projetos em andamento',
                     collection: onlineCollection,
                     pagination: ctrl.onlinePages
                 }),
                 m.component(userContributedList, {
                     title: '성공적인 프로젝트',
+                    //coffee title: 'Projetos bem-sucedidos',
                     collection: successfulCollection,
                     pagination: ctrl.successfulPages
                 }),

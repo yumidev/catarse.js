@@ -49,6 +49,7 @@ const projectContributions = {
 
         const contributionsPerLocationTable = [
             ['Estado', '후원', 'R$ apoiados (% do total)']
+            //coffee ['Estado', 'Apoios', 'R$ apoiados (% do total)']
         ];
         const buildPerLocationTable = contributions => (!_.isEmpty(contributions)) ? _.map(_.first(contributions).source, (contribution) => {
             const column = [];
@@ -97,6 +98,7 @@ const projectContributions = {
                          ),
                         m('.fontsize-large',
                           '사람들이 이 프로젝트를 후원합니다'
+                          //coffee 'pessoas apoiam este projeto'
                          )
                     ]),
                     m('.w-col.w-col-6',
@@ -105,12 +107,14 @@ const projectContributions = {
                             m('.u-marginbottom-20.w-col.w-sub-col.w-col-6.w-col-small-6', [
                                 m('.fontweight-semibold.u-marginbottom-10',
                                   '새로운 후원자들'
+                                  //coffee 'Apoiadores novos'
                                  ),
                                 m('.fontsize-largest.u-marginbottom-10',
                                   `${Math.floor(stats.new_percent)}%`
                                  ),
                                 m('.fontsize-smallest',
                                   '카타르에서 프로젝트를 후원해 본적이 없는 후원자들'
+                                  //coffee 'apoiadores que nunca tinham apoiado um projeto no Catarse'
                                  )
                             ]),
                             m('.w-col.w-sub-col.w-col-6.w-col-small-6', [
@@ -123,6 +127,7 @@ const projectContributions = {
                                  ),
                                 m('.fontsize-smallest',
                                   '카타르에서 이미 프로젝트를 후원 한 후원자들'
+                                  //coffee 'apoiadores que já tinham apoiado um projeto no Catarse'
                                  )
                             ])
                         ])

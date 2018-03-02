@@ -56,6 +56,7 @@ const projectTabs = {
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_rewards_view', project: project() })
                             }, '보상') : m(`a[id="rewards-link"][class="w-hidden-main w-hidden-medium dashboard-nav-link mf ${(h.hashMatch('#contribution_suggestions') || (h.mobileScreen() && h.hashMatch('')) ? 'selected' : '')}"][href="/${project().permalink}#contribution_suggestions"]`, {
+                            //coffee }, 'Recompensas') : m(`a[id="rewards-link"][class="w-hidden-main w-hidden-medium dashboard-nav-link mf ${(h.hashMatch('#contribution_suggestions') || (h.mobileScreen() && h.hashMatch('')) ? 'selected' : '')}"][href="/${project().permalink}#contribution_suggestions"]`, {
                                 style: 'float: left;',
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_contribsuggestions_view', project: project() })
@@ -65,12 +66,14 @@ const projectTabs = {
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_about_view', project: project() })
                             }, '위키 소개'),
+                            //coffee }, 'Sobre'),
                             m(`a[id="posts-link"][class="dashboard-nav-link mf ${(h.hashMatch('#posts') ? 'selected' : '')}"][href="/${project().permalink}#posts"]`, {
                                 style: 'float: left;',
                                 onclick: h.analytics.event({
                                     cat: 'project_view', act: 'project_posts_view', project: project() })
                             }, [
                                 '새로운 기능 ',
+                                //coffee 'Novidades ',
                                 m('span.badge', project() ? project().posts_count : '')
                             ]),
                             m(`a[id="contributions-link"][class="w-hidden-small w-hidden-tiny dashboard-nav-link mf ${(h.hashMatch('#contributions') ? 'selected' : '')}"][href="#contributions"]`, {
@@ -79,6 +82,7 @@ const projectTabs = {
                                     cat: 'project_view', act: 'project_contributions_view', project: project() })
                             }, [
                                 '후원자 ',
+                                //coffee 'Apoiadores ',
                                 m('span.badge.w-hidden-small.w-hidden-tiny', project() ? project().total_contributors : '-')
                             ]),
                             m(`a[id="comments-link"][class="dashboard-nav-link mf ${(h.hashMatch('#comments') ? 'selected' : '')}"][href="#comments"]`, {
@@ -87,6 +91,7 @@ const projectTabs = {
                                     cat: 'project_view', act: 'project_comments_view', project: project() })
                             }, [
                                 '자기 소개 ',
+                                //coffee 'Comentários ',
                                 project() ? m(`fb:comments-count[href="http://www.catarse.me/${project().permalink}"][class="badge project-fb-comment w-hidden-small w-hidden-tiny"][style="display: inline"]`, m.trust('&nbsp;')) : '-'
                             ])
                         ]),
@@ -96,6 +101,7 @@ const projectTabs = {
                                     m(`a.w-button.btn[href="/projects/${project().project_id}/contributions/new"]`, {
                                         onclick: h.analytics.event({ cat: 'contribution_create', act: 'contribution_floatingbtn_click', project: project() })
                                     }, '이 프로젝트 후원')
+                                    //coffee }, 'Apoiar ‍este projeto')
                                 ]),
                                 m('.w-col.w-col-6.w-col-medium-4', {
                                     onclick: h.analytics.event({ cat: 'project_view', act: 'project_floatingreminder_click', project: project() })

@@ -84,15 +84,19 @@ const usersEdit = {
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#about_me' ? '.selected' : '')}[data-target='#dashboard_about_me'][href='#about_me'][id='dashboard_about_me_link']`,
                               '공개 프로필'
+                              //coffee 'Perfil Público
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#settings' ? '.selected' : '')}[data-target='#dashboard_settings'][href='#settings'][id='dashboard_settings_link']`,
                               '지적 데이터'
+                                //coffee 'Dados cadastrais'
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#notifications' ? '.selected' : '')}[data-target='#dashboard_notifications'][href='#notifications'][id='dashboard_notifications_link']`,
                                 '알림'
+                                //coffee 'Notificações'
                             ),
                             m(`a.dashboard-nav-link${(ctrl.hash() === '#balance' ? '.selected' : '')}[data-target='#dashboard_balance'][href='#balance'][id='dashboard_balance_link']`,
                               '균형'
+                                //coffee 'Saldo'
                              ),
                             m(`a.dashboard-nav-link.u-right-big-only[href='/pt/users/${user.id}']`, {
                                 config: m.route,
@@ -103,6 +107,7 @@ const usersEdit = {
                                 }
                             },
                                 '공개 프로필로 이동'
+                                //coffee 'Ir para o perfil público'
                             )
                         ])
                     ),

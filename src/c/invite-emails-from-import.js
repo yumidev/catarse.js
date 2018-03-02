@@ -75,6 +75,7 @@ const inviteEmailsFromImport = {
             m('.modal-dialog-header', [
                 m('.fontsize-large.u-text-center',
                   '친구 초대하기')
+                  //coffee 'Convide seus amigos')
             ]),
             m('.modal-dialog-content', (!args.loadingContacts() && !ctrl.loading() ? [
                 m('.filter-area', [
@@ -82,6 +83,7 @@ const inviteEmailsFromImport = {
                         m('.w-sub-col.w-col.w-col-12', [
                             m('form[action="javascript:void(0);"]', [
                                 m('input.w-input.text-field[type="text"][placeholder="이름 또는 이메일로 검색."]', {
+                                    //coffee m('input.w-input.text-field[type="text"][placeholder="Busque pelo nome ou email."]', {
                                     onkeyup: m.withAttr('value', ctrl.filterTerm),
                                     onchange: (e) => { e.preventDefault(); }
                                 })
@@ -110,6 +112,7 @@ const inviteEmailsFromImport = {
                          onclick: ctrl.submitInvites
                      }, `Enviar ${ctrl.checkedList().length} convites`)
                  ]) : (!ctrl.loading() ? '연락처 로드 중...' : '초대장 보내기'))
+                //coffee ]) : (!ctrl.loading() ? 'carregando contatos...' : 'enviando convites'))
             ])
         ]);
     }

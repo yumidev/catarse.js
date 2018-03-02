@@ -158,6 +158,7 @@ const projectsPayment = {
                         ),
                         m(`a.alt-link.fontsize-smaller.u-right[href="/projects/${projectVM.currentProject().project_id}/contributions/new${ctrl.reward().id ? `?reward_id=${ctrl.reward().id}` : ''}"]`,
                             '수정'
+                            //coffee 'Editar'
                         )
                     ]),
                     m('.divider.u-marginbottom-10.u-margintop-10'),
@@ -194,6 +195,7 @@ const projectsPayment = {
                         ctrl.reward().deliver_at ? m('.fontcolor-secondary.fontsize-smallest.u-margintop-10', [
                             m('span.fontweight-semibold',
                                 '예상 배송:'
+                                //coffee 'Entrega prevista:'
                             ),
                             ` ${h.momentify(ctrl.reward().deliver_at, 'MMM/YYYY')}`
                         ]) : '',
@@ -201,6 +203,7 @@ const projectsPayment = {
                         m('.fontcolor-secondary.fontsize-smallest', [
                             m('span.fontweight-semibold',
                                 '배송 방법: '
+                                //coffee 'Forma de envio: '
                             ),
                             I18n.t(`shipping_options.${ctrl.reward().shipping_options}`, {
                                 scope: 'projects.contributions'
@@ -264,10 +267,12 @@ const projectsPayment = {
                                             m('input.positive.w-input.text-field[id=\'complete-name\'][name=\'complete-name\']', {
                                                 onfocus: ctrl.vm.resetFieldError('completeName'),
                                                 class: ctrl.fieldHasError('completeName') ? '오류' : false,
+                                                //coffee class: ctrl.fieldHasError('completeName') ? 'error' : false,
                                                 type: 'text',
                                                 onchange: m.withAttr('value', ctrl.vm.fields.completeName),
                                                 value: ctrl.vm.fields.completeName(),
                                                 placeholder: '성명'
+                                                //coffee placeholder: 'Nome Completo'
                                             }),
                                             ctrl.fieldHasError('completeName')
                                         ]),
@@ -278,6 +283,7 @@ const projectsPayment = {
                                             m('input.positive.w-input.text-field[id=\'document\']', {
                                                 onfocus: ctrl.vm.resetFieldError('ownerDocument'),
                                                 class: ctrl.fieldHasError('ownerDocument') ? '오류' : false,
+                                                //coffee class: ctrl.fieldHasError('ownerDocument') ? 'error' : false,
                                                 type: 'tel',
                                                 onkeyup: m.withAttr('value', ctrl.applyDocumentMask),
                                                 value: ctrl.vm.fields.ownerDocument()
@@ -326,6 +332,7 @@ const projectsPayment = {
                                 ),
                                 m(`a.alt-link.fontsize-smaller.u-right[href="/projects/${projectVM.currentProject().project_id}/contributions/new${ctrl.reward().id ? `?reward_id=${ctrl.reward().id}` : ''}"]`,
                                     '수정'
+                                    //coffee 'Editar'
                                 )
                             ]),
                             m('.divider.u-marginbottom-10.u-margintop-10'),
@@ -362,6 +369,7 @@ const projectsPayment = {
                                 ctrl.reward().deliver_at ? m('.fontcolor-secondary.fontsize-smallest.u-margintop-10', [
                                     m('span.fontweight-semibold',
                                         '예상 배송:'
+                                        //coffee 'Entrega prevista:'
                                     ),
                                     ` ${h.momentify(ctrl.reward().deliver_at, 'MMM/YYYY')}`
                                 ]) : '',
@@ -369,6 +377,7 @@ const projectsPayment = {
                                 m('.fontcolor-secondary.fontsize-smallest', [
                                     m('span.fontweight-semibold',
                                         '배송 방법: '
+                                        //coffee 'Forma de envio: '
                                     ),
                                     I18n.t(`shipping_options.${ctrl.reward().shipping_options}`, {
                                         scope: 'projects.contributions'
@@ -380,9 +389,11 @@ const projectsPayment = {
                                     //     m('.divider.u-marginbottom-10.u-margintop-10'),
                                     //     m('.fontsize-smaller.fontweight-semibold',
                                     //         '보상 목적지:'
+                                    //         //coffee 'Destino da recompensa:'
                                     //     ),
                                     //     m(`a.alt-link.fontsize-smaller.u-right[href="/projects/${projectVM.currentProject().project_id}/contributions/new${ctrl.reward().id ? `?reward_id=${ctrl.reward().id}` : ''}"]`,
                                     //         '수정'
+                                    //         //coffee 'Editar'
                                     //     ),
                                     //     m('.fontsize-smaller', { style: 'padding-right: 42px;' },
                                     //         `${rewardVM.feeDestination(ctrl.reward(), ctrl.contribution().shipping_fee_id)}`
