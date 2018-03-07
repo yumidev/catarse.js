@@ -22,8 +22,10 @@ const
   	selfOrEmpty = (obj: any, emptyState: string = ''): any => obj || emptyState,
     setMomentifyLocale = (): void => {
         moment.locale('pt', {
-            months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-            monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_')
+            months: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
+            //coffee months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+            monthsShort: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_')
+            //coffee monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_')
         });
     },
     existy = (x: any): boolean => x != null,
@@ -198,13 +200,15 @@ const
                     _.map(fields, (field) => {
                         if (field.rule === 'email') {
                             if (!validateEmail(field.prop())) {
-                                validationErrors().push({ field: field.prop, message: 'E-mail inválido.' });
+                                validationErrors().push({ field: field.prop, message: '이메일이 잘못되었습니다..' });
+                                //coffee validationErrors().push({ field: field.prop, message: 'E-mail inválido.' });
                             }
                         }
 
                         if (field.rule === 'text') {
                             if (field.prop().trim() === '') {
-                                validationErrors().push({ field: field.prop, message: 'O campo não pode ser vazio.' });
+                                validationErrors().push({ field: field.prop, message: '필드는 비워 둘 수 없습니다.' });
+                                //coffee validationErrors().push({ field: field.prop, message: 'O campo não pode ser vazio.' });
                             }
                         }
                     });
@@ -552,19 +556,23 @@ const
             },
             successful: {
                 cssClass: 'text-success',
-                text: 'FINANCIADO'
+                text: '금융'
+                //coffee text: 'FINANCIADO'
             },
             failed: {
                 cssClass: 'text-error',
-                text: 'NÃO FINANCIADO'
+                text: '재정 지원되지 않음'
+                //coffee text: 'NÃO FINANCIADO'
             },
             waiting_funds: {
                 cssClass: 'text-waiting',
-                text: 'AGUARDANDO'
+                text: '기다리는 중'
+                //coffee text: 'AGUARDANDO'
             },
             rejected: {
                 cssClass: 'text-error',
-                text: 'CANCELADO'
+                text: '취소됨'
+                //coffee text: 'CANCELADO'
             },
             draft: {
                 cssClass: '',
@@ -572,18 +580,21 @@ const
             },
             in_analysis: {
                 cssClass: '',
-                text: 'EM ANÁLISE'
+                text: '분석 중'
+                //coffee text: 'EM ANÁLISE'
             },
             approved: {
                 cssClass: 'text-success',
-                text: 'APROVADO'
+                text: '승인 됨'
+                //coffee text: 'APROVADO'
             }
         };
 
         if (has_cancelation_request) {
             return {
                 cssClass: 'text-error',
-                text: 'AGUARDANDO CANCELAMENTO'
+                text: '취소를 위한 대기'
+                //coffee text: 'AGUARDANDO CANCELAMENTO'
             }
         } else {
             return statusText[state];
@@ -791,7 +802,8 @@ const
         formattingAdd: [
             {
                 tag: 'blockquote',
-                title: 'Citar',
+                title: '표창장',
+                //coffee title: 'Citar',
                 class: 'fontsize-base quote',
                 clear: true
             },
@@ -856,16 +868,19 @@ const
     contributionStatusBadge = (contribution: Object) => {
         const status = {
             delivered: m('span.fontsize-smallest.badge.badge-success',
-                'Enviada'
+                '전송 됨'
+                //coffee 'Enviada'
             ),
             received: m('span.fontsize-smallest.badge.badge-success',
                 'Recebida'
             ),
             undelivered: m('span.fontsize-smallest.badge.badge-light',
-                'Não enviada'
+                '전송되지 않음'
+                //coffee 'Não enviada'
             ),
             error: m('span.fontsize-smallest.badge.badge-attention',
-                'Erro no envio'
+                '발신 오류'
+                //coffee 'Erro no envio'
             )
         };
 
