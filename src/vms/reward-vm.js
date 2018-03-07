@@ -10,7 +10,8 @@ const error = m.prop(''),
     fees = m.prop([]),
     noReward = {
         id: null,
-        description: 'Obrigado. Eu só quero ajudar o projeto.',
+        description: '고마워. 나는 이 프로젝트를 돕고 싶다..',
+        //coffee description: 'Obrigado. Eu só quero ajudar o projeto.',
         shipping_options: null,
         minimum_value: 10
     },
@@ -115,14 +116,16 @@ const locationOptions = (reward, destination) => {
         if (feeInternational) { fee = feeInternational.value; }
         options(_.union([{
             value: 'international',
-            name: 'Outside Brazil',
+            name: '브라질 외부',
+            //coffee name: 'Outside Brazil',
             fee
         }], mapStates));
     }
 
     options(
         _.union(
-            [{ value: '', name: 'Selecione Opção', fee: 0 }],
+            [{ value: '', name: '선택 옵션', fee: 0 }],
+            //coffee [{ value: '', name: 'Selecione Opção', fee: 0 }],
             options()
         )
     );

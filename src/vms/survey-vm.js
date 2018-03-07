@@ -10,10 +10,12 @@ const openQuestionType = 'open',
         description: '',
         survey_question_choices_attributes: m.prop([
             {
-                option: 'opção 1'
-            }, 
+                option: '옵션 1'
+                //coffee option: 'opção 1'
+            },
             {
-                option: 'opção 2'
+                option: '옵션 2'
+                //coffee option: 'opção 2'
             }
         ]),
         toggleDropdown: h.toggleProp(false, true)

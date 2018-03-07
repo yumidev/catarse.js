@@ -45,23 +45,27 @@ const projectFiltersVM = () => {
 
         filters = {
             all: {
-                title: 'Todas as Categorias',
+                title: '모든 카테고리',
+                //coffee title: 'Todas as Categorias',
                 filter: all,
                 nicename: 'No ar',
                 isContextual: false,
                 keyName: 'all'
             },
             score: {
-                title: 'Todas as Categorias',
+                title: '모든 카테고리',
+                //coffee title: 'Todas as Categorias',
                 filter: score,
                 nicename: 'Populares',
                 isContextual: false,
                 keyName: 'score'
             },
             contributed_by_friends: {
-                title: 'Amigos',
+                title: '친구',
+                //coffee title: 'Amigos',
                 filter: contributed_by_friends,
-                nicename: 'Amigos',
+                nicename: '친구',
+                //coffee nicename: 'Amigos',
                 isContextual: false,
                 keyName: 'contributed_by_friends'
             },
@@ -78,21 +82,25 @@ const projectFiltersVM = () => {
                 keyName: 'expiring'
             },
             successful: {
-                title: 'Todas as Categorias',
+                title: '모든 카테고리',
+                //coffee title: 'Todas as Categorias',
                 filter: successful,
-                nicename: 'Financiados',
+                nicename: '재정 지원',
+                //coffee nicename: 'Financiados',
                 isContextual: false,
                 keyName: 'successful'
             },
             finished: {
-                title: 'Todas as Categorias',
+                title: '모든 카테고리',
+                //coffee title: 'Todas as Categorias',
                 filter: finished,
                 nicename: 'Finalizados',
                 isContextual: false,
                 keyName: 'finished'
             },
             recent: {
-                title: 'Recentes',
+                title: '최근 업데이트',
+                //coffee title: 'Recentes',
                 filter: recent,
                 isContextual: false,
                 keyName: 'recent'

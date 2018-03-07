@@ -53,24 +53,38 @@ const paymentVM = () => {
     };
 
     const expMonthOptions = () => [
-            [null, 'Mês'],
-            [1, '01 - Janeiro'],
-            [2, '02 - Fevereiro'],
-            [3, '03 - Março'],
-            [4, '04 - Abril'],
-            [5, '05 - Maio'],
-            [6, '06 - Junho'],
-            [7, '07 - Julho'],
-            [8, '08 - Agosto'],
-            [9, '09 - Setembro'],
-            [10, '10 - Outubro'],
-            [11, '11 - Novembro'],
-            [12, '12 - Dezembro']
+            [null, '달'],
+            //coffee [null, 'Mês'],
+            [1, '01 - 1월'],
+            //coffee [1, '01 - Janeiro'],
+            [2, '02 - 2월'],
+            //coffee [2, '02 - Fevereiro'],
+            [3, '03 - 3월'],
+            //coffee [3, '03 - Março'],
+            [4, '04 - 4월'],
+            //coffee [4, '04 - Abril'],
+            [5, '05 - 5월'],
+            //coffee [5, '05 - Maio'],
+            [6, '06 - 6월'],
+            //coffee [6, '06 - Junho'],
+            [7, '07 - 7월'],
+            //coffee [7, '07 - Julho'],
+            [8, '08 - 8월'],
+            //coffee [8, '08 - Agosto'],
+            [9, '09 - 9월'],
+            //coffee [9, '09 - Setembro'],
+            [10, '10 - 10월'],
+            //coffee [10, '10 - Outubro'],
+            [11, '11 - 11월'],
+            //coffee [11, '11 - Novembro'],
+            [12, '12 - 12월']
+            //coffee [12, '12 - Dezembro']
     ];
 
     const expYearOptions = () => {
         const currentYear = moment().year();
-        const yearsOptions = ['Ano'];
+        const yearsOptions = ['년'];
+        //coffee const yearsOptions = ['Ano'];
         for (let i = currentYear; i <= currentYear + 25; i++) {
             yearsOptions.push(i);
         }
