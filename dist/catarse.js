@@ -292,8 +292,10 @@ var selfOrEmpty = function selfOrEmpty(obj) {
 };
 var setMomentifyLocale = function setMomentifyLocale() {
     moment.locale('pt', {
-        months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-        monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_')
+        months: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
+        //coffee months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+        monthsShort: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_')
+        //coffee monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_')
     });
 };
 var existy = function existy(x) {
@@ -458,13 +460,15 @@ var validate = function validate() {
                 _$1.map(fields, function (field) {
                     if (field.rule === 'email') {
                         if (!validateEmail(field.prop())) {
-                            validationErrors().push({ field: field.prop, message: 'E-mail inválido.' });
+                            validationErrors().push({ field: field.prop, message: '이메일이 잘못되었습니다..' });
+                            //coffee validationErrors().push({ field: field.prop, message: 'E-mail inválido.' });
                         }
                     }
 
                     if (field.rule === 'text') {
                         if (field.prop().trim() === '') {
-                            validationErrors().push({ field: field.prop, message: 'O campo não pode ser vazio.' });
+                            validationErrors().push({ field: field.prop, message: '필드는 비워 둘 수 없습니다.' });
+                            //coffee validationErrors().push({ field: field.prop, message: 'O campo não pode ser vazio.' });
                         }
                     }
                 });
@@ -812,19 +816,23 @@ var projectStateTextClass = function projectStateTextClass(state, has_cancelatio
         },
         successful: {
             cssClass: 'text-success',
-            text: 'FINANCIADO'
+            text: '금융'
+            //coffee text: 'FINANCIADO'
         },
         failed: {
             cssClass: 'text-error',
-            text: 'NÃO FINANCIADO'
+            text: '재정 지원되지 않음'
+            //coffee text: 'NÃO FINANCIADO'
         },
         waiting_funds: {
             cssClass: 'text-waiting',
-            text: 'AGUARDANDO'
+            text: '기다리는 중'
+            //coffee text: 'AGUARDANDO'
         },
         rejected: {
             cssClass: 'text-error',
-            text: 'CANCELADO'
+            text: '취소됨'
+            //coffee text: 'CANCELADO'
         },
         draft: {
             cssClass: '',
@@ -832,18 +840,21 @@ var projectStateTextClass = function projectStateTextClass(state, has_cancelatio
         },
         in_analysis: {
             cssClass: '',
-            text: 'EM ANÁLISE'
+            text: '분석 중'
+            //coffee text: 'EM ANÁLISE'
         },
         approved: {
             cssClass: 'text-success',
-            text: 'APROVADO'
+            text: '승인 됨'
+            //coffee text: 'APROVADO'
         }
     };
 
     if (has_cancelation_request) {
         return {
             cssClass: 'text-error',
-            text: 'AGUARDANDO CANCELAMENTO'
+            text: '취소를 위한 대기'
+            //coffee text: 'AGUARDANDO CANCELAMENTO'
         };
     } else {
         return statusText[state];
@@ -1084,17 +1095,20 @@ var redactorConfig = function redactorConfig(params) {
         formatting: ['p'],
         formattingAdd: [{
             tag: 'blockquote',
-            title: 'Citar',
+            title: '표창장',
+            //coffee title: 'Citar',
             class: 'fontsize-base quote',
             clear: true
         }, {
             tag: 'p',
-            title: 'Cabeçalho 1',
+            title: '헤더 1',
+            //coffee title: 'Cabeçalho 1',
             class: 'fontsize-larger fontweight-semibold',
             clear: true
         }, {
             tag: 'p',
-            title: 'Cabeçalho 2',
+            title: '헤더 2',
+            //coffee title: 'Cabeçalho 2',
             class: 'fontsize-large',
             clear: true
         }],
@@ -1149,10 +1163,16 @@ var setCsrfToken = function setCsrfToken(xhr) {
 };
 var contributionStatusBadge = function contributionStatusBadge(contribution) {
     var status = {
-        delivered: m('span.fontsize-smallest.badge.badge-success', 'Enviada'),
+        delivered: m('span.fontsize-smallest.badge.badge-success', '전송 됨'
+        //coffee 'Enviada'
+        ),
         received: m('span.fontsize-smallest.badge.badge-success', 'Recebida'),
-        undelivered: m('span.fontsize-smallest.badge.badge-light', 'Não enviada'),
-        error: m('span.fontsize-smallest.badge.badge-attention', 'Erro no envio')
+        undelivered: m('span.fontsize-smallest.badge.badge-light', '전송되지 않음'
+        //coffee 'Não enviada'
+        ),
+        error: m('span.fontsize-smallest.badge.badge-attention', '발신 오류'
+        //coffee 'Erro no envio'
+        )
     };
 
     return contributionVM.canBeDelivered(contribution) ? status[contribution.delivery_status] : '';
@@ -1289,7 +1309,9 @@ var filterMain = {
         return m('.w-row', [m('.w-col.w-col-8', [m('input' + inputWrapperClass + '[placeholder="' + args.placeholder + '"][type="text"]', {
             onchange: m.withAttr('value', args.vm),
             value: args.vm()
-        })]), m('.w-col.w-col-4', [m('input#filter-btn' + btnClass + '[type="submit"][value="\uAC80\uC0C9"]')])]);
+        })]), m('.w-col.w-col-4', [m('input#filter-btn' + btnClass + '[type="submit"][value="\uAC80\uC0C9"]')
+        //coffee m(`input#filter-btn${btnClass}[type="submit"][value="Buscar"]`)
+        ])]);
     }
 };
 
@@ -1311,7 +1333,9 @@ var adminFilter = {
             onsubmit: args.submit
         }, [main ? m.component(main.component, main.data) : '', m('.u-marginbottom-20.w-row', m('button.w-col.w-col-12.fontsize-smallest.link-hidden-light[style="background: none; border: none; outline: none; text-align: left;"][type="button"]', {
             onclick: ctrl.toggler.toggle
-        }, 'Filtros avançados  >')), ctrl.toggler() ? m('#advanced-search.w-row.admin-filters', [_$1.map(filterBuilder, function (f) {
+        }, '고급 필터 >')), ctrl.toggler() ?
+        //coffee   }, 'Filtros avançados >')), (ctrl.toggler() ?
+        m('#advanced-search.w-row.admin-filters', [_$1.map(filterBuilder, function (f) {
             return f.component !== filterMain ? m.component(f.component, f.data) : '';
         })]) : ''])])])]);
     }
@@ -1359,7 +1383,11 @@ var adminList = {
             label = args.label || '',
             itemComponent = args.itemComponent || adminItem;
 
-        return m('.w-section.section', [m('.w-container', error() ? m('.card.card-error.u-radius.fontweight-bold', error()) : [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-9', [m('.fontsize-base', list.isLoading() ? '\uB85C\uB4DC \uC911 ' + label.toLowerCase() + '...' : [m('.w-row', [m('.w-col.w-col-3', [m('.fontweight-semibold', list.total()), ' ' + label.toLowerCase() + ' \uBC1C\uACAC']), args.vm && args.vm.hasInputAction ? m('.w-col-9.w-col', args.vm.inputActions()) : ''])])])]), m('#admin-contributions-list.w-container', [list.collection().map(function (item) {
+        return m('.w-section.section', [m('.w-container', error() ? m('.card.card-error.u-radius.fontweight-bold', error()) : [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-9', [m('.fontsize-base', list.isLoading() ? '\uB85C\uB4DC \uC911 ' + label.toLowerCase() + '...' : [
+        //coffee `Carregando ${label.toLowerCase()}...` : [
+        m('.w-row', [m('.w-col.w-col-3', [m('.fontweight-semibold', list.total()), ' ' + label.toLowerCase() + ' \uBC1C\uACAC'
+        //coffee ` ${label.toLowerCase()} encontrados`
+        ]), args.vm && args.vm.hasInputAction ? m('.w-col-9.w-col', args.vm.inputActions()) : ''])])])]), m('#admin-contributions-list.w-container', [list.collection().map(function (item) {
             return m.component(itemComponent, {
                 listItem: args.listItem,
                 listDetail: args.listDetail,
@@ -1377,7 +1405,11 @@ var adminUser = {
     view: function view(ctrl, args) {
         var user = args.item;
 
-        return m('.w-row.admin-user', [m('.w-col.w-col-3.w-col-small-3.u-marginbottom-10', [m('img.user-avatar[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"]')]), m('.w-col.w-col-9.w-col-small-9', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-10', [m('a.alt-link[target="_blank"][href="/users/' + user.id + '/edit"]', user.name || user.email)]), m('.fontsize-smallest', '\uC0AC\uC6A9\uC790: ' + user.id), m('.fontsize-smallest.fontcolor-secondary', '\uC774\uBA54\uC77C: ' + user.email), args.additional_data])]);
+        return m('.w-row.admin-user', [m('.w-col.w-col-3.w-col-small-3.u-marginbottom-10', [m('img.user-avatar[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"]')]), m('.w-col.w-col-9.w-col-small-9', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-10', [m('a.alt-link[target="_blank"][href="/users/' + user.id + '/edit"]', user.name || user.email)]), m('.fontsize-smallest', '\uC0AC\uC6A9\uC790: ' + user.id),
+        //coffee m('.fontsize-smallest', `Usuário: ${user.id}`),
+        m('.fontsize-smallest.fontcolor-secondary', '\uC774\uBA54\uC77C: ' + user.email),
+        //coffee m('.fontsize-smallest.fontcolor-secondary', `Email: ${user.email}`),
+        args.additional_data])]);
     }
 };
 
@@ -1421,23 +1453,27 @@ var projectFiltersVM = function projectFiltersVM() {
         finished = filtersVM({}),
         filters = {
         all: {
-            title: 'Todas as Categorias',
+            title: '모든 카테고리',
+            //coffee title: 'Todas as Categorias',
             filter: all,
             nicename: 'No ar',
             isContextual: false,
             keyName: 'all'
         },
         score: {
-            title: 'Todas as Categorias',
+            title: '모든 카테고리',
+            //coffee title: 'Todas as Categorias',
             filter: score,
             nicename: 'Populares',
             isContextual: false,
             keyName: 'score'
         },
         contributed_by_friends: {
-            title: 'Amigos',
+            title: '친구',
+            //coffee title: 'Amigos',
             filter: contributed_by_friends,
-            nicename: 'Amigos',
+            nicename: '친구',
+            //coffee nicename: 'Amigos',
             isContextual: false,
             keyName: 'contributed_by_friends'
         },
@@ -1454,21 +1490,25 @@ var projectFiltersVM = function projectFiltersVM() {
             keyName: 'expiring'
         },
         successful: {
-            title: 'Todas as Categorias',
+            title: '모든 카테고리',
+            //coffee title: 'Todas as Categorias',
             filter: successful,
-            nicename: 'Financiados',
+            nicename: '재정 지원',
+            //coffee nicename: 'Financiados',
             isContextual: false,
             keyName: 'successful'
         },
         finished: {
-            title: 'Todas as Categorias',
+            title: '모든 카테고리',
+            //coffee title: 'Todas as Categorias',
             filter: finished,
             nicename: 'Finalizados',
             isContextual: false,
             keyName: 'finished'
         },
         recent: {
-            title: 'Recentes',
+            title: '최근 업데이트',
+            //coffee title: 'Recentes',
             filter: recent,
             isContextual: false,
             keyName: 'recent'
@@ -1815,6 +1855,7 @@ var adminResetPassword = {
     view: function view(ctrl, args) {
         var data = args.data,
             btnValue = ctrl.l() ? '기다려 주시길 바랍니다...' : data.callToAction;
+        //coffee btnValue = (ctrl.l()) ? 'por favor, aguarde...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -1825,7 +1866,9 @@ var adminResetPassword = {
         }, !ctrl.complete() ? [m('label', data.innerLabel), m('input.w-input.text-field[type="text"][name="' + data.property + '"][placeholder="' + data.placeholder + '"]', {
             onchange: m.withAttr('value', ctrl.newPassword),
             value: ctrl.newPassword()
-        }), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '암호가 성공적으로 변경되었습니다.')])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error_message())])])]) : '']);
+        }), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '암호가 성공적으로 변경되었습니다.')
+        //coffee m('p', 'Senha alterada com sucesso.')
+        ])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error_message())])])]) : '']);
     }
 };
 
@@ -1881,6 +1924,7 @@ var adminInputAction = {
     view: function view(ctrl, args) {
         var data = args.data,
             btnValue = ctrl.l() ? '기다려 주시기 바랍니다...' : data.callToAction;
+        //coffee btnValue = (ctrl.l()) ? 'por favor, aguarde...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -1891,7 +1935,9 @@ var adminInputAction = {
         }, !ctrl.complete() ? [m('label', data.innerLabel), data.forceValue === undefined ? m('input.w-input.text-field[type="text"][placeholder="' + data.placeholder + '"]', {
             onchange: m.withAttr('value', ctrl.newValue),
             value: ctrl.newValue()
-        }) : '', m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', data.successMessage)])] : [m('.w-form-error[style="display:block;"]', [m('p', '\uC694\uCCAD\uC5D0 \uBB38\uC81C\uAC00 \uC788\uC2B5\uB2C8\uB2E4. ' + data.errorMessage)])])]) : '']);
+        }) : '', m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', data.successMessage)])] : [m('.w-form-error[style="display:block;"]', [m('p', '\uC694\uCCAD\uC5D0 \uBB38\uC81C\uAC00 \uC788\uC2B5\uB2C8\uB2E4. ' + data.errorMessage)
+        //coffee m('p', `Houve um problema na requisição. ${data.errorMessage}`)
+        ])])]) : '']);
     }
 };
 
@@ -1986,20 +2032,30 @@ var adminUserDetail = {
             actions: {
                 reset: {
                     property: '비밀번호',
+                    //coffee property: 'password',
                     callToAction: '재설정',
+                    //coffee callToAction: 'Redefinir',
                     innerLabel: '새 사용자 비밀번호:',
+                    //coffee innerLabel: 'Nova senha de Usuário:',
                     outerLabel: '비밀번호 재설정',
+                    //coffee outerLabel: 'Redefinir senha',
                     placeholder: '예: 123mud@r',
+                    //coffee placeholder: 'ex: 123mud@r',
                     model: models.user
                 },
                 reactivate: {
                     property: 'deactivated_at',
                     updateKey: 'id',
-                    callToAction: 'Reativar',
+                    callToAction: '재활성',
+                    //coffee callToAction: 'Reativar',
                     innerLabel: '이 사용자를 다시 사용하시겠습니까?',
+                    //coffee innerLabel: 'Tem certeza que deseja reativar esse usuário?',
                     successMessage: '사용자가 다시 활성화 되었습니다!',
+                    //coffee successMessage: 'Usuário reativado com sucesso!',
                     errorMessage: '사용자를 다시 활성화 할 수 없습니다!',
+                    //coffee errorMessage: 'O usuário não pôde ser reativado!',
                     outerLabel: '사용자 재 활성화',
+                    //coffee outerLabel: 'Reativar usuário',
                     forceValue: null,
                     model: models.user
                 }
@@ -2071,23 +2127,27 @@ var adminUsers = {
             data: {
                 vm: filterVM.full_text_index,
                 placeholder: '이름, 이메일, 사용자 ID 별로 검색...'
+                //coffee placeholder: 'Busque por nome, e-mail, Ids do usuário...',
             }
         }, { // status
             component: filterDropdown,
             data: {
-                label: '누구나',
+                label: 'Com o estado',
                 index: 'status',
                 name: 'deactivated_at',
                 vm: filterVM.deactivated_at,
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: null,
                     option: '활동적인'
+                    //coffee option: 'ativo'
                 }, {
                     value: !null,
                     option: '장애인'
+                    //coffee option: 'desativado'
                 }]
             }
         }],
@@ -2110,6 +2170,7 @@ var adminUsers = {
     },
     view: function view(ctrl) {
         var label = '사용자';
+        //coffee const label = 'Usuários';
 
         return m('', [m.component(adminFilter, {
             form: ctrl.filterVM.formDescriber,
@@ -2225,7 +2286,8 @@ var states = m.prop([]);
 var fees = m.prop([]);
 var noReward = {
     id: null,
-    description: 'Obrigado. Eu só quero ajudar o projeto.',
+    description: '고마워. 나는 이 프로젝트를 돕고 싶다..',
+    //coffee description: 'Obrigado. Eu só quero ajudar o projeto.',
     shipping_options: null,
     minimum_value: 10
 };
@@ -2336,12 +2398,15 @@ var locationOptions = function locationOptions(reward, destination) {
         }
         options(_$1.union([{
             value: 'international',
-            name: 'Outside Brazil',
+            name: '브라질 외부',
+            //coffee name: 'Outside Brazil',
             fee: fee
         }], mapStates));
     }
 
-    options(_$1.union([{ value: '', name: 'Selecione Opção', fee: 0 }], options()));
+    options(_$1.union([{ value: '', name: '선택 옵션', fee: 0 }],
+    //coffee [{ value: '', name: 'Selecione Opção', fee: 0 }],
+    options()));
 
     return options();
 };
@@ -2587,7 +2652,11 @@ var adminProjectItem = {
             recommended = ctrl.recommended;
         return m('.w-row', [m('.w-col.w-col-4', m('.w-row', [m('.w-col.w-col-2', m('a.btn-star.fa.fa-lg.fa-star.w-inline-block', { onclick: function onclick() {
                 ctrl.toggleRecommend();
-            }, class: recommended() ? 'selected' : '' })), m('.w-col.w-col-10', m('.w-row', [m('.u-marginbottom-10.w-col.w-col-3.w-col-small-3', m('img.thumb-project.u-radius[src=' + project.project_img + '][width=50]')), m('.w-col.w-col-9.w-col-small-9', [m('a.alt-link.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-10[href=\'/' + project.permalink + '\'][target=\'_blank\']', project.project_name), m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', project.category_name)])]))])), m('.admin-project-meter.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller.fontweight-semibold.text-success', project.state)), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', h.momentify(project.project_online_date) + ' a ' + h.momentify(project.project_expires_at)))]), m('.u-marginbottom-10', m(progressMeter, { project: project, progress: project.progress })), m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller', project.progress.toFixed(2) + '%')), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', 'R$' + project.pledged + ' de R$' + project.goal))])]), m('.w-col.w-col-4', m('.w-row', [m('.w-col.w-col-2', m('img.user-avatar[src=\'' + userVM.displayImage({ profile_img_thumbnail: project.profile_img_thumbnail }) + '\']')), m('.w-col.w-col-10', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', project.owner_name), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', project.email), m('.fontcolor-secondary.fontsize-smallest', project.total_published + ' \uC0DD\uC131 \uB41C \uD504\uB85C\uC81D\uD2B8'), m('.fontcolor-secondary.fontsize-smallest', '아직 프로젝트를 지원하지 않음')])]))]);
+            }, class: recommended() ? 'selected' : '' })), m('.w-col.w-col-10', m('.w-row', [m('.u-marginbottom-10.w-col.w-col-3.w-col-small-3', m('img.thumb-project.u-radius[src=' + project.project_img + '][width=50]')), m('.w-col.w-col-9.w-col-small-9', [m('a.alt-link.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-10[href=\'/' + project.permalink + '\'][target=\'_blank\']', project.project_name), m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', project.category_name)])]))])), m('.admin-project-meter.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller.fontweight-semibold.text-success', project.state)), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', h.momentify(project.project_online_date) + ' a ' + h.momentify(project.project_expires_at)))]), m('.u-marginbottom-10', m(progressMeter, { project: project, progress: project.progress })), m('.w-row', [m('.w-col.w-col-4', m('.fontsize-smaller', project.progress.toFixed(2) + '%')), m('.u-text-center-small-only.w-clearfix.w-col.w-col-8', m('.fontsize-smaller.u-right', 'R$' + project.pledged + ' de R$' + project.goal))])]), m('.w-col.w-col-4', m('.w-row', [m('.w-col.w-col-2', m('img.user-avatar[src=\'' + userVM.displayImage({ profile_img_thumbnail: project.profile_img_thumbnail }) + '\']')), m('.w-col.w-col-10', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', project.owner_name), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', project.email), m('.fontcolor-secondary.fontsize-smallest', project.total_published + ' \uC0DD\uC131 \uB41C \uD504\uB85C\uC81D\uD2B8'
+        //coffee `${project.total_published} projetos criados`
+        ), m('.fontcolor-secondary.fontsize-smallest', '아직 프로젝트를 지원하지 않음'
+        //coffee 'Ainda não apoiou projetos'
+        )])]))]);
     }
 };
 
@@ -2634,6 +2703,7 @@ var adminRadioAction = {
             } else {
                 error({
                     message: '항목이 업데이트되지 않았습니다.'
+                    //coffee message: 'Nenhum item atualizado'
                 });
             }
             complete(true);
@@ -2701,7 +2771,8 @@ var adminRadioAction = {
     view: function view(ctrl, args) {
         var data = args.data,
             item = args.item(),
-            btnValue = ctrl.setLoader() || ctrl.getLoader() ? '기다려 주시길 바랍니다...' : data.callToAction;
+            btnValue = ctrl.setLoader() || ctrl.getLoader() ? 'por favor, aguarde...' : data.callToAction;
+        //coffee btnValue = (ctrl.setLoader() || ctrl.getLoader()) ? '기다려 주시길 바랍니다...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -2717,7 +2788,11 @@ var adminRadioAction = {
                     ctrl.setDescription(radio.description);
                 }
             }), m('label.w-form-label[for="r-' + index + '"]', 'R$' + radio.minimum_value)]);
-        }) : h.loader(), m('strong', '상품 설명'), m('p', ctrl.description()), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '보상이 성공적으로 변경되었습니다.!')])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error().message)])])]) : '']);
+        }) : h.loader(), m('strong', '상품 설명'),
+        //coffee m('strong', 'Descrição'),
+        m('p', ctrl.description()), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '보상이 성공적으로 변경되었습니다.!')
+        //coffee m('p', 'Recompensa alterada com sucesso!')
+        ])] : [m('.w-form-error[style="display:block;"]', [m('p', ctrl.error().message)])])]) : '']);
     }
 };
 
@@ -2790,7 +2865,8 @@ var adminExternalAction = {
     },
     view: function view(ctrl, args) {
         var data = args.data,
-            btnValue = ctrl.l() ? 'por favor, aguarde...' : data.callToAction;
+            btnValue = ctrl.l() ? '기다려주시길 바랍니다...' : data.callToAction;
+        //coffee   btnValue = (ctrl.l()) ? 'por favor, aguarde...' : data.callToAction;
 
         return m('.w-col.w-col-2', [m('button.btn.btn-small.btn-terciary', {
             onclick: ctrl.toggler.toggle
@@ -2798,7 +2874,11 @@ var adminExternalAction = {
             config: ctrl.unload
         }, [m('form.w-form', {
             onsubmit: ctrl.submit
-        }, !ctrl.complete() ? [m('label', data.innerLabel), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '성공적으로 요청되었습니다.')])] : [m('.w-form-error[style="display:block;"]', [m('p', '요청을 하지 못했습니다.')])])]) : '']);
+        }, !ctrl.complete() ? [m('label', data.innerLabel), m('input.w-button.btn.btn-small[type="submit"][value="' + btnValue + '"]')] : !ctrl.error() ? [m('.w-form-done[style="display:block;"]', [m('p', '성공적으로 요청되었습니다.')
+        //coffee   m('p', 'Requisição feita com sucesso.')
+        ])] : [m('.w-form-error[style="display:block;"]', [m('p', '요청을 하지 못했습니다.')
+        //coffee   m('p', 'Houve um problema na requisição.')
+        ])])]) : '']);
     }
 };
 
@@ -2895,11 +2975,47 @@ var adminProjectDetail = {
         }, [m('form.w-form', {
             onsubmit: ctrl.actions.changeUserAction.submit
         }, !ctrl.actions.changeUserAction.complete() ? [m('label', 'Id do novo realizador:'), m('input.w-input.text-field[type="tel"][placeholder="\uC608: 239049"]', {
+            //coffee m(`input.w-input.text-field[type="tel"][placeholder="ex: 239049"]`, {
             onchange: m.withAttr('value', ctrl.actions.changeUserAction.newValue),
             value: ctrl.actions.changeUserAction.newValue()
         }), m('input.w-button.btn.btn-small[type="submit"][value="다운로드"]', {
+            //coffee m('input.w-button.btn.btn-small[type="submit"][value="Transferir"]', {
             onclick: ctrl.actions.changeUserAction.submit(ctrl.actions.changeUserAction.newValue())
-        })] : !ctrl.actions.changeUserAction.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Usuário transferido com sucesso')])] : [m('.w-form-error[style="display:block;"]', [m('p', '요청에 문제가 발생했습니다. 프로젝트를 받을 사용자가 유효한 데이터를 가지고 있는지 확인해 주세요.')])])]) : '']), m('.w-col.w-col-2', [m('a.btn.btn-small.btn-terciary', { href: '/projects/' + item.project_id + '/contributions_report' }, '후원 보고서')])]), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '프로젝트 세부 정보'), m('.fontsize-smallest.fontweight-semibold.u-marginbottom-20', 'catarse.me/' + item.permalink), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', 'Meta:'), ' R$ ' + h.formatNumber(item.goal, 2, 3) + ' ', m('br'), m('span.fontweight-semibold', 'Alcançado:'), ' R$ ' + h.formatNumber(item.pledged, 2, 3) + ' ']), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '항공편: '), h.momentify(item.project_online_date, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '기간: '), h.momentify(item.project_expires_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '마지막 업데이트: '), h.momentify(item.updated_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '새로운 기능: '), item.posts_count, m('br'), m('span.fontweight-semibold', 'Últ. novidade: '), h.momentify(item.last_post, 'DD/MM/YYYY, HH:mm')])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '은행: '), bankAccount.bank_name, m('br'), m('span.fontweight-semibold', '에이전시: '), bankAccount.agency + '-' + bankAccount.agency_digit, m('br'), m('span.fontweight-semibold', '계정: '), bankAccount.account + '-' + bankAccount.account_digit, m('br'), bankAccount.account_type, m('br'), m('span.fontweight-semibold', '이름: '), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF: '), bankAccount.owner_document])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Detalhes do realizador'), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', '이름: '), user.name, m('br'), m('span.fontweight-semibold', 'CPF: '), user.owner_document, m('br'), m('span.fontweight-semibold', 'Inscrição estadual: '), user.state_inscription, m('br'), m('span.fontweight-semibold', '이메일: '), user.email, m('br'), m('span.fontweight-semibold', '주소: '), m.trust('&nbsp;'), ' ' + userAddress.address_street + ', ' + userAddress.address_number + ' ' + userAddress.address_complement + ' - ' + userAddress.address_city + ' - ' + userAddress.address_state + ' ' + userAddress.address_zip_code, m('br'), m('span.fontweight-semibold', '전화:'), userAddress.phone_number]), m('.fontsize-smallest.lineheight-looser', [user.total_published_projects + ' \uC0DD\uC131 \uB41C \uD504\uB85C\uC81D\uD2B8 ', m('br'), m.trust('&nbsp;'), m('br')])])])]);
+        })] : !ctrl.actions.changeUserAction.error() ? [m('.w-form-done[style="display:block;"]', [m('p', 'Usuário transferido com sucesso')])] : [m('.w-form-error[style="display:block;"]', [m('p', '요청에 문제가 발생했습니다. 프로젝트를 받을 사용자가 유효한 데이터를 가지고 있는지 확인해 주세요.')
+        //coffee m('p', 'Houve um problema na requisição. Verifique se o usuário que vai receber o projeto possui dados válidos.')
+        ])])]) : '']), m('.w-col.w-col-2', [m('a.btn.btn-small.btn-terciary', { href: '/projects/' + item.project_id + '/contributions_report' }, '후원 보고서')
+        //coffee m('a.btn.btn-small.btn-terciary', {href: `/projects/${item.project_id}/contributions_report`}, 'Relatório de apoios(지원 보고서)')
+        ])]), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '프로젝트 세부 정보'
+        //coffee 'Detalhes do projeto'
+        ), m('.fontsize-smallest.fontweight-semibold.u-marginbottom-20', 'catarse.me/' + item.permalink), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', 'Meta:'), ' R$ ' + h.formatNumber(item.goal, 2, 3) + ' ', m('br'), m('span.fontweight-semibold', 'Alcançado:'), ' R$ ' + h.formatNumber(item.pledged, 2, 3) + ' ']), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '항공편: '
+        //coffee 'Início: '
+        ), h.momentify(item.project_online_date, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '기간: '
+        //coffee 'Término: '
+        ), h.momentify(item.project_expires_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '마지막 업데이트: '
+        //coffee 'Últ. atualização: '
+        ), h.momentify(item.updated_at, 'DD/MM/YYYY, HH:mm'), m('br'), m('span.fontweight-semibold', '새로운 기능: '
+        //coffee '새로운 기능: '
+        ), item.posts_count, m('br'), m('span.fontweight-semibold', 'Últ. novidade: '), h.momentify(item.last_post, 'DD/MM/YYYY, HH:mm')])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'
+        //coffee 'Dados bancários'
+        ), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '은행: '
+        //coffee 'Banco: '
+        ), bankAccount.bank_name, m('br'), m('span.fontweight-semibold', '에이전시: '
+        //coffee 'Agencia: '
+        ), bankAccount.agency + '-' + bankAccount.agency_digit, m('br'), m('span.fontweight-semibold', '계정: '
+        //coffee 'Conta: '
+        ), bankAccount.account + '-' + bankAccount.account_digit, m('br'), bankAccount.account_type, m('br'), m('span.fontweight-semibold', '이름: '
+        //coffee 'Nome: '
+        ), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF: '), bankAccount.owner_document])]), m('.w-col.w-col-4', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Detalhes do realizador'), m('.fontsize-smallest.lineheight-looser.u-marginbottom-20', [m('span.fontweight-semibold', '이름: '
+        //coffee 'Nome: '
+        ), user.name, m('br'), m('span.fontweight-semibold', 'CPF: '), user.owner_document, m('br'), m('span.fontweight-semibold', 'Inscrição estadual: '), user.state_inscription, m('br'), m('span.fontweight-semibold', '이메일: '
+        //coffee 'Email: '
+        ), user.email, m('br'), m('span.fontweight-semibold', '주소: '
+        //coffee 'Endereço: '
+        ), m.trust('&nbsp;'), ' ' + userAddress.address_street + ', ' + userAddress.address_number + ' ' + userAddress.address_complement + ' - ' + userAddress.address_city + ' - ' + userAddress.address_state + ' ' + userAddress.address_zip_code, m('br'), m('span.fontweight-semibold', '전화:'
+        //coffee 'Telefone:'
+        ), userAddress.phone_number]), m('.fontsize-smallest.lineheight-looser', [user.total_published_projects + ' \uC0DD\uC131 \uB41C \uD504\uB85C\uC81D\uD2B8 ',
+        //coffee `${user.total_published_projects} projetos criados `,
+        m('br'), m.trust('&nbsp;'), m('br')])])])]);
     }
 };
 
@@ -2941,17 +3057,20 @@ var adminProjects = {
             data: {
                 vm: filterVM.full_text_index,
                 placeholder: '프로젝트, 퍼머 링크, 전자 메일, 이사의 이름으로 검색...'
+                //coffee placeholder: 'Busque por projeto, permalink, email, nome do realizador...',
             }
         }, { // status
             component: filterDropdown,
             data: {
                 label: '누구나',
+                //coffee label: 'Com o estado',
                 index: 'state',
                 name: 'state',
                 vm: filterVM.state,
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: 'successful',
                     option: 'successful'
@@ -2973,12 +3092,14 @@ var adminProjects = {
             component: filterDropdown,
             data: {
                 label: '양식',
+                //coffee label: 'Modalidade',
                 index: 'mode',
                 name: 'mode',
                 vm: filterVM.mode,
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: 'aon',
                     option: 'Tudo ou nada'
@@ -2991,24 +3112,28 @@ var adminProjects = {
             component: filterDropdown,
             data: {
                 label: '추천',
+                //coffee label: 'Recomendado',
                 index: 'recommended',
                 name: 'recommended',
                 vm: filterVM.recommended,
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: true,
                     option: '예'
+                    //coffee option: 'Sim'
                 }, {
                     value: false,
-                    option: 'Não'
+                    option: '아니요'
+                    //coffee option: 'Não'
                 }]
             }
         }, { // goal
             component: filterNumberRange,
             data: {
-                label: '목표 중',
+                label: 'Meta entre',
                 first: filterVM.goal.gte,
                 last: filterVM.goal.lte
             }
@@ -3030,6 +3155,7 @@ var adminProjects = {
             component: filterDateRange,
             data: {
                 label: '만료',
+                //coffee label: 'Expira entre',
                 first: filterVM.project_expires_at.gte,
                 last: filterVM.project_expires_at.lte
             }
@@ -3050,10 +3176,12 @@ var adminProjects = {
                     return { value: category.name, option: category.name };
                 });
                 options.unshift({ value: '', option: '누구나' });
+                //coffee options.unshift({ value: '', option: 'Qualquer uma' });
                 filterBuilder.unshift({ // category
                     component: filterDropdown,
                     data: {
                         label: '범주',
+                        //coffee label: 'Categoria',
                         index: 'category',
                         name: 'category_name',
                         vm: filterVM.category_name,
@@ -3292,7 +3420,27 @@ var adminContributionItem = {
 var adminTransaction = {
     view: function view(ctrl, args) {
         var contribution = args.contribution;
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '지원 세부 정보'), m('.fontsize-smallest.lineheight-looser', ['\uAC00\uCE58: R$' + h.formatNumber(contribution.value, 2, 3), m('br'), '\uBD84\uB958\uAD70: R$' + h.formatNumber(contribution.gateway_fee, 2, 3), m('br'), '\uD655\uC778 \uB300\uAE30\uC911: ' + (contribution.waiting_payment ? 'Sim' : 'Não'), m('br'), '\uC775\uBA85: ' + (contribution.anonymous ? 'Sim' : 'Não'), m('br'), '\uC9C0\uBD88 Id: ' + contribution.gateway_id, m('br'), '\uD6C4\uC6D0: ' + contribution.contribution_id, m('br'), '열쇠: \n', m('br'), contribution.key, m('br'), '\uB9E4\uCCB4: ' + contribution.gateway, m('br'), '\uC5F0\uC0B0\uC790: ' + (contribution.gateway_data && contribution.gateway_data.acquirer_name), m('br'), contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2a via')] : ''])]);
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '지원 세부 정보'),
+        //coffee m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Detalhes do apoio'),
+        m('.fontsize-smallest.lineheight-looser', ['\uAC00\uCE58: R$' + h.formatNumber(contribution.value, 2, 3),
+        //coffee `Valor: R$${h.formatNumber(contribution.value, 2, 3)}`,
+        m('br'), '\uBD84\uB958\uAD70: R$' + h.formatNumber(contribution.gateway_fee, 2, 3),
+        //coffee `Taxa: R$${h.formatNumber(contribution.gateway_fee, 2, 3)}`,
+        m('br'), '\uD655\uC778 \uB300\uAE30\uC911: ' + (contribution.waiting_payment ? '예' : '아니요'),
+        //coffee `Aguardando Confirmação: ${contribution.waiting_payment ? '예' : '아니요'}`,
+        m('br'), '\uC775\uBA85: ' + (contribution.anonymous ? '예' : '아니요'),
+        //coffee `Anônimo: ${contribution.anonymous ? '예' : '아니요'}`,
+        m('br'), '\uC9C0\uBD88 Id: ' + contribution.gateway_id,
+        //coffee `pagamento Id: ${contribution.gateway_id}`,
+        m('br'), '\uD6C4\uC6D0: ' + contribution.contribution_id,
+        //coffee `Apoio: ${contribution.contribution_id}`,
+        m('br'), '열쇠: \n',
+        //coffee '열쇠: \n',
+        m('br'), contribution.key, m('br'), '\uB9E4\uCCB4: ' + contribution.gateway,
+        //coffee `Meio: ${contribution.gateway}`,
+        m('br'), '\uC5F0\uC0B0\uC790: ' + (contribution.gateway_data && contribution.gateway_data.acquirer_name),
+        //coffee `Operadora: ${contribution.gateway_data && contribution.gateway_data.acquirer_name}`,
+        m('br'), contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2차 노선')] : ''])]);
     }
 };
 
@@ -3302,9 +3450,11 @@ var adminTransactionHistory = {
             mapEvents = _$1.reduce([{
             date: contribution.paid_at,
             name: '후원 확인'
+            //coffee name: 'Apoio confirmado'
         }, {
             date: contribution.pending_refund_at,
             name: '환불 요청 됨'
+            //coffee : 'Reembolso solicitado'
         }, {
             date: contribution.refunded_at,
             name: 'Estorno realizado'
@@ -3314,12 +3464,15 @@ var adminTransactionHistory = {
         }, {
             date: contribution.refused_at,
             name: '지원 중단'
+            //coffee name: 'Apoio cancelado'
         }, {
             date: contribution.deleted_at,
             name: '후원 삭제됨'
+            //coffee name: 'Apoio excluído'
         }, {
             date: contribution.chargeback_at,
             name: '후원 거절'
+            //coffee name: 'Chargeback(지불 거절)'
         }], function (memo, item) {
             if (item.date !== null && item.date !== undefined) {
                 item.originalDate = item.date;
@@ -3335,7 +3488,9 @@ var adminTransactionHistory = {
         };
     },
     view: function view(ctrl) {
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '거래 내역'), ctrl.orderedEvents.map(function (cEvent) {
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '거래 내역'),
+        //coffee m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', 'Histórico da transação'),
+        ctrl.orderedEvents.map(function (cEvent) {
             return m('.w-row.fontsize-smallest.lineheight-looser.date-event', [m('.w-col.w-col-6', [m('.fontcolor-secondary', cEvent.date)]), m('.w-col.w-col-6', [m('div', cEvent.name)])]);
         })]);
     }
@@ -3367,7 +3522,27 @@ var adminReward = {
             available = parseInt(reward.paid_count) + parseInt(reward.waiting_payment_count),
             shippingFee = ctrl.shippingFee();
 
-        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '보상'), m('.fontsize-smallest.lineheight-looser', reward.id ? ['ID: ' + reward.id, m('br'), 'Local de entrega: ' + (shippingFee.destination ? shippingFee.destination + ' R$ ' + shippingFee.value : 'Nenhum'), m('br'), '\uBC30\uC1A1: ' + I18n.t('shared.shipping_options.' + reward.shipping_options), m('br'), '\uCD5C\uC18C\uAC12: R$' + h.formatNumber(reward.minimum_value, 2, 3), m('br'), m.trust('\uC0AC\uC6A9 \uAC00\uB2A5: ' + available + ' / ' + (reward.maximum_contributions || '&infin;')), m('br'), '\uD655\uC778\uC744 \uAE30\uB2E4\uB9AC\uB294 \uC911\uC785\uB2C8\uB2E4.: ' + reward.waiting_payment_count, m('br'), 'Estimativa da Entrega: ' + h.momentify(reward.deliver_at), m('br'), m('div', ['Status da Entrega: ', h.contributionStatusBadge(contribution)]), reward.title ? ['\uC81C\uBAA9: ' + reward.title, m('br')] : '', '\uC0C1\uD488 \uC124\uBA85: ' + reward.description] : '보상없는 지원')]);
+        return m('.w-col.w-col-4', [m('.fontweight-semibold.fontsize-smaller.lineheight-tighter.u-marginbottom-20', '보상'), m('.fontsize-smallest.lineheight-looser', reward.id ? ['ID: ' + reward.id, m('br'), '\uBC30\uC1A1\uC9C0: ' + (shippingFee.destination ? shippingFee.destination + ' R$ ' + shippingFee.value : 'Nenhum'),
+        //coffee `Local de entrega: ${(shippingFee.destination ? `${shippingFee.destination} R$ ${shippingFee.value}` : 'Nenhum')}`,
+        m('br'), '\uBC30\uC1A1: ' + I18n.t('shared.shipping_options.' + reward.shipping_options),
+        //coffee `Envio: ${I18n.t(`shared.shipping_options.${reward.shipping_options}`)}`,
+        m('br'), '\uCD5C\uC18C\uAC12: R$' + h.formatNumber(reward.minimum_value, 2, 3),
+        //coffee `Valor mínimo: R$${h.formatNumber(reward.minimum_value, 2, 3)}`,
+        m('br'), m.trust('\uC0AC\uC6A9 \uAC00\uB2A5: ' + available + ' / ' + (reward.maximum_contributions || '&infin;')),
+        //coffee m.trust(`Disponíveis: ${available} / ${reward.maximum_contributions || '&infin;'}`),
+        m('br'), '\uD655\uC778\uC744 \uAE30\uB2E4\uB9AC\uB294 \uC911\uC785\uB2C8\uB2E4.: ' + reward.waiting_payment_count,
+        //coffee `Aguardando confirmação.: ${reward.waiting_payment_count}`,
+        m('br'), '\uC608\uC0C1 \uBC30\uB2EC: ' + h.momentify(reward.deliver_at),
+        //coffee `Estimativa da Entrega: ${h.momentify(reward.deliver_at)}`,
+        m('br'), m('div', ['배송 상태: ',
+        //coffee 'Status da Entrega: ',
+        h.contributionStatusBadge(contribution)]), reward.title ? ['\uC81C\uBAA9: ' + reward.title,
+        //coffee (reward.title ? [`Título: ${reward.title}`,
+        m('br')] : '', '\uC0C1\uD488 \uC124\uBA85: ' + reward.description
+        //coffee `Descrição: ${reward.description}`
+        ] : '보상없는 지원')
+        //coffee ] : 'Apoio sem recompensa')
+        ]);
     }
 };
 
@@ -3396,11 +3571,15 @@ var adminContributionDetail = {
                     property: 'user_id',
                     updateKey: 'id',
                     callToAction: '다운로드',
+                    //coffee   callToAction: 'Transferir',
                     innerLabel: 'Id do novo apoiador:',
                     outerLabel: 'Transferir Apoio',
                     placeholder: '예: 129908',
+                    //coffee  placeholder: 'ex: 129908',
                     successMessage: '후원이 성공적으로 이루어 졌습니다!',
+                    //coffee   successMessage: 'Apoio transferido com sucesso!(지원이 성공적으로 전송되었습니다.)',
                     errorMessage: '후원을 실패하였습니다!',
+                    //coffee   errorMessage: 'O apoio não foi transferido(지원이 이전되지 않았습니다.)!',
                     model: models.contributionDetail
                 },
                 reward: {
@@ -3408,33 +3587,45 @@ var adminContributionDetail = {
                     updateKey: 'contribution_id',
                     selectKey: 'reward_id',
                     radios: 'rewards',
-                    callToAction: 'Alterar Recompensa',
+                    callToAction: '보상 변경',
+                    //coffee   callToAction: 'Alterar Recompensa',
                     outerLabel: '보상',
+                    //coffee   outerLabel: 'Recompensa',
                     getModel: models.rewardDetail,
                     updateModel: models.contributionDetail,
                     selectedItem: loadReward(),
                     addEmpty: { id: -1, minimum_value: 10, description: '보상 없음' },
+                    //coffee   addEmpty: { id: -1, minimum_value: 10, description: 'Sem recompensa' },
                     validate: function validate(rewards, newRewardID) {
                         var reward = _$1.findWhere(rewards, { id: newRewardID });
                         return args.item.value >= reward.minimum_value ? undefined : '최소 보상 값이 기여 금액보다 큽니다.';
+                        //coffee   return (args.item.value >= reward.minimum_value) ? undefined : 'Valor mínimo da recompensa é maior do que o valor da contribuição.';
                     }
                 },
                 refund: {
                     updateKey: 'id',
                     callToAction: '직접 상환',
-                    innerLabel: '이 지원금을 환급 받으시겠습니까?',
+                    //coffee   callToAction: 'Reembolso direto',
+                    innerLabel: '이 후원금을 환급 받으시겠습니까?',
+                    //coffee   innerLabel: 'Tem certeza que deseja reembolsar esse apoio?',
                     outerLabel: '환불',
+                    //coffee   outerLabel: 'Reembolsar Apoio(환불지원)',
                     model: models.contributionDetail
                 },
                 remove: {
                     property: 'state',
                     updateKey: 'id',
                     callToAction: '삭제',
-                    innerLabel: '이 지원을 삭제 하시겠습니까?',
-                    outerLabel: '지원 삭제',
+                    //coffee   callToAction: 'Apagar',
+                    innerLabel: '이 후원을 삭제 하시겠습니까?',
+                    //coffee   innerLabel: 'Tem certeza que deseja apagar esse apoio?',
+                    outerLabel: '후원 삭제',
+                    //coffee   outerLabel: 'Apagar Apoio',
                     forceValue: 'deleted',
-                    successMessage: '지원이 성공적으로 삭제되었습니다!',
-                    errorMessage: '지원이 삭제되지 않았습니다!',
+                    successMessage: '후원이 성공적으로 삭제되었습니다!',
+                    //coffee   successMessage: 'Apoio removido com sucesso!',
+                    errorMessage: '후원이 삭제되지 않았습니다!',
+                    //coffee   errorMessage: 'O apoio não foi removido!',
                     model: models.contributionDetail
                 }
             },
@@ -3489,29 +3680,36 @@ var adminContributions = {
             component: filterMain,
             data: {
                 vm: filterVM.full_text_index,
-                placeholder: '디자인, 이메일, 사용자 및 지원 ID별로 검색...'
+                placeholder: '디자인, 이메일, 사용자 및 지원 ID 별로 검색...'
+                //coffee placeholder: 'Busque por projeto, email, Ids do usuário e do apoio...'
             }
         }, { // delivery_status
             component: filterDropdown,
             data: {
                 label: '배송 상태',
+                //coffee label: 'Status da entrega',
                 name: 'delivery_status',
                 vm: filterVM.delivery_status,
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: 'delivered',
-                    option: 'delivered'
+                    option: '배송완료'
+                    //coffee option: 'delivered'
                 }, {
                     value: 'undelivered',
-                    option: 'undelivered'
+                    option: '배송안됨'
+                    //coffee option: 'undelivered'
                 }, {
                     value: 'error',
-                    option: 'error'
+                    option: '오류'
+                    //coffee option: 'error'
                 }, {
                     value: 'received',
-                    option: 'received'
+                    option: '받음'
+                    //coffee option: 'received'
                 }]
             }
         }, { // state
@@ -3523,6 +3721,7 @@ var adminContributions = {
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: 'paid',
                     option: 'paid'
@@ -3555,6 +3754,7 @@ var adminContributions = {
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: 'Pagarme',
                     option: 'Pagarme'
@@ -3573,6 +3773,7 @@ var adminContributions = {
             component: filterNumberRange,
             data: {
                 label: '사이의 값',
+                //coffee label: 'Valores entre',
                 first: filterVM.value.gte,
                 last: filterVM.value.lte
             }
@@ -3580,6 +3781,7 @@ var adminContributions = {
             component: filterDateRange,
             data: {
                 label: '지원 기간',
+                //coffee label: 'Período do apoio',
                 first: filterVM.created_at.gte,
                 last: filterVM.created_at.lte
             }
@@ -3601,6 +3803,7 @@ var adminContributions = {
             },
             data: {
                 label: '후원'
+                //coffee label: 'Apoios'
             },
             submit: submit
         };
@@ -3720,7 +3923,9 @@ var popNotification = {
         return ctrl.displayNotification() ? m('.flash.w-clearfix.card.card-notification.u-radius.zindex-20', {
             config: ctrl.setPopTimeout,
             class: args.error ? '카드 오류' : ''
+            //coffee class: args.error ? 'card-error' : ''
         }, [m('img.icon-close[src="/assets/catarse_bootstrap/x.png"][width="12"][alt="닫기"]', {
+            //coffee m('img.icon-close[src="/assets/catarse_bootstrap/x.png"][width="12"][alt="fechar"]', {
             onclick: ctrl.displayNotification.toggle
         }), m('.fontsize-small', m.trust(args.message))]) : m('span');
     }
@@ -3806,7 +4011,17 @@ var adminBalanceTransferItemDetail = {
     view: function view(ctrl, args) {
         var bankAccount = _$1.isUndefined(ctrl.metaBank) ? ctrl.userBankAccount() : ctrl.transitionBankAccount();
 
-        return m('#admin-balance-transfer-item-detail-box', [m('.divider.u-margintop-20.u-marginbottom-20'), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [bankAccount ? [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'), m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '은행:'), bankAccount.bank_code + ' - ' + (bankAccount.bank_name ? bankAccount.bank_name : ''), m('br'), m('span.fontweight-semibold', '에이전시:'), ' ' + bankAccount.agency + ' - ' + (bankAccount.agency_digit ? bankAccount.agency_digit : ''), m('br'), m('span.fontweight-semibold', "계정:"), ' ' + bankAccount.account + ' - ' + (bankAccount.account_digit ? bankAccount.account_digit : ''), m('br'), m('span.fontweight-semibold', '이름:'), bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF:'), bankAccount.owner_document])] : h.loader(), ctrl.loadingNotes() ? h.loader() : m('', [m('textarea.text-field.height-mini.w-input', {
+        return m('#admin-balance-transfer-item-detail-box', [m('.divider.u-margintop-20.u-marginbottom-20'), m('.w-row.card.card-terciary.u-radius', [m('.w-col.w-col-4', [bankAccount ? [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', '은행 세부 정보'),
+        //coffee   m('.fontsize-smaller.fontweight-semibold.lineheight-tighter.u-marginbottom-20', 'Dados bancários'),
+        m('.fontsize-smallest.lineheight-looser', [m('span.fontweight-semibold', '은행:'),
+        //coffee   m('span.fontweight-semibold', 'Banco:'),
+        bankAccount.bank_code + ' - ' + (bankAccount.bank_name ? bankAccount.bank_name : ''), m('br'), m('span.fontweight-semibold', '에이전시:'),
+        //coffee   m('span.fontweight-semibold', 'Agencia:'),
+        ' ' + bankAccount.agency + ' - ' + (bankAccount.agency_digit ? bankAccount.agency_digit : ''), m('br'), m('span.fontweight-semibold', "계정:"),
+        //coffee   m('span.fontweight-semibold', "Conta:"),
+        ' ' + bankAccount.account + ' - ' + (bankAccount.account_digit ? bankAccount.account_digit : ''), m('br'), m('span.fontweight-semibold', '이름:'),
+        //coffee   m('span.fontweight-semibold', 'Nome:'),
+        bankAccount.owner_name, m('br'), m('span.fontweight-semibold', 'CPF:'), bankAccount.owner_document])] : h.loader(), ctrl.loadingNotes() ? h.loader() : m('', [m('textarea.text-field.height-mini.w-input', {
             value: ctrl.fields.admin_notes(),
             onkeyup: m.withAttr('value', ctrl.fields.admin_notes)
         }), m('.u-text-center', m('button.btn.btn-terciary', {
@@ -3826,43 +4041,54 @@ var adminBalanceTranfers = {
             data: {
                 vm: filterVM.full_text_index,
                 placeholder: '이메일, 사용자 ID, 전송 ID 및 잔액 이벤트 검색'
+                //coffee placeholder: 'Busque pelo email, ids do usuario, ids de transferencia e eventos de saldo'
             }
         }, {
             component: filterDropdown,
             data: {
                 label: '상태',
+                //coffee label: 'Status',
                 name: 'state',
                 vm: filterVM.state,
                 options: [{
                     value: '',
                     option: '누구나'
+                    //coffee option: 'Qualquer um'
                 }, {
                     value: 'pending',
                     option: '대기중인'
+                    //coffee option: 'Pendente'
                 }, {
                     value: 'authorized',
                     option: '공인 된'
+                    //coffee option: 'Autorizado'
                 }, {
                     value: 'processing',
                     option: '가공'
+                    //coffee option: 'Processando'
                 }, {
                     value: 'transferred',
                     option: '완료 됨'
+                    //coffee option: 'Concluido'
                 }, {
                     value: 'error',
                     option: '오류'
+                    //coffee option: 'Erro'
                 }, {
                     value: 'rejected',
                     option: '거부 됨'
+                    //coffee option: 'Rejeitado'
                 }, {
                     value: 'gateway_error',
                     option: '게이트웨이 오류'
+                    //coffee option: 'Erro no gateway'
                 }]
             }
         }, {
             component: filterDateRange,
             data: {
                 label: '요청 날짜',
+                //coffee label: 'Data da solicitação',
                 first: filterVM.created_date.gte,
                 last: filterVM.created_date.lte
             }
@@ -3871,6 +4097,7 @@ var adminBalanceTranfers = {
             component: filterDateRange,
             data: {
                 label: '확인일',
+                //coffee label: 'Data da confirmação',
                 first: filterVM.transferred_date.gte,
                 last: filterVM.transferred_date.lte
             }
@@ -3878,7 +4105,8 @@ var adminBalanceTranfers = {
         }, {
             component: filterNumberRange,
             data: {
-                label: '사이의 값',
+                label: 'Valores entre',
+                //coffee label: '사이의 값',
                 first: filterVM.amount.gte,
                 last: filterVM.amount.lte
             }
@@ -3924,15 +4152,25 @@ var adminBalanceTranfers = {
             var wrapper = {
                 view: function view(ctrl, args) {
                     actionMenuToggle(false);
-                    return m('', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', args.modalTitle)]), m('.modal-dialog-content', [m('.w-row.fontweight-semibold', [m('.w-col.w-col-6', '이름'), m('.w-col.w-col-3', '가치'), m('.w-col.w-col-3', '요청 시간')]), _$1.map(selectedItemsIDs(), function (item, index) {
+                    return m('', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', args.modalTitle)]), m('.modal-dialog-content', [m('.w-row.fontweight-semibold', [m('.w-col.w-col-6', '이름'),
+                    //coffee m('.w-col.w-col-6', 'Nome'),
+                    m('.w-col.w-col-3', '가치'),
+                    //coffee m('.w-col.w-col-3', 'Valor'),
+                    m('.w-col.w-col-3', '요청 시간')
+                    //coffee m('.w-col.w-col-3', 'Solicitado em')
+                    ]), _$1.map(selectedItemsIDs(), function (item, index) {
                         return m('.divider.fontsize-smallest.lineheight-looser', [m('.w-row', [m('.w-col.w-col-6', [m('span', item.user_name)]), m('.w-col.w-col-3', [m('span', 'R$ ' + h.formatNumber(item.amount, 2, 3))]), m('.w-col.w-col-3', [m('span', h.momentify(item.created_at))])])]);
-                    }), m('.w-row.fontweight-semibold.divider', [m('.w-col.w-col-6', '합계'), m('.w-col.w-col-3', 'R$ ' + h.formatNumber(_$1.reduce(selectedItemsIDs(), function (t, i) {
+                    }), m('.w-row.fontweight-semibold.divider', [m('.w-col.w-col-6', '합계'),
+                    //coffee m('.w-col.w-col-6', 'Total'),
+                    m('.w-col.w-col-3', 'R$ ' + h.formatNumber(_$1.reduce(selectedItemsIDs(), function (t, i) {
                         return t + i.amount;
                     }, 0), 2, 3)), m('.w-col.w-col-3')]), m('.w-row.u-margintop-40', [m('.w-col.w-col-1'), m('.w-col.w-col-5', m('a.btn.btn-medium.w-button', {
                         onclick: args.onClickCallback
                     }, args.ctaText)), m('.w-col.w-col-5', m('a.btn.btn-medium.btn-terciary.w-button', {
                         onclick: args.displayModal.toggle
-                    }, '뒤로')), m('.w-col.w-col-1')])])]);
+                    }, '뒤로')
+                    //coffee }, 'Voltar')
+                    ), m('.w-col.w-col-1')])])]);
                 }
             };
 
@@ -4003,17 +4241,27 @@ var adminBalanceTranfers = {
             });
         },
             inputActions = function inputActions() {
-            return m('', [m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, selectAllLoading() ? '로딩...' : '\uBAA8\uB450 \uC120\uD0DD'), selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, '\uBAA8\uB450 \uC120\uD0DD \uCDE8\uC18C (' + selectedItemsIDs().length + ')') : '', selectedAny() ? m('.w-inline-block', [m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
+            return m('', [m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, selectAllLoading() ? '로딩...' : '\uBAA8\uB450 \uC120\uD0DD'),
+            //coffee m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: selectAll }, (selectAllLoading() ? 'carregando...' : `Selecionar todos`)),
+            selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, '\uBAA8\uB450 \uC120\uD0DD \uCDE8\uC18C (' + selectedItemsIDs().length + ')') : '',
+            //coffee (selectedItemsIDs().length > 1 ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', { onclick: unSelectAll }, `Desmarcar todos (${selectedItemsIDs().length})`) : ''),
+            selectedAny() ? m('.w-inline-block', [m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
                 onclick: actionMenuToggle.toggle
-            }, ['\uB2E4\uC74C\uC73C\uB85C \uD45C\uC2DC (' + selectedItemsIDs().length + ')']), actionMenuToggle() ? m('.card.dropdown-list.dropdown-list-medium.u-radius.zindex-10[id=\'transfer\']', [m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
+            }, ['\uB2E4\uC74C\uC73C\uB85C \uD45C\uC2DC (' + selectedItemsIDs().length + ')'
+            //coffee `Marcar como (${selectedItemsIDs().length})`
+            ]), actionMenuToggle() ? m('.card.dropdown-list.dropdown-list-medium.u-radius.zindex-10[id=\'transfer\']', [m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                 onclick: function onclick(event) {
                     return displayApprovalModal.toggle();
                 }
-            }, '승인됨'), m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
+            }, '승인됨'),
+            //coffee }, 'Aprovada'),
+            m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                 onclick: function onclick(event) {
                     return displayManualModal.toggle();
                 }
-            }, '수동 전송'), m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
+            }, '수동 전송'),
+            //coffee }, 'Transferencia manual'),
+            m('a.dropdown-link.fontsize-smaller[href=\'javascript:void(0);\']', {
                 onclick: function onclick(event) {
                     return displayRejectModal.toggle();
                 }
@@ -4044,6 +4292,7 @@ var adminBalanceTranfers = {
             },
             data: {
                 label: '인출 요청'
+                //coffee label: 'Pedidos de saque'
             },
             submit: submit
         };
@@ -4056,7 +4305,9 @@ var adminBalanceTranfers = {
             displayModal: ctrl.displayApprovalModal,
             content: ctrl.generateWrapperModal({
                 modalTitle: '인출 승인',
+                //coffee modalTitle: 'Aprovar saques',
                 ctaText: '승인하려면',
+                //coffee ctaText: 'Aprovar',
                 displayModal: ctrl.displayApprovalModal,
                 onClickCallback: ctrl.approveSelectedIDs
             })
@@ -4064,7 +4315,9 @@ var adminBalanceTranfers = {
             displayModal: ctrl.displayManualModal,
             content: ctrl.generateWrapperModal({
                 modalTitle: '인출 수동 양도',
+                //coffee modalTitle: 'Transferencia manual de saques',
                 ctaText: '승인하려면',
+                //coffee ctaText: 'Aprovar',
                 displayModal: ctrl.displayManualModal,
                 onClickCallback: ctrl.manualTransferSelectedIDs
             })
@@ -4072,7 +4325,9 @@ var adminBalanceTranfers = {
             displayModal: ctrl.displayRejectModal,
             content: ctrl.generateWrapperModal({
                 modalTitle: '인출 거부',
+                //coffee modalTitle: 'Rejeitar saques',
                 ctaText: '거부하려면',
+                //coffee ctaText: 'Rejeitar',
                 displayModal: ctrl.displayRejectModal,
                 onClickCallback: ctrl.rejectSelectedIDs
             })
@@ -4123,10 +4378,15 @@ var landingSignup = {
         return m('form.w-form[id="email-form"][method="post"][action="' + args.builder.customAction + '"]', {
             onsubmit: ctrl.submit
         }, [m('.w-col.w-col-5', [m('input' + errorClasses + '.w-input.text-field.medium[name="EMAIL"][placeholder="\uC774\uBA54\uC77C\uC744 \uC785\uB825\uD574 \uC8FC\uC2DC\uAE38 \uBC14\uB78D\uB2C8\uB2E4."][type="text"]', {
+            //coffee m(`input${errorClasses}.w-input.text-field.medium[name="EMAIL"][placeholder="이메일을 입력해 주시길 바랍니다."][type="text"]`, {
             config: h.RDTracker('landing-flex'),
             onchange: m.withAttr('value', ctrl.email),
             value: ctrl.email()
-        }), ctrl.error() ? m('span.fontsize-smaller.text-error', '이메일이 잘못되었습니다.') : '']), m('.w-col.w-col-3', [m('input.w-button.btn.btn-large[type="submit"][value="등록"]')])]);
+        }), ctrl.error() ? m('span.fontsize-smaller.text-error', '이메일이 잘못되었습니다.') : '']
+        //coffee (ctrl.error() ? m('span.fontsize-smaller.text-error', '이메일이 잘못되었습니다.') : '')
+        ), m('.w-col.w-col-3', [m('input.w-button.btn.btn-large[type="submit"][value="등록"]')
+        //coffee m('input.w-button.btn.btn-large[type="submit"][value="등록"]')
+        ])]);
     }
 };
 
@@ -4222,7 +4482,9 @@ var projectCard = {
 
         var cardCopy = function cardCopy(project) {
             if (project.expires_at) {
-                return isFinished(project) ? [m('.fontsize-smaller.fontweight-loose', '휴무일'), m('.fontsize-smallest.lineheight-tightest', h.momentify(project.expires_at))] : [m('.fontsize-smaller.fontweight-semibold', remainingTextObj.total + ' ' + remainingTextObj.unit), m('.fontsize-smallest.lineheight-tightest', remainingTextObj.total > 1 ? 'Restantes' : 'Restante')];
+                return isFinished(project) ? [m('.fontsize-smaller.fontweight-loose', '휴무일'),
+                //coffee m('.fontsize-smaller.fontweight-loose', 'Encerrado'),
+                m('.fontsize-smallest.lineheight-tightest', h.momentify(project.expires_at))] : [m('.fontsize-smaller.fontweight-semibold', remainingTextObj.total + ' ' + remainingTextObj.unit), m('.fontsize-smallest.lineheight-tightest', remainingTextObj.total > 1 ? 'Restantes' : 'Restante')];
             }
             return [m('.fontsize-smallest.lineheight-tight', ['Iniciado há', m('br'), elapsedTextObj.total + ' ' + elapsedTextObj.unit])];
         };
@@ -4265,9 +4527,13 @@ var projectRow = {
             wrapper = args.wrapper || '.w-section.section.u-marginbottom-40';
 
         if (collection.loader() || collection.collection().length > 0) {
-            return m(wrapper, [m('.w-container', [!_$1.isUndefined(collection.title) || !_$1.isUndefined(collection.hash) ? m('.w-row.u-marginbottom-30', [m(showFriends ? '.w-col.w-col-8.w-col-small-6.w-col-tiny-6' : '.w-col.w-col-10.w-col-small-6.w-col-tiny-6', [m('.fontsize-large.lineheight-looser', title)]), m(showFriends ? '.w-col.w-col-4.w-col-small-6.w-col-tiny-6' : '.w-col.w-col-2.w-col-small-6.w-col-tiny-6', [m('.w-row', [showFriends ? m('.w-col.w-col-6', [m('a.btn.btn-no-border.btn-small.btn-terciary[href="/connect-facebook?ref=' + ref + '"]', '친구 찾기')]) : '', m(showFriends ? '.w-col.w-col-6' : '.w-col.w-col-12', m('a.btn.btn-small.btn-terciary[href="/explore?ref=' + ref + '&filter=' + collection.hash + '"]', {
+            return m(wrapper, [m('.w-container', [!_$1.isUndefined(collection.title) || !_$1.isUndefined(collection.hash) ? m('.w-row.u-marginbottom-30', [m(showFriends ? '.w-col.w-col-8.w-col-small-6.w-col-tiny-6' : '.w-col.w-col-10.w-col-small-6.w-col-tiny-6', [m('.fontsize-large.lineheight-looser', title)]), m(showFriends ? '.w-col.w-col-4.w-col-small-6.w-col-tiny-6' : '.w-col.w-col-2.w-col-small-6.w-col-tiny-6', [m('.w-row', [showFriends ? m('.w-col.w-col-6', [m('a.btn.btn-no-border.btn-small.btn-terciary[href="/connect-facebook?ref=' + ref + '"]', '친구 찾기')
+            //coffee m(`a.btn.btn-no-border.btn-small.btn-terciary[href="/connect-facebook?ref=${ref}"]`, 'Encontrar amigos')
+            ]) : '', m(showFriends ? '.w-col.w-col-6' : '.w-col.w-col-12', m('a.btn.btn-small.btn-terciary[href="/explore?ref=' + ref + '&filter=' + collection.hash + '"]', {
                 config: m.route
-            }, '모두보기'))])])]) : '', collection.loader() ? h.loader() : m('.w-row', _$1.map(collection.collection(), function (project) {
+            }, '모두보기'))
+            //coffee }, 'Ver todos'))
+            ])])]) : '', collection.loader() ? h.loader() : m('.w-row', _$1.map(collection.collection(), function (project) {
                 return m.component(projectCard, {
                     project: project,
                     ref: ref,
@@ -4353,29 +4619,67 @@ var Flex = {
     view: function view(ctrl, args) {
         var stats = _.first(ctrl.stats());
 
-        return [m('.w-section.hero-full.hero-zelo', [m('.w-container.u-text-center', [m('img.logo-flex-home[src=\'/assets/logo-flex.png\'][width=\'359\']'), m('.w-row', [m('.w-col.fontsize-large.u-marginbottom-60.w-col-push-2.w-col-8', '크라우드펀딩의 새로운 모드를 구축합시다! 전자 메일을 등록하고 프로젝트 등록 방법을 익혀주시길 바랍니다!')]), m('.w-row', [m('.w-col.w-col-2'), m.component(landingSignup, {
+        return [m('.w-section.hero-full.hero-zelo', [m('.w-container.u-text-center', [m('img.logo-flex-home[src=\'/assets/logo-flex.png\'][width=\'359\']'), m('.w-row', [m('.w-col.fontsize-large.u-marginbottom-60.w-col-push-2.w-col-8', '크라우드펀딩의 새로운 모드를 구축합시다! 전자 메일을 등록하고 프로젝트 등록 방법을 익혀주시길 바랍니다!')
+        //coffee m('.w-col.fontsize-large.u-marginbottom-60.w-col-push-2.w-col-8', 'Vamos construir uma nova modalidade de crowdfunding! Cadastre seu email e saiba como inscrever o seu projeto no flex!')
+        ]), m('.w-row', [m('.w-col.w-col-2'), m.component(landingSignup, {
             builder: ctrl.builder
-        }), m('.w-col.w-col-2')])])]), [m('.section', [m('.w-container', [m('.fontsize-largest.u-margintop-40.u-text-center', 'Pra quem será?'), m('.fontsize-base.u-text-center.u-marginbottom-60', '특정 프로젝트 범주로 테스트 단계를 시작합니다.'), m('div', [m('.w-row.u-marginbottom-60', [m('.w-col.w-col-6', [m('.u-text-center.u-marginbottom-20', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e393a01b66e250aca67cb_icon-zelo-com.png\'][width=\'210\']'), m('.fontsize-largest.lineheight-loose', '원인')]), m('p.fontsize-base', 'Flexibilidade para causas de impacto! Estaremos abertos a campanhas de organizações ou pessoas físicas para arrecadação de recursos para causas pessoais, projetos assistenciais, saúde, ajudas humanitárias, proteção aos animais, empreendedorismo socioambiental, ativismo ou qualquer coisa que una as pessoas para fazer o bem.')]), m('.w-col.w-col-6', [m('.u-text-center.u-marginbottom-20', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e3929a0daea230a5f12cd_icon-zelo-pessoal.png\'][width=\'210\']'), m('.fontsize-largest.lineheight-loose', 'Vaquinhas')]), m('p.fontsize-base', 'Campanhas simples que precisam de flexibilidade para arrecadar dinheiro com pessoas próximas. Estaremos abertos a uma variedade de campanhas pessoais que podem ir desde cobrir custos de estudos a ajudar quem precisa de tratamento médico. De juntar a grana para fazer aquela festa a comprar presentes para alguém com a ajuda da galera. ')])])])])]), m('.w-section.section.bg-greenlime.fontcolor-negative', [m('.w-container', [m('.fontsize-largest.u-margintop-40.u-marginbottom-60.u-text-center', '어떻게 작동할까요?'), m('.w-row.u-marginbottom-40', [m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39c578b284493e2a428a_zelo-money.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '얼마나 많은 돈을 모아야하는지'), m('p.u-text-center.fontsize-base', 'O flex é para impulsionar campanhas onde todo dinheiro é bem vindo! Você fica com tudo que conseguir arrecadar.')]), m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39d37c013d4a3ee687d2_icon-reward.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '보상이 필요하지 않습니다.'), m('p.u-text-center.fontsize-base', 'No flex oferecer recompensas é opcional. Você escolhe se oferecê-las faz sentido para o seu projeto e campanha.')])]), m('.w-row.u-marginbottom-40', [m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39fb01b66e250aca67e3_icon-curad.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '프로젝트를 직접 게시합니다.'), m('p.u-text-center.fontsize-base', 'Todos os projetos inscritos no flex entram no ar. Agilidade e facilidade para você captar recursos através da internet.')]), m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39e77c013d4a3ee687d4_icon-time.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '언제든지 캠페인 종료'), m('p.u-text-center.fontsize-base', 'Não há limite de tempo de captação. Você escolhe  quando encerrar sua campanha e receber os valores arrecadados.')])])])]), m('.w-section.section', [m('.w-container', [m('.w-editable.fontsize-larger.u-margintop-40.u-margin-bottom-40.u-text-center', '첫 번째 플렉스 프로젝트를 만나십시오.'), ctrl.projectsLoader() ? h.loader() : m.component(projectRow, { collection: ctrl.projects, ref: 'ctrse_flex', wrapper: '.w-row.u-margintop-40' })])]), m('.w-section.divider'), m('.w-section.section', [m('.w-container', [m('.fontsize-larger.u-text-center.u-marginbottom-60.u-margintop-40', 'Dúvidas'), m('.w-row.u-marginbottom-60', [m('.w-col.w-col-6', [m.component(landingQA, {
-            question: '유연한 모드 요금이란 무엇입니까?? ',
+        }), m('.w-col.w-col-2')])])]), [m('.section', [m('.w-container', [m('.fontsize-largest.u-margintop-40.u-text-center', 'Pra quem será?'), m('.fontsize-base.u-text-center.u-marginbottom-60', '특정 프로젝트 범주로 테스트 단계를 시작합니다.'), m('div', [
+        //coffee m('.fontsize-largest.u-margintop-40.u-text-center', 'Pra quem será?'), m('.fontsize-base.u-text-center.u-marginbottom-60', 'Iniciaremos a fase de testes com categorias de projetos específicas'), m('div', [
+        m('.w-row.u-marginbottom-60', [m('.w-col.w-col-6', [m('.u-text-center.u-marginbottom-20', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e393a01b66e250aca67cb_icon-zelo-com.png\'][width=\'210\']'), m('.fontsize-largest.lineheight-loose', '원인')
+        //coffee m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e393a01b66e250aca67cb_icon-zelo-com.png\'][width=\'210\']'), m('.fontsize-largest.lineheight-loose', 'Causas')
+        ]), m('p.fontsize-base', 'Flexibilidade para causas de impacto! Estaremos abertos a campanhas de organizações ou pessoas físicas para arrecadação de recursos para causas pessoais, projetos assistenciais, saúde, ajudas humanitárias, proteção aos animais, empreendedorismo socioambiental, ativismo ou qualquer coisa que una as pessoas para fazer o bem.')]), m('.w-col.w-col-6', [m('.u-text-center.u-marginbottom-20', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e3929a0daea230a5f12cd_icon-zelo-pessoal.png\'][width=\'210\']'), m('.fontsize-largest.lineheight-loose', 'Vaquinhas')]), m('p.fontsize-base', 'Campanhas simples que precisam de flexibilidade para arrecadar dinheiro com pessoas próximas. Estaremos abertos a uma variedade de campanhas pessoais que podem ir desde cobrir custos de estudos a ajudar quem precisa de tratamento médico. De juntar a grana para fazer aquela festa a comprar presentes para alguém com a ajuda da galera. ')])])])])]), m('.w-section.section.bg-greenlime.fontcolor-negative', [m('.w-container', [m('.fontsize-largest.u-margintop-40.u-marginbottom-60.u-text-center', '어떻게 작동할까요?'), m('.w-row.u-marginbottom-40', [
+        //coffee m('.fontsize-largest.u-margintop-40.u-marginbottom-60.u-text-center', 'Como funcionará?'), m('.w-row.u-marginbottom-40', [
+        m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39c578b284493e2a428a_zelo-money.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '얼마나 많은 돈을 모아야하는지'), m('p.u-text-center.fontsize-base', 'O flex é para impulsionar campanhas onde todo dinheiro é bem vindo! Você fica com tudo que conseguir arrecadar.')
+        //coffee ]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', 'Fique com quanto arrecadar'), m('p.u-text-center.fontsize-base', 'O flex é para impulsionar campanhas onde todo dinheiro é bem vindo! Você fica com tudo que conseguir arrecadar.')
+        ]), m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39d37c013d4a3ee687d2_icon-reward.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '보상이 필요하지 않습니다.'), m('p.u-text-center.fontsize-base', 'No flex oferecer recompensas é opcional. Você escolhe se oferecê-las faz sentido para o seu projeto e campanha.')
+        //coffee ]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', 'Não precisa de recompensas'), m('p.u-text-center.fontsize-base', 'No flex oferecer recompensas é opcional. Você escolhe se oferecê-las faz sentido para o seu projeto e campanha.')
+        ])]), m('.w-row.u-marginbottom-40', [m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39fb01b66e250aca67e3_icon-curad.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '프로젝트를 직접 게시합니다.'), m('p.u-text-center.fontsize-base', 'Todos os projetos inscritos no flex entram no ar. Agilidade e facilidade para você captar recursos através da internet.')
+        //coffee ]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', 'Você mesmo publica seu projeto'), m('p.u-text-center.fontsize-base', 'Todos os projetos inscritos no flex entram no ar. Agilidade e facilidade para você captar recursos através da internet.')
+        ]), m('.w-col.w-col-6', [m('.u-text-center', [m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/560e39e77c013d4a3ee687d4_icon-time.png\'][width=\'180\']')]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', '언제든지 캠페인 종료'), m('p.u-text-center.fontsize-base', 'Não há limite de tempo de captação. Você escolhe  quando encerrar sua campanha e receber os valores arrecadados.')
+        //coffee ]), m('.fontsize-large.u-marginbottom-10.u-text-center.fontweight-semibold', 'Encerre a campanha quando quiser'), m('p.u-text-center.fontsize-base', 'Não há limite de tempo de captação. Você escolhe  quando encerrar sua campanha e receber os valores arrecadados.')
+        ])])])]), m('.w-section.section', [m('.w-container', [m('.w-editable.fontsize-larger.u-margintop-40.u-margin-bottom-40.u-text-center', '첫 번째 플렉스 프로젝트를 만나십시오.'),
+        //coffee m('.w-editable.fontsize-larger.u-margintop-40.u-margin-bottom-40.u-text-center', 'Conheça alguns dos primeiros projetos flex'),
+        ctrl.projectsLoader() ? h.loader() : m.component(projectRow, { collection: ctrl.projects, ref: 'ctrse_flex', wrapper: '.w-row.u-margintop-40' })])]), m('.w-section.divider'), m('.w-section.section', [m('.w-container', [m('.fontsize-larger.u-text-center.u-marginbottom-60.u-margintop-40', 'Dúvidas'), m('.w-row.u-marginbottom-60', [m('.w-col.w-col-6', [m.component(landingQA, {
+            question: '유연한 모드 요금이란 무엇입니까? ',
+            //coffee question: 'Quais são as taxas da modalidade flexível? ',
             answer: 'Givinwire와 마찬가지로 프로젝트를 보내는 데는 비용이 들지 않습니다! 캐럿 플렉스 서비스 이용료는 수집 된 금액의 13 %입니다.'
+            //coffee answer: 'Como no Catarse, enviar um projeto não custa nada! A taxa cobrada no serviço Catarse flex é de 13% sobre o valor arrecadado.'
         }), m.component(landingQA, {
-            question: '내 프로젝트에서 나온 돈은 어디에서 왔습니까??',
+            question: '내 프로젝트에서 나온 돈은 어디에서 왔습니까?',
+            //coffee question: 'De onde vem o dinheiro do meu projeto?',
             answer: '귀하가 소속 된 가족, 친구, 팬 및 지역 사회 구성원은 귀하의 가장 큰 공헌자입니다. 그들이 알고있는 사람들에게 선거 운동을 퍼뜨리는 것은 바로 그 사람들입니다. 그래서 서포터들의 서클이 커지고 캠페인의 힘이 생깁니다.'
+            //coffee answer: 'Família, amigos, fãs e membros de comunidades que você faz parte são seus maiores colaboradores. São eles que irão divulgar sua campanha para as pessoas que eles conhecem, e assim o círculo de apoiadores vai aumentando e a sua campanha ganha força.'
         }), m.component(landingQA, {
             question: 'Qual a diferença entre o flexível e o "tudo ou nada"?',
             answer: '현재 Givinwire는 "all or nothing"모델 만 사용합니다.이 모델에서는 캠페인 기간 내에 수집 목표를 달성하는 경우에만 돈을 얻습니다. 유연한 모델은 캠페인 기간 동안 프로젝트 목표에 도달했는지 여부에 관계없이 감독이 자신이 수집 한 것을 유지할 수 있기 때문에 다릅니다. 캠페인에는 시간 제한이 없습니다. 우리의 유연한 시스템은 현재 시장에 존재하는 모델에 비해 새로운 것입니다.'
+            //coffee answer: 'Atualmente o Catarse utiliza apenas o modelo "tudo ou nada", onde você só fica com o dinheiro se bater a meta de arrecadação dentro do prazo da campanha. O modelo flexível é diferente pois permite que o realizador fique com o que arrecadar, independente de atingir ou não a meta do projeto no prazo da campanha. Não haverá limite de tempo para as campanhas. Nosso sistema flexível será algo novo em relação aos modelos que existem atualmente no mercado.'
         })]), m('.w-col.w-col-6', [m.component(landingQA, {
             question: '유연한 양식을위한 프로젝트를 이미 등록 할 수 있습니다.?',
+            //coffee question: 'Posso inscrever projetos para a modalidade flexível já?',
             answer: '네, 전자 메일을 등록하고 프로젝트를 flex에 등록하는 방법을 배우십시오!'
+            //coffee answer: 'Sim. Cadastre seu email e saiba como inscrever o seu projeto no flex!'
         }), m.component(landingQA, {
-            question: '왜 Givingwire flex를하고 싶습니까?',
+            question: '왜 Givingwire flex를 하고 싶습니까?',
+            //coffee question: 'Por quê vocês querem fazer o Catarse flex?',
             answer: 'Acreditamos que o ambiente do crowdfunding brasileiro ainda tem espaço para muitas ações, testes e experimentações para entender de fato o que as pessoas precisam. Sonhamos com tornar o financiamento coletivo um hábito no Brasil. O Catarse flex é mais um passo nessa direção.'
         }), m.component(landingQA, {
-            question: 'Givingwire flex는 언제 시작합니까??',
+            question: 'Givingwire flex는 언제 시작합니까?',
+            //coffee question: 'Quando vocês irão lançar o Catarse flex?',
             answer: '우리는 일반 대중을 위해 언제 Flex를 열지 모르지만 이 페이지에 이메일을 등록하고 프로젝트 제출 방법에 대한 특별한 자료를 받을 수 있습니다.'
-        })])])])]), m('.w-section.section-large.u-text-center.bg-purple', [m('.w-container.fontcolor-negative', [m('.fontsize-largest', 'Inscreva seu projeto!'), m('.fontsize-base.u-marginbottom-60', '이메일을 등록하고 flex에 프로젝트를 등록하는 방법을 배우시길 바랍니다!'), m('.w-row', [m('.w-col.w-col-2'), m.component(landingSignup, {
+            //coffee answer: 'Ainda não sabemos quando abriremos o flex para o público em geral, mas você pode cadastrar seu email nessa página e receber um material especial de como inscrever seu projeto.'
+        })])])])]), m('.w-section.section-large.u-text-center.bg-purple', [m('.w-container.fontcolor-negative', [m('.fontsize-largest', 'Inscreva seu projeto!'), m('.fontsize-base.u-marginbottom-60', '이메일을 등록하고 flex에 프로젝트를 등록하는 방법을 배우시길 바랍니다!'), m('.w-row', [
+        //coffee m('.fontsize-largest', 'Inscreva seu projeto!'), m('.fontsize-base.u-marginbottom-60', 'Cadastre seu email e saiba como inscrever o seu projeto no flex!'), m('.w-row', [
+        m('.w-col.w-col-2'), m.component(landingSignup, {
             builder: ctrl.builder
-        }), m('.w-col.w-col-2')])])]), m('.w-section.section-one-column.bg-catarse-zelo.section-large[style="min-height: 50vh;"]', [m('.w-container.u-text-center', [m('.w-editable.u-marginbottom-40.fontsize-larger.lineheight-tight.fontcolor-negative', 'O flex é um experimento e iniciativa do Catarse, maior plataforma de crowdfunding do Brasil.'), m('.w-row.u-text-center', ctrl.statsLoader() ? h.loader() : [m('.w-col.w-col-4', [m('.fontsize-jumbo.text-success.lineheight-loose', h.formatNumber(stats.total_contributors, 0, 3)), m('p.start-stats.fontsize-base.fontcolor-negative', 'Pessoas ja apoiaram pelo menos 01 projeto no Catarse')]), m('.w-col.w-col-4', [m('.fontsize-jumbo.text-success.lineheight-loose', h.formatNumber(stats.total_projects_success, 0, 3)), m('p.start-stats.fontsize-base.fontcolor-negative', 'Projetos ja foram financiados no Catarse')]), m('.w-col.w-col-4', [m('.fontsize-jumbo.text-success.lineheight-loose', stats.total_contributed.toString().slice(0, 2) + ' milh\xF5es'), m('p.start-stats.fontsize-base.fontcolor-negative', 'Foram investidos em ideias publicadas no Catarse')])])])]), m('.w-section.section.bg-blue-one.fontcolor-negative', [m('.w-container', [m('.fontsize-large.u-text-center.u-marginbottom-20', '친구에게 Givingwire Flex를 추천합니다.! '), m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.w-row', [m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle', [m('div', [m('img.icon-share-mobile[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/53a3f66e05eb6144171d8edb_facebook-xxl.png\']'), m('a.w-button.btn.btn-large.btn-fb[href="http://www.facebook.com/sharer/sharer.php?u=https://www.catarse.me/flex?ref=facebook&title=' + encodeURIComponent('Conheça o novo Catarse Flex!') + '"][target="_blank"]', '이것을 공유하십시오')])]), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', [m('div', [m('img.icon-share-mobile[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/53a3f65105eb6144171d8eda_twitter-256.png\']'), m('a.w-button.btn.btn-large.btn-tweet[href="https://twitter.com/intent/tweet?text=' + encodeURIComponent('Givingwire에 대한 새로운 크라우드펀딩 방식을 구축합시다! 가입하여 이메일을 신청하십시오!') + 'https://www.catarse.me/flex?ref=twitter"][target="_blank"]', 'Tuitar')])])])]), m('.w-col.w-col-2')])])]), m('.w-section.section-large.bg-greenlime', [m('.w-container', [m('#participe-do-debate.u-text-center', { config: h.toAnchor() }, [m('h1.fontsize-largest.fontcolor-negative', 'Construa o flex conosco'), m('.fontsize-base.u-marginbottom-60.fontcolor-negative', 'Inicie uma conversa, pergunte, comente, critique e faça sugestões!')]), m('#disqus_thread.card.u-radius[style="min-height: 50vh;"]', {
+        }), m('.w-col.w-col-2')])])]), m('.w-section.section-one-column.bg-catarse-zelo.section-large[style="min-height: 50vh;"]', [m('.w-container.u-text-center', [m('.w-editable.u-marginbottom-40.fontsize-larger.lineheight-tight.fontcolor-negative', 'O flex é um experimento e iniciativa do Catarse, maior plataforma de crowdfunding do Brasil.'), m('.w-row.u-text-center', ctrl.statsLoader() ? h.loader() : [m('.w-col.w-col-4', [m('.fontsize-jumbo.text-success.lineheight-loose', h.formatNumber(stats.total_contributors, 0, 3)), m('p.start-stats.fontsize-base.fontcolor-negative', 'Pessoas ja apoiaram pelo menos 01 projeto no Catarse')]), m('.w-col.w-col-4', [m('.fontsize-jumbo.text-success.lineheight-loose', h.formatNumber(stats.total_projects_success, 0, 3)), m('p.start-stats.fontsize-base.fontcolor-negative', 'Projetos ja foram financiados no Catarse')]), m('.w-col.w-col-4', [m('.fontsize-jumbo.text-success.lineheight-loose', stats.total_contributed.toString().slice(0, 2) + ' milh\xF5es'), m('p.start-stats.fontsize-base.fontcolor-negative', 'Foram investidos em ideias publicadas no Catarse')])])])]), m('.w-section.section.bg-blue-one.fontcolor-negative', [m('.w-container', [m('.fontsize-large.u-text-center.u-marginbottom-20', '친구에게 Givingwire Flex를 추천합니다! '),
+        //coffee m('.fontsize-large.u-text-center.u-marginbottom-20', 'Recomende o Catarse flex para amigos! '),
+        m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.w-row', [m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle', [m('div', [m('img.icon-share-mobile[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/53a3f66e05eb6144171d8edb_facebook-xxl.png\']'), m('a.w-button.btn.btn-large.btn-fb[href="http://www.facebook.com/sharer/sharer.php?u=https://www.catarse.me/flex?ref=facebook&title=' + encodeURIComponent('새로운 Givingwire Flex를 만나십시오!') + '"][target="_blank"]', '이것을 공유하십시오')
+        //coffee m(`a.w-button.btn.btn-large.btn-fb[href="http://www.facebook.com/sharer/sharer.php?u=https://www.catarse.me/flex?ref=facebook&title=${encodeURIComponent('새로운 Givingwire Flex를 만나십시오!')}"][target="_blank"]`, 'Compartilhar')
+        ])]), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', [m('div', [m('img.icon-share-mobile[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/53a3f65105eb6144171d8eda_twitter-256.png\']'), m('a.w-button.btn.btn-large.btn-tweet[href="https://twitter.com/intent/tweet?text=' + encodeURIComponent('Givingwire에 대한 새로운 크라우드펀딩 방식을 구축합시다! 가입하여 이메일을 신청하십시오!') + 'https://www.catarse.me/flex?ref=twitter"][target="_blank"]', 'Tuitar')
+        //coffee m(`a.w-button.btn.btn-large.btn-tweet[href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Vamos construir uma nova modalidade de crowdfunding para o Catarse! Junte-se a nós, inscreva seu email!')}https://www.catarse.me/flex?ref=twitter"][target="_blank"]`, 'Tuitar')
+        ])])])]), m('.w-col.w-col-2')])])]), m('.w-section.section-large.bg-greenlime', [m('.w-container', [m('#participe-do-debate.u-text-center', { config: h.toAnchor() }, [m('h1.fontsize-largest.fontcolor-negative', 'Construa o flex conosco'), m('.fontsize-base.u-marginbottom-60.fontcolor-negative', '대화를 시작하고, 의견을 말하고, 비평하고, 비평하고, 제안을하십시오!')
+        //coffee m('h1.fontsize-largest.fontcolor-negative', 'Construa o flex conosco'), m('.fontsize-base.u-marginbottom-60.fontcolor-negative', 'Inicie uma conversa, pergunte, comente, critique e faça sugestões!')
+        ]), m('#disqus_thread.card.u-radius[style="min-height: 50vh;"]', {
             config: ctrl.addDisqus
         })])])]];
     }
@@ -4621,13 +4925,20 @@ var projectDashboardMenu = {
             editLinkClass = function editLinkClass(hash) {
             return 'dashboard-nav-link-left ' + (project.is_published ? 'indent' : '') + ' ' + (h.hashMatch(hash) ? 'selected' : '');
         };
-        var optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (opcional)');
+        var optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)');
+        //coffee const optionalOpt = m('span.fontsize-smallest.fontcolor-secondary', ' (Nenhuma)');
 
         ctrl.body.className = ctrl.bodyToggleForNav();
 
-        return m('#project-nav', [m('.project-nav-wrapper', [m('nav.w-section.dashboard-nav.side', [m('a#dashboard_preview_link.w-inline-block.dashboard-project-name[href="' + (project.is_published ? '/' + project.permalink : editRoute + '#preview') + '"]', [m('img.thumb-project-dashboard[src="' + (project ? ctrl.projectThumb(project) : '/assets/thumb-project.png') + '"][width="114"]'), m('.fontcolor-negative.lineheight-tight.fontsize-small', project.name), m('img.u-margintop-10[src="/assets/catarse_bootstrap/badge-' + project.mode + '-h.png"][width=80]')]), m('#info-links.u-marginbottom-20', [m('a#dashboard_home_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('insights') ? 'selected' : '') + '"][href="' + projectRoute + '/insights"]', [m('span.fa.fa-bar-chart.fa-lg.fa-fw'), I18n$1.t('start_tab', I18nScope$6())]), project.is_published ? [m('a#dashboard_reports_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('contributions_report') ? 'selected' : '') + '"][href="' + projectRoute + '/contributions_report"]', [m('span.fa.fa.fa-table.fa-lg.fa-fw'), I18n$1.t('reports_tab', I18nScope$6())]), m('a#dashboard_reports_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('posts') ? 'selected' : '') + '"][href="' + projectRoute + '/posts"]', [m('span.fa.fa-bullhorn.fa-fw.fa-lg'), I18n$1.t('posts_tab', I18nScope$6()), project.posts_count > 0 ? m('span.badge', project.posts_count) : m('span.badge.badge-attention', '없음')]), m('a#dashboard_surveys_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('surveys') ? 'selected' : '') + '"][href="' + projectRoute + '/surveys"]', [m('span.fa.fa.fa-check-square-o.fa-lg.fa-fw'), I18n$1.t('surveys_tab', I18nScope$6())])] : '']), m('.edit-project-div', [!project.is_published ? '' : m('button#toggle-edit-menu.dashboard-nav-link-left', {
+        return m('#project-nav', [m('.project-nav-wrapper', [m('nav.w-section.dashboard-nav.side', [m('a#dashboard_preview_link.w-inline-block.dashboard-project-name[href="' + (project.is_published ? '/' + project.permalink : editRoute + '#preview') + '"]', [m('img.thumb-project-dashboard[src="' + (project ? ctrl.projectThumb(project) : '/assets/thumb-project.png') + '"][width="114"]'), m('.fontcolor-negative.lineheight-tight.fontsize-small', project.name), m('img.u-margintop-10[src="/assets/catarse_bootstrap/badge-' + project.mode + '-h.png"][width=80]')]), m('#info-links.u-marginbottom-20', [m('a#dashboard_home_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('insights') ? 'selected' : '') + '"][href="' + projectRoute + '/insights"]', [m('span.fa.fa-bar-chart.fa-lg.fa-fw'), I18n$1.t('start_tab', I18nScope$6())]), project.is_published ? [m('a#dashboard_reports_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('contributions_report') ? 'selected' : '') + '"][href="' + projectRoute + '/contributions_report"]', [m('span.fa.fa.fa-table.fa-lg.fa-fw'), I18n$1.t('reports_tab', I18nScope$6())]), m('a#dashboard_reports_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('posts') ? 'selected' : '') + '"][href="' + projectRoute + '/posts"]', [m('span.fa.fa-bullhorn.fa-fw.fa-lg'), I18n$1.t('posts_tab', I18nScope$6()), project.posts_count > 0 ? m('span.badge', project.posts_count) : m('span.badge.badge-attention', '없음')
+        //coffee m('span.badge.badge-attention', 'Nenhuma')
+        ]), m('a#dashboard_surveys_link[class="dashboard-nav-link-left ' + (h.locationActionMatch('surveys') ? 'selected' : '') + '"][href="' + projectRoute + '/surveys"]', [m('span.fa.fa.fa-check-square-o.fa-lg.fa-fw'), I18n$1.t('surveys_tab', I18nScope$6())])] : '']), m('.edit-project-div', [!project.is_published ? '' : m('button#toggle-edit-menu.dashboard-nav-link-left', {
             onclick: ctrl.editLinksToggle.toggle
-        }, [m('span.fa.fa-pencil.fa-fw.fa-lg'), I18n$1.t('edit_project', I18nScope$6())]), ctrl.editLinksToggle() ? m('#edit-menu-items', [m('#dashboard-links', [!project.is_published || project.is_admin_role ? [m('a#basics_link[class="' + editLinkClass('#basics') + '"][href="' + editRoute + '#basics"]', railsErrorsVM.errorsFor('basics'), I18n$1.t('basics_tab', linksScope())), m('a#goal_link[class="' + editLinkClass('#goal') + '"][href="' + editRoute + '#goal"]', railsErrorsVM.errorsFor('goal'), I18n$1.t('goal_tab', linksScope()))] : '', m('a#description_link[class="' + editLinkClass('#description') + '"][href="' + editRoute + '#description"]', railsErrorsVM.errorsFor('description'), I18n$1.t('description_tab', linksScope())), m('a#video_link[class="' + editLinkClass('#video') + '"][href="' + editRoute + '#video"]', [railsErrorsVM.errorsFor('video'), '비디오', m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)')]), m('a#budget_link[class="' + editLinkClass('#budget') + '"][href="' + editRoute + '#budget"]', railsErrorsVM.errorsFor('budget'), I18n$1.t('budget_tab', linksScope())), m('a#card_link[class="' + editLinkClass('#card') + '"][href="' + editRoute + '#card"]', railsErrorsVM.errorsFor('card'), I18n$1.t('card_tab', linksScope())), m('a#dashboard_reward_link[class="' + editLinkClass('#reward') + '"][href="' + editRoute + '#reward"]', [railsErrorsVM.errorsFor('reward'), '보상', optionalOpt]), m('a#dashboard_user_about_link[class="' + editLinkClass('#user_about') + '"][href="' + editRoute + '#user_about"]', railsErrorsVM.errorsFor('user_about'), I18n$1.t('about_you_tab', linksScope())), project.is_published || project.state === 'draft' || project.is_admin_role ? [m('a#dashboard_user_settings_link[class="' + editLinkClass('#user_settings') + '"][href="' + editRoute + '#user_settings"]', railsErrorsVM.errorsFor('user_settings'), I18n$1.t('account_tab', linksScope()))] : '', !project.is_published ? [m('a#dashboard_preview_link[class="' + editLinkClass('#preview') + '"][href="' + editRoute + '#preview"]', [m('span.fa.fa-fw.fa-eye.fa-lg'), I18n$1.t('preview_tab', linksScope())])] : ''])]) : '', !project.is_published && ctrl.showPublish() ? [ctrl.validating() ? h.loader() : m('.btn-send-draft-fixed', project.mode === 'aon' ? [project.state === 'draft' ? m('button.btn.btn-medium', {
+        }, [m('span.fa.fa-pencil.fa-fw.fa-lg'), I18n$1.t('edit_project', I18nScope$6())]), ctrl.editLinksToggle() ? m('#edit-menu-items', [m('#dashboard-links', [!project.is_published || project.is_admin_role ? [m('a#basics_link[class="' + editLinkClass('#basics') + '"][href="' + editRoute + '#basics"]', railsErrorsVM.errorsFor('basics'), I18n$1.t('basics_tab', linksScope())), m('a#goal_link[class="' + editLinkClass('#goal') + '"][href="' + editRoute + '#goal"]', railsErrorsVM.errorsFor('goal'), I18n$1.t('goal_tab', linksScope()))] : '', m('a#description_link[class="' + editLinkClass('#description') + '"][href="' + editRoute + '#description"]', railsErrorsVM.errorsFor('description'), I18n$1.t('description_tab', linksScope())), m('a#video_link[class="' + editLinkClass('#video') + '"][href="' + editRoute + '#video"]', [railsErrorsVM.errorsFor('video'), '비디오', m('span.fontsize-smallest.fontcolor-secondary', ' (선택적)')
+        //coffee 'Vídeo', m('span.fontsize-smallest.fontcolor-secondary', ' (opcional)')
+        ]), m('a#budget_link[class="' + editLinkClass('#budget') + '"][href="' + editRoute + '#budget"]', railsErrorsVM.errorsFor('budget'), I18n$1.t('budget_tab', linksScope())), m('a#card_link[class="' + editLinkClass('#card') + '"][href="' + editRoute + '#card"]', railsErrorsVM.errorsFor('card'), I18n$1.t('card_tab', linksScope())), m('a#dashboard_reward_link[class="' + editLinkClass('#reward') + '"][href="' + editRoute + '#reward"]', [railsErrorsVM.errorsFor('reward'), '보상', optionalOpt
+        //coffee 'Recompensas', optionalOpt
+        ]), m('a#dashboard_user_about_link[class="' + editLinkClass('#user_about') + '"][href="' + editRoute + '#user_about"]', railsErrorsVM.errorsFor('user_about'), I18n$1.t('about_you_tab', linksScope())), project.is_published || project.state === 'draft' || project.is_admin_role ? [m('a#dashboard_user_settings_link[class="' + editLinkClass('#user_settings') + '"][href="' + editRoute + '#user_settings"]', railsErrorsVM.errorsFor('user_settings'), I18n$1.t('account_tab', linksScope()))] : '', !project.is_published ? [m('a#dashboard_preview_link[class="' + editLinkClass('#preview') + '"][href="' + editRoute + '#preview"]', [m('span.fa.fa-fw.fa-eye.fa-lg'), I18n$1.t('preview_tab', linksScope())])] : ''])]) : '', !project.is_published && ctrl.showPublish() ? [ctrl.validating() ? h.loader() : m('.btn-send-draft-fixed', project.mode === 'aon' ? [project.state === 'draft' ? m('button.btn.btn-medium', {
             onclick: ctrl.validatePublish
         }, [I18n$1.t('publish', I18nScope$6()), m.trust('&nbsp;&nbsp;'), m('span.fa.fa-chevron-right')]) : ''] : [project.state === 'draft' ? m('button.btn.btn-medium', {
             onclick: ctrl.validatePublish
@@ -4669,7 +4980,9 @@ var adminProjectDetailsCard = {
             remainingTextObj = ctrl.remainingTextObj,
             elapsedTextObj = ctrl.elapsedTextObj;
 
-        return m('.project-details-card.card.u-radius.card-terciary.u-marginbottom-20', [m('div', [m('.fontsize-small.fontweight-semibold', [m('span.fontcolor-secondary', '지위:'), ' ', m('span', {
+        return m('.project-details-card.card.u-radius.card-terciary.u-marginbottom-20', [m('div', [m('.fontsize-small.fontweight-semibold', [m('span.fontcolor-secondary', '지위:'), ' ',
+        //coffee m('span.fontcolor-secondary', 'Status:'), ' ',
+        m('span', {
             class: statusTextObj.cssClass
         }, ctrl.isFinalLap() && project.open_for_contributions ? 'RETA FINAL' : statusTextObj.text), ' ']), project.is_published ? [m('.meter.u-margintop-20.u-marginbottom-10', [m('.meter-fill', {
             style: {
@@ -4706,7 +5019,15 @@ var projectDataStats = {
             remainingTextObj = h.translatedTime(project.remaining_time),
             elapsedTextObj = h.translatedTime(project.elapsed_time);
 
-        return m('', [m('.w-row.u-marginbottom-60.u-margintop-30.u-text-center', [m('.w-col.w-col-2'), m('.w-col.w-col-4', [m('.fontsize-large', [m('span.fontcolor-secondary', 'Status: '), m('span', { class: statusTextObj.cssClass }, statusTextObj.text)])]), m('.w-col.w-col-4', [m('.fontsize-large.fontweight-semibold', [m('span.fa.fa-clock-o'), _$1.isNull(project.expires_at) ? ' Iniciado h\xE1 ' + elapsedTextObj.total + ' ' + elapsedTextObj.unit : ' ' + remainingTextObj.total + ' ' + remainingTextObj.unit + ' ' + (remainingTextObj.total > 1 ? 'restantes' : 'restante')])]), m('.w-col.w-col-2')]), m('.card.medium.u-marginbottom-60.u-radius.u-text-center', { style: { 'white-space': 'nowrap' } }, [m('.w-row', [m('.w-col.w-col-6', [m('.w-row.u-marginbottom-30.u-margintop-30', [m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.fontsize-larger.fontweight-semibold', '' + visitorsTotal), '방문객']), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.bg-triangle-funnel.fontcolor-secondary.fontsize-base', h.formatNumber(project.total_contributors / visitorsTotal * 100 || 0, 2) + '%')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.fontsize-larger.fontweight-semibold', '' + project.total_contributors), '후원자'])])]), m('.w-col.w-col-6', [m('.w-row.u-marginbottom-30.u-margintop-30', [m('.w-col.w-col-9.w-col-small-6.w-col-tiny-6', [m('.fontsize-larger.fontweight-semibold', 'R$ ' + h.formatNumber(project.pledged, 2)), 'Arrecadados']), m('.w-col.w-col-3.w-col-small-6.w-col-tiny-6', [m('.fontsize-larger.fontweight-semibold', h.formatNumber(project.progress, 2) + '%'), 'da Meta'])])])]), m('.fontcolor-secondary.fontsize-smallest.u-margintop-20', ['데이터를 업데이트하는 데 최대 24시간이 소요될 수 있습니다.', m('a.alt-link', { href: 'https://suporte.catarse.me/hc/pt-br/articles/115002214463-projeto-ONLINE#visitante', target: '_blank' }, ' 추가 정보'), '.'])])]);
+        return m('', [m('.w-row.u-marginbottom-60.u-margintop-30.u-text-center', [m('.w-col.w-col-2'), m('.w-col.w-col-4', [m('.fontsize-large', [m('span.fontcolor-secondary', 'Status: '), m('span', { class: statusTextObj.cssClass }, statusTextObj.text)])]), m('.w-col.w-col-4', [m('.fontsize-large.fontweight-semibold', [m('span.fa.fa-clock-o'), _$1.isNull(project.expires_at) ? ' Iniciado h\xE1 ' + elapsedTextObj.total + ' ' + elapsedTextObj.unit : ' ' + remainingTextObj.total + ' ' + remainingTextObj.unit + ' ' + (remainingTextObj.total > 1 ? 'restantes' : 'restante')])]), m('.w-col.w-col-2')]), m('.card.medium.u-marginbottom-60.u-radius.u-text-center', { style: { 'white-space': 'nowrap' } }, [m('.w-row', [m('.w-col.w-col-6', [m('.w-row.u-marginbottom-30.u-margintop-30', [m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.fontsize-larger.fontweight-semibold', '' + visitorsTotal), '방문객'
+        //coffee 'Visitantes'
+        ]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.bg-triangle-funnel.fontcolor-secondary.fontsize-base', h.formatNumber(project.total_contributors / visitorsTotal * 100 || 0, 2) + '%')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.fontsize-larger.fontweight-semibold', '' + project.total_contributors), '후원자'
+        //coffee 'Apoiadores'
+        ])])]), m('.w-col.w-col-6', [m('.w-row.u-marginbottom-30.u-margintop-30', [m('.w-col.w-col-9.w-col-small-6.w-col-tiny-6', [m('.fontsize-larger.fontweight-semibold', 'R$ ' + h.formatNumber(project.pledged, 2)), 'Arrecadados']), m('.w-col.w-col-3.w-col-small-6.w-col-tiny-6', [m('.fontsize-larger.fontweight-semibold', h.formatNumber(project.progress, 2) + '%'), 'da Meta'])])])]), m('.fontcolor-secondary.fontsize-smallest.u-margintop-20', ['데이터를 업데이트하는 데 최대 24시간이 소요될 수 있습니다.',
+        //coffee 'Os dados podem levar até 24 horas para serem atualizados.',
+        m('a.alt-link', { href: 'https://suporte.catarse.me/hc/pt-br/articles/115002214463-projeto-ONLINE#visitante', target: '_blank' }, ' 추가 정보'),
+        //coffee m('a.alt-link', { href: 'https://suporte.catarse.me/hc/pt-br/articles/115002214463-projeto-ONLINE#visitante', target: '_blank' }, ' Saiba mais'),
+        '.'])])]);
     }
 };
 
@@ -4734,11 +5055,13 @@ var deleteProjectModalContent = {
                 }).catch(function (err) {
                     confirmed(false);
                     error('프로젝트를 삭제하는 중 오류가 발생했습니다. 다시 시도해 주시길 바랍니다.');
+                    //coffee error('Erro ao deletar projeto. Por favor tente novamente.');
                     m.redraw();
                 });
             } else {
                 confirmed(false);
                 error('다음 오류를 수정해 주시길 바랍니다: 프로젝트를 영구히 삭제하려면 "임시 보관함 삭제".');
+                //coffee error('Por favor, corrija os seguintes erros: para deletar definitivamente o projeto você deverá preencher "deletar-rascunho"');
             }
             return false;
         };
@@ -4752,7 +5075,23 @@ var deleteProjectModalContent = {
         };
     },
     view: function view(ctrl, args) {
-        return m('div', ctrl.deleteSuccess() ? '' : m('.modal-dialog-header', m('.fontsize-large.u-text-center', ['확인 ', m('span.fa.fa-trash', '')])), m('form.modal-dialog-content', { onsubmit: ctrl.deleteProject }, ctrl.deleteSuccess() ? [m('.fontsize-base.u-margintop-30', '프로젝트를 성공적으로 삭제했습니다. 아래 링크를 클릭하면 홈페이지로 돌아갑니다.'), m('a.btn.btn-inactive.btn-large.u-margintop-30[href=\'/pt/users/' + h.getUser().user_id + '/edit#projects\']', '뒤로')] : [m('.fontsize-base.u-marginbottom-60', ['프로젝트가 영구적으로 삭제되고 초안에 기입한 모든 데이터가 검색되지 않습니다.']), m('.fontsize-base.u-marginbottom-10', ['편지 쓰기 확인', 'no campo abaixo ', m('span.fontweight-semibold.text-error', '초안 삭제')]), m('.w-form', m('.text-error.u-marginbottom-10', ctrl.error()), [m('div', m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: ctrl.confirmed() ? false : 'error', placeholder: '초안 삭제', onchange: m.withAttr('value', ctrl.check) }))]), m('div', m('.w-row', [m('.w-col.w-col-3'), m('.u-text-center.w-col.w-col-6', [m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Deletar para sempre\']'), m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayDeleteModal.toggle }, '취소')]), m('.w-col.w-col-3')]))]));
+        return m('div', ctrl.deleteSuccess() ? '' : m('.modal-dialog-header', m('.fontsize-large.u-text-center', ['확인 ',
+        //coffee 'Confirmar ',
+        m('span.fa.fa-trash', '')])), m('form.modal-dialog-content', { onsubmit: ctrl.deleteProject }, ctrl.deleteSuccess() ? [m('.fontsize-base.u-margintop-30', '프로젝트를 성공적으로 삭제했습니다. 아래 링크를 클릭하면 홈페이지로 돌아갑니다.'),
+        //coffee (ctrl.deleteSuccess() ? [m('.fontsize-base.u-margintop-30', 'Projeto deletado com sucesso. Clique no link abaixo para voltar a página inicial.'),
+        m('a.btn.btn-inactive.btn-large.u-margintop-30[href=\'/pt/users/' + h.getUser().user_id + '/edit#projects\']', '뒤로')
+        //coffee m(`a.btn.btn-inactive.btn-large.u-margintop-30[href='/pt/users/${h.getUser().user_id}/edit#projects']`, 'Voltar')
+        ] : [m('.fontsize-base.u-marginbottom-60', ['프로젝트가 영구적으로 삭제되고 초안에 기입한 모든 데이터가 검색되지 않습니다.'
+        //coffee 'O projeto será deletado permanentemente e todos os dados que você preencheu na edição do rascunho não poderão ser recuperados.'
+        ]), m('.fontsize-base.u-marginbottom-10', ['편지 쓰기 확인',
+        //coffee 'Confirme escrevendo',
+        'no campo abaixo ', m('span.fontweight-semibold.text-error', '초안 삭제'
+        //coffee 'deletar-rascunho'
+        )]), m('.w-form', m('.text-error.u-marginbottom-10', ctrl.error()), [m('div', m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: ctrl.confirmed() ? false : '오류', placeholder: '초안 삭제', onchange: m.withAttr('value', ctrl.check) })
+        //coffee m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: ctrl.confirmed() ? false : 'error', placeholder: 'deletar-rascunho', onchange: m.withAttr('value', ctrl.check) })
+        )]), m('div', m('.w-row', [m('.w-col.w-col-3'), m('.u-text-center.w-col.w-col-6', [m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Deletar para sempre\']'), m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayDeleteModal.toggle }, '취소'
+        //coffee m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayDeleteModal.toggle }, 'Cancelar'
+        )]), m('.w-col.w-col-3')]))]));
     }
 };
 
@@ -4772,7 +5111,9 @@ var projectDeleteButton = {
             displayModal: ctrl.displayDeleteModal,
             hideCloseButton: true,
             content: [deleteProjectModalContent, { displayDeleteModal: ctrl.displayDeleteModal, project: args.project }]
-        }) : '', m('.before-footer', m('.w-container', m('a.btn.btn-inline.btn-no-border.btn-small.btn-terciary.u-marginbottom-20.u-right.w-button[href=\'javascript:void(0);\']', { onclick: ctrl.displayDeleteModal.toggle, style: { transition: 'all 0.5s ease 0s' } }, [m.trust('&nbsp;'), '프로젝트 삭제 ', m('span.fa.fa-trash', '')])))]);
+        }) : '', m('.before-footer', m('.w-container', m('a.btn.btn-inline.btn-no-border.btn-small.btn-terciary.u-marginbottom-20.u-right.w-button[href=\'javascript:void(0);\']', { onclick: ctrl.displayDeleteModal.toggle, style: { transition: 'all 0.5s ease 0s' } }, [m.trust('&nbsp;'), '프로젝트 삭제 ',
+        //coffee 'Deletar projeto ',
+        m('span.fa.fa-trash', '')])))]);
     }
 };
 
@@ -4802,7 +5143,19 @@ var cancelProjectModalContent = {
         };
     },
     view: function view(ctrl, args) {
-        return m('form.cancel-project-modal.modal-dialog-content', { onsubmit: ctrl.showNextModal }, [m('.fontsize-small.u-marginbottom-20', ['취소하면 캠페인이 만료되고 후원자는 다음 24 시간 내에 환불됩니다.', m('span.fontweight-semibold', '이 작업은 취소할 수 없습니다!'), m('br'), m('span.fontweight-semibold')]), m('.fontsize-small.u-marginbottom-10', ['프로젝트를 취소 하시려면 서면으로 확인해 주시길 바랍니다.', m('span.fontweight-semibold.text-error', 'cancelar-projeto '), 'no campo abaixo. Em seguida lhe pediremos para escrever uma mensagem aos apoiadores e seu projeto será então cancelado.', m('span.fontweight-semibold.text-error')]), m('.w-form', [m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : 'error', placeholder: 'cancelar-projeto', onchange: m.withAttr('value', ctrl.check) })]), m('div', m('.w-row', [m('.w-col.w-col-3'), m('.u-text-center.w-col.w-col-6', [m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'Próximo passo >\']'), m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayModal.toggle }, '취소')]), m('.w-col.w-col-3')]))]);
+        return m('form.cancel-project-modal.modal-dialog-content', { onsubmit: ctrl.showNextModal }, [m('.fontsize-small.u-marginbottom-20', ['취소하면 캠페인이 만료되고 후원자는 다음 24 시간 내에 환불됩니다.',
+        //coffee 'Após o cancelamento, sua campanha será expirada e os seus apoiadores serão reembolsados dentro das próximas 24h horas.',
+        m('span.fontweight-semibold', '이 작업은 취소할 수 없습니다!'
+        //coffee 'Essa ação não poderá ser desfeita(이 작업은 실행 취소 할 수 없습니다.)!'
+        ), m('br'), m('span.fontweight-semibold')]), m('.fontsize-small.u-marginbottom-10', ['프로젝트를 취소 하시려면 서면으로 확인해 주시길 바랍니다.',
+        //coffee 'Se você tem certeza que deseja cancelar seu projeto, confirme escrevendo',
+        m('span.fontweight-semibold.text-error', 'cancelar-projeto '), 'no campo abaixo. Em seguida lhe pediremos para escrever uma mensagem aos apoiadores e seu projeto será então cancelado.', m('span.fontweight-semibold.text-error')]), m('.w-form', [m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : '오류', placeholder: '프로젝트 취소', onchange: m.withAttr('value', ctrl.check) })
+        //coffee m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : 'error', placeholder: 'cancelar-projeto', onchange: m.withAttr('value', ctrl.check) })
+        ]), m('div', m('.w-row', [m('.w-col.w-col-3'), m('.u-text-center.w-col.w-col-6', [m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'다음 단계 >\']'),
+        //coffee m('input.btn.btn-inactive.btn-large.u-marginbottom-20[type=\'submit\'][value=\'próximo passo >\']'),
+        m('a.fontsize-small.link-hidden-light[href=\'#\']', { onclick: args.displayModal.toggle }, '취소'
+        //coffee 'Cancelar'
+        )]), m('.w-col.w-col-3')]))]);
     }
 };
 
@@ -4821,7 +5174,9 @@ var projectCancelButton = {
         return m('div', [ctrl.displayCancelModal() ? m.component(modalBox, {
             displayModal: ctrl.displayCancelModal,
             content: [cancelProjectModalContent, { displayModal: ctrl.displayCancelModal }]
-        }) : '', m('.w-row.before-footer', m('.w-col.w-col-12', m('.w-container', m('button.btn.btn-cancel.btn-inline.btn-no-border.btn-small.btn-terciary.u-marginbottom-20.u-right.w-button', { onclick: ctrl.displayCancelModal.toggle, style: { transition: 'all 0.5s ease 0s' } }, [m('span.fa.fa-times-circle', ''), m.trust('&nbsp;'), '프로젝트 취소']))))]);
+        }) : '', m('.w-row.before-footer', m('.w-col.w-col-12', m('.w-container', m('button.btn.btn-cancel.btn-inline.btn-no-border.btn-small.btn-terciary.u-marginbottom-20.u-right.w-button', { onclick: ctrl.displayCancelModal.toggle, style: { transition: 'all 0.5s ease 0s' } }, [m('span.fa.fa-times-circle', ''), m.trust('&nbsp;'), '프로젝트 취소'
+        //coffee 'Cancelar projeto'
+        ]))))]);
     }
 };
 
@@ -4968,7 +5323,11 @@ var projectDataTable = {
 var projectReminderCount = {
     view: function view(ctrl, args) {
         var project = args.resource;
-        return m('#project-reminder-count.card.u-radius.u-text-center.medium.u-marginbottom-80', [m('.fontsize-large.fontweight-semibold', '내 계정 정보 저장 버튼을 클릭한 사용자 수'), m('.fontsize-smaller.u-marginbottom-30', '이메일 알림은 캠페인 종료 48시간 전에 전송됩니다.'), m('.fontsize-jumbo', project.reminder_count)]);
+        return m('#project-reminder-count.card.u-radius.u-text-center.medium.u-marginbottom-80', [m('.fontsize-large.fontweight-semibold', '내 계정 정보 저장 버튼을 클릭한 사용자 수'),
+        //coffee m('.fontsize-large.fontweight-semibold', 'Total de pessoas que clicaram no botão Lembrar-me'),
+        m('.fontsize-smaller.u-marginbottom-30', '이메일 알림은 캠페인 종료 48시간 전에 전송됩니다.'),
+        //coffee m('.fontsize-smaller.u-marginbottom-30', 'Um lembrete por email é enviado 48 horas antes do término da sua campanha'),
+        m('.fontsize-jumbo', project.reminder_count)]);
     }
 };
 
@@ -5001,7 +5360,19 @@ var successfulProjectTaxModal = {
     view: function view(ctrl, args) {
         var pt = args.projectTransfer;
 
-        return m('div', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', 'Extrato do projeto')]), m('.modal-dialog-content', [m('p.fontsize-small.u-marginbottom-40', ['수수료 및 공제액을 포함하여 프로젝트 결과를 확인해 주시길 바랍니다. 이 계산 방법에 대해 궁금한 점이 있으면, ', m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/articles/202037493-FINANCIADO-Como-ser%C3%A1-feito-o-repasse-do-dinheiro-"][target="__blank"]', '여기에 접속해 주세요.'), '.']), m('div', [m('.w-row.fontsize-small.u-marginbottom-10', [m('.w-col.w-col-4', [m('.text-success', '+\xA0R$ ' + h.formatNumber(pt.pledged, 2))]), m('.w-col.w-col-8', [m('div', '\uCD1D (' + pt.total_contributions + ' \uD6C4\uC6D0)')])]), pt.irrf_tax > 0 ? m('.w-row.fontsize-small.u-marginbottom-10', [m('.w-col.w-col-4', [m('.text-success', '+ R$ ' + h.formatNumber(pt.irrf_tax, 2))]), m('.w-col.w-col-8', [m('div', '원천 징수 소득세 (IRF)')])]) : '', m('.w-row.fontsize-small.u-marginbottom-10', [m('.w-col.w-col-4', [m('.text-error', '- R$ ' + h.formatNumber(pt.catarse_fee, 2))]), m('.w-col.w-col-8', [m('div', 'Catarse \uC694\uAE08 \uBC0F \uC9C0\uBD88 \uC218\uB2E8 (' + h.formatNumber(pt.service_fee * 100, 2) + '%)\xA0')])]), m('.divider.u-marginbottom-10'), m('.w-row.fontsize-base.fontweight-semibold', [m('.w-col.w-col-4', [m('div', 'R$ ' + h.formatNumber(pt.total_amount, 2))]), m('.w-col.w-col-8', [m('div', '양도 될 총계')])])])])]);
+        return m('div', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', 'Extrato do projeto')]), m('.modal-dialog-content', [m('p.fontsize-small.u-marginbottom-40', ['수수료 및 공제액을 포함하여 프로젝트 결과를 확인해 주시길 바랍니다. 이 계산 방법에 대해 궁금한 점이 있으면, ',
+        //coffee 'Confira o extrato do seu projeto, já incluindo as taxas e retenções. Se você tiver dúvidas sobre como esse cálculo é feito ',
+        m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/articles/202037493-FINANCIADO-Como-ser%C3%A1-feito-o-repasse-do-dinheiro-"][target="__blank"]', '여기에 접속해 주세요.'),
+        //coffee m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/articles/202037493-FINANCIADO-Como-ser%C3%A1-feito-o-repasse-do-dinheiro-"][target="__blank"]', 'acesse aqui'),
+        '.']), m('div', [m('.w-row.fontsize-small.u-marginbottom-10', [m('.w-col.w-col-4', [m('.text-success', '+\xA0R$ ' + h.formatNumber(pt.pledged, 2))]), m('.w-col.w-col-8', [m('div', '\uCD1D (' + pt.total_contributions + ' \uD6C4\uC6D0)')
+        //coffee m('div', `Arrecadação total (${pt.total_contributions} apoios)`)
+        ])]), pt.irrf_tax > 0 ? m('.w-row.fontsize-small.u-marginbottom-10', [m('.w-col.w-col-4', [m('.text-success', '+ R$ ' + h.formatNumber(pt.irrf_tax, 2))]), m('.w-col.w-col-8', [m('div', '원천 징수 소득세 (IRF)')
+        //coffee m('div', 'Retenção IRF (Imposto de Renda na Fonte)')
+        ])]) : '', m('.w-row.fontsize-small.u-marginbottom-10', [m('.w-col.w-col-4', [m('.text-error', '- R$ ' + h.formatNumber(pt.catarse_fee, 2))]), m('.w-col.w-col-8', [m('div', 'Givingwire \uC694\uAE08 \uBC0F \uC9C0\uBD88 \uC218\uB2E8 (' + h.formatNumber(pt.service_fee * 100, 2) + '%)\xA0')
+        //coffee m('div', `Taxa do Catarse e meio de pagamento (${h.formatNumber((pt.service_fee * 100), 2)}%) `)
+        ])]), m('.divider.u-marginbottom-10'), m('.w-row.fontsize-base.fontweight-semibold', [m('.w-col.w-col-4', [m('div', 'R$ ' + h.formatNumber(pt.total_amount, 2))]), m('.w-col.w-col-8', [m('div', '양도 될 총계')
+        //coffee m('div', 'Total a ser transferido')
+        ])])])])]);
     }
 };
 
@@ -5165,7 +5536,9 @@ var copyTextInput = {
             style: 'margin-bottom:0;'
         }, args.value)), m('.w-col.w-col-2.w-col-small-2.w-col-tiny-2', m('button.btn.btn-medium.btn-no-border.btn-terciary.fa.fa-clipboard.w-button', {
             config: ctrl.setClickHandler
-        })), ctrl.showSuccess() ? m.component(popNotification, { message: '링크 복사 됨' }) : '']);
+        })), ctrl.showSuccess() ? m.component(popNotification, { message: '링크 복사 됨' }) : ''
+        //coffee ctrl.showSuccess() ? m.component(popNotification, { message: 'Link copiado' }) : ''
+        ]);
     }
 };
 
@@ -5173,7 +5546,9 @@ var projectInviteCard = {
     view: function view(ctrl, args) {
         var project = args.project;
 
-        return m('.card.card-secondary.u-marginbottom-20.u-radius.w-clearfix', [m('.fontsize-base.fontweight-semibold.u-marginbottom-30.u-text-center', '친구를 초대하여 캠페인에 동참에 주세요.'), m('.w-row', [m('.w-sub-col.u-marginbottom-20.w-col.w-col-4', [m.component(facebookButton, { url: h.projectFullPermalink(project) + '?ref=facebook&utm_source=facebook.com&utm_medium=social&utm_campaign=project_share_insights', medium: true })]), m('.w-sub-col.u-marginbottom-20.w-col.w-col-4', [m.component(facebookButton, { messenger: true, url: h.projectFullPermalink(project) + '?ref=facebook&utm_source=facebook.com&utm_medium=messenger&utm_campaign=project_share_insights', medium: true })]), m('.w-col.w-col-4', [m('.w-form', [m('form[data-name=\'Email Form 2\'][id=\'email-form-2\'][name=\'email-form-2\']', [m.component(copyTextInput, { value: h.projectFullPermalink(project) + '?ref=project_link' })])])])])]);
+        return m('.card.card-secondary.u-marginbottom-20.u-radius.w-clearfix', [m('.fontsize-base.fontweight-semibold.u-marginbottom-30.u-text-center', '친구를 초대하여 캠페인에 동참에 주세요.'),
+        //coffee m('.fontsize-base.fontweight-semibold.u-marginbottom-30.u-text-center', 'Convide seus amigos para apoiar sua campanh(친구를 초대하여 캠페인을 지원하십시오.)'),
+        m('.w-row', [m('.w-sub-col.u-marginbottom-20.w-col.w-col-4', [m.component(facebookButton, { url: h.projectFullPermalink(project) + '?ref=facebook&utm_source=facebook.com&utm_medium=social&utm_campaign=project_share_insights', medium: true })]), m('.w-sub-col.u-marginbottom-20.w-col.w-col-4', [m.component(facebookButton, { messenger: true, url: h.projectFullPermalink(project) + '?ref=facebook&utm_source=facebook.com&utm_medium=messenger&utm_campaign=project_share_insights', medium: true })]), m('.w-col.w-col-4', [m('.w-form', [m('form[data-name=\'Email Form 2\'][id=\'email-form-2\'][name=\'email-form-2\']', [m.component(copyTextInput, { value: h.projectFullPermalink(project) + '?ref=project_link' })])])])])]);
     }
 };
 
@@ -5283,18 +5658,22 @@ var insights = {
         var project = _$1.first(ctrl.projectDetails()) || {
             user: {
                 name: '감독'
+                //coffee name: 'Realizador'
             }
         },
             buildTooltip = function buildTooltip(el) {
             return m.component(tooltip, {
                 el: el,
-                text: ['귀하의 프로젝트가 어디서 왔는지 알려주십시오. 이 테이블을 사용하고 의사 소통을보다 잘 계획하는 방법을 배우십시오. ', m('a[href="' + I18n$1.t('ref_table.help_url', I18nScope$5()) + '"][target=\'_blank\']', 'aqui.')],
+                text: ['귀하의 프로젝트가 어디서 왔는지 알려주십시오. 이 테이블을 사용하고 의사 소통을보다 잘 계획하는 방법을 배우십시오. ',
+                //coffee 'Informa de onde vieram os apoios de seu projeto. Saiba como usar essa tabela e planejar melhor suas ações de comunicação. ',
+                m('a[href="' + I18n$1.t('ref_table.help_url', I18nScope$5()) + '"][target=\'_blank\']', 'aqui.')],
                 width: 380
             });
         };
 
         if (!ctrl.l()) {
             project.user.name = project.user.name || '감독';
+            //coffee project.user.name = project.user.name || 'Realizador';
         }
 
         return m('.project-insights', !ctrl.l() ? [m('.w-section.section-product.' + project.mode), project.is_owner_or_admin ? m.component(projectDashboardMenu, {
@@ -5382,7 +5761,9 @@ var postsPreview = {
                 togglePreview();
                 m.redraw();
             }).catch(function (err) {
-                args.errors('메시지 보내는 중 오류가 발생했습니다.'), args.showError(true);
+                args.errors('메시지 보내는 중 오류가 발생했습니다.'),
+                //coffee args.errors('Erro ao enviar mensagem.'),
+                args.showError(true);
                 m.redraw();
             });
         };
@@ -5394,13 +5775,31 @@ var postsPreview = {
     view: function view(ctrl, args) {
         var comment_html = args.comment_html(),
             title = args.title(),
-            recipientsText = args.reward_id > 1 ? m('.fontsize-small.u-marginbottom-30', ['위의 뉴스는 이메일로 발송됩니다. ', m('span.fontweight-semibold', args.rewardText), ' e ficará ', m('span.fontweight-semibold', '해당 서포터에게만 플랫폼에 표시됩니다.')]) : args.reward_id === '-1' ? m('.fontsize-small.u-marginbottom-30', ['A novidade acima será  ', m('span.fontweight-semibold', '모든 사람에게 전자 메일로 보냄'), ' os apoiadores e ficará ', m('span.fontweight-semibold', 'visível publicamente '), 'na plataforma.']) : m('.fontsize-small.u-marginbottom-30', [m('span', ' A novidade acima será  '), m('span.fontweight-semibold', '모든 후원자에게 이메일로 보냄'), m('span', ' e ficará '), m('span.fontweight-semibold', '플랫폼에있는 사람들 만 볼 수있다.')]);
+            recipientsText = args.reward_id > 1 ? m('.fontsize-small.u-marginbottom-30', ['위의 뉴스는 이메일로 발송됩니다. ',
+        //coffee 'A novidade acima será enviada por email para os ',
+        m('span.fontweight-semibold', args.rewardText), ' e ficará ', m('span.fontweight-semibold', '해당 서포터에게만 플랫폼에 표시됩니다.'
+        //coffee 'visível na plataforma somente para esses apoiadores.'
+        )]) : args.reward_id === '-1' ? m('.fontsize-small.u-marginbottom-30', ['A novidade acima será  ', m('span.fontweight-semibold', '모든 사람에게 전자 메일로 보냄'
+        //coffee 'enviada por email para todos'
+        ), ' os apoiadores e ficará ', m('span.fontweight-semibold', '공개적으로 볼 수 있음'
+        //coffee 'visível publicamente '
+        ), 'na plataforma.']) : m('.fontsize-small.u-marginbottom-30', [m('span', ' A novidade acima será  '), m('span.fontweight-semibold', '모든 후원자에게 이메일로 보냄'),
+        //coffee m('span.fontweight-semibold', 'enviada por email para todos os apoiadores'),
+        m('span', ' e ficará '), m('span.fontweight-semibold', '플랫폼에있는 사람들만 볼 수있다.')
+        //coffee m('span.fontweight-semibold', 'visível somente para esses na plataforma.')
+        ]);
 
-        return m('div', [m('.dashboard-header.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('.fontsize-larger.fontweight-semibold.lineheight-tight', 'Revise sua novidade antes de enviar!')), m('.w-col.w-col-3')]))), m('.section', [m('.w-container', m('.card.u-marginbottom-60.u-radius.w-row', [m('.w-col.w-col-1'), m('.u-marginbottom-30.u-margintop-30.w-col.w-col-10.w-hidden-small.w-hidden-tiny', [m('.fontcolor-secondary.fontsize-small.u-text-center', '16/01/2017'), m('.fontsize-larger.fontweight-semibold.u-marginbottom-30.u-text-center', title), m('.fontsize-base', m.trust(comment_html))]), m('.w-col.w-col-1')])), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', recipientsText), m('.w-col.w-col-3')]), m('.u-marginbottom-20.w-row', [m('.w-col.w-col-3'), m('.w-sub-col.w-col.w-col-4', m('button.btn.btn-large', {
+        return m('div', [m('.dashboard-header.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('.fontsize-larger.fontweight-semibold.lineheight-tight', '보내기 전에 뉴스를 확인하십시오!'
+        //coffee 'Revise sua novidade antes de enviar!'
+        )), m('.w-col.w-col-3')]))), m('.section', [m('.w-container', m('.card.u-marginbottom-60.u-radius.w-row', [m('.w-col.w-col-1'), m('.u-marginbottom-30.u-margintop-30.w-col.w-col-10.w-hidden-small.w-hidden-tiny', [m('.fontcolor-secondary.fontsize-small.u-text-center', '16/01/2017'), m('.fontsize-larger.fontweight-semibold.u-marginbottom-30.u-text-center', title), m('.fontsize-base', m.trust(comment_html))]), m('.w-col.w-col-1')])), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', recipientsText), m('.w-col.w-col-3')]), m('.u-marginbottom-20.w-row', [m('.w-col.w-col-3'), m('.w-sub-col.w-col.w-col-4', m('button.btn.btn-large', {
             onclick: ctrl.sendNotification
-        }, [m('span.fa.fa-paper-plane', ''), ' ', m.trust('&nbsp;'), '보내기'])), m('.w-col.w-col-2', m('button.btn.btn-large.btn-terciary', {
+        }, [m('span.fa.fa-paper-plane', ''), ' ', m.trust('&nbsp;'), '보내기'
+        //coffee 'Enviar'
+        ])), m('.w-col.w-col-2', m('button.btn.btn-large.btn-terciary', {
             onclick: ctrl.togglePreview
-        }, '수정')), m('.w-col.w-col-3')])])]);
+        }, '수정'
+        //coffee 'Editar'
+        )), m('.w-col.w-col-3')])])]);
     }
 };
 
@@ -5442,9 +5841,11 @@ var posts = {
             togglePreview = function togglePreview() {
             if (!validateTitle()) {
                 errors('제목은 입력해 주세요.');
+                //coffee errors('Título não pode ficar em branco.');
                 showError(true);
             } else if (!validateComment()) {
                 errors('메시지를 입력해 주세요.');
+                //coffee errors('Mensagem não pode ficar em branco.');
                 showError(true);
             } else {
                 h.scrollTop();
@@ -5463,8 +5864,10 @@ var posts = {
             showRecipientes = function showRecipientes(post) {
             if (post.recipients === 'public') {
                 return '모든 사람 (후원자 및 비후원자)';
+                //coffee return 'Todo mundo (apoiadores e não apoiadores)';
             } else if (post.recipients === 'backers') {
                 return '모든 후원자들';
+                //coffee return 'Todos os apoiadores';
             }
             var reward = _$1.find(rewardVM.rewards(), function (r) {
                 return r.id === post.reward_id;
@@ -5547,32 +5950,63 @@ var posts = {
             rewardText: ctrl.fields.reward_id() >= 1 ? ctrl.rewardText(ctrl.fields.reward_id()) : null
         }) : [m('.w-section.section-product.' + project.mode), ctrl.showSuccess() ? m.component(popNotification, {
             message: '메시지를 성공적으로 보냈습니다.'
+            //coffee message: 'Mensagem enviada com sucesso'
         }) : '', ctrl.showError() ? m.component(popNotification, {
             message: ctrl.errors(),
             error: true
-        }) : '', m('.dashboard-header.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('.fontsize-larger.fontweight-semibold.lineheight-tight', '후원자에게 뉴스 기사 제출')), m('.w-col.w-col-3')]))), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', [m('.u-marginbottom-60.u-text-center', m('._w-inline-block.card.fontsize-small.u-radius', [m('span.fa.fa-lightbulb-o', ''), ' Veja ótimo motivos para ', m('a.alt-link[href=\'https://catarse.attach.io/B1AHAGm1x\'][target=\'_blank\']', '지금 당신 지지자들과 이야기하십시오!')])), m('.card.card-terciary.medium.u-marginbottom-80.w-form', [m('form', [m('label.field-label.fontweight-semibold', '수신자'), m('select.positive.text-field.w-select', {
+        }) : '', m('.dashboard-header.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('.fontsize-larger.fontweight-semibold.lineheight-tight', '후원자에게 뉴스 기사 제출'
+        //coffee 'Envie uma novidade para seus apoiadores'
+        )), m('.w-col.w-col-3')]))), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', [m('.u-marginbottom-60.u-text-center', m('._w-inline-block.card.fontsize-small.u-radius', [m('span.fa.fa-lightbulb-o', ''), ' Veja ótimo motivos para ', m('a.alt-link[href=\'https://catarse.attach.io/B1AHAGm1x\'][target=\'_blank\']', '지금 당신 지지자들과 이야기하십시오!'
+        //coffee 'falar com seus apoiadores agora mesmo!'
+        )])), m('.card.card-terciary.medium.u-marginbottom-80.w-form', [m('form', [m('label.field-label.fontweight-semibold', '수신자'
+        //coffee 'Destinatários'
+        ), m('select.positive.text-field.w-select', {
             onchange: m.withAttr('value', ctrl.fields.reward_id)
         }, [m('option[value=\'-1\']', {
             selected: true
-        }, '모든 사람 (후원자 및 비후원자)'), m('option[value=\'0\']', '모든 후원자들'), _$1.map(paidRewards, function (reward) {
+        }, '모든 사람 (후원자 및 비후원자)'
+        //coffee 'Todo mundo (apoiadores e não apoiadores)'
+        ), m('option[value=\'0\']', '모든 후원자들'
+        //coffee 'Todos os apoiadores'
+        ), _$1.map(paidRewards, function (reward) {
             return m('option[value=\'' + reward.id + '\']', ctrl.rewardText(reward.id));
-        })]), m('label.field-label.fontweight-semibold', '제목'), m('input.positive.text-field.w-input[id=\'post_title\'][maxlength=\'256\'][type=\'text\']', {
+        })]), m('label.field-label.fontweight-semibold', '제목'
+        //coffee 'Título'
+        ), m('input.positive.text-field.w-input[id=\'post_title\'][maxlength=\'256\'][type=\'text\']', {
             name: 'posts[title]',
             value: ctrl.fields.title(),
             onfocus: function onfocus() {
                 return ctrl.titleHasError(false);
             },
-            class: ctrl.titleHasError() ? 'error' : '',
+            class: ctrl.titleHasError() ? '오류' : '',
+            //coffee class: ctrl.titleHasError() ? 'error' : '',
             onchange: m.withAttr('value', ctrl.fields.title)
-        }), m('label.field-label.fontweight-semibold', '텍스트'), m('.preview-container.u-marginbottom-40', {
+        }), m('label.field-label.fontweight-semibold', '텍스트'
+        //coffee 'Texto'
+        ), m('.preview-container.u-marginbottom-40', {
             class: ctrl.commentHasError() ? '오류' : '',
+            //coffee class: ctrl.commentHasError() ? 'error' : '',
             onclick: function onclick() {
                 return ctrl.commentHasError(false);
             }
         }, h.redactor('posts[comment_html]', ctrl.fields.comment_html)), m('.u-marginbottom-20.w-row', [m('.w-col.w-col-3'), m('.w-sub-col.w-col.w-col-6', m('button.btn.btn-large', {
             onclick: ctrl.togglePreview
-        }, '미리보기')), m('.w-col.w-col-3')])])]), m('.fontsize-large.fontweight-semibold.u-marginbottom-40', '뉴스가 이미 전송되었습니다.'), m('.table-outer.u-marginbottom-60', [m('.fontsize-smaller.fontweight-semibold.header.table-row.w-row', [m('.table-col.w-col.w-col-5', m('div', '제목')), m('.table-col.u-text-center.w-col.w-col-3', m('div', '전송됨')), m('.table-col.u-text-center.w-col.w-col-3', m('div', '열기')), m('.table-col.w-col.w-col-1')]), ctrl.projectPosts() ? m('.fontsize-small.table-inner', [_$1.map(ctrl.projectPosts(), function (post) {
-            return m('.table-row.w-row', [m('.table-col.w-col.w-col-5', [m('a.alt-link.fontsize-base[href=\'/projects/' + project.project_id + '/posts/' + post.id + '#posts\'][target=\'_blank\']', post.title), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '전송됨: '), h.momentify(post.created_at, 'DD/MM/YYYY, h:mm A')]), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '수신자: '), ctrl.showRecipientes(post)])]), m('.table-col.u-text-center.w-col.w-col-3', m('.fontsize-base', post.delivered_count)), m('.table-col.u-text-center.w-col.w-col-3', m('.fontsize-base', [post.open_count, m('span.fontcolor-secondary', ' (' + ctrl.openedPercentage(post) + '%)')])), m('.table-col.w-col.w-col-1', m('button.btn.btn-no-border.btn-small.btn-terciary.fa.fa-lg.fa-trash', {
+        }, '미리보기'
+        //coffee 'Pré-visualizar'
+        )), m('.w-col.w-col-3')])])]), m('.fontsize-large.fontweight-semibold.u-marginbottom-40', '뉴스가 이미 전송되었습니다.'
+        //coffee 'Novidades já enviadas'
+        ), m('.table-outer.u-marginbottom-60', [m('.fontsize-smaller.fontweight-semibold.header.table-row.w-row', [m('.table-col.w-col.w-col-5', m('div', '제목'
+        //coffee 'Título'
+        )), m('.table-col.u-text-center.w-col.w-col-3', m('div', '전송됨'
+        //coffee 'Enviadas'
+        )), m('.table-col.u-text-center.w-col.w-col-3', m('div', '열기'
+        //coffee 'Abertas'
+        )), m('.table-col.w-col.w-col-1')]), ctrl.projectPosts() ? m('.fontsize-small.table-inner', [_$1.map(ctrl.projectPosts(), function (post) {
+            return m('.table-row.w-row', [m('.table-col.w-col.w-col-5', [m('a.alt-link.fontsize-base[href=\'/projects/' + project.project_id + '/posts/' + post.id + '#posts\'][target=\'_blank\']', post.title), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '전송됨: '
+            //coffee 'Enviada em: '
+            ), h.momentify(post.created_at, 'DD/MM/YYYY, h:mm A')]), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '수신자: '
+            //coffee 'Destinatários: '
+            ), ctrl.showRecipientes(post)])]), m('.table-col.u-text-center.w-col.w-col-3', m('.fontsize-base', post.delivered_count)), m('.table-col.u-text-center.w-col.w-col-3', m('.fontsize-base', [post.open_count, m('span.fontcolor-secondary', ' (' + ctrl.openedPercentage(post) + '%)')])), m('.table-col.w-col.w-col-1', m('button.btn.btn-no-border.btn-small.btn-terciary.fa.fa-lg.fa-trash', {
                 onclick: ctrl.deletePost(post)
             }))]);
         }), m('form.w-hidden', {
@@ -5661,24 +6095,48 @@ var surveys = {
             } else if (cannotBeCreated(reward)) {
                 return m('.w-col.w-col-3.w-col-small-3.w-col-tiny-tiny-stack', m('a.btn.btn-desactivated.btn-small.btn-terciary.w-button', I18n$1.t('create_survey', surveyScope())));
             } else if (reward.survey_sent_at && !reward.survey_finished_at) {
-                return m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.u-right.w-clearfix', [m('.fontcolor-secondary.fontsize-smallest.lineheight-tighter.u-marginbottom-10', 'Aceitando respostas?'), m('.u-marginbottom-10.w-clearfix', m('a.toggle.toggle-on.u-right.w-clearfix.w-inline-block', {
+                return m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.u-right.w-clearfix', [m('.fontcolor-secondary.fontsize-smallest.lineheight-tighter.u-marginbottom-10', '답변을 수락 하시겠습니까?'
+                //coffee  'Aceitando respostas?'
+                ), m('.u-marginbottom-10.w-clearfix', m('a.toggle.toggle-on.u-right.w-clearfix.w-inline-block', {
                     onclick: function onclick() {
                         ctrl.toggleOpen(reward);
                     }
-                }, [m('.toggle-btn'), m('.u-right', 'SIM')])), m('.u-right', [m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', 'Enviado em:'), m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', h.momentify(reward.survey_sent_at, 'DD/MM/YYYY'))])]));
+                }, [m('.toggle-btn'), m('.u-right', '예'
+                //coffee 'SIM'
+                )])), m('.u-right', [m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', '전송 됨:'
+                //coffee 'Enviado em:'
+                ), m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', h.momentify(reward.survey_sent_at, 'DD/MM/YYYY'))])]));
             }
 
-            return m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.u-right', [m('.fontcolor-secondary.fontsize-smallest.lineheight-tighter.u-marginbottom-10', 'Aceitando respostas?'), m('.u-marginbottom-10.w-clearfix', m('a.toggle.toggle-off.u-right.w-inline-block', {
+            return m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.u-right', [m('.fontcolor-secondary.fontsize-smallest.lineheight-tighter.u-marginbottom-10', '답변을 수락 하시겠습니까?'
+            //coffee 'Aceitando respostas?'
+            ), m('.u-marginbottom-10.w-clearfix', m('a.toggle.toggle-off.u-right.w-inline-block', {
                 onclick: function onclick() {
                     ctrl.toggleOpen(reward);
                 }
-            }, [m('div', 'NÃO'), m('.toggle-btn.toggle-btn--off')])), m('.u-right', [m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', 'Finalizado em:'), m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', h.momentify(reward.survey_finished_at, 'DD/MM/YYYY'))])]));
+            }, [m('div', '아니요'
+            //coffee 'NÃO'
+            ), m('.toggle-btn.toggle-btn--off')])), m('.u-right', [m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', 'Finalizado em:'), m('.fontcolor-secondary.fontsize-mini.lineheight-tighter', h.momentify(reward.survey_finished_at, 'DD/MM/YYYY'))])]));
         };
 
         return project ? m('.project-surveys', project.is_owner_or_admin ? m.component(projectDashboardMenu, {
             project: m.prop(project)
-        }) : '', m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-larger.fontweight-semibold.lineheight-looser.u-text-center', I18n$1.t('title', surveyScope())), m('.fontsize-base.u-text-center', I18n$1.t('subtitle', surveyScope())), m('.u-margintop-20.u-text-center', m('.w-inline-block.card.fontsize-small.u-radius', [m('span.fa.fa-lightbulb-o', ''), m.trust('&nbsp;'), m.trust(I18n$1.t('help_link', surveyScope()))]))]), m('.w-col.w-col-2')]))), m('.divider'), m('.before-footer.bg-gray.section', m('.w-container', [project.state === 'online' ? m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', m('.card.card-message.u-marginbottom-40.u-radius', m('.fontsize-base', [m('span.fa.fa-exclamation-circle', ''), I18n$1.t('online_explanation', surveyScope())]))), m('.w-col.w-col-2')]) : '', m('.table-outer.u-marginbottom-60', [m('.fontweight-semibold.header.table-row.w-hidden-small.w-hidden-tiny.w-row', [m('.table-col.w-col.w-col-3', m('div', 'Recompensa')), m('.table-col.w-col.w-col-9', m('.w-row', [m('.u-text-center-big-only.w-col.w-col-4.w-col-small-4.w-col-tiny-4', m('.w-row', [m('.w-col.w-col-6', m('div', 'Enviados')), m('.w-col.w-col-6', m('div', 'Respondidos'))])), m('.u-text-center-big-only.w-col.w-col-5.w-col-small-5.w-col-tiny-5', m('div', 'Resultados')), m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.u-right'))]))]), m('.fontsize-small.table-inner', [_$1.map(ctrl.rewardVM.rewards(), function (reward) {
-            return m('.table-row.w-row', [m('.table-col.w-col.w-col-3', [m('.fontsize-base.fontweight-semibold', 'R$ ' + reward.minimum_value + ' ou mais'), m('.fontsize-smallest.fontweight-semibold', reward.title), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', reward.description.substring(0, 90) + '...'), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontcolor-terciary', 'Entrega prevista:'), m.trust('&nbsp;'), h.momentify(reward.deliver_at, 'MMMM/YYYY')]), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontcolor-terciary', 'Envio:'), m.trust('&nbsp;'), I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$11())])]), m('.table-col.w-col.w-col-9', m('.u-margintop-20.w-row', [m('.u-text-center-big-only.w-col.w-col-4.w-col-small-4.w-col-tiny-4', m('.w-row', [m('.w-col.w-col-6', !canBeCreated(reward) && !cannotBeCreated(reward) ? m('.fontsize-base', [m('span.fa.fa-paper-plane.fontcolor-terciary', ' '), ' ' + reward.sentCount]) : ''), m('.w-col.w-col-6', !canBeCreated(reward) && !cannotBeCreated(reward) ? m('.fontsize-base', [m('span.fa.fa-check-circle.fontcolor-terciary', ''), ' ' + reward.answeredCount, m('span.fontcolor-secondary', '(' + (reward.sentCount === 0 ? '0' : Math.floor(reward.answeredCount / reward.sentCount * 100)) + '%)')]) : '')])), m('.u-text-center-big-only.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [
+        }) : '', m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-larger.fontweight-semibold.lineheight-looser.u-text-center', I18n$1.t('title', surveyScope())), m('.fontsize-base.u-text-center', I18n$1.t('subtitle', surveyScope())), m('.u-margintop-20.u-text-center', m('.w-inline-block.card.fontsize-small.u-radius', [m('span.fa.fa-lightbulb-o', ''), m.trust('&nbsp;'), m.trust(I18n$1.t('help_link', surveyScope()))]))]), m('.w-col.w-col-2')]))), m('.divider'), m('.before-footer.bg-gray.section', m('.w-container', [project.state === 'online' ? m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', m('.card.card-message.u-marginbottom-40.u-radius', m('.fontsize-base', [m('span.fa.fa-exclamation-circle', ''), I18n$1.t('online_explanation', surveyScope())]))), m('.w-col.w-col-2')]) : '', m('.table-outer.u-marginbottom-60', [m('.fontweight-semibold.header.table-row.w-hidden-small.w-hidden-tiny.w-row', [m('.table-col.w-col.w-col-3', m('div', '보상'
+        //coffee 'Recompensa'
+        )), m('.table-col.w-col.w-col-9', m('.w-row', [m('.u-text-center-big-only.w-col.w-col-4.w-col-small-4.w-col-tiny-4', m('.w-row', [m('.w-col.w-col-6', m('div', '전송 됨'
+        //coffee 'Enviados'
+        )), m('.w-col.w-col-6', m('div', '답변 됨'
+        //coffee 'Respondidos'
+        ))])), m('.u-text-center-big-only.w-col.w-col-5.w-col-small-5.w-col-tiny-5', m('div', '결과'
+        //coffee 'Resultados'
+        )), m('.w-clearfix.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.u-right'))]))]), m('.fontsize-small.table-inner', [_$1.map(ctrl.rewardVM.rewards(), function (reward) {
+            return m('.table-row.w-row', [m('.table-col.w-col.w-col-3', [m('.fontsize-base.fontweight-semibold', 'R$ ' + reward.minimum_value + ' \uC774\uC0C1'
+            //coffee `R$ ${reward.minimum_value} ou mais`
+            ), m('.fontsize-smallest.fontweight-semibold', reward.title), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', reward.description.substring(0, 90) + '...'), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontcolor-terciary', '예상 배송:'
+            //coffee 'Entrega prevista:'
+            ), m.trust('&nbsp;'), h.momentify(reward.deliver_at, 'MMMM/YYYY')]), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontcolor-terciary', '배송:'
+            //coffee 'Envio:'
+            ), m.trust('&nbsp;'), I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$11())])]), m('.table-col.w-col.w-col-9', m('.u-margintop-20.w-row', [m('.u-text-center-big-only.w-col.w-col-4.w-col-small-4.w-col-tiny-4', m('.w-row', [m('.w-col.w-col-6', !canBeCreated(reward) && !cannotBeCreated(reward) ? m('.fontsize-base', [m('span.fa.fa-paper-plane.fontcolor-terciary', ' '), ' ' + reward.sentCount]) : ''), m('.w-col.w-col-6', !canBeCreated(reward) && !cannotBeCreated(reward) ? m('.fontsize-base', [m('span.fa.fa-check-circle.fontcolor-terciary', ''), ' ' + reward.answeredCount, m('span.fontcolor-secondary', '(' + (reward.sentCount === 0 ? '0' : Math.floor(reward.answeredCount / reward.sentCount * 100)) + '%)')]) : '')])), m('.u-text-center-big-only.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [
             // m('a.btn.btn-inline.btn-small.btn-terciary.fa.fa-eye.fa-lg.u-marginright-10.w-button'),
             !canBeCreated(reward) && !cannotBeCreated(reward) ? m('a.btn.btn-inline.btn-small.btn-terciary.fa.fa-eye.fa-lg.w-button[target=\'_blank\']', {
                 onclick: function onclick() {
@@ -5699,9 +6157,11 @@ var newQuestion = function newQuestion() {
         question: '',
         description: '',
         survey_question_choices_attributes: m.prop([{
-            option: 'opção 1'
+            option: '옵션 1'
+            //coffee option: 'opção 1'
         }, {
-            option: 'opção 2'
+            option: '옵션 2'
+            //coffee option: 'opção 2'
         }]),
         toggleDropdown: h.toggleProp(false, true)
     };
@@ -5801,7 +6261,11 @@ var rewardCardBig = {
     view: function view(ctrl, args) {
         var reward = args.reward;
 
-        return m('.card.u-radius', [m('.fontsize-large.fontweight-semibold.u-marginbottom-10', 'R$' + reward.minimum_value + ' ou mais' + (reward.title ? ': ' + reward.title : '')), m('.fontcolor-secondary.fontsize-small.u-marginbottom-20', reward.description.substring(0, 140) + '...'), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontcolor-terciary', '예상 배송: '), h.momentify(reward.deliver_at, 'MMMM/YYYY'), m('span.fontcolor-terciary', '    |    '), m('span.fontcolor-terciary', '배송: '), I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$13())])]);
+        return m('.card.u-radius', [m('.fontsize-large.fontweight-semibold.u-marginbottom-10', 'R$' + reward.minimum_value + ' ou mais' + (reward.title ? ': ' + reward.title : '')), m('.fontcolor-secondary.fontsize-small.u-marginbottom-20', reward.description.substring(0, 140) + '...'), m('.fontcolor-secondary.fontsize-smallest', [m('span.fontcolor-terciary', '예상 배송: '
+        //coffee 'Entrega prevista: '
+        ), h.momentify(reward.deliver_at, 'MMMM/YYYY'), m('span.fontcolor-terciary', '    |    '), m('span.fontcolor-terciary', '배송: '),
+        //coffee m('span.fontcolor-terciary', 'Envio: '),
+        I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$13())])]);
     }
 };
 
@@ -5823,13 +6287,43 @@ var surveyCreatePreview = {
         };
     },
     view: function view(ctrl, args) {
-        return m('.section.u-marginbottom-40', m('.section.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-larger.fontweight-semibold.lineheight-looser', '설문지 검토'), m('.fontsize-base', '귀하의 서포터는 이메일로 아래의 설문지에 대한 링크를 받게됩니다. 전송하기 전에 모든 것이 올바른지 확인하십시오!')]), m('.w-col.w-col-2')]))), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.card.card-terciary.medium.u-marginbottom-30', [args.confirmAddress ? m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', 'Endereço de entrega da recompensa'), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-30', 'Para onde Nome do Realizador deve enviar sua recompensa quando estiver pronta.'), m('form', [m('.w-row', [m('.w-sub-col.w-col.w-col-6', [m('label.field-label.fontweight-semibold', 'País / Country'), m('select.positive.text-field.w-select', [m("option[value='']", '선택...')])]), m('.w-col.w-col-6', m('.w-row', [m('.w-sub-col-middle.w-col.w-col-6.w-col-small-6.w-col-tiny-6'), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6')]))]), m('div', [m('label.field-label.fontweight-semibold', '거리'), m("input.positive.text-field.w-input[type='email']")]), m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '번호'), m("input.positive.text-field.w-input[type='email']")]), m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', 'Complemento'), m("input.positive.text-field.w-input[type='email']")]), m('.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '이웃'), m("input.positive.text-field.w-input[type='email']")])]), m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', 'CEP'), m("input.positive.text-field.w-input[type='email']")]), m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '도시'), m("input.positive.text-field.w-input[type='email']")]), m('.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '주'), m('select.positive.text-field.w-select', [m("option[value='']", '선택...')])])]), m('.w-row', [m('.w-sub-col.w-col.w-col-6', [m('label.field-label.fontweight-semibold', '전화'), m("input.positive.text-field.w-input[type='email']")]), m('.w-col.w-col-6')])])]) : '', _$1.map(ctrl.multipleChoiceQuestions, function (question) {
+        return m('.section.u-marginbottom-40', m('.section.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-larger.fontweight-semibold.lineheight-looser', '설문지 검토'
+        //coffee 'Revise o questionário'
+        ), m('.fontsize-base', '귀하의 서포터는 이메일로 아래의 설문지에 대한 링크를 받게됩니다. 전송하기 전에 모든 것이 올바른지 확인하십시오!'
+        //coffee 'Os seus apoiadores irão receber um link para o questionário abaixo por email. Veja se está tudo correto antes de enviá-lo!'
+        )]), m('.w-col.w-col-2')]))), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.card.card-terciary.medium.u-marginbottom-30', [args.confirmAddress ? m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', 'Endereço de entrega da recompensa'), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-30', 'Para onde Nome do Realizador deve enviar sua recompensa quando estiver pronta.'), m('form', [m('.w-row', [m('.w-sub-col.w-col.w-col-6', [m('label.field-label.fontweight-semibold', 'País / Country'), m('select.positive.text-field.w-select', [m("option[value='']", '선택...'
+        //coffee 'Selecione...'
+        )])]), m('.w-col.w-col-6', m('.w-row', [m('.w-sub-col-middle.w-col.w-col-6.w-col-small-6.w-col-tiny-6'), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6')]))]), m('div', [m('label.field-label.fontweight-semibold', '거리'
+        //coffee 'Rua'
+        ), m("input.positive.text-field.w-input[type='email']")]), m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '번호'
+        //coffee 'Número'
+        ), m("input.positive.text-field.w-input[type='email']")]), m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', 'Complemento'), m("input.positive.text-field.w-input[type='email']")]), m('.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '이웃'
+        //coffee 'Bairro'
+        ), m("input.positive.text-field.w-input[type='email']")])]), m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', 'CEP'), m("input.positive.text-field.w-input[type='email']")]), m('.w-sub-col.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '도시'
+        //coffee 'Cidade'
+        ), m("input.positive.text-field.w-input[type='email']")]), m('.w-col.w-col-4', [m('label.field-label.fontweight-semibold', '주'
+        //coffee '주'
+        ), m('select.positive.text-field.w-select', [m("option[value='']", '선택...'
+        //coffee '선택...'
+        )])])]), m('.w-row', [m('.w-sub-col.w-col.w-col-6', [m('label.field-label.fontweight-semibold', '전화'
+        //coffee '전화'
+        ), m("input.positive.text-field.w-input[type='email']")]), m('.w-col.w-col-6')])])]) : '', _$1.map(ctrl.multipleChoiceQuestions, function (question) {
             return m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', question.question), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-20', question.description), m('form', [_$1.map(question.survey_question_choices_attributes(), function (choice) {
                 return m('.fontsize-small.w-radio', [m("input.w-radio-input[type='radio'][value='Radio']"), m('label.w-form-label', choice.option)]);
             })])]);
         }), _$1.map(ctrl.openQuestions, function (question) {
-            return m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', question.question), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-20', question.description), m('form', m("input.positive.text-field.w-input[placeholder='귀하의 답변'][type='text']"))]);
-        })])), m('.w-col.w-col-1')]))), m('.section', [m('.u-marginbottom-30.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.u-marginbottom-30.u-text-center', [m('.fontsize-small.fontweight-semibold.u-marginbottom-10', 'O question\xE1rio acima ser\xE1 enviado para os ' + args.reward.paid_count + ' apoiadores da recompensa'), m(rewardCardBig, { reward: args.reward })]), m('.card.card-message.fontsize-small.u-marginbottom-30.u-radius', [m('span.fontweight-semibold', 'OBS:'), m.trust('&nbsp;'), '질문은 자동으로 4일 이내에 응답하지 않는 사람들에게 다시 제출됩니다. 서포터가 응답을 제출하지 않고 계속 진행하면 설문지가 두 번 더 재전송됩니다.'])]), m('.w-col.w-col-2')]), m('.u-marginbottom-20.w-row', [m('.w-col.w-col-3'), m('.w-sub-col.w-col.w-col-4', m("a.btn.btn-large[href='javascript:void(0);']", { onclick: args.sendQuestions }, [m('span.fa.fa-paper-plane', ''), ' ', m.trust('&nbsp;'), '보내기'])), m('.w-col.w-col-2', m("a.btn.btn-large.btn-terciary[href='javascript:void(0);']", { onclick: ctrl.togglePreview }, '수정')), m('.w-col.w-col-3')])]));
+            return m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', question.question), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-20', question.description), m('form', m("input.positive.text-field.w-input[placeholder='귀하의 답변'][type='text']")
+            //coffee m("input.positive.text-field.w-input[placeholder='Sua resposta'][type='text']")
+            )]);
+        })])), m('.w-col.w-col-1')]))), m('.section', [m('.u-marginbottom-30.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.u-marginbottom-30.u-text-center', [m('.fontsize-small.fontweight-semibold.u-marginbottom-10', '\uC704 \uD034\uC988\uB294 $ {args.reward.paid_count} \uD3EC\uC0C1\uAE08 \uC9C0\uC6D0\uC790\uC5D0\uAC8C \uBC1C\uC1A1\uB429\uB2C8\uB2E4.'
+        //coffee `O questionário acima será enviado para os ${args.reward.paid_count} apoiadores da recompensa`
+        ), m(rewardCardBig, { reward: args.reward })]), m('.card.card-message.fontsize-small.u-marginbottom-30.u-radius', [m('span.fontweight-semibold', 'OBS:'), m.trust('&nbsp;'), '질문은 자동으로 4일 이내에 응답하지 않는 사람들에게 다시 제출됩니다. 서포터가 응답을 제출하지 않고 계속 진행하면 설문지가 두 번 더 재전송됩니다.'
+        //coffee 'As perguntas serão reenviadas automaticamente para aqueles que não responderem em até 4 dias. Caso os apoiadores continuem sem enviar as respostas, o questionário será reenviado mais duas vezes.'
+        ])]), m('.w-col.w-col-2')]), m('.u-marginbottom-20.w-row', [m('.w-col.w-col-3'), m('.w-sub-col.w-col.w-col-4', m("a.btn.btn-large[href='javascript:void(0);']", { onclick: args.sendQuestions }, [m('span.fa.fa-paper-plane', ''), ' ', m.trust('&nbsp;'), '보내기'
+        //coffee 'Enviar'
+        ])), m('.w-col.w-col-2', m("a.btn.btn-large.btn-terciary[href='javascript:void(0);']", { onclick: ctrl.togglePreview }, '수정'
+        //coffee 'Editar'
+        )), m('.w-col.w-col-3')])]));
     }
 };
 
@@ -5884,8 +6378,11 @@ var dashboardMultipleChoiceQuestion = {
             index = args.index;
 
 
-        return m('.card.u-marginbottom-30.u-radius.w-form', [m('.dashboard-question', [m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller', '질문')), m('.w-col.w-col-8', m('input.positive.text-field.w-input[type="text"]', {
-            class: question.error ? 'error' : null,
+        return m('.card.u-marginbottom-30.u-radius.w-form', [m('.dashboard-question', [m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller', '질문'
+        //coffee 'Pergunta'
+        )), m('.w-col.w-col-8', m('input.positive.text-field.w-input[type="text"]', {
+            class: question.error ? '오류' : null,
+            //coffee class: question.error ? 'error' : null,
             name: 'reward[surveys_attributes][questions][' + index + '][question]',
             onchange: m.withAttr('value', function (newValue) {
                 return question.question = newValue;
@@ -5894,12 +6391,18 @@ var dashboardMultipleChoiceQuestion = {
                 question.error = false;
             },
             value: question.question
-        }), question.error ? m(inlineError, { message: '입력란을 작성해 주시길 바랍니다.' }) : null)]), m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller[for="name-3"]', '상품 설명')), m('.w-col.w-col-8', m('input.positive.text-field.w-input[type="text"]', {
+        }), question.error ? m(inlineError, { message: '입력란을 작성해 주시길 바랍니다.' }) : null
+        //coffee question.error ? m(inlineError, { message: 'O campo pergunta não pode ser vazio.' }) : null
+        )]), m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller[for="name-3"]', '상품 설명'
+        //coffee 'Descrição'
+        )), m('.w-col.w-col-8', m('input.positive.text-field.w-input[type="text"]', {
             onchange: m.withAttr('value', function (newValue) {
                 return question.description = newValue;
             }),
             name: 'reward[surveys_attributes][questions][' + index + '][description]'
-        }))]), m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller', '옵션')), m('.w-col.w-col-8', [_$1.map(question.survey_question_choices_attributes(), function (option, idx) {
+        }))]), m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller', '옵션'
+        //coffee 'Opções'
+        )), m('.w-col.w-col-8', [_$1.map(question.survey_question_choices_attributes(), function (option, idx) {
             return m('.w-row', [m('.fa.fa-circle-o.fontcolor-terciary.prefix.u-text-center.w-col.w-col-1.w-col-medium-1.w-col-small-1.w-col-tiny-1'), m('.w-col.w-col-10.w-col-medium-10.w-col-small-10.w-col-tiny-10', m('input.positive.text-field.w-input[type="text"]', {
                 onchange: m.withAttr('value', ctrl.updateOption(idx)),
                 name: 'reward[surveys_attributes][questions][' + index + '][question][survey_question_choices_attributes][' + idx + '][option]',
@@ -5907,7 +6410,9 @@ var dashboardMultipleChoiceQuestion = {
             })), m('.w-col.w-col-1.w-col-medium-1.w-col-small-1.w-col-tiny-1', m('button.btn.btn-medium.btn-no-border.btn-terciary.fa.fa-trash', {
                 onclick: ctrl.deleteOption(question, idx)
             }))]);
-        }), m('.w-row', [m('.w-col.w-col-1.w-col-medium-1.w-col-small-1.w-col-tiny-1'), m('.w-col.w-col-11.w-col-medium-11.w-col-small-11.w-col-tiny-11', m('button.fontcolor-secondary.fontsize-smallest.link-hidden', { onclick: ctrl.addOption(question) }, '다른 옵션 추가'))])])])])]);
+        }), m('.w-row', [m('.w-col.w-col-1.w-col-medium-1.w-col-small-1.w-col-tiny-1'), m('.w-col.w-col-11.w-col-medium-11.w-col-small-11.w-col-tiny-11', m('button.fontcolor-secondary.fontsize-smallest.link-hidden', { onclick: ctrl.addOption(question) }, '다른 옵션 추가'
+        //coffee 'Adicionar mais uma opção'
+        ))])])])])]);
     }
 };
 
@@ -5916,8 +6421,11 @@ var dashboardOpenQuestion = {
         var question = args.question,
             index = args.index;
 
-        return m('.card.u-marginbottom-30.u-radius.w-form', [m('div', [m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller[for="name-3"]', '질문')), m('.w-col.w-col-8', m('input.positive.text-field.w-input[name="question"][type="text"]', {
-            class: question.error ? 'error' : null,
+        return m('.card.u-marginbottom-30.u-radius.w-form', [m('div', [m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller[for="name-3"]', '질문'
+        //coffee 'Pergunta'
+        )), m('.w-col.w-col-8', m('input.positive.text-field.w-input[name="question"][type="text"]', {
+            class: question.error ? '오류' : null,
+            //coffee class: question.error ? 'error' : null,
             name: 'reward[surveys_attributes][questions][' + index + '][question]',
             onchange: m.withAttr('value', function (newValue) {
                 return question.question = newValue;
@@ -5926,7 +6434,9 @@ var dashboardOpenQuestion = {
             onfocus: function onfocus() {
                 question.error = false;
             }
-        }), question.error ? m(inlineError, { message: '입력란을 작성해 주시길 바랍니다.' }) : null)]), m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller[for="name-3"]', '상품 설명')), m('.w-col.w-col-8', m('input.positive.text-field.w-input[type="text"]', {
+        }), question.error ? m(inlineError, { message: '입력란을 작성해 주시길 바랍니다.' }) : null
+        //coffee question.error ? m(inlineError, { message: 'O campo pergunta não pode ser vazio.' }) : null
+        )]), m('.w-row', [m('.w-col.w-col-4', m('label.fontsize-smaller[for="name-3"]', '상품 설명')), m('.w-col.w-col-8', m('input.positive.text-field.w-input[type="text"]', {
             name: 'reward[surveys_attributes][questions][' + index + '][description]',
             onchange: m.withAttr('value', function (newValue) {
                 return question.description = newValue;
@@ -5965,8 +6475,12 @@ var surveyCreate = {
         rewardVM.load().then(reward);
 
         var choice = {
-            multiple: [m('span.fa.fa-dot-circle-o'), '  Múltipla escolha'],
-            open: [m('span.fa.fa-align-left'), '  Resposta aberta']
+            multiple: [m('span.fa.fa-dot-circle-o'), '  다중 선택'
+            //coffee '  Múltipla escolha'
+            ],
+            open: [m('span.fa.fa-align-left'), '  공개 대답'
+            //coffee '  Resposta aberta'
+            ]
         };
 
         var setQuestionType = function setQuestionType(question, type) {
@@ -6043,22 +6557,36 @@ var surveyCreate = {
         var reward = _$1.first(ctrl.reward());
         return project ? m('.project-surveys', project.is_owner_or_admin ? m.component(projectDashboardMenu, {
             project: m.prop(project)
-        }) : '', ctrl.showPreview() ? m(surveyCreatePreview, { confirmAddress: ctrl.confirmAddress(), showPreview: ctrl.showPreview, surveyVM: surveyVM, reward: reward, sendQuestions: ctrl.sendQuestions }) : [reward ? m('.card-terciary.section.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-8.w-col-push-2', m('div', [m('.fontsize-small.fontweight-semibold.u-marginbottom-20', 'Question\xE1rio para os ' + reward.paid_count + ' apoiadores da recompensa'), m(rewardCardBig, { reward: reward })]))]))) : '', m('.divider'), m('.section', m('.w-row', [m('.w-col.w-col-10.w-col-push-1', [m('.card.card-terciary.medium.u-marginbottom-20.u-text-center', [m('.u-marginbottom-20', [m('.fontsize-base.fontweight-semibold.u-marginbottom-10', 'Confirmar endereço de entrega?'), m('a.toggle.w-clearfix.w-inline-block', {
+        }) : '', ctrl.showPreview() ? m(surveyCreatePreview, { confirmAddress: ctrl.confirmAddress(), showPreview: ctrl.showPreview, surveyVM: surveyVM, reward: reward, sendQuestions: ctrl.sendQuestions }) : [reward ? m('.card-terciary.section.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-8.w-col-push-2', m('div', [m('.fontsize-small.fontweight-semibold.u-marginbottom-20', '\uC124\uBB38\uC9C0 ' + reward.paid_count + ' \uBCF4\uC0C1 \uC9C0\uC9C0\uC790\uB4E4'
+        //coffee `Questionário para os ${reward.paid_count} apoiadores da recompensa`
+        ), m(rewardCardBig, { reward: reward })]))]))) : '', m('.divider'), m('.section', m('.w-row', [m('.w-col.w-col-10.w-col-push-1', [m('.card.card-terciary.medium.u-marginbottom-20.u-text-center', [m('.u-marginbottom-20', [m('.fontsize-base.fontweight-semibold.u-marginbottom-10', '배달 주소를 확인 하시겠습니까?'
+        //coffee 'Confirmar endereço de entrega?'
+        ), m('a.toggle.w-clearfix.w-inline-block', {
             class: ctrl.confirmAddress() ? 'toggle-on' : 'toggle-off',
             onclick: ctrl.confirmAddress.toggle
         }, [m('.toggle-btn', {
             class: ctrl.confirmAddress() ? null : 'toggle-btn--off'
-        }), ctrl.confirmAddress() ? m('.u-right', 'SIM') : m('.u-left', 'NÃO')]), m('input[type="hidden"]', {
+        }), ctrl.confirmAddress() ? m('.u-right', '예') : m('.u-left', '아니요')
+        //coffee ctrl.confirmAddress() ? m('.u-right', 'SIM') : m('.u-left', 'NÃO')
+        ]), m('input[type="hidden"]', {
             name: 'reward[surveys_attributes][confirm_address]'
-        })]), m('.w-row', [m('.w-col.w-col-8.w-col-push-2', m('p.fontcolor-secondary.fontsize-small', 'Se essa recompensa será entregue na casa dos apoiadores, deixe essa opção como "SIM". Dessa forma, incluíremos uma pergunta no questionário para que eles confirmem o endereço de entrega.'))])]), _$1.map(surveyVM.dashboardQuestions(), function (question, index) {
+        })]), m('.w-row', [m('.w-col.w-col-8.w-col-push-2', m('p.fontcolor-secondary.fontsize-small', '이 보상이 후원자 집에 전달 될 경우이 옵션을 "예"로 남겨 둡니다. 그렇게하면 설문지에 질문을 포함시켜 배달 주소를 확인합니다.'
+        //coffee 'Se essa recompensa será entregue na casa dos apoiadores, deixe essa opção como "SIM". Dessa forma, incluíremos uma pergunta no questionário para que eles confirmem o endereço de entrega.'
+        ))])]), _$1.map(surveyVM.dashboardQuestions(), function (question, index) {
             return m('.card.card-terciary.medium.u-marginbottom-20.w-row', [ctrl.choiceDropdown(question), m('.w-clearfix.w-col.w-col-8', [m.component(question.type === 'multiple' ? dashboardMultipleChoiceQuestion : dashboardOpenQuestion, { question: question, index: index }), m('button.btn.btn-inline.btn-no-border.btn-small.btn-terciary.fa.fa-lg.fa-trash.u-right', {
                 onclick: ctrl.deleteDashboardQuestion(question)
             })])]);
         }), m('button.btn.btn-large.btn-message', {
             onclick: ctrl.addDashboardQuestion
-        }, [m('span.fa.fa-plus-circle'), '  Adicionar pergunta'])])])), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-4.w-col-push-4', m('a.btn.btn-large[href=\'javascript:void(0);\']', {
+        }, [m('span.fa.fa-plus-circle'), '  질문 추가'
+        //coffee '  Adicionar pergunta'
+        ])])])), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-4.w-col-push-4', m('a.btn.btn-large[href=\'javascript:void(0);\']', {
             onclick: ctrl.toggleShowPreview
-        }, 'Pré-visualizar'), ctrl.showError() ? m('.u-text-center.u-margintop-10', m(inlineError, { message: 'Erro ao salvar formulário.' })) : null)])))]) : h.loader();
+        }, '미리보기'
+        //coffee 'Pré-visualizar'
+        ), ctrl.showError() ? m('.u-text-center.u-margintop-10', m(inlineError, { message: '양식 저장 오류.' }))
+        //coffee ? m('.u-text-center.u-margintop-10', m(inlineError, { message: 'Erro ao salvar formulário.' }))
+        : null)])))]) : h.loader();
     }
 };
 
@@ -6086,7 +6614,15 @@ var press = {
     view: function view(ctrl) {
         var stats = _$1.first(ctrl.stats());
 
-        return m('#press', [m('.hero-jobs.hero-medium', m('.w-container.u-text-center', [m('img.icon-hero[alt=\'Icon assets\'][src=\'/assets/icon-assets-98f4556940e31b239cdd5fbdd993b5d5ed3bf67dcc3164b805e224d22e1340b7.png\']'), m('.u-text-center.u-marginbottom-20.fontsize-largest', I18n$1.t('page-title', I18nScope$16()))])), m('.section-large.bg-gray', m('.w-container', m('.w-row', m('.w-col.w-col-8.w-col-push-2', m('.u-marginbottom-20.fontsize-large', I18n$1.t('abstract.title', I18nScope$16())))))), m('.section-large', m('.w-container', m('.w-row', m('.w-col.w-col-8.w-col-push-2', [m('.fontsize-large.fontweight-semibold.u-marginbottom-10', I18n$1.t('history.title', I18nScope$16())), m('.fontsize-large.u-marginbottom-20', I18n$1.t('history.subtitle', I18nScope$16())), m.trust(I18n$1.t('history.cta_html', I18nScope$16()))])))), m('.section-large.bg-gray', m('.w-container', m('.w-row', m('.w-col.w-col-8.w-col-push-2', [m('.fontsize-large.fontweight-semibold.u-marginbottom-10', I18n$1.t('stats.title', I18nScope$16())), m('.fontsize-large.u-marginbottom-40', I18n$1.t('stats.subtitle', I18nScope$16())), m('.w-row.w.hidden-small.u-text-center.u-marginbottom-40', [m('.w-col.w-col-4.u-marginbottom-20', [m('.text-success.lineheight-loose.fontsize-larger', h.formatNumber(stats.total_contributors, 0, 3)), m('.fontsize-smaller', m.trust(I18n$1.t('stats.people_html', I18nScope$16())))]), m('.w-col.w-col-4.u-marginbottom-20', [m('.text-success.lineheight-loose.fontsize-larger', h.formatNumber(stats.total_projects_success, 0, 3)), m('.fontsize-smaller', m.trust(I18n$1.t('stats.projects_html', I18nScope$16())))]), m('.w-col.w-col-4.u-marginbottom-20', [m('.text-success.lineheight-loose.fontsize-larger', stats.total_contributed.toString().slice(0, 2) + ' \uBC31\uB9CC'), m('.fontsize-smaller', m.trust(I18n$1.t('stats.money_html', I18nScope$16())))])]), m('a.alt-link.fontsize-large[href=\'https://www.catarse.me/dbhero/dataclips/fa0d3570-9fa7-4af3-b070-2b2e386ef060\'][target=\'_blank\']', [m.trust(I18n$1.t('stats.cta_html', I18nScope$16()))])])))), m('.section-large', m('.w-container', [m('.w-row.u-marginbottom-30.u-text-center', m('.w-col.w-col-8.w-col-push-2', [m('div', m('img[alt=\'Logo catarse press\'][src=\'/assets/logo-catarse-press-2f2dad49d3e5b256c29e136673b4c4f543c03e0d5548d351ae5a8d1e6e3d2645.png\']')), m('.fontsize-base', I18n$1.t('assets.title', I18nScope$16()))])), m('.w-row', m('.w-col.w-col-4.w-col-push-4.u-text-center', m('a.alt-link.fontsize-large[href=\'https://www.catarse.me/assets\'][target=\'_blank\']', [m.trust(I18n$1.t('assets.cta_html', I18nScope$16()))])))])), m('.section-large.bg-projectgrid', m('.w-container', [m('.fontsize-large.u-text-center.fontweight-semibold.u-marginbottom-30', I18n$1.t('social.title', I18nScope$16())), m('.w-row', [m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://www.facebook.com/Catarse.me\'][target=\'_blank\']', [m('span.fa.fa-facebook'), ' 페이스북'])), m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://twitter.com/catarse\'][target=\'_blank\']', [m('span.fa.fa-twitter'), ' 트위터'])), m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://instagram.com/catarse/\'][target=\'_blank\']', [m('span.fa.fa-instagram'), ' 인스타그램'])), m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'http://blog.catarse.me/\'][target=\'_blank\']', [m('span.fa.fa-rss'), ' Blog do Catarse']))])])), m('.section-large.bg-blue-one.fontcolor-negative', m('.w-container', m('.w-row', m('.w-col.w-col-6.w-col-push-3', [m('.fontsize-large.fontweight-semibold.u-text-center.u-marginbottom-30', I18n$1.t('social.news', I18nScope$16())), m('.w-form', m('form[accept-charset=\'UTF-8\'][action=\'' + h.getNewsletterUrl() + '\'][id=\'mailee-form\'][method=\'post\']', [m('.w-form.footer-newsletter', m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'Digite seu email\'][type=\'email\']')), m('button.w-inline-block.btn.btn-edit.postfix.btn-attached[type=\'submit\']', m('img.footer-news-icon[alt=\'Icon newsletter\'][src=\'/assets/catarse_bootstrap/icon-newsletter-9c3ff92b6137fbdb9d928ecdb34c88948277a32cdde3e5b525e97d57735210f5.png\']'))]))])))), m('.section-large.bg-gray.before-footer', m('.w-container', m('.w-row.u-text-center', m('.w-col.w-col-8.w-col-push-2', [m('.fontsize-larger.fontweight-semibold.u-marginbottom-10', I18n$1.t('email.title', I18nScope$16())), m('div', m('a.alt-link.fontsize-large[href=\'mailto:' + I18n$1.t('email.cta', I18nScope$16()) + '\']', I18n$1.t('email.cta', I18nScope$16())))]))))]);
+        return m('#press', [m('.hero-jobs.hero-medium', m('.w-container.u-text-center', [m('img.icon-hero[alt=\'Icon assets\'][src=\'/assets/icon-assets-98f4556940e31b239cdd5fbdd993b5d5ed3bf67dcc3164b805e224d22e1340b7.png\']'), m('.u-text-center.u-marginbottom-20.fontsize-largest', I18n$1.t('page-title', I18nScope$16()))])), m('.section-large.bg-gray', m('.w-container', m('.w-row', m('.w-col.w-col-8.w-col-push-2', m('.u-marginbottom-20.fontsize-large', I18n$1.t('abstract.title', I18nScope$16())))))), m('.section-large', m('.w-container', m('.w-row', m('.w-col.w-col-8.w-col-push-2', [m('.fontsize-large.fontweight-semibold.u-marginbottom-10', I18n$1.t('history.title', I18nScope$16())), m('.fontsize-large.u-marginbottom-20', I18n$1.t('history.subtitle', I18nScope$16())), m.trust(I18n$1.t('history.cta_html', I18nScope$16()))])))), m('.section-large.bg-gray', m('.w-container', m('.w-row', m('.w-col.w-col-8.w-col-push-2', [m('.fontsize-large.fontweight-semibold.u-marginbottom-10', I18n$1.t('stats.title', I18nScope$16())), m('.fontsize-large.u-marginbottom-40', I18n$1.t('stats.subtitle', I18nScope$16())), m('.w-row.w.hidden-small.u-text-center.u-marginbottom-40', [m('.w-col.w-col-4.u-marginbottom-20', [m('.text-success.lineheight-loose.fontsize-larger', h.formatNumber(stats.total_contributors, 0, 3)), m('.fontsize-smaller', m.trust(I18n$1.t('stats.people_html', I18nScope$16())))]), m('.w-col.w-col-4.u-marginbottom-20', [m('.text-success.lineheight-loose.fontsize-larger', h.formatNumber(stats.total_projects_success, 0, 3)), m('.fontsize-smaller', m.trust(I18n$1.t('stats.projects_html', I18nScope$16())))]), m('.w-col.w-col-4.u-marginbottom-20', [m('.text-success.lineheight-loose.fontsize-larger', stats.total_contributed.toString().slice(0, 2) + ' \uBC31\uB9CC'
+        //coffee `${stats.total_contributed.toString().slice(0, 2)} milhões`
+        ), m('.fontsize-smaller', m.trust(I18n$1.t('stats.money_html', I18nScope$16())))])]), m('a.alt-link.fontsize-large[href=\'https://www.catarse.me/dbhero/dataclips/fa0d3570-9fa7-4af3-b070-2b2e386ef060\'][target=\'_blank\']', [m.trust(I18n$1.t('stats.cta_html', I18nScope$16()))])])))), m('.section-large', m('.w-container', [m('.w-row.u-marginbottom-30.u-text-center', m('.w-col.w-col-8.w-col-push-2', [m('div', m('img[alt=\'Logo catarse press\'][src=\'/assets/logo-catarse-press-2f2dad49d3e5b256c29e136673b4c4f543c03e0d5548d351ae5a8d1e6e3d2645.png\']')), m('.fontsize-base', I18n$1.t('assets.title', I18nScope$16()))])), m('.w-row', m('.w-col.w-col-4.w-col-push-4.u-text-center', m('a.alt-link.fontsize-large[href=\'https://www.catarse.me/assets\'][target=\'_blank\']', [m.trust(I18n$1.t('assets.cta_html', I18nScope$16()))])))])), m('.section-large.bg-projectgrid', m('.w-container', [m('.fontsize-large.u-text-center.fontweight-semibold.u-marginbottom-30', I18n$1.t('social.title', I18nScope$16())), m('.w-row', [m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://www.facebook.com/Catarse.me\'][target=\'_blank\']', [m('span.fa.fa-facebook'), ' 페이스북'
+        //coffee ' Facebook'
+        ])), m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://twitter.com/catarse\'][target=\'_blank\']', [m('span.fa.fa-twitter'), ' 트위터'
+        //coffee ' Twitter'
+        ])), m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'https://instagram.com/catarse/\'][target=\'_blank\']', [m('span.fa.fa-instagram'), ' 인스타그램'
+        //coffee ' Instagram'
+        ])), m('.w-col.w-col-3', m('a.btn.btn-dark.btn-large.u-marginbottom-10[href=\'http://blog.catarse.me/\'][target=\'_blank\']', [m('span.fa.fa-rss'), ' Blog do Catarse']))])])), m('.section-large.bg-blue-one.fontcolor-negative', m('.w-container', m('.w-row', m('.w-col.w-col-6.w-col-push-3', [m('.fontsize-large.fontweight-semibold.u-text-center.u-marginbottom-30', I18n$1.t('social.news', I18nScope$16())), m('.w-form', m('form[accept-charset=\'UTF-8\'][action=\'' + h.getNewsletterUrl() + '\'][id=\'mailee-form\'][method=\'post\']', [m('.w-form.footer-newsletter', m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'Digite seu email\'][type=\'email\']')), m('button.w-inline-block.btn.btn-edit.postfix.btn-attached[type=\'submit\']', m('img.footer-news-icon[alt=\'Icon newsletter\'][src=\'/assets/catarse_bootstrap/icon-newsletter-9c3ff92b6137fbdb9d928ecdb34c88948277a32cdde3e5b525e97d57735210f5.png\']'))]))])))), m('.section-large.bg-gray.before-footer', m('.w-container', m('.w-row.u-text-center', m('.w-col.w-col-8.w-col-push-2', [m('.fontsize-larger.fontweight-semibold.u-marginbottom-10', I18n$1.t('email.title', I18nScope$16())), m('div', m('a.alt-link.fontsize-large[href=\'mailto:' + I18n$1.t('email.cta', I18nScope$16()) + '\']', I18n$1.t('email.cta', I18nScope$16())))]))))]);
     }
 };
 
@@ -6117,8 +6653,16 @@ var liveStatistics = {
         var data = ctrl.notificationData();
 
         return m('.w-section.bg-stats.section.min-height-100', [m('.w-container.u-text-center', _$1.map(ctrl.pageStatistics(), function (stat) {
-            return [m('img.u-marginbottom-60[src="https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/55ada5dd11b36a52616d97df_symbol-catarse.png"]'), m('.fontcolor-negative.u-marginbottom-40', [m('.fontsize-megajumbo.fontweight-semibold', 'R$ ' + h.formatNumber(stat.total_contributed, 2, 3)), m('.fontsize-large', '여기에 게시된 프로젝트에 기부')]), m('.fontcolor-negative.u-marginbottom-60', [m('.fontsize-megajumbo.fontweight-semibold', stat.total_contributors), m('.fontsize-large', '사람들은 이미 Givingwire에서 최소 1개의 프로젝트를 지원했습니다.')])];
-        })), !_$1.isEmpty(data) ? m('.w-container', [m('div', [m('.card.u-radius.u-marginbottom-60.medium', [m('.w-row', [m('.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4.w-col-small-4', [m('img.thumb.u-round[src="' + h.useAvatarOrDefault(data.user_image) + '"]')]), m('.w-col.w-col-8.w-col-small-8', [m('.fontsize-large.lineheight-tight', data.user_name)])])]), m('.w-col.w-col-4.u-text-center.fontsize-base.u-margintop-20', [m('div', '방금 후원')]), m('.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4.w-col-small-4', [m('img.thumb-project.u-radius[src="' + data.project_image + '"][width="75"]')]), m('.w-col.w-col-8.w-col-small-8', [m('.fontsize-large.lineheight-tight', data.project_name)])])])])])])]) : '', m('.u-text-center.fontsize-large.u-marginbottom-10.fontcolor-negative', [m('a.link-hidden.fontcolor-negative[href="https://github.com/catarse"][target="_blank"]', [m('span.fa.fa-github', '.'), ' Open Source com orgulho! '])])]);
+            return [m('img.u-marginbottom-60[src="https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/55ada5dd11b36a52616d97df_symbol-catarse.png"]'), m('.fontcolor-negative.u-marginbottom-40', [m('.fontsize-megajumbo.fontweight-semibold', 'R$ ' + h.formatNumber(stat.total_contributed, 2, 3)), m('.fontsize-large', '여기에 게시된 프로젝트에 기부')
+            //coffee m('.fontsize-large', 'Doados para projetos publicados por aqui')
+            ]), m('.fontcolor-negative.u-marginbottom-60', [m('.fontsize-megajumbo.fontweight-semibold', stat.total_contributors), m('.fontsize-large', '사람들은 이미 Givingwire에서 최소 1개의 프로젝트를 지원했습니다.')
+            //coffee m('.fontsize-large', 'Pessoas já apoiaram pelo menos 1 projeto no Catarse')
+            ])];
+        })), !_$1.isEmpty(data) ? m('.w-container', [m('div', [m('.card.u-radius.u-marginbottom-60.medium', [m('.w-row', [m('.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4.w-col-small-4', [m('img.thumb.u-round[src="' + h.useAvatarOrDefault(data.user_image) + '"]')]), m('.w-col.w-col-8.w-col-small-8', [m('.fontsize-large.lineheight-tight', data.user_name)])])]), m('.w-col.w-col-4.u-text-center.fontsize-base.u-margintop-20', [m('div', '방금 후원')
+        //coffee m('div', 'acabou de apoiar o')
+        ]), m('.w-col.w-col-4', [m('.w-row', [m('.w-col.w-col-4.w-col-small-4', [m('img.thumb-project.u-radius[src="' + data.project_image + '"][width="75"]')]), m('.w-col.w-col-8.w-col-small-8', [m('.fontsize-large.lineheight-tight', data.project_name)])])])])])])]) : '', m('.u-text-center.fontsize-large.u-marginbottom-10.fontcolor-negative', [m('a.link-hidden.fontcolor-negative[href="https://github.com/catarse"][target="_blank"]', [m('span.fa.fa-github', '.'), ' 자존심을 가진 오픈 소스! '
+        //coffee m('span.fa.fa-github', '.'), ' Open Source com orgulho! '
+        ])])]);
     }
 };
 
@@ -6247,7 +6791,17 @@ var projectContributionReportContentCard = {
             onclick: function onclick() {
                 return ctrl.selectContribution(contribution);
             }
-        }) : ''))), m('.w-col.w-col-11.w-col-small-11.w-col-tiny-11', m('.w-row', [m('.w-col.w-col-1.w-col-tiny-1', [m('img.user-avatar.u-marginbottom-10[src=\'' + profileImg + '\']')]), m('.w-col.w-col-11.w-col-tiny-11', [m('.w-row', [m('.w-col.w-col-3', [m('.fontcolor-secondary.fontsize-mini.fontweight-semibold', h.momentify(contribution.created_at, 'DD/MM/YYYY, HH:mm')), m('.fontweight-semibold.fontsize-smaller.lineheight-tighter', contribution.public_user_name || contribution.user_name), m('.fontsize-smallest.lineheight-looser', [contribution.has_another ? [m('a.link-hidden-light.badge.badge-light', '+1 후원 ')] : '', contribution.anonymous ? m('span.fa.fa-eye-slash.fontcolor-secondary', m('span.fontcolor-secondary[style="font-size:11px;"]', ' ' + I18n$1.t('contribution.anonymous_contribution', contributionScope()))) : '']), m('.fontsize-smallest.lineheight-looser', contribution.email)]), m('.w-col.w-col-3', [m('.lineheight-tighter', [m('span.fa.fontsize-smallest.' + ctrl.stateClass(contribution.state)), '   ', m('span.fontsize-large', 'R$ ' + h.formatNumber(contribution.value, 2, 3))])]), m('.w-col.w-col-3.w-hidden-small.w-hidden-tiny', [m('div', deliveryBadge()), m('.fontsize-smallest.fontweight-semibold', I18n$1.t('reward', I18nScope$18()) + ': ' + (reward.minimum_value ? h.formatNumber(reward.minimum_value, 2, 3) : '')), m('.fontsize-smallest.fontweight-semibold', reward.title), m('.fontsize-smallest.fontcolor-secondary', reward.description.substring(0, 80) + '...')]), survey ? survey.survey_answered_at ? m('.w-col.w-col-3.w-col-push-1', [m('.fontsize-smallest', [m('a.link-hidden', '설문지 '), m('span.fontweight-semibold.text-success', 'respondido')]), m('.fontcolor-terciary.fontsize-smallest', 'em ' + h.momentify(survey.survey_answered_at, 'DD/MM/YYYY'))]) : survey.finished_at ? m('.w-col.w-col-3.w-col-push-1', [m('.fontsize-smallest', [m('a.link-hidden', '설문지 '), m('span.fontweight-semibold.text-fail', '대답 없음')]), m('.fontcolor-terciary.fontsize-smallest', 'finalizado em ' + h.momentify(survey.finished_at, 'DD/MM/YYYY'))]) : m('.w-col.w-col-3.w-col-push-1', [m('.fontsize-smallest', [m('a.link-hidden', '설문지 '), m('span.fontweight-semibold.text-waiting', 'enviado')]), m('.fontcolor-terciary.fontsize-smallest', 'em ' + h.momentify(survey.sent_at, 'DD/MM/YYYY'))]) : ''])])]))]), m('a.arrow-admin.fa.fa-chevron-down.fontcolor-secondary.w-inline-block', {
+        }) : ''))), m('.w-col.w-col-11.w-col-small-11.w-col-tiny-11', m('.w-row', [m('.w-col.w-col-1.w-col-tiny-1', [m('img.user-avatar.u-marginbottom-10[src=\'' + profileImg + '\']')]), m('.w-col.w-col-11.w-col-tiny-11', [m('.w-row', [m('.w-col.w-col-3', [m('.fontcolor-secondary.fontsize-mini.fontweight-semibold', h.momentify(contribution.created_at, 'DD/MM/YYYY, HH:mm')), m('.fontweight-semibold.fontsize-smaller.lineheight-tighter', contribution.public_user_name || contribution.user_name), m('.fontsize-smallest.lineheight-looser', [contribution.has_another ? [m('a.link-hidden-light.badge.badge-light', '+1 후원 ')
+        //coffee m('a.link-hidden-light.badge.badge-light', '+1 apoio ')
+        ] : '', contribution.anonymous ? m('span.fa.fa-eye-slash.fontcolor-secondary', m('span.fontcolor-secondary[style="font-size:11px;"]', ' ' + I18n$1.t('contribution.anonymous_contribution', contributionScope()))) : '']), m('.fontsize-smallest.lineheight-looser', contribution.email)]), m('.w-col.w-col-3', [m('.lineheight-tighter', [m('span.fa.fontsize-smallest.' + ctrl.stateClass(contribution.state)), '   ', m('span.fontsize-large', 'R$ ' + h.formatNumber(contribution.value, 2, 3))])]), m('.w-col.w-col-3.w-hidden-small.w-hidden-tiny', [m('div', deliveryBadge()), m('.fontsize-smallest.fontweight-semibold', I18n$1.t('reward', I18nScope$18()) + ': ' + (reward.minimum_value ? h.formatNumber(reward.minimum_value, 2, 3) : '')), m('.fontsize-smallest.fontweight-semibold', reward.title), m('.fontsize-smallest.fontcolor-secondary', reward.description.substring(0, 80) + '...')]), survey ? survey.survey_answered_at ? m('.w-col.w-col-3.w-col-push-1', [m('.fontsize-smallest', [m('a.link-hidden', '설문지 '
+        //coffee 'Questionário '
+        ), m('span.fontweight-semibold.text-success', 'respondido')]), m('.fontcolor-terciary.fontsize-smallest', 'em ' + h.momentify(survey.survey_answered_at, 'DD/MM/YYYY'))]) : survey.finished_at ? m('.w-col.w-col-3.w-col-push-1', [m('.fontsize-smallest', [m('a.link-hidden', '설문지 '
+        //coffee 'Questionário '
+        ), m('span.fontweight-semibold.text-fail', '대답 없음'
+        //coffee 'sem resposta'
+        )]), m('.fontcolor-terciary.fontsize-smallest', 'finalizado em ' + h.momentify(survey.finished_at, 'DD/MM/YYYY'))]) : m('.w-col.w-col-3.w-col-push-1', [m('.fontsize-smallest', [m('a.link-hidden', '설문지 '
+        //coffee 'Questionário '
+        ), m('span.fontweight-semibold.text-waiting', 'enviado')]), m('.fontcolor-terciary.fontsize-smallest', 'em ' + h.momentify(survey.sent_at, 'DD/MM/YYYY'))]) : ''])])]))]), m('a.arrow-admin.fa.fa-chevron-down.fontcolor-secondary.w-inline-block', {
             onclick: ctrl.showDetail.toggle
         })]), ctrl.showDetail() ? m('.card.details-backed-project.w-tabs', [m('.w-tab-menu', [_$1.map(['info', 'profile'], function (tab) {
             return m('a.dashboard-nav-link.w-inline-block.w-tab-link' + (ctrl.currentTab() === tab ? '.w--current' : ''), { onclick: function onclick() {
@@ -6260,7 +6814,11 @@ var projectContributionReportContentCard = {
             return !answer ? '' : m('.fontsize-small', [m('.fontweight-semibold.lineheight-looser', mcQuestion.question), m('p', answer.option)]);
         }), _$1.map(survey.open_questions, function (openQuestion) {
             return m('.fontsize-small', [m('.fontweight-semibold.lineheight-looser', openQuestion.question), m('p', openQuestion.answer)]);
-        })]) : ''])) : m('.w-tab-pane', m('.fontsize-small', m('p', ['\uC131\uBA85: ' + contribution.user_name, m('br'), 'Nome p\xFAblico: ' + contribution.public_user_name, m('br'), contribution.email, m('br'), I18n$1.t('user_since', contributionScope({ date: h.momentify(contribution.user_created_at, 'MMMM YYYY') })), m('br'), I18n$1.t('backed_projects', contributionScope({ count: contribution.total_contributed_projects })), m('br'), I18n$1.t('created_projects', contributionScope({ count: contribution.total_published_projects }))])))])]) : '']);
+        })]) : ''])) : m('.w-tab-pane', m('.fontsize-small', m('p', ['\uC131\uBA85: ' + contribution.user_name,
+        //coffee `Nome completo: ${contribution.user_name}`,
+        m('br'), '\uACF5\uC6A9 \uC774\uB984: ' + contribution.public_user_name,
+        //coffee `Nome público: ${contribution.public_user_name}`,
+        m('br'), contribution.email, m('br'), I18n$1.t('user_since', contributionScope({ date: h.momentify(contribution.user_created_at, 'MMMM YYYY') })), m('br'), I18n$1.t('backed_projects', contributionScope({ count: contribution.total_contributed_projects })), m('br'), I18n$1.t('created_projects', contributionScope({ count: contribution.total_published_projects }))])))])]) : '']);
     }
 };
 
@@ -6328,16 +6886,25 @@ vm$6.withNullParameters = function () {
  */
 var deliverContributionModalContent = {
     view: function view(ctrl, args) {
-        return m('div', m('.modal-dialog-header', m('.fontsize-large.u-text-center', [m('span.fa.fa-check-circle', ''), ' Recompensas a caminho! Obaaa!!!!'])), m('.modal-dialog-content', [m('p.fontsize-small.u-marginbottom-30', [m('span.fontweight-semibold', '\uC120\uD0DD\uD55C ' + args.amount + ' \uD6C4\uC6D0.'), ' Após sua confirmação, os apoiadores que efetuaram esses apoios ao seu projeto serão notificados de que suas recompensas serão entregues em breve.']), m('.w-form', [m('form', [m('.fontsize-smaller', 'Se quiser adicionar alguma informação nessa mensagem, use o espaço abaixo! É um ótimo momento para agradecer a essas pessoas que acreditaram em você!'), m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
+        return m('div', m('.modal-dialog-header', m('.fontsize-large.u-text-center', [m('span.fa.fa-check-circle', ''), ' Recompensas a caminho! Obaaa!!!!'])), m('.modal-dialog-content', [m('p.fontsize-small.u-marginbottom-30', [m('span.fontweight-semibold', '\uC120\uD0DD\uD55C ' + args.amount + ' \uD6C4\uC6D0.'
+        //coffee `Você selecionou ${args.amount} apoios.`
+        ), ' Após sua confirmação, os apoiadores que efetuaram esses apoios ao seu projeto serão notificados de que suas recompensas serão entregues em breve.']), m('.w-form', [m('form', [m('.fontsize-smaller', 'Se quiser adicionar alguma informação nessa mensagem, use o espaço abaixo! É um ótimo momento para agradecer a essas pessoas que acreditaram em você!'), m("textarea.height-mini.text-field.w-input[placeholder='메시지 입력 (선택 사항)']", {
+            //coffee m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
             value: args.message(),
             onchange: m.withAttr('value', args.message)
-        })])]), m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.fontsize-small.fontweight-semibold.u-marginbottom-20.u-text-center', 'Você confirma que a recompensa dos apoios selecionados foram enviadas?')), m('.w-col.w-col-1')]), m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-5', m('a.btn.btn-medium.w-button', {
+        })])]), m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.fontsize-small.fontweight-semibold.u-marginbottom-20.u-text-center', '선택한 후원에 대한 보상이 발송되었음을 확인합니까?'
+        //coffee 'Você confirma que a recompensa dos apoios selecionados foram enviadas?'
+        )), m('.w-col.w-col-1')]), m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-5', m('a.btn.btn-medium.w-button', {
             onclick: function onclick() {
                 return args.updateStatus('delivered');
             }
-        }, 'Sim!')), m('.w-col.w-col-5', m('a.btn.btn-medium.btn-terciary.w-button', {
+        }, '네!'
+        //coffee 'Sim!'
+        )), m('.w-col.w-col-5', m('a.btn.btn-medium.btn-terciary.w-button', {
             onclick: args.displayModal.toggle
-        }, '뒤로')), m('.w-col.w-col-1')])]));
+        }, '뒤로'
+        //coffee 'Voltar'
+        )), m('.w-col.w-col-1')])]));
     }
 };
 
@@ -6348,16 +6915,27 @@ var deliverContributionModalContent = {
  */
 var errorContributionModalContent = {
     view: function view(ctrl, args) {
-        return m('div', m('.modal-dialog-header', m('.fontsize-large.u-text-center', [m('span.fa.fa-exclamation-triangle', ''), ' Ops. Erro no envio!'])), m('.modal-dialog-content', [m('p.fontsize-small.u-marginbottom-30', [m('span.fontweight-semibold', '\uC120\uD0DD\uD55C ' + args.amount + ' \uD6C4\uC6D0.'), ' Após sua confirmação, os apoiadores que efetuaram esses apoios ao seu projeto serão notificados de que houve um problema com o envio de suas recompensas.']), m('.w-form', [m('form', [m('.fontsize-smaller', '이 메시지에 정보를 추가하려면 아래의 공란을 사용해 주시길 바랍니다 (예 : 배달 주소를 확인하거나 오류의 원인을 설명 할 수 있음)'), m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
+        return m('div', m('.modal-dialog-header', m('.fontsize-large.u-text-center', [m('span.fa.fa-exclamation-triangle', ''), ' 발신 오류!'
+        //coffee 'Ops. Erro no envio!'
+        ])), m('.modal-dialog-content', [m('p.fontsize-small.u-marginbottom-30', [m('span.fontweight-semibold', '\uC120\uD0DD\uD55C ' + args.amount + ' \uD6C4\uC6D0.'
+        //coffee `Você selecionou ${args.amount} apoios.`
+        ), ' Após sua confirmação, os apoiadores que efetuaram esses apoios ao seu projeto serão notificados de que houve um problema com o envio de suas recompensas.']), m('.w-form', [m('form', [m('.fontsize-smaller', '이 메시지에 정보를 추가하려면 아래의 공란을 사용해 주시길 바랍니다 (예 : 배달 주소를 확인하거나 오류의 원인을 설명 할 수 있음)'
+        //coffee 'Se quiser adicionar alguma informação nessa mensagem, use o espaço abaixo (ex: você pode pedir confirmação de endereço de entrega ou explicar motivos do erro)'
+        ), m("textarea.height-mini.text-field.w-input[placeholder='메시지 입력 (선택 사항)']", {
+            //coffee m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
             value: args.message(),
             onchange: m.withAttr('value', args.message)
         })])]), m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.fontsize-small.fontweight-semibold.u-marginbottom-20.u-text-center', 'Você confirma que houve um erro no envio das recompensas dos apoios selecionados?')), m('.w-col.w-col-1')]), m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-5', m('a.btn.btn-medium.w-button', {
             onclick: function onclick() {
                 return args.updateStatus('error');
             }
-        }, '네!')), m('.w-col.w-col-5', m('a.btn.btn-medium.btn-terciary.w-button', {
+        }, '네!'
+        //coffee 'Sim!'
+        )), m('.w-col.w-col-5', m('a.btn.btn-medium.btn-terciary.w-button', {
             onclick: args.displayModal.toggle
-        }, '뒤로')), m('.w-col.w-col-1')])]));
+        }, '뒤로'
+        //coffee 'Voltar'
+        )), m('.w-col.w-col-1')])]));
     }
 };
 
@@ -6443,23 +7021,40 @@ var projectContributionReportContent = {
             content: [deliverContributionModalContent, { project: args.project, displayModal: ctrl.displayDeliverModal, amount: ctrl.selectedContributions().length, updateStatus: ctrl.updateStatus, message: ctrl.deliveryMessage }]
         }) : '', ctrl.showSuccess() ? m.component(popNotification, {
             message: '정보가 업데이트 되었습니다.'
-        }) : '', m('.w-container', [m('.u-marginbottom-40', m('.w-row', [m('.u-text-center-small-only.w-col.w-col-2', m('.fontsize-base.u-marginbottom-10', [m('span.fontweight-semibold', list.isLoading() ? '' : list.total()), ' 후원'])), m('.w-col.w-col-6', isFailed ? '' : [!ctrl.selectedAny() ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
+            //coffee message: 'As informações foram atualizadas'
+        }) : '', m('.w-container', [m('.u-marginbottom-40', m('.w-row', [m('.u-text-center-small-only.w-col.w-col-2', m('.fontsize-base.u-marginbottom-10', [m('span.fontweight-semibold', list.isLoading() ? '' : list.total()), ' 후원'
+        //coffee ' apoios'
+        ])), m('.w-col.w-col-6', isFailed ? '' : [!ctrl.selectedAny() ? m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
             onclick: ctrl.selectAll
-        }, '모두 선택') : m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
+        }, '모두 선택'
+        //coffee 'Selecionar todos'
+        ) : m('button.btn.btn-inline.btn-small.btn-terciary.u-marginright-20.w-button', {
             onclick: ctrl.unselectAll
-        }, '모두 선택 취소'), ctrl.selectedAny() ? m('.w-inline-block', [m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
+        }, '모두 선택 취소'
+        //coffee 'Desmarcar todos'
+        ), ctrl.selectedAny() ? m('.w-inline-block', [m('button.btn.btn-inline.btn-small.btn-terciary.w-button', {
             onclick: ctrl.showSelectedMenu.toggle
-        }, ['전화 걸기 ', m('span.w-hidden-tiny', '배달'), ' como']), ctrl.showSelectedMenu() ? m('.card.dropdown-list.dropdown-list-medium.u-radius.zindex-10[id=\'transfer\']', [m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
+        }, ['전화 걸기 ',
+        //coffee 'Marcar ',
+        m('span.w-hidden-tiny', '배달'
+        //coffee 'entrega'
+        ), ' como']), ctrl.showSelectedMenu() ? m('.card.dropdown-list.dropdown-list-medium.u-radius.zindex-10[id=\'transfer\']', [m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
             onclick: function onclick() {
                 return ctrl.displayDeliverModal.toggle();
             }
-        }, '배달 됨'), m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
+        }, '배달 됨'
+        //coffee 'Entregue'
+        ), m('a.dropdown-link.fontsize-smaller[href=\'#\']', {
             onclick: function onclick() {
                 return ctrl.displayErrorModal.toggle();
             }
-        }, '전송 오류')]) : '']) : '']), m('.w-clearfix.w-col.w-col-4', m('a.alt-link.fontsize-small.lineheight-looser.u-right', { onclick: function onclick() {
+        }, '전송 오류'
+        //coffee 'Erro na entrega'
+        )]) : '']) : '']), m('.w-clearfix.w-col.w-col-4', m('a.alt-link.fontsize-small.lineheight-looser.u-right', { onclick: function onclick() {
                 return args.showDownloads(true);
-            } }, [m('span.fa.fa-download', ''), ' 보고서 다운로드']))])), _$1.map(list.collection(), function (item) {
+            } }, [m('span.fa.fa-download', ''), ' 보고서 다운로드'
+        //coffee ' Baixar relatórios'
+        ]))])), _$1.map(list.collection(), function (item) {
             var contribution = m.prop(item);
             return m.component(projectContributionReportContentCard, {
                 project: args.project,
@@ -6480,7 +7075,11 @@ var downloadReports = {
             return reward.paid_count > 0;
         });
 
-        return m('section.min-height-70', m('.w-section', m('article', m('.section.project-metrics', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', m('.card.u-radius.u-marginbottom-20.card-terciary', [m('.fontsize-small.fontweight-semibold.u-marginbottom-20', [m('span.fa.fa-download', m.trust('&nbsp;')), '보고서 다운로드']), m('ul.w-list-unstyled', [m('li.fontsize-smaller.u-marginbottom-10', m('div', ['후원자 확인 ', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;state=paid\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;state=paid\']', 'XLS')])), m('li.divider.u-marginbottom-10'), m('li.fontsize-smaller.u-marginbottom-10', m('div', ['Apoiadores pendentes', m.trust('&nbsp;'), m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;state=pending&amp;waiting_payment=true\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;state=pending&amp;waiting_payment=true\']', 'XLS')])), m('li.divider.u-marginbottom-10'), m('li.fontsize-smaller.u-marginbottom-10', m('div', ['Apoiadores que não selecionaram recompensa', m.trust('&nbsp;'), m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;reward_id=0&amp;state=paid\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;reward_id=0&amp;state=paid\']', 'XLS')])), _$1.map(paidRewards, function (reward) {
+        return m('section.min-height-70', m('.w-section', m('article', m('.section.project-metrics', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', m('.card.u-radius.u-marginbottom-20.card-terciary', [m('.fontsize-small.fontweight-semibold.u-marginbottom-20', [m('span.fa.fa-download', m.trust('&nbsp;')), '보고서 다운로드'
+        //coffee 'Baixar relatórios'
+        ]), m('ul.w-list-unstyled', [m('li.fontsize-smaller.u-marginbottom-10', m('div', ['후원자 확인 ',
+        //coffee 'Apoiadores confirmados ',
+        m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;state=paid\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;state=paid\']', 'XLS')])), m('li.divider.u-marginbottom-10'), m('li.fontsize-smaller.u-marginbottom-10', m('div', ['Apoiadores pendentes', m.trust('&nbsp;'), m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;state=pending&amp;waiting_payment=true\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;state=pending&amp;waiting_payment=true\']', 'XLS')])), m('li.divider.u-marginbottom-10'), m('li.fontsize-smaller.u-marginbottom-10', m('div', ['Apoiadores que não selecionaram recompensa', m.trust('&nbsp;'), m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;reward_id=0&amp;state=paid\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;reward_id=0&amp;state=paid\']', 'XLS')])), _$1.map(paidRewards, function (reward) {
             return [m('li.divider.u-marginbottom-10'), m('li.fontsize-smaller.u-marginbottom-10', m('div', ['R$ ' + reward.minimum_value + ' ' + reward.description.substring(0, 40) + '...;', m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.csv?project_id=' + project.project_id + '&amp;reward_id=' + reward.id + '&amp;state=paid\']', 'CSV'), m.trust('&nbsp;'), '\\', m.trust('&nbsp;'), m('a.alt-link[href=\'/pt/reports/contribution_reports_for_project_owners.xls?project_id=' + project.project_id + '&amp;reward_id=' + reward.id + '&amp;state=paid\']', 'XLS')]))];
         }), m('li.divider.u-marginbottom-10')])])), m('.w-col.w-col-2')]))))));
     }
@@ -6547,7 +7146,9 @@ var ProjectContributionStateLegendModal = {
         var project = _$1.first(args.project()),
             project_stage = project.state == 'waiting_funds' ? 'online' : project.state;
 
-        return m('div', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', '후원 상태')]), m('.modal-dialog-content', _$1.map(ctrl.stages[project_stage], function (item, i) {
+        return m('div', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', '후원 상태')
+        //coffee 'Status do apoio')
+        ]), m('.modal-dialog-content', _$1.map(ctrl.stages[project_stage], function (item, i) {
             return m('.u-marginbottom-20', [m('.fontsize-small.fontweight-semibold', [m('span' + item.i_class), ' \xA0' + item.label]), m('.fontsize-smaller', m.trust(item.text))]);
         }))]);
     }
@@ -6555,7 +7156,21 @@ var ProjectContributionStateLegendModal = {
 
 var ProjectContributionDeliveryLegendModal = {
     view: function view(ctrl, args) {
-        return m('div', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', '배송 상태')]), m('.modal-dialog-content', [m('.fontsize-smaller.u-marginbottom-30', 'Todo apoio tem, por padrão, o status de entrega \'Não enviada\'. Para ajudar no seu controle da entrega de recompensas, você pode alterar esses status e filtrar a pesquisa de apoios com os seguintes rótulos:'), m('.u-marginbottom-20', [m('.fontsize-smaller.fontweight-semibold', ['전송되지 않음', m.trust('&nbsp;')]), m('.fontsize-smaller', '후원자에게 아직 보상을 보내지 않았습니다.')]), m('div', m('span.fontsize-smaller.badge.badge-success', '배달 됨')), m('.u-marginbottom-20', m('.fontsize-smaller', '당신은 이미 후원자에게 보상을 보냈습니다.')), m('.u-marginbottom-20', [m('div', m('span.fontsize-smaller.badge.badge-attention', '전송 오류')), m('.fontsize-smaller', 'Você enviou a recompensa, mas houve algum problema com o envio (ex: endereço incorreto).')]), m('.u-marginbottom-20', [m('div', m('span.fontsize-smaller.badge.badge-success', [m('span.fa.fa-check-circle', ''), ' Recebida'])), m('.fontsize-smaller', 'O apoiador marcou a recompensa como \'Recebida\' no seu painel de controle \o/')])]), m('.divider.u-marginbottom-10'), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-30', ['참고 : 보상이 실제가 아닌 경우 (예 : 디지털 사본과 같은 경우)에도 위의 시스템을 사용할 수 있습니다.'])]);
+        return m('div', [m('.modal-dialog-header', [m('.fontsize-large.u-text-center', '배송 상태')
+        //coffee 'Status da entrega')
+        ]), m('.modal-dialog-content', [m('.fontsize-smaller.u-marginbottom-30', 'Todo apoio tem, por padrão, o status de entrega \'Não enviada\'. Para ajudar no seu controle da entrega de recompensas, você pode alterar esses status e filtrar a pesquisa de apoios com os seguintes rótulos:'), m('.u-marginbottom-20', [m('.fontsize-smaller.fontweight-semibold', ['전송되지 않음',
+        //coffee 'Não enviada',
+        m.trust('&nbsp;')]), m('.fontsize-smaller', '후원자에게 아직 보상을 보내지 않았습니다.'
+        //coffee 'Você ainda não enviou a recompensa para o apoiado.'
+        )]), m('div', m('span.fontsize-smaller.badge.badge-success', '배달 됨'
+        //coffee 'Entregue'
+        )), m('.u-marginbottom-20', m('.fontsize-smaller', '당신은 이미 후원자에게 보상을 보냈습니다.'
+        //coffee 'Você já enviou a recompensa para o apoiador.'
+        )), m('.u-marginbottom-20', [m('div', m('span.fontsize-smaller.badge.badge-attention', '전송 오류'
+        //coffee 'Erro na entrega'
+        )), m('.fontsize-smaller', 'Você enviou a recompensa, mas houve algum problema com o envio (ex: endereço incorreto).')]), m('.u-marginbottom-20', [m('div', m('span.fontsize-smaller.badge.badge-success', [m('span.fa.fa-check-circle', ''), ' Recebida'])), m('.fontsize-smaller', 'O apoiador marcou a recompensa como \'Recebida\' no seu painel de controle \o/')])]), m('.divider.u-marginbottom-10'), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-30', ['참고 : 보상이 실제가 아닌 경우 (예 : 디지털 사본과 같은 경우)에도 위의 시스템을 사용할 수 있습니다.'
+        //coffee 'Obs: mesmo que a recompensa não seja física (como uma cópia digital, por exemplo), você pode mesmo assim usar o sistema acima!'
+        ])]);
     }
 };
 
@@ -6573,42 +7188,53 @@ var projectContributionReport = {
             var opts = [{
                 value: '',
                 option: '모두'
+                //coffee option: 'Todos'
             }];
 
             var optionsMap = {
                 online: [{
                     value: 'paid',
                     option: '확인됨'
+                    //coffee option: 'Confirmado'
                 }, {
                     value: 'pending',
                     option: '시작됨'
+                    //coffee option: 'Iniciado'
                 }, {
                     value: 'refunded,chargeback,deleted,pending_refund',
                     option: '답변됨'
+                    //coffee option: 'Contestado'
                 }],
                 waiting_funds: [{
                     value: 'paid',
                     option: '확인됨'
+                    //coffee option: 'Confirmado'
                 }, {
                     value: 'pending',
                     option: '시작됨'
+                    //coffee option: 'Iniciado'
                 }, {
                     value: 'refunded,chargeback,deleted,pending_refund',
                     option: '답변됨'
+                    //coffee option: 'Contestado'
                 }],
                 failed: [{
                     value: 'refunded',
                     option: '환불됨'
+                    //coffee option: 'Reembolsado'
                 }, {
                     value: 'paid',
                     option: '환불이 시작되지 않았습니다.'
+                    //coffee option: 'Reembolso não iniciado'
                 }],
                 successful: [{
                     value: 'paid',
                     option: '확인됨'
+                    //coffee option: 'Confirmado'
                 }, {
                     value: 'refunded,chargeback,deleted,pending_refund',
                     option: '답변됨'
+                    //coffee option: 'Contestado'
                 }]
             };
 
@@ -6632,12 +7258,14 @@ var projectContributionReport = {
                 btnClass: '.btn.btn-medium',
                 vm: filterVM.full_text_index,
                 placeholder: '후원자의 이름 또는 이메일로 검색'
+                //coffee placeholder: 'Busque por nome ou email do apoiador'
             }
         }, {
             label: 'reward_filter',
             component: filterDropdown,
             data: {
                 label: '보상',
+                //coffee label: 'Recompensa',
                 onchange: submit,
                 name: 'reward_id',
                 vm: filterVM.reward_id,
@@ -6651,6 +7279,7 @@ var projectContributionReport = {
                 custom_label: [InfoProjectContributionLegend, {
                     content: [ProjectContributionDeliveryLegendModal],
                     text: '배송 상태'
+                    //coffee text: 'Status da entrega'
                 }],
                 onchange: submit,
                 name: 'delivery_status',
@@ -6659,18 +7288,23 @@ var projectContributionReport = {
                 options: [{
                     value: '',
                     option: '모두'
+                    //coffee option: 'Todos'
                 }, {
                     value: 'undelivered',
                     option: '배달되지 않음'
+                    //coffee option: 'Não entregue'
                 }, {
                     value: 'delivered',
                     option: '배달됨'
+                    //coffee option: 'Entregue'
                 }, {
                     value: 'error',
                     option: '발신 오류'
+                    //coffee option: 'Erro no envio'
                 }, {
                     value: 'received',
                     option: '받은'
+                    //coffee option: 'Recebida'
                 }]
             }
         }, {
@@ -6685,18 +7319,23 @@ var projectContributionReport = {
                 options: [{
                     value: '',
                     option: '모두'
+                    //coffee option: 'Todos'
                 }, {
                     value: 'not_sent',
                     option: '전송되지 않음'
+                    //coffee option: 'Não enviado'
                 }, {
                     value: 'sent,answered',
                     option: '전송됨'
+                    //coffee option: 'Enviado'
                 }, {
                     value: 'sent',
                     option: '대답이 없다.'
+                    //coffee option: 'Não Respondido'
                 }, {
                     value: 'answered',
                     option: '답변됨'
+                    //coffee option: 'Respondido'
                 }]
             }
         }, {
@@ -6705,6 +7344,7 @@ var projectContributionReport = {
             data: {
                 custom_label: [InfoProjectContributionLegend, {
                     text: '지원 상태',
+                    //coffee text: 'Status do apoio',
                     content: [ProjectContributionStateLegendModal, {
                         project: project
                     }]
@@ -6746,11 +7386,13 @@ var projectContributionReport = {
             options.unshift({
                 value: null,
                 option: '보상 없음'
+                //coffee option: 'Sem recompensa'
             });
 
             options.unshift({
                 value: '',
                 option: '모두'
+                //coffee option: 'Todas'
             });
 
             return options;
@@ -6876,7 +7518,15 @@ var UnsignedFriendFacebookConnect = {
         };
     },
     view: function view(ctrl, args) {
-        return m('.w-section.section' + (ctrl.largeBg ? '.bg-backs-carrosel.section-large' : ''), [m('.w-container', [m('.card.card-big', [m('.w-row', [m('.w-col.w-col-8', [m('.fontsize-largest.u-marginbottom-20', '친구와 함께 놀라운 프로젝트를 찾아보십시오.'), m('.fontsize-small', 'Catarse의 우주는 Facebook 네트워크와 함께 놀라운 프로젝트를 발견하게합니다.!')]), m('.w-col.w-col-4', [m('a.w-button.btn.btn-fb.btn-large.u-margintop-30.u-marginbottom-10[href="/connect-facebook"]', '페이스북 연결'), m('.fontsize-smallest.fontcolor-secondary.u-text-center', '우리는 당신의 허락 없이는 아무 것도 페이스북에 게시하지 않을 것입니다.')])])])])]);
+        return m('.w-section.section' + (ctrl.largeBg ? '.bg-backs-carrosel.section-large' : ''), [m('.w-container', [m('.card.card-big', [m('.w-row', [m('.w-col.w-col-8', [m('.fontsize-largest.u-marginbottom-20', '친구와 함께 놀라운 프로젝트를 찾아보십시오.'),
+        //coffee m('.fontsize-largest.u-marginbottom-20', 'Encontre projetos incríveis junto com seus amigos'),
+        m('.fontsize-small', 'Givingwire의 우주는 Facebook 네트워크와 함께 놀라운 프로젝트를 발견하게합니다.!')
+        //coffee m('.fontsize-small', 'O universo do Catarse junto com a sua rede do Facebook te farão descobrir projetos incríveis!')
+        ]), m('.w-col.w-col-4', [m('a.w-button.btn.btn-fb.btn-large.u-margintop-30.u-marginbottom-10[href="/connect-facebook"]', '페이스북 연결'),
+        //coffee m('a.w-button.btn.btn-fb.btn-large.u-margintop-30.u-marginbottom-10[href="/connect-facebook"]', 'Conecte seu facebook'),
+        m('.fontsize-smallest.fontcolor-secondary.u-text-center', '우리는 당신의 허락 없이는 아무 것도 페이스북에 게시하지 않을 것입니다.')
+        //coffee m('.fontsize-smallest.fontcolor-secondary.u-text-center', 'Nós nunca postaremos nada no facebook sem sua permissão')
+        ])])])])]);
     }
 };
 
@@ -6923,15 +7573,21 @@ var projectsExplore = {
             if (currentFilter().keyName === 'all') {
                 hasHint = true;
                 hintText = '인기순으로 정렬 ';
+                //coffee hintText = 'Ordenados por popularidade ';
                 tooltipText = 'O nosso fator popularidade é uma mistura da seleção do time do Catarse com um valor que é calculado pela velocidade de arrecadação do projeto';
             } else if (currentFilter().keyName === 'finished') {
                 hasHint = true;
-                hintText = 'Ordenados por R$ alcançado ';
+                hintText = '달성 한 R $로 정렬 ';
+                //coffee hintText = '달성 한 R $로 정렬 ';
+                //cofffee   hintText = 'Ordenados por R$ alcançado ';
                 tooltipText = '가장 높은 목표를 달성한 프로젝트가 가장 위에 표시됩니다.';
+                //coffee tooltipText = 'Os projetos com maior meta de arrecadação alcançada ficam no topo';
             } else if (currentFilter().keyName === 'contributed_by_friends') {
                 hasHint = true;
                 hintText = '친구가 지원하는 프로젝트';
+                //coffee hintText = 'Projetos apoiados por amigos';
                 tooltipText = '친구가 지원하는 프로젝트';
+                //coffee tooltipText = 'Projetos apoiados por amigos';
             }
 
             return hasHint ? m('.fontsize-smaller.fontcolor-secondary', [hintText, buildTooltip(tooltipText)]) : '';
@@ -7020,6 +7676,7 @@ var projectsExplore = {
             if (_$1.isString(search$$1) && search$$1.length > 0 && route === null) {
                 isSearch(true);
                 title('\uAC80\uC0C9 ' + search$$1);
+                //coffee title(`Busca ${search}`);
                 projects(searchProjects());
             } else if (currentFilter().keyName === 'finished') {
                 isSearch(false);
@@ -7096,7 +7753,9 @@ var projectsExplore = {
 
         return m('#explore', { config: h.setPageTitle(I18n$1.t('header_html', I18nScope$20())) }, [m('.w-section.hero-search', [m.component(search), m('.w-container.u-marginbottom-10', [m('.u-text-center.u-marginbottom-40', [m('a#explore-open.link-hidden-white.fontweight-light.fontsize-larger[href="javascript:void(0);"]', { onclick: function onclick() {
                 return ctrl.toggleCategories.toggle();
-            } }, ['놀라운 프로젝트 탐구 ', m('span#explore-btn.fa.fa-angle-down' + (ctrl.toggleCategories() ? '.opened' : ''), '')])]), m('#categories.category-slider' + (ctrl.toggleCategories() ? '.opened' : ''), [m('.w-row.u-marginbottom-30', [_$1.map(ctrl.categories(), function (category) {
+            } }, ['놀라운 프로젝트 탐구 ', m('span#explore-btn.fa.fa-angle-down' + (ctrl.toggleCategories() ? '.opened' : ''), '')])
+        //coffee ['Explore projetos incríveis ', m(`span#explore-btn.fa.fa-angle-down${ctrl.toggleCategories() ? '.opened' : ''}`, '')])
+        ]), m('#categories.category-slider' + (ctrl.toggleCategories() ? '.opened' : ''), [m('.w-row.u-marginbottom-30', [_$1.map(ctrl.categories(), function (category) {
             return m.component(categoryButton, { category: category });
         })])])])]), m('.w-section', [m('.w-container', [m('.w-row', [m('.w-col.w-col-9.w-col-small-8.w-col-tiny-8', [m('.fontsize-larger', ctrl.title()), ctrl.hint()]), m('.w-col.w-col-3.w-col-small-4.w-col-tiny-4', !ctrl.isSearch() ? m('select.w-select.text-field.positive', { onchange: m.withAttr('value', ctrl.changeFilter) }, _$1.map(ctrl.projectFiltersVM.getContextFilters(), function (pageFilter, idx) {
             var isSelected = ctrl.currentFilter() === pageFilter;
@@ -7133,11 +7792,17 @@ var projectsExplore = {
             }
 
             return _$1.indexOf(widowProjects, idx) > -1 && !ctrl.projects().isLastPage() ? '' : m.component(projectCard, { project: project, ref: ref, type: cardType, showFriends: isContributedByFriendsFilter });
-        })), ctrl.projects().isLoading() ? h.loader() : _$1.isEmpty(projectsCollection) && ctrl.hasFBAuth ? m('.fontsize-base.w-col.w-col-12', '표시할 프로젝트가 없습니다.') : ''])])]), m('.w-section.u-marginbottom-80', [m('.w-container', [m('.w-row', [m('.w-col.w-col-2.w-col-push-5', [ctrl.projects().isLastPage() || ctrl.projects().isLoading() || _$1.isEmpty(projectsCollection) ? '' : m('a.btn.btn-medium.btn-terciary[href=\'#loadMore\']', { onclick: function onclick() {
+        })), ctrl.projects().isLoading() ? h.loader() : _$1.isEmpty(projectsCollection) && ctrl.hasFBAuth ? m('.fontsize-base.w-col.w-col-12', '표시할 프로젝트가 없습니다.') : ''
+        //coffee ctrl.projects().isLoading() ? h.loader() : (_.isEmpty(projectsCollection) && ctrl.hasFBAuth ? m('.fontsize-base.w-col.w-col-12', 'Nenhum projeto para mostrar.') : '')
+        ])])]), m('.w-section.u-marginbottom-80', [m('.w-container', [m('.w-row', [m('.w-col.w-col-2.w-col-push-5', [ctrl.projects().isLastPage() || ctrl.projects().isLoading() || _$1.isEmpty(projectsCollection) ? '' : m('a.btn.btn-medium.btn-terciary[href=\'#loadMore\']', { onclick: function onclick() {
                 ctrl.projects().nextPage();return false;
             } }, 'Carregar mais')])])])]), m('.w-section.section-large.before-footer.u-margintop-80.bg-gray.divider', [m('.w-container.u-text-center', [m('img.u-marginbottom-20.icon-hero', {
             src: hasSpecialFooter ? ctrl.externalLinkCategories[categoryId()].icon : 'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/56f4414d3a0fcc0124ec9a24_icon-launch-explore.png'
-        }), m('h2.fontsize-larger.u-marginbottom-60', hasSpecialFooter ? ctrl.externalLinkCategories[categoryId()].title : 'Givingwire 캠페인 시작!'), m('.w-row', [m('.w-col.w-col-4.w-col-push-4', [hasSpecialFooter ? m('a.w-button.btn.btn-large', { href: ctrl.externalLinkCategories[categoryId()].link + '?ref=ctrse_explore' }, ctrl.externalLinkCategories[categoryId()].cta) : m('a.w-button.btn.btn-large', { href: '/start?ref=ctrse_explore' }, '방법 배우기')])])])])]);
+        }), m('h2.fontsize-larger.u-marginbottom-60', hasSpecialFooter ? ctrl.externalLinkCategories[categoryId()].title : 'Givingwire 캠페인 시작!'),
+        //coffee hasSpecialFooter ? ctrl.externalLinkCategories[categoryId()].title : 'Lance sua campanha no Catarse!'),
+        m('.w-row', [m('.w-col.w-col-4.w-col-push-4', [hasSpecialFooter ? m('a.w-button.btn.btn-large', { href: ctrl.externalLinkCategories[categoryId()].link + '?ref=ctrse_explore' }, ctrl.externalLinkCategories[categoryId()].cta) : m('a.w-button.btn.btn-large', { href: '/start?ref=ctrse_explore' }, '방법 배우기')
+        //coffee : m('a.w-button.btn.btn-large', { href: '/start?ref=ctrse_explore' }, 'Aprenda como')
+        ])])])])]);
     }
 };
 
@@ -7290,7 +7955,9 @@ var blogBanner = {
 
         return m('section.section-large.bg-gray.before-footer[id=\'blog\']', m('.w-container', [m('.u-text-center', [m('a[href=\'http://blog.catarse.me\'][target=\'blank\']', m('img.u-marginbottom-10[alt=\'Icon blog\'][src=\'/assets/icon-blog.png\']')), m('.fontsize-large.u-marginbottom-60.text-success', m('a.link-hidden-success[href=\'http://blog.catarse.me\'][target=\'__blank\']', 'Blog do Catarse'))]), m('.w-row', _$1.map(ctrl.posts(), function (post) {
             return m('.w-col.w-col-4.col-blog-post', [m('a.link-hidden.fontweight-semibold.fontsize-base.u-marginbottom-10[href="' + post[1][1] + '"][target=\'__blank\']', post[0][1]), m('.fontsize-smaller.fontcolor-secondary.u-margintop-10', m.trust(h.strip(post[6][1].substr(0, 130)) + '...'))]);
-        })), ctrl.error() ? m('.w-row', m('.w-col.w-col-12.u-text-center', '로드 중 오류가 발생했습니다...')) : '']));
+        })), ctrl.error() ? m('.w-row', m('.w-col.w-col-12.u-text-center', '로드 중 오류가 발생했습니다...')) : ''
+        //coffee ctrl.error() ? m('.w-row', m('.w-col.w-col-12.u-text-center', 'Erro ao carregar posts...')) : ''
+        ]));
     }
 };
 
@@ -7388,12 +8055,20 @@ var projectShareBox = {
             style: 'display: block;'
         }, [m('.w-hidden-main.w-hidden-medium.w-clearfix', [m('a.btn.btn-small.btn-terciary.btn-inline.u-right', {
             onclick: args.displayShareBox.toggle
-        }, '닫기'), m('.fontsize-small.fontweight-semibold.u-marginbottom-30', '이 프로젝트 공유')]), m('.w-widget.w-widget-twitter.w-hidden-small.w-hidden-tiny.share-block', [m('iframe[allowtransparency="true"][width="120px"][height="22px"][frameborder="0"][scrolling="no"][src="//platform.twitter.com/widgets/tweet_button.8d007ddfc184e6776be76fe9e5e52d69.en.html#_=1442425984936&count=horizontal&dnt=false&id=twitter-widget-1&lang=en&original_referer=https%3A%2F%2Fwww.catarse.me%2Fpt%2F' + args.project().permalink + '&size=m&text=Confira%20o%20projeto%20' + args.project().name + '%20no%20%40catarse&type=share&url=https%3A%2F%2Fwww.catarse.me%2Fpt%2F' + args.project().permalink + '%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share&via=catarse"]')]), m('a.w-hidden-small.widget-embed.w-hidden-tiny.fontsize-small.link-hidden.fontcolor-secondary[href="javascript:void(0);"]', {
+        }, '닫기'),
+        //coffee }, 'Fechar'),
+        m('.fontsize-small.fontweight-semibold.u-marginbottom-30', '이 프로젝트 공유')
+        //coffee m('.fontsize-small.fontweight-semibold.u-marginbottom-30', 'Compartilhe este projeto')
+        ]), m('.w-widget.w-widget-twitter.w-hidden-small.w-hidden-tiny.share-block', [m('iframe[allowtransparency="true"][width="120px"][height="22px"][frameborder="0"][scrolling="no"][src="//platform.twitter.com/widgets/tweet_button.8d007ddfc184e6776be76fe9e5e52d69.en.html#_=1442425984936&count=horizontal&dnt=false&id=twitter-widget-1&lang=en&original_referer=https%3A%2F%2Fwww.catarse.me%2Fpt%2F' + args.project().permalink + '&size=m&text=Confira%20o%20projeto%20' + args.project().name + '%20no%20%40catarse&type=share&url=https%3A%2F%2Fwww.catarse.me%2Fpt%2F' + args.project().permalink + '%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share&via=catarse"]')]), m('a.w-hidden-small.widget-embed.w-hidden-tiny.fontsize-small.link-hidden.fontcolor-secondary[href="javascript:void(0);"]', {
             onclick: ctrl.displayEmbed.toggle
-        }, '< embed >'), ctrl.displayEmbed() ? m('.embed-expanded.u-margintop-30', [m('.fontsize-small.fontweight-semibold.u-marginbottom-20', '사이트에 위젯 넣기'), m('.w-form', [m('input.w-input[type="text"][value="<iframe frameborder="0" height="340px" src="https://www.catarse.me/pt/projects/' + args.project().project_id + '/embed" width="300px" scrolling="no"></iframe>"]')]), m('.card-embed', [m('iframe[frameborder="0"][height="350px"][src="/projects/' + args.project().project_id + '/embed"][width="300px"][scrolling="no"]')])]) : '', args.project().permalink ? m.component(facebookButton, {
+        }, '< embed >'), ctrl.displayEmbed() ? m('.embed-expanded.u-margintop-30', [m('.fontsize-small.fontweight-semibold.u-marginbottom-20', '사이트에 위젯 넣기'),
+        //coffee m('.fontsize-small.fontweight-semibold.u-marginbottom-20', 'Insira um widget em seu site'),
+        m('.w-form', [m('input.w-input[type="text"][value="<iframe frameborder="0" height="340px" src="https://www.catarse.me/pt/projects/' + args.project().project_id + '/embed" width="300px" scrolling="no"></iframe>"]')]), m('.card-embed', [m('iframe[frameborder="0"][height="350px"][src="/projects/' + args.project().project_id + '/embed"][width="300px"][scrolling="no"]')])]) : '', args.project().permalink ? m.component(facebookButton, {
             mobile: true,
             url: 'https://www.catarse.me/' + args.project().permalink + '?ref=facebook&utm_source=facebook.com&utm_medium=social&utm_campaign=project_share'
-        }) : '', m('a.w-hidden-main.w-hidden-medium.btn.btn-medium.btn-tweet.u-marginbottom-20[href="https://twitter.com/intent/tweet?text=Acabei%20de%20apoiar%20o%20projeto%20' + encodeURIComponent(args.project().name) + '%20https://www.catarse.me/' + args.project().permalink + '%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share"][target="_blank"]', [m('span.fa.fa-twitter'), ' 트윗']), m('a.w-hidden-main.w-hidden-medium.btn.btn-medium[data-action="share/whatsapp/share"]', {
+        }) : '', m('a.w-hidden-main.w-hidden-medium.btn.btn-medium.btn-tweet.u-marginbottom-20[href="https://twitter.com/intent/tweet?text=Acabei%20de%20apoiar%20o%20projeto%20' + encodeURIComponent(args.project().name) + '%20https://www.catarse.me/' + args.project().permalink + '%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share"][target="_blank"]', [m('span.fa.fa-twitter'), ' 트윗'
+        //coffee m('span.fa.fa-twitter'), ' Tweet'
+        ]), m('a.w-hidden-main.w-hidden-medium.btn.btn-medium[data-action="share/whatsapp/share"]', {
             href: 'whatsapp://send?text=' + encodeURIComponent('https://www.catarse.me/' + args.project().permalink + '/?ref=whatsapp&utm_source=whatsapp&utm_medium=social&utm_campaign=project_share')
         }, [m('span.fa.fa-whatsapp'), ' Whatsapp'])]);
     }
@@ -7446,7 +8121,9 @@ var projectHighlight = {
             style: 'min-height: 240px;'
         }, [m('iframe.embedly-embed[itemprop="video"][src="' + project().video_embed_url + '"][frameborder="0"][allowFullScreen]')]) : m('.project-image', {
             style: 'background-image:url(\'' + (project().original_image || project().project_img) + '\');'
-        }), m('.w-hidden-small.w-hidden-tiny', [m.component(addressTag, { project: project }), m.component(categoryTag, { project: project })]), m('.project-blurb', project().headline), m('.project-share.w-hidden-small.w-hidden-tiny', m('.u-marginbottom-30.u-text-center-small-only', [m('.w-inline-block.fontcolor-secondary.fontsize-smaller.u-marginright-20', 'Compartilhar:'), project().permalink ? m.component(facebookButton, {
+        }), m('.w-hidden-small.w-hidden-tiny', [m.component(addressTag, { project: project }), m.component(categoryTag, { project: project })]), m('.project-blurb', project().headline), m('.project-share.w-hidden-small.w-hidden-tiny', m('.u-marginbottom-30.u-text-center-small-only', [m('.w-inline-block.fontcolor-secondary.fontsize-smaller.u-marginright-20', '이것을 공유하십시오:'
+        //coffee 'Compartilhar:'
+        ), project().permalink ? m.component(facebookButton, {
             url: 'https://www.catarse.me/' + project().permalink + '?ref=facebook&utm_source=facebook.com&utm_medium=social&utm_campaign=project_share'
         }) : '', project().permalink ? m.component(facebookButton, {
             messenger: true,
@@ -7456,7 +8133,9 @@ var projectHighlight = {
                 transition: 'all 0.5s ease 0s'
             },
             onclick: ctrl.displayShareBox.toggle
-        }, ['···', ' 더 많은 기사']), ctrl.displayShareBox() ? m(projectShareBox, {
+        }, ['···', ' 더 많은 기사'
+        //coffee ' Mais'
+        ]), ctrl.displayShareBox() ? m(projectShareBox, {
             project: project,
             displayShareBox: ctrl.displayShareBox
         }) : '']))]);
@@ -7559,10 +8238,15 @@ var projectReminder = {
 
         return m('#project-reminder' + mainClass, [m('a.btn.btn-small.btn-terciary.w-hidden-main.w-hidden-medium[data-ix=\'popshare\'][href=\'#\']', {
             onclick: onclickFunc
-        }, project().in_reminder ? [m('span.fa.fa-heart'), ' 알림 활성'] : [m('span.fa.fa-heart-o'), ' 비밀번호를 잊으셨나요?']), m('button[class="w-hidden-small w-hidden-tiny ' + buttonClass + ' ' + (project().in_reminder ? 'link-hidden-success' : 'fontcolor-secondary') + ' fontweight-semibold"]', {
+        }, project().in_reminder ? [m('span.fa.fa-heart'), ' 알림 활성'
+        //coffee ' Lembrete ativo'
+        ] : [m('span.fa.fa-heart-o'), ' 비밀번호를 잊으셨나요?'
+        //coffee ' Lembrar-me'
+        ]), m('button[class="w-hidden-small w-hidden-tiny ' + buttonClass + ' ' + (project().in_reminder ? 'link-hidden-success' : 'fontcolor-secondary') + ' fontweight-semibold"]', {
             onclick: onclickFunc
         }, [ctrl.l() ? h.loader() : project().in_reminder ? m('span.fa.fa-heart') : m('span.fa.fa-heart-o')]), ctrl.popNotification() ? m.component(popNotification, {
             message: '캠페인 종료 48시간 전에 알림 이메일을 보내드립니다.'
+            //coffee message: 'Ok! Vamos te mandar um lembrete por e-mail 48 horas antes do fim da campanha'
         }) : '']);
     }
 };
@@ -7625,7 +8309,9 @@ var ownerMessageContent = {
         };
     },
     view: function view(ctrl, args) {
-        var successMessage = m('.modal-dialog-content.u-text-center', [m('.fa.fa-check-circle.fa-5x.text-success.u-marginbottom-40'), m('p.fontsize-large', 'Sua mensagem foi enviada com sucesso para ' + ctrl.userDetails().name + '. Voc\xEA vai receber uma c\xF3pia no seu email e pode seguir a conversa por l\xE1!')]),
+        var successMessage = m('.modal-dialog-content.u-text-center', [m('.fa.fa-check-circle.fa-5x.text-success.u-marginbottom-40'), m('p.fontsize-large', '\uADC0\uD558\uC758 \uBA54\uC2DC\uC9C0\uB294 ' + ctrl.userDetails().name + '(\uC73C)\uB85C \uC804\uC1A1\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uB2F9\uC2E0\uC740 \uB2F9\uC2E0\uC758 \uC774\uBA54\uC77C\uC5D0 \uC0AC\uBCF8\uC744 \uBC1B\uAC8C\uB418\uBA70 \uAC70\uAE30 \uB300\uD654\uB97C \uB530\uB77C\uAC08 \uC218 \uC788\uC2B5\uB2C8\uB2E4!')
+        //coffee m('p.fontsize-large', `Sua mensagem foi enviada com sucesso para ${ctrl.userDetails().name}. Você vai receber uma cópia no seu email e pode seguir a conversa por lá!`)
+        ]),
             contactForm = [m('.modal-dialog-content', [m('.w-form', [m('form', {
             onsubmit: h.validate().submit([{
                 prop: ctrl.from_name,
@@ -7640,19 +8326,26 @@ var ownerMessageContent = {
         }, [m('.w-row', [m('.w-col.w-col-6.w-sub-col', [m('label.fontsize-smaller', 'Seu nome'), m('input.w-input.text-field[value=\'' + ctrl.from_name() + '\'][type=\'text\'][required=\'required\']', {
             onchange: m.withAttr('value', ctrl.from_name),
             class: h.validate().hasError(ctrl.from_name) ? '오류' : ''
+            //coffee class: h.validate().hasError(ctrl.from_name) ? 'error' : ''
         })]), m('.w-col.w-col-6', [m('label.fontsize-smaller', 'Seu email'), m('input.w-input.text-field[value=\'' + ctrl.from_email() + '\'][type=\'text\'][required=\'required\']', {
             onchange: m.withAttr('value', ctrl.from_email),
             class: h.validate().hasError(ctrl.from_email) ? '오류' : ''
+            //coffee class: h.validate().hasError(ctrl.from_email) ? 'error' : ''
         })])]), m('label', 'Mensagem'), m('textarea.w-input.text-field.height-small[required=\'required\']', {
             onchange: m.withAttr('value', ctrl.content),
-            class: h.validate().hasError(ctrl.content) ? 'error' : ''
-        }), m('.u-marginbottom-10.fontsize-smallest.fontcolor-terciary', 'Você receberá uma cópia desta mensagem em seu email.'), m('.w-row', h.validationErrors().length ? _$1.map(h.validationErrors(), function (errors) {
+            class: h.validate().hasError(ctrl.content) ? '오류' : ''
+        }), m('.u-marginbottom-10.fontsize-smallest.fontcolor-terciary', '이메일에 이 메시지의 사본이 전송됩니다.'),
+        //coffee m('.u-marginbottom-10.fontsize-smallest.fontcolor-terciary', '이메일에 이 메시지의 사본이 전송됩니다.'),
+        m('.w-row', h.validationErrors().length ? _$1.map(h.validationErrors(), function (errors) {
             return m('span.fontsize-smallest.text-error', [m('span.fa.fa-exclamation-triangle'), ' ' + errors.message, m('br')]);
         }) : ''), m('.modal-dialog-nav-bottom', m('.w-row', m('.w-col.w-col-6.w-col-push-3', !ctrl.l() ? m('input.w-button.btn.btn-large[type="submit"][value="메시지 보내기"]', {
+            //coffee m('.w-col.w-col-6.w-col-push-3', !ctrl.l() ? m('input.w-button.btn.btn-large[type="submit"][value="메시지 보내기"]', {
             disabled: ctrl.submitDisabled()
         }) : h.loader())))])])])];
 
-        return m('div', [m('.modal-dialog-header', m('.fontsize-large.u-text-center', '메시지 보내기')), ctrl.sendSuccess() ? successMessage : contactForm]);
+        return m('div', [m('.modal-dialog-header', m('.fontsize-large.u-text-center', '메시지 보내기')
+        //coffee m('.fontsize-large.u-text-center', '메시지 보내기')
+        ), ctrl.sendSuccess() ? successMessage : contactForm]);
     }
 };
 
@@ -7720,9 +8413,11 @@ var UserFollowBtn = {
                     onmouseout: function onmouseout() {
                         return ctrl.hover(false);
                     }
-                }, ctrl.hover() ? 'Deixar de seguir' : 'Seguindo');
+                }, ctrl.hover() ? '팔로우 해제' : '팔로잉');
+                //coffee (ctrl.hover() ? 'Deixar de seguir' : 'Seguindo'));
             }
-            return m('a' + disableClass, { onclick: ctrl.follow }, 'Seguir');
+            return m('a' + disableClass, { onclick: ctrl.follow }, '따라 가기');
+            //coffee 'Seguir');
         }
         return m('');
     }
@@ -7756,7 +8451,9 @@ var projectUserCard = {
         var contactModalC = [ownerMessageContent, args.userDetails];
         var userDetail = args.userDetails();
 
-        return m('#user-card', _$1.isEmpty(userDetail) ? '로딩...' : m('.u-marginbottom-30.u-text-center-small-only', [ctrl.displayModal() ? m.component(modalBox, {
+        return m('#user-card', _$1.isEmpty(userDetail) ? '로딩...' : m('.u-marginbottom-30.u-text-center-small-only', [
+        //coffee return m('#user-card', _.isEmpty(userDetail) ? 'carregando...' : m('.u-marginbottom-30.u-text-center-small-only', [
+        ctrl.displayModal() ? m.component(modalBox, {
             displayModal: ctrl.displayModal,
             content: contactModalC
         }) : '', m('.w-row', [m('.w-col.w-col-4', [m('img.thumb.u-marginbottom-30.u-round[width="100"][itemprop="image"][src="' + userVM.displayImage(userDetail) + '"]')]), m('.w-col.w-col-8', [m('.fontsize-small.link-hidden.fontweight-semibold.u-marginbottom-10.lineheight-tight[itemprop="name"]', [m('a.link-hidden[href="' + (_$1.isNull(userDetail.deactivated_at) ? '/users/' + userDetail.id : 'javascript:void(0);') + '"]', { config: m.route,
@@ -7767,7 +8464,11 @@ var projectUserCard = {
                     m.route('/users/' + userDetail.id, { user_id: userDetail.id });
                     h.analytics.event({ cat: 'project_view', act: 'project_creator_link', lbl: userDetail.id, project: project() });
                 }
-            } }, userVM.displayName(userDetail))]), !_$1.isNull(userDetail.deactivated_at) ? '' : m('.fontsize-smallest', [h.pluralize(userDetail.total_published_projects, ' criado', ' criados'), m.trust('&nbsp;&nbsp;|&nbsp;&nbsp;'), h.pluralize(userDetail.total_contributed_projects, ' apoiado', ' apoiados')]), !_$1.isNull(userDetail.deactivated_at) ? '' : m('ul.w-hidden-tiny.w-hidden-small.w-list-unstyled.fontsize-smaller.fontweight-semibold.u-margintop-20.u-marginbottom-20', [!_$1.isEmpty(userDetail.facebook_link) ? m('li', [m('a.link-hidden[itemprop="url"][href="' + userDetail.facebook_link + '"][target="_blank"]', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_fb', lbl: userDetail.facebook_link, project: project() }) }, '페이스북 프로필')]) : '', !_$1.isEmpty(userDetail.twitter_username) ? m('li', [m('a.link-hidden[itemprop="url"][href="https://twitter.com/' + userDetail.twitter_username + '"][target="_blank"]', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_twitter', lbl: userDetail.twitter_username, project: project() }) }, '트위터 프로필')]) : '', _$1.map(userDetail.links, function (link) {
+            } }, userVM.displayName(userDetail))]), !_$1.isNull(userDetail.deactivated_at) ? '' : m('.fontsize-smallest', [h.pluralize(userDetail.total_published_projects, ' criado', ' criados'), m.trust('&nbsp;&nbsp;|&nbsp;&nbsp;'), h.pluralize(userDetail.total_contributed_projects, ' apoiado', ' apoiados')]), !_$1.isNull(userDetail.deactivated_at) ? '' : m('ul.w-hidden-tiny.w-hidden-small.w-list-unstyled.fontsize-smaller.fontweight-semibold.u-margintop-20.u-marginbottom-20', [!_$1.isEmpty(userDetail.facebook_link) ? m('li', [m('a.link-hidden[itemprop="url"][href="' + userDetail.facebook_link + '"][target="_blank"]', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_fb', lbl: userDetail.facebook_link, project: project() }) }, '페이스북 프로필')
+        //coffee m(`a.link-hidden[itemprop="url"][href="${userDetail.facebook_link}"][target="_blank"]`, { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_fb', lbl: userDetail.facebook_link, project: project() }) }, 'Perfil no Facebook')
+        ]) : '', !_$1.isEmpty(userDetail.twitter_username) ? m('li', [m('a.link-hidden[itemprop="url"][href="https://twitter.com/' + userDetail.twitter_username + '"][target="_blank"]', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_twitter', lbl: userDetail.twitter_username, project: project() }) }, '트위터 프로필')
+        //coffee m(`a.link-hidden[itemprop="url"][href="https://twitter.com/${userDetail.twitter_username}"][target="_blank"]`, { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_twitter', lbl: userDetail.twitter_username, project: project() }) }, 'Perfil no Twitter')
+        ]) : '', _$1.map(userDetail.links, function (link) {
             var parsedLink = h.parseUrl(link.link);
 
             return !_$1.isEmpty(parsedLink.hostname) ? m('li', [m('a.link-hidden[itemprop="url"][href="' + link.link + '"][target="_blank"]', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_otherlinks', lbl: link.link, project: project() }) }, parsedLink.hostname)]) : '';
@@ -7775,7 +8476,9 @@ var projectUserCard = {
             enabledClass: 'a.w-button.btn.btn-terciary.btn-small..u-marginbottom-10',
             disabledClass: 'a.w-button.btn.btn-terciary.btn-small.u-marginbottom-10',
             follow_id: userDetail.id,
-            following: userDetail.following_this_user }), m('a.w-button.btn.btn-terciary.btn-small[href=\'javascript:void(0);\']', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_sendmsg', lbl: userDetail.id, project: project() }, ctrl.sendMessage) }, '연락처')] : '', args.project().is_admin_role ? m('p', userDetail.email) : ''])])]));
+            following: userDetail.following_this_user }), m('a.w-button.btn.btn-terciary.btn-small[href=\'javascript:void(0);\']', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_sendmsg', lbl: userDetail.id, project: project() }, ctrl.sendMessage) }, '연락처')
+        //coffee m('a.w-button.btn.btn-terciary.btn-small[href=\'javascript:void(0);\']', { onclick: h.analytics.event({ cat: 'project_view', act: 'project_creator_sendmsg', lbl: userDetail.id, project: project() }, ctrl.sendMessage) }, 'Contato')
+        ] : '', args.project().is_admin_role ? m('p', userDetail.email) : ''])])]));
     }
 };
 
@@ -7801,6 +8504,7 @@ var projectSidebar = {
                         progressBar.style.width = progress + '%';
                         pledgedEl.innerText = 'R$ ' + h.formatNumber(pledged);
                         contributorsEl.innerText = parseInt(contributors) + ' \uC0AC\uB78C\uB4E4';
+                        //coffee contributorsEl.innerText = `${parseInt(contributors)} pessoas`;
                         el.innerText = progress + '%';
                         pledged += pledgedIncrement;
                         contributors += contributorsIncrement;
@@ -7875,7 +8579,9 @@ var projectSidebar = {
             type: 'link'
         }))]) : '', m('.friend-backed-card.project-page', [!_$1.isUndefined(project()) && project().contributed_by_friends ? m.component(projectFriends, { project: project(), wrapper: 'div' }) : '']), m('div[class="fontsize-smaller u-marginbottom-30 ' + displayCardClass() + '"]', displayStatusText())]), m('.project-share.w-hidden-main.w-hidden-medium', [m.component(addressTag, { project: project }), m.component(categoryTag, { project: project }), m('.u-marginbottom-30.u-text-center-small-only', m('button.btn.btn-inline.btn-medium.btn-terciary', {
             onclick: ctrl.displayShareBox.toggle
-        }, '이 프로젝트 공유')), ctrl.displayShareBox() ? m(projectShareBox, {
+        }, '이 프로젝트 공유')),
+        //coffee }, 'Compartilhar este projeto')),
+        ctrl.displayShareBox() ? m(projectShareBox, {
             project: project,
             displayShareBox: ctrl.displayShareBox
         }) : '']), m('.user-c', m.component(projectUserCard, {
@@ -7962,7 +8668,15 @@ var userContributedBox = {
             }
         }), m('label.w-form-label', I18n$1.t('anonymous', contributionScope$1()))])]))]), m('.u-marginbottom-20.w-col.w-col-3', [contribution.reward_id ? [m('.fontsize-smallest.fontweight-semibold', contribution.reward_title), m('p.fontcolor-secondary.fontsize-smallest', m.trust(h.simpleFormat(contribution.reward_description.substring(0, 90) + ' (...)')))] : ' ' + I18n$1.t('no_reward', contributionScope$1()) + ' ', contribution.deliver_at ? m('.fontsize-smallest', [m('span.fontweight-semibold', I18n$1.t('delivery_estimate', contributionScope$1()) + ' '), h.momentify(contribution.deliver_at, 'MMMM/YYYY')]) : '', contributionVM.canBeDelivered(contribution) ? m('.fontsize-smallest', [m('span.fontweight-semibold', I18n$1.t('delivery_status', contributionScope$1())), m.trust('&nbsp;'), h.contributionStatusBadge(contribution)]) : '']), m(rewardReceiver, {
             contribution: contribution
-        }), contribution.survey ? [!answeredAt && finishedAt ? m('.u-text-center.w-col.w-col-2', m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', m('a.link-error[href=\'/contributions/' + contribution.contribution_id + '/surveys/' + contribution.survey.survey_id + '\'][target=\'_blank\']', [m("span[xmlns='http://www.w3.org/1999/xhtml']"), m("span.fa.fa-exclamation-circle[xmlns='http://www.w3.org/1999/xhtml']", ''), m.trust('&nbsp;'), '설문지', m('br'), '답변 없음']))) : answeredAt ? m('.u-text-center.w-col.w-col-2', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', m('a.link-hidden-dark[href=\'/contributions/' + contribution.contribution_id + '/surveys/' + contribution.survey.survey_id + '\'][target=\'_blank\']', ['설문지', m('br'), '답변 완료'])), m('.fontcolor-secondary.fontsize-smallest', 'em ' + h.momentify(answeredAt, 'DD/MM/YYYY'))]) : m('.u-text-center.w-col.w-col-2', m('a.btn.w-button[href=\'/contributions/' + contribution.contribution_id + '/surveys/' + contribution.survey.survey_id + '\']', I18n$1.t('answer_survey', contributionScope$1())))] : ''])]) : m('div', '');
+        }), contribution.survey ? [!answeredAt && finishedAt ? m('.u-text-center.w-col.w-col-2', m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', m('a.link-error[href=\'/contributions/' + contribution.contribution_id + '/surveys/' + contribution.survey.survey_id + '\'][target=\'_blank\']', [m("span[xmlns='http://www.w3.org/1999/xhtml']"), m("span.fa.fa-exclamation-circle[xmlns='http://www.w3.org/1999/xhtml']", ''), m.trust('&nbsp;'), '설문지',
+        //coffee 'Questionário',
+        m('br'), '답변 없음'
+        //coffee 'Não respondido'
+        ]))) : answeredAt ? m('.u-text-center.w-col.w-col-2', [m('.fontsize-smaller.fontweight-semibold.lineheight-tighter', m('a.link-hidden-dark[href=\'/contributions/' + contribution.contribution_id + '/surveys/' + contribution.survey.survey_id + '\'][target=\'_blank\']', ['설문지',
+        //coffee 'Questionário',
+        m('br'), '답변 완료'
+        //coffee 'Respondido'
+        ])), m('.fontcolor-secondary.fontsize-smallest', 'em ' + h.momentify(answeredAt, 'DD/MM/YYYY'))]) : m('.u-text-center.w-col.w-col-2', m('a.btn.w-button[href=\'/contributions/' + contribution.contribution_id + '/surveys/' + contribution.survey.survey_id + '\']', I18n$1.t('answer_survey', contributionScope$1())))] : ''])]) : m('div', '');
     }
 };
 
@@ -8003,9 +8717,13 @@ var projectHeader = {
     view: function view(ctrl, args) {
         var project = args.project,
             rewardDetails = args.rewardDetails;
-        var hasContribution = !_$1.isEmpty(ctrl.projectContributions()) ? m('.card.card-terciary.u-radius.u-margintop-20', [m('.fontsize-small.u-text-center', [m('span.fa.fa-thumbs-up'), ' 당신은 이 프로젝트의 후원자입니다. ', m('a.alt-link[href=\'javascript:void(0);\']', {
+        var hasContribution = !_$1.isEmpty(ctrl.projectContributions()) ? m('.card.card-terciary.u-radius.u-margintop-20', [m('.fontsize-small.u-text-center', [m('span.fa.fa-thumbs-up'), ' 당신은 이 프로젝트의 후원자입니다. ',
+        //coffee ' Você é apoiador deste projeto! ',
+        m('a.alt-link[href=\'javascript:void(0);\']', {
             onclick: ctrl.showContributions.toggle
-        }, '세부 정보')]), ctrl.showContributions() ? m('.u-margintop-20.w-row', _$1.map(ctrl.projectContributions(), function (contribution) {
+        }, '세부 정보')
+        //coffee }, 'Detalhes')
+        ]), ctrl.showContributions() ? m('.u-margintop-20.w-row', _$1.map(ctrl.projectContributions(), function (contribution) {
             return m.component(userContributionDetail, {
                 contribution: contribution,
                 rewardDetails: rewardDetails
@@ -8074,6 +8792,7 @@ var projectTabs = {
             onclick: h.analytics.event({
                 cat: 'project_view', act: 'project_rewards_view', project: project() })
         }, '보상') : m('a[id="rewards-link"][class="w-hidden-main w-hidden-medium dashboard-nav-link mf ' + (h.hashMatch('#contribution_suggestions') || h.mobileScreen() && h.hashMatch('') ? 'selected' : '') + '"][href="/' + project().permalink + '#contribution_suggestions"]', {
+            //coffee }, 'Recompensas') : m(`a[id="rewards-link"][class="w-hidden-main w-hidden-medium dashboard-nav-link mf ${(h.hashMatch('#contribution_suggestions') || (h.mobileScreen() && h.hashMatch('')) ? 'selected' : '')}"][href="/${project().permalink}#contribution_suggestions"]`, {
             style: 'float: left;',
             onclick: h.analytics.event({
                 cat: 'project_view', act: 'project_contribsuggestions_view', project: project() })
@@ -8081,21 +8800,31 @@ var projectTabs = {
             style: 'float: left;',
             onclick: h.analytics.event({
                 cat: 'project_view', act: 'project_about_view', project: project() })
-        }, '위키 소개'), m('a[id="posts-link"][class="dashboard-nav-link mf ' + (h.hashMatch('#posts') ? 'selected' : '') + '"][href="/' + project().permalink + '#posts"]', {
+        }, '위키 소개'),
+        //coffee }, 'Sobre'),
+        m('a[id="posts-link"][class="dashboard-nav-link mf ' + (h.hashMatch('#posts') ? 'selected' : '') + '"][href="/' + project().permalink + '#posts"]', {
             style: 'float: left;',
             onclick: h.analytics.event({
                 cat: 'project_view', act: 'project_posts_view', project: project() })
-        }, ['새로운 기능 ', m('span.badge', project() ? project().posts_count : '')]), m('a[id="contributions-link"][class="w-hidden-small w-hidden-tiny dashboard-nav-link mf ' + (h.hashMatch('#contributions') ? 'selected' : '') + '"][href="#contributions"]', {
+        }, ['새로운 기능 ',
+        //coffee 'Novidades ',
+        m('span.badge', project() ? project().posts_count : '')]), m('a[id="contributions-link"][class="w-hidden-small w-hidden-tiny dashboard-nav-link mf ' + (h.hashMatch('#contributions') ? 'selected' : '') + '"][href="#contributions"]', {
             style: 'float: left;',
             onclick: h.analytics.event({
                 cat: 'project_view', act: 'project_contributions_view', project: project() })
-        }, ['후원자 ', m('span.badge.w-hidden-small.w-hidden-tiny', project() ? project().total_contributors : '-')]), m('a[id="comments-link"][class="dashboard-nav-link mf ' + (h.hashMatch('#comments') ? 'selected' : '') + '"][href="#comments"]', {
+        }, ['후원자 ',
+        //coffee 'Apoiadores ',
+        m('span.badge.w-hidden-small.w-hidden-tiny', project() ? project().total_contributors : '-')]), m('a[id="comments-link"][class="dashboard-nav-link mf ' + (h.hashMatch('#comments') ? 'selected' : '') + '"][href="#comments"]', {
             style: 'float: left;',
             onclick: h.analytics.event({
                 cat: 'project_view', act: 'project_comments_view', project: project() })
-        }, ['자기 소개 ', project() ? m('fb:comments-count[href="http://www.catarse.me/' + project().permalink + '"][class="badge project-fb-comment w-hidden-small w-hidden-tiny"][style="display: inline"]', m.trust('&nbsp;')) : '-'])]), project() ? m('.w-col.w-col-4.w-hidden-small.w-hidden-tiny', project().open_for_contributions ? [m('.w-row.project-nav-back-button', [m('.w-col.w-col-6.w-col-medium-8', [m('a.w-button.btn[href="/projects/' + project().project_id + '/contributions/new"]', {
+        }, ['자기 소개 ',
+        //coffee 'Comentários ',
+        project() ? m('fb:comments-count[href="http://www.catarse.me/' + project().permalink + '"][class="badge project-fb-comment w-hidden-small w-hidden-tiny"][style="display: inline"]', m.trust('&nbsp;')) : '-'])]), project() ? m('.w-col.w-col-4.w-hidden-small.w-hidden-tiny', project().open_for_contributions ? [m('.w-row.project-nav-back-button', [m('.w-col.w-col-6.w-col-medium-8', [m('a.w-button.btn[href="/projects/' + project().project_id + '/contributions/new"]', {
             onclick: h.analytics.event({ cat: 'contribution_create', act: 'contribution_floatingbtn_click', project: project() })
-        }, '이 프로젝트 후원')]), m('.w-col.w-col-6.w-col-medium-4', {
+        }, '이 프로젝트 후원')
+        //coffee }, 'Apoiar ‍este projeto')
+        ]), m('.w-col.w-col-6.w-col-medium-4', {
             onclick: h.analytics.event({ cat: 'project_view', act: 'project_floatingreminder_click', project: project() })
         }, [m.component(projectReminder, { project: project, type: 'button', hideTextOnMobile: true })])])] : '') : ''])])]), ctrl.isFixed() && !project().is_owner_or_admin ? m('.w-section.project-nav') : ''] : '');
     }
@@ -8212,14 +8941,26 @@ var projectRewardCard = {
             }
         }, [ctrl.isRewardDescriptionExtended() ? 'menos ' : 'mais ', m('span.fa.fa-angle-down', {
             class: ctrl.isRewardDescriptionExtended() ? 'reversed' : ''
-        })]) : '', m('.u-marginbottom-20.w-row', [m('.w-col.w-col-6', !_$1.isEmpty(reward.deliver_at) ? [m('.fontcolor-secondary.fontsize-smallest', m('span', '예상 배송:')), m('.fontsize-smallest', h.momentify(reward.deliver_at, 'MMM/YYYY'))] : ''), m('.w-col.w-col-6', rewardVM.hasShippingOptions(reward) || reward.shipping_options === 'presential' ? [m('.fontcolor-secondary.fontsize-smallest', m('span', '배송:')), m('.fontsize-smallest', I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$24()))] : '')]), reward.maximum_contributions > 0 ? [h.rewardSouldOut(reward) ? m('.u-margintop-10', [m('span.badge.badge-gone.fontsize-smaller', '품절')]) : m('.u-margintop-10', [m('span.badge.badge-attention.fontsize-smaller', [m('span.fontweight-bold', 'Limitada'), project.open_for_contributions ? ' (' + h.rewardRemaning(reward) + ' de ' + reward.maximum_contributions + ' dispon\xEDveis)' : ''])])] : '', m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', h.pluralize(reward.paid_count, ' apoio', ' apoios')), reward.waiting_payment_count > 0 ? m('.maximum_contributions.in_time_to_confirm.clearfix', [m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, ' apoio em prazo de confirmação', ' apoios em prazo de confirmação.'))]) : '', project.open_for_contributions && !h.rewardSouldOut(reward) ? [ctrl.isRewardOpened() ? m('.w-form', [m('form.u-margintop-30', {
+        })]) : '', m('.u-marginbottom-20.w-row', [m('.w-col.w-col-6', !_$1.isEmpty(reward.deliver_at) ? [m('.fontcolor-secondary.fontsize-smallest', m('span', '예상 배송:')
+        //coffee m('span', 'Entrega prevista:')
+        ), m('.fontsize-smallest', h.momentify(reward.deliver_at, 'MMM/YYYY'))] : ''), m('.w-col.w-col-6', rewardVM.hasShippingOptions(reward) || reward.shipping_options === 'presential' ? [m('.fontcolor-secondary.fontsize-smallest', m('span', '배송:'
+        //coffee 'Envio:'
+        )), m('.fontsize-smallest', I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$24()))] : '')]), reward.maximum_contributions > 0 ? [h.rewardSouldOut(reward) ? m('.u-margintop-10', [m('span.badge.badge-gone.fontsize-smaller', '품절')
+        //coffee m('span.badge.badge-gone.fontsize-smaller', 'Esgotada')
+        ]) : m('.u-margintop-10', [m('span.badge.badge-attention.fontsize-smaller', [m('span.fontweight-bold', 'Limitada'), project.open_for_contributions ? ' (' + h.rewardRemaning(reward) + ' de ' + reward.maximum_contributions + ' dispon\xEDveis)' : ''])])] : '', m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', h.pluralize(reward.paid_count, ' apoio', ' apoios')), reward.waiting_payment_count > 0 ? m('.maximum_contributions.in_time_to_confirm.clearfix', [m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, '확인 기간에 후원', ' 확인 기간에 후원.'))
+        //coffee m('.pending.fontsize-smallest.fontcolor-secondary', h.pluralize(reward.waiting_payment_count, 'apoio em prazo de confirmação', ' apoios em prazo de confirmação.'))
+        ]) : '', project.open_for_contributions && !h.rewardSouldOut(reward) ? [ctrl.isRewardOpened() ? m('.w-form', [m('form.u-margintop-30', {
             onsubmit: ctrl.submitContribution
-        }, [m('.divider.u-marginbottom-20'), rewardVM.hasShippingOptions(reward) ? m('div', [m('.fontcolor-secondary.u-marginbottom-10', '배송지'), m('select.positive.text-field.w-select', {
+        }, [m('.divider.u-marginbottom-20'), rewardVM.hasShippingOptions(reward) ? m('div', [m('.fontcolor-secondary.u-marginbottom-10', '배송지'
+        //coffee 'Local de entrega'
+        ), m('select.positive.text-field.w-select', {
             onchange: m.withAttr('value', ctrl.selectDestination),
             value: ctrl.selectedDestination()
         }, _$1.map(ctrl.locationOptions(reward, ctrl.selectedDestination), function (option) {
             return m('option', { selected: option.value === ctrl.selectedDestination(), value: option.value }, [option.name + ' ', option.value != '' ? '+R$' + h.formatNumber(option.fee, 2, 3) : null]);
-        }))]) : '', m('.fontcolor-secondary.u-marginbottom-10', 'Valor do apoio'), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.back-reward-input-reward.placeholder', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.w-input.back-reward-input-reward[type="tel"]', {
+        }))]) : '', m('.fontcolor-secondary.u-marginbottom-10', '후원의 가치'
+        //coffee 'Valor do apoio'
+        ), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.back-reward-input-reward.placeholder', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.w-input.back-reward-input-reward[type="tel"]', {
             config: ctrl.setInput,
             onkeyup: m.withAttr('value', ctrl.applyMask),
             value: ctrl.contributionValue()
@@ -8310,7 +9051,43 @@ var projectReport = {
         };
     },
     view: function view(ctrl, args) {
-        return m('.card.card-terciary.u-radius', [m('.fontsize-small.u-marginbottom-20', ['Este projeto desrespeita', m.trust('&nbsp;'), m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638\'][target=\'_blank\']', 'nossas regras? ')]), ctrl.sendSuccess() ? m('.w-form', m('p', '신고가 접수되었습니다.')) : [m('.a.w-button.btn.btn-medium.btn-terciary.btn-inline[href=\'javascript:void(0);\']', { onclick: ctrl.checkLogin }, '프로젝트 신고'), ctrl.displayForm() ? m('#report-form.u-margintop-30', m('.w-form', m('form', { onsubmit: ctrl.sendReport, config: ctrl.checkScroll }, [m('.fontsize-small.fontweight-semibold.u-marginbottom-10', '이 프로젝트를 신고하시는 이유가 무엇인가요?'), m('select.w-select.text-field.positive[required=\'required\']', { onchange: m.withAttr('value', ctrl.reason) }, [m('option[value=\'\']', '이유 선택'), m('option[value=\'Violação de propriedade intelectual\']', '지적 재산권 침해'), m('option[value=\'Calúnia, injúria, difamação ou discriminação\']', '중상, 명예 훼손, 명예 훼손 또는 차별'), m('option[value=\'Escopo de projeto proibido\']', '금지 된 프로젝트의 범위'), m('option[value=\'Recompensas proibidas\']', 'Recompensas proibidas'), m('option[value=\'Cenas de sexo explícitas e gratuitas\']', 'Cenas de sexo explícitas e gratuitas'), m('option[value=\'Abuso de SPAM\']', '스팸 남용'), m('option[value=\'Outros\']', '기타')]), ctrl.reasonError() ? m(inlineError, { message: '이유 선택' }) : '', m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: '문제를 파악하는 데 도움이되는 세부 정보를 제공해주세요.', onchange: m.withAttr('value', ctrl.details) }), m('.w-row', ctrl.detailsError() ? m(inlineError, { message: '불만 사항을 신고하십시오.' }) : ''), m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'불만 신고\']', { disabled: ctrl.submitDisabled() })]))) : '']]);
+        return m('.card.card-terciary.u-radius', [m('.fontsize-small.u-marginbottom-20', ['Este projeto desrespeita', m.trust('&nbsp;'), m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638\'][target=\'_blank\']', 'nossas regras? ')]), ctrl.sendSuccess() ? m('.w-form', m('p', '신고가 접수되었습니다.'
+        //coffee 'Obrigado! A sua denúncia foi recebida.(고마워요! 귀하의 불만이 접수되었습니다.)'
+        )) : [m('.a.w-button.btn.btn-medium.btn-terciary.btn-inline[href=\'javascript:void(0);\']', { onclick: ctrl.checkLogin }, '프로젝트 신고'
+        //coffee 'Denunciar este projeto'
+        ), ctrl.displayForm() ? m('#report-form.u-margintop-30', m('.w-form', m('form', { onsubmit: ctrl.sendReport, config: ctrl.checkScroll }, [m('.fontsize-small.fontweight-semibold.u-marginbottom-10', '이 프로젝트를 신고하시는 이유가 무엇인가요?'
+        //coffee 'Por que você está denunciando este projeto?(왜 이 프로젝트를 비난하고 있니?)'
+        ), m('select.w-select.text-field.positive[required=\'required\']', { onchange: m.withAttr('value', ctrl.reason) }, [m('option[value=\'\']', '이유 선택'
+        //coffee 'Selecione um motivo'
+        ), m('option[value=\'지적 재산권 침해\']',
+        //coffee m('option[value=\'Violação de propriedade intelectual\']',
+        '지적 재산권 침해'
+        //coffee 'Violação de propriedade intelectual'
+        ), m('option[value=\'중상, 명예 훼손, 명예 훼손 또는 차별\']',
+        //coffee m('option[value=\'Calúnia, injúria, difamação ou discriminação\']',
+        '중상, 명예 훼손, 명예 훼손 또는 차별'
+        //coffee 'Calúnia, injúria, difamação ou discriminação'
+        ), m('option[value=\'금지 된 프로젝트의 범위\']',
+        //coffee m('option[value=\'Escopo de projeto proibido\']',
+        '금지 된 프로젝트의 범위'
+        //coffee 'Escopo de projeto proibido'
+        ), m('option[value=\'Recompensas proibidas\']', 'Recompensas proibidas'), m('option[value=\'Cenas de sexo explícitas e gratuitas\']', 'Cenas de sexo explícitas e gratuitas'), m('option[value=\'Abuso de SPAM\']',
+        //coffee m('option[value=\'스팸 남용']',
+        '스팸 남용'
+        //coffee 'Abuso de SPAM용'
+        ), m('option[value=\'Outros\']',
+        //coffee m('option[value=\'기타\']',
+        '기타'
+        //coffee 'Outros'
+        )]), ctrl.reasonError() ? m(inlineError, { message: '이유 선택' }) : '',
+        //coffee (ctrl.reasonError() ? m(inlineError, { message: 'Selecione um motivo' }) : ''),
+        m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: 'Por favor, dê mais detalhes que nos ajudem a identificar o problema.', onchange: m.withAttr('value', ctrl.details) }),
+        //coffee m('textarea.w-input.text-field.positive.u-marginbottom-30', { placeholder: '문제를 파악하는 데 도움이되는 세부 정보를 제공해주세요.', onchange: m.withAttr('value', ctrl.details) }),
+        m('.w-row', ctrl.detailsError() ? m(inlineError, { message: '불만 사항을 신고하십시오.' }) : ''),
+        //coffee (ctrl.detailsError() ? m(inlineError, { message: 'Informe os detalhes da denúncia.' }) : '')),
+        m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'불만 신고\']', { disabled: ctrl.submitDisabled() })
+        //coffee m('input.w-button.btn.btn-medium.btn-inline.btn-dark[type=\'submit\'][value=\'Enviar denúncia\']', { disabled: ctrl.submitDisabled() })
+        ]))) : '']]);
     }
 };
 
@@ -8392,7 +9169,9 @@ var projectContributions$1 = {
         var lContributionsPerDay = postgrest$1.loader(models.projectContributionsPerDay.getRowOptions(filterStats.parameters()));
         lContributionsPerDay.load().then(contributionsPerDay);
 
-        var contributionsPerLocationTable = [['Estado', '후원', 'R$ apoiados (% do total)']];
+        var contributionsPerLocationTable = [['Estado', '후원', 'R$ apoiados (% do total)']
+        //coffee ['Estado', 'Apoios', 'R$ apoiados (% do total)']
+        ];
         var buildPerLocationTable = function buildPerLocationTable(contributions) {
             return !_$1.isEmpty(contributions) ? _$1.map(_$1.first(contributions).source, function (contribution) {
                 var column = [];
@@ -8430,7 +9209,15 @@ var projectContributions$1 = {
             stats = ctrl.contributionsStats(),
             groupedCollection = ctrl.groupedCollection(list.collection());
 
-        return m('#project_contributions', m('#contributions_top', [m('.section.w-section', m('.w-container', m('.w-row', ctrl.lContributionsStats() ? h.loader() : !_$1.isEmpty(stats) ? [m('.u-marginbottom-20.u-text-center-small-only.w-col.w-col-6', [m('.fontsize-megajumbo', stats.total), m('.fontsize-large', '사람들이 이 프로젝트를 지원합니다')]), m('.w-col.w-col-6', m('.card.card-terciary.u-radius', m('.w-row', [m('.u-marginbottom-20.w-col.w-sub-col.w-col-6.w-col-small-6', [m('.fontweight-semibold.u-marginbottom-10', '새로운 후원자들'), m('.fontsize-largest.u-marginbottom-10', Math.floor(stats.new_percent) + '%'), m('.fontsize-smallest', '카타르에서 프로젝트를 후원해 본적이 없는 후원자들')]), m('.w-col.w-sub-col.w-col-6.w-col-small-6', [m('.divider.u-marginbottom-20.w-hidden-main.w-hidden-medium.w-hidden-small'), m('.fontweight-semibold.u-marginbottom-10', 'Apoiadores recorrentes'), m('.fontsize-largest.u-marginbottom-10', Math.ceil(stats.returning_percent) + '%'), m('.fontsize-smallest', '카타르에서 이미 프로젝트를 후원 한 후원자들')])])))] : ''))), m('.divider.w-section'), m('.section.w-section', m('.w-container', [m('.fontsize-large.fontweight-semibold.u-marginbottom-40.u-text-center', 'Apoiadores'), m('.project-contributions.w-clearfix', _$1.map(groupedCollection, function (group, idx) {
+        return m('#project_contributions', m('#contributions_top', [m('.section.w-section', m('.w-container', m('.w-row', ctrl.lContributionsStats() ? h.loader() : !_$1.isEmpty(stats) ? [m('.u-marginbottom-20.u-text-center-small-only.w-col.w-col-6', [m('.fontsize-megajumbo', stats.total), m('.fontsize-large', '사람들이 이 프로젝트를 후원합니다'
+        //coffee 'pessoas apoiam este projeto'
+        )]), m('.w-col.w-col-6', m('.card.card-terciary.u-radius', m('.w-row', [m('.u-marginbottom-20.w-col.w-sub-col.w-col-6.w-col-small-6', [m('.fontweight-semibold.u-marginbottom-10', '새로운 후원자들'
+        //coffee 'Apoiadores novos'
+        ), m('.fontsize-largest.u-marginbottom-10', Math.floor(stats.new_percent) + '%'), m('.fontsize-smallest', '기빙와이어에서 프로젝트를 후원해 본적이 없는 후원자들'
+        //coffee 'apoiadores que nunca tinham apoiado um projeto no Catarse'
+        )]), m('.w-col.w-sub-col.w-col-6.w-col-small-6', [m('.divider.u-marginbottom-20.w-hidden-main.w-hidden-medium.w-hidden-small'), m('.fontweight-semibold.u-marginbottom-10', 'Apoiadores recorrentes'), m('.fontsize-largest.u-marginbottom-10', Math.ceil(stats.returning_percent) + '%'), m('.fontsize-smallest', '카타르에서 이미 프로젝트를 후원 한 후원자들'
+        //coffee 'apoiadores que já tinham apoiado um projeto no Catarse'
+        )])])))] : ''))), m('.divider.w-section'), m('.section.w-section', m('.w-container', [m('.fontsize-large.fontweight-semibold.u-marginbottom-40.u-text-center', '후원자'), m('.project-contributions.w-clearfix', _$1.map(groupedCollection, function (group, idx) {
             return m('.w-row', _$1.map(group, function (contribution) {
                 return m('.project-contribution-item.w-col.w-col-4', [
                 // here new card
@@ -8483,15 +9270,25 @@ var projectAbout = {
             return -Math.ceil(duration.asDays());
         };
         var fundingPeriod = function fundingPeriod() {
-            return project.is_published && h.existy(project.zone_expires_at) ? m('.funding-period', [m('.fontsize-small.fontweight-semibold.u-text-center-small-only', '캠페인 기간'), m('.fontsize-small.u-text-center-small-only', h.momentify(project.zone_online_date) + ' - ' + h.momentify(project.zone_expires_at) + ' (' + onlineDays() + ' \uC77C)')]) : '';
+            return project.is_published && h.existy(project.zone_expires_at) ? m('.funding-period', [m('.fontsize-small.fontweight-semibold.u-text-center-small-only', '캠페인 기간'),
+            //coffee m('.fontsize-small.fontweight-semibold.u-text-center-small-only', 'Período de campanha'),
+            m('.fontsize-small.u-text-center-small-only', h.momentify(project.zone_online_date) + ' - ' + h.momentify(project.zone_expires_at) + ' (' + onlineDays() + ' \uC77C)')]) : '';
         };
 
         return m('#project-about', [m('.project-about.w-col.w-col-8', {
             config: h.UIHelper()
-        }, [m('p.fontsize-base', [m('strong', '프로젝트')]), m('.fontsize-base[itemprop="about"]', m.trust(h.selfOrEmpty(project.about_html, '...'))), project.budget ? [m('p.fontsize-base.fontweight-semibold', '예산 편성'), m('p.fontsize-base', m.trust(project.budget))] : '', m.component(projectReport)]), m('.w-col.w-col-4.w-hidden-small.w-hidden-tiny', !_$1.isEmpty(args.rewardDetails()) ? [m('.fontsize-base.fontweight-semibold.u-marginbottom-30', '보상'), m.component(projectRewardList, {
+        }, [m('p.fontsize-base', [m('strong', '프로젝트')
+        //coffee m('strong', 'O projeto')
+        ]), m('.fontsize-base[itemprop="about"]', m.trust(h.selfOrEmpty(project.about_html, '...'))), project.budget ? [m('p.fontsize-base.fontweight-semibold', '예산 편성'),
+        //coffee m('p.fontsize-base.fontweight-semibold', 'Orçamento'),
+        m('p.fontsize-base', m.trust(project.budget))] : '', m.component(projectReport)]), m('.w-col.w-col-4.w-hidden-small.w-hidden-tiny', !_$1.isEmpty(args.rewardDetails()) ? [m('.fontsize-base.fontweight-semibold.u-marginbottom-30', '보상'),
+        //coffee m('.fontsize-base.fontweight-semibold.u-marginbottom-30', 'Recompensas'),
+        m.component(projectRewardList, {
             project: args.project,
             rewardDetails: args.rewardDetails
-        }), fundingPeriod()] : [m('.fontsize-base.fontweight-semibold.u-marginbottom-30', '후원 제안'), m.component(projectSuggestedContributions, { project: args.project }), fundingPeriod()])]);
+        }), fundingPeriod()] : [m('.fontsize-base.fontweight-semibold.u-marginbottom-30', '후원 제안'),
+        //coffee m('.fontsize-base.fontweight-semibold.u-marginbottom-30', 'Sugestões de apoio'),
+        m.component(projectSuggestedContributions, { project: args.project }), fundingPeriod()])]);
     }
 };
 
@@ -8549,12 +9346,16 @@ var projectPosts = {
         var list = ctrl.listVM,
             project = args.project() || {};
 
-        return m('#posts.project-posts.w-section', { config: ctrl.scrollTo }, [m('.w-container.u-margintop-20', [project.is_owner_or_admin ? [!list.isLoading() ? _$1.isEmpty(list.collection()) ? m('.w-hidden-small.w-hidden-tiny', [m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Catarse에 게시 된 모든 뉴스는 프로젝트를 이미 후원 한 사람들의 이메일로 직접 전송되며 웹 사이트에서도 볼 수 있습니다. 공개로 하거나 이 탭의 서포터에게만 표시되도록 선택할 수 있습니다.')]) : '' : '', m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4.w-col-push-4', [m('a.btn.btn-edit.btn-small[href=\'/pt/projects/' + project.project_id + '/posts\']', 'Escrever novidade')])])] : '', _$1.map(list.collection(), function (post) {
+        return m('#posts.project-posts.w-section', { config: ctrl.scrollTo }, [m('.w-container.u-margintop-20', [project.is_owner_or_admin ? [!list.isLoading() ? _$1.isEmpty(list.collection()) ? m('.w-hidden-small.w-hidden-tiny', [m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Givingwire에 게시 된 모든 뉴스는 프로젝트를 이미 후원 한 사람들의 이메일로 직접 전송되며 웹 사이트에서도 볼 수 있습니다. 공개로 하거나 이 탭의 서포터에게만 표시되도록 선택할 수 있습니다.')
+        //coffee m('.fontsize-base.u-marginbottom-30.u-margintop-20', 'Toda novidade publicada no Catarse é enviada diretamente para o email de quem já apoiou seu projeto e também fica disponível para visualização no site. Você pode optar por deixá-la pública, ou visível somente para seus apoiadores aqui nesta aba.')
+        ]) : '' : '', m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4.w-col-push-4', [m('a.btn.btn-edit.btn-small[href=\'/pt/projects/' + project.project_id + '/posts\']', 'Escrever novidade')])])] : '', _$1.map(list.collection(), function (post) {
             return m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', [m('.post', [m('.u-marginbottom-60 .w-clearfix', [m('.fontsize-small.fontcolor-secondary.u-text-center', h.momentify(post.created_at)), m('p.fontweight-semibold.fontsize-larger.u-text-center.u-marginbottom-30', [m('a.link-hidden[href="/projects/' + post.project_id + '/posts/' + post.id + '#posts"]', post.title)]), !_$1.isEmpty(post.comment_html) ? m('.fontsize-base', m.trust(post.comment_html)) : m('.fontsize-base', 'Post exclusivo para apoiadores' + (post.reward_id ? ' da recompensa de R$' + post.minimum_value : '') + '.')]), m('.divider.u-marginbottom-60')])]), m('.w-col.w-col-1')]);
         }), m('.w-row', [!_$1.isUndefined(args.post_id) ? '' : !list.isLoading() ? list.collection().length === 0 && args.projectContributions().length === 0 ? !project.is_owner_or_admin ? m('.w-col.w-col-10.w-col-push-1', m('p.fontsize-base', m.trust(I18n$1.t('empty', I18nScope$25({
             project_user_name: args.userDetails().name,
             project_id: project.project_id
-        }))))) : '' : m('.w-col.w-col-2.w-col-push-5', list.isLastPage() ? list.collection().length === 0 ? '뉴스 없음.' : '' : m('button#load-more.btn.btn-medium.btn-terciary', {
+        }))))) : '' : m('.w-col.w-col-2.w-col-push-5', list.isLastPage() ? list.collection().length === 0 ? '뉴스 없음.' : ''
+        //coffee list.collection().length === 0 ? 'Nenhuma novidade.' : ''
+        : m('button#load-more.btn.btn-medium.btn-terciary', {
             onclick: list.nextPage
         }, 'Carregar mais')) : m('.w-col.w-col-2.w-col-push-5', h.loader())])])]);
     }
@@ -8703,12 +9504,39 @@ var paymentVM = function paymentVM() {
     };
 
     var expMonthOptions = function expMonthOptions() {
-        return [[null, 'Mês'], [1, '01 - Janeiro'], [2, '02 - Fevereiro'], [3, '03 - Março'], [4, '04 - Abril'], [5, '05 - Maio'], [6, '06 - Junho'], [7, '07 - Julho'], [8, '08 - Agosto'], [9, '09 - Setembro'], [10, '10 - Outubro'], [11, '11 - Novembro'], [12, '12 - Dezembro']];
+        return [[null, '달'],
+        //coffee [null, 'Mês'],
+        [1, '01 - 1월'],
+        //coffee [1, '01 - Janeiro'],
+        [2, '02 - 2월'],
+        //coffee [2, '02 - Fevereiro'],
+        [3, '03 - 3월'],
+        //coffee [3, '03 - Março'],
+        [4, '04 - 4월'],
+        //coffee [4, '04 - Abril'],
+        [5, '05 - 5월'],
+        //coffee [5, '05 - Maio'],
+        [6, '06 - 6월'],
+        //coffee [6, '06 - Junho'],
+        [7, '07 - 7월'],
+        //coffee [7, '07 - Julho'],
+        [8, '08 - 8월'],
+        //coffee [8, '08 - Agosto'],
+        [9, '09 - 9월'],
+        //coffee [9, '09 - Setembro'],
+        [10, '10 - 10월'],
+        //coffee [10, '10 - Outubro'],
+        [11, '11 - 11월'],
+        //coffee [11, '11 - Novembro'],
+        [12, '12 - 12월']
+        //coffee [12, '12 - Dezembro']
+        ];
     };
 
     var expYearOptions = function expYearOptions() {
         var currentYear = moment().year();
-        var yearsOptions = ['Ano'];
+        var yearsOptions = ['년'];
+        //coffee const yearsOptions = ['Ano'];
         for (var i = currentYear; i <= currentYear + 25; i++) {
             yearsOptions.push(i);
         }
@@ -8759,10 +9587,12 @@ var paymentVM = function paymentVM() {
 
         if (document.length > 14) {
             isValid = h.validateCnpj(document);
-            errorMessage = 'CNPJ inválido.';
+            errorMessage = '잘못된 CNPJ입니다.';
+            //coffee errorMessage = 'CNPJ inválido.';
         } else {
             isValid = h.validateCpf(striped);
-            errorMessage = 'CPF inválido.';
+            errorMessage = '잘못된 CPF입니다.';
+            //coffee errorMessage = 'CPF inválido.';
         }
 
         if (!isValid) {
@@ -9093,6 +9923,7 @@ var rewardSelectCard = {
 
             if (!selectedDestination() && rewardVM.hasShippingOptions(rewardVM.selectedReward())) {
                 rewardVM.error('유효한 화물 옵션을 선택해 주시길 바랍니다.');
+                //coffee rewardVM.error('Por favor, selecione uma opção de frete válida.');
             } else if (valueFloat < rewardVM.selectedReward().minimum_value + shippingFee.value) {
                 rewardVM.error('O valor de apoio para essa recompensa deve ser de no m\xEDnimo R$' + rewardVM.selectedReward().minimum_value + ' + frete R$' + h.formatNumber(shippingFee.value, 2, 3));
             } else {
@@ -9157,13 +9988,17 @@ var rewardSelectCard = {
         }, m('label[for="contribution_reward_id_' + reward.id + '"]', [m('input.radio_buttons.optional.w-input.text-field.w-radio-input.back-reward-radio-button[id="contribution_reward_id_' + reward.id + '"][type="radio"][value="' + reward.id + '"]', {
             checked: ctrl.isSelected(reward),
             name: 'contribution[reward_id]'
-        }), m('label.w-form-label.fontsize-base.fontweight-semibold.u-marginbottom-10[for="contribution_reward_' + reward.id + '"]', 'R$ ' + h.formatNumber(reward.minimum_value) + ' ou mais'), !ctrl.isSelected(reward) ? '' : m('.w-row.back-reward-money', [rewardVM.hasShippingOptions(reward) ? m('.w-sub-col.w-col.w-col-4', [m('.fontcolor-secondary.u-marginbottom-10', '배송지'), m('select.positive.text-field.w-select', {
+        }), m('label.w-form-label.fontsize-base.fontweight-semibold.u-marginbottom-10[for="contribution_reward_' + reward.id + '"]', 'R$ ' + h.formatNumber(reward.minimum_value) + ' ou mais'), !ctrl.isSelected(reward) ? '' : m('.w-row.back-reward-money', [rewardVM.hasShippingOptions(reward) ? m('.w-sub-col.w-col.w-col-4', [m('.fontcolor-secondary.u-marginbottom-10', '배송지'
+        //coffee 'Local de entrega'
+        ), m('select.positive.text-field.w-select', {
             onchange: m.withAttr('value', ctrl.selectDestination)
         }, _$1.map(ctrl.locationOptions(reward, ctrl.selectedDestination), function (option) {
             return m('option', { value: option.value }, [option.name + ' ', option.value != '' ? '+R$' + h.formatNumber(option.fee, 2, 3) : null]);
         }))]) : '', m('.w-sub-col.w-col.w-clearfix', {
             class: rewardVM.hasShippingOptions(reward) ? 'w-col-4' : 'w-col-8'
-        }, [m('.fontcolor-secondary.u-marginbottom-10', 'Valor do apoio'), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.back-reward-input-reward.medium.placeholder', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.back-reward-input-reward.medium.w-input', {
+        }, [m('.fontcolor-secondary.u-marginbottom-10', '지원의 가치'),
+        //coffee m('.fontcolor-secondary.u-marginbottom-10', 'Valor do apoio'),
+        m('.w-row.u-marginbottom-20', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.back-reward-input-reward.medium.placeholder', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.back-reward-input-reward.medium.w-input', {
             autocomplete: 'off',
             min: reward.minimum_value,
             placeholder: reward.minimum_value,
@@ -9171,9 +10006,13 @@ var rewardSelectCard = {
             config: ctrl.setInput,
             onkeyup: m.withAttr('value', ctrl.applyMask),
             value: ctrl.contributionValue()
-        }))]), m('.fontsize-smaller.text-error.u-marginbottom-20.w-hidden', [m('span.fa.fa-exclamation-triangle'), ' 후원 금액이 잘못되었습니다.'])]), m('.submit-form.w-col.w-col-4', m('button.btn.btn-medium.u-margintop-30', {
+        }))]), m('.fontsize-smaller.text-error.u-marginbottom-20.w-hidden', [m('span.fa.fa-exclamation-triangle'), ' 후원금액이 잘못되었습니다.'
+        //coffee ' O valor do apoio está incorreto'
+        ])]), m('.submit-form.w-col.w-col-4', m('button.btn.btn-medium.u-margintop-30', {
             onclick: ctrl.submitContribution
-        }, ['계속하기  ', m('span.fa.fa-chevron-right')]))]), ctrl.error().length > 0 && ctrl.isSelected(reward) ? m('.text-error', [m('br'), m('span.fa.fa-exclamation-triangle'), ' ' + ctrl.error()]) : '', m('.fontsize-smaller.fontweight-semibold', reward.title), m('.back-reward-reward-description', [m('.fontsize-smaller.u-marginbottom-10.fontcolor-secondary', reward.description), m('.u-marginbottom-20.w-row', [!reward.deliver_at ? '' : m('.w-col.w-col-6', [m('.fontsize-smallest.fontcolor-secondary', 'Entrega Prevista:'), m('.fontsize-smallest', h.momentify(reward.deliver_at, 'MMM/YYYY'))]), !rewardVM.hasShippingOptions(reward) && reward.shipping_options !== 'presential' ? '' : m('.w-col.w-col-6', [m('.fontsize-smallest.fontcolor-secondary', '배송:'), m('.fontsize-smallest', I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$28()))])])])]));
+        }, ['계속하기  ',
+        //coffee 'Continuar  ',
+        m('span.fa.fa-chevron-right')]))]), ctrl.error().length > 0 && ctrl.isSelected(reward) ? m('.text-error', [m('br'), m('span.fa.fa-exclamation-triangle'), ' ' + ctrl.error()]) : '', m('.fontsize-smaller.fontweight-semibold', reward.title), m('.back-reward-reward-description', [m('.fontsize-smaller.u-marginbottom-10.fontcolor-secondary', reward.description), m('.u-marginbottom-20.w-row', [!reward.deliver_at ? '' : m('.w-col.w-col-6', [m('.fontsize-smallest.fontcolor-secondary', 'Entrega Prevista:'), m('.fontsize-smallest', h.momentify(reward.deliver_at, 'MMM/YYYY'))]), !rewardVM.hasShippingOptions(reward) && reward.shipping_options !== 'presential' ? '' : m('.w-col.w-col-6', [m('.fontsize-smallest.fontcolor-secondary', '배송:'), m('.fontsize-smallest', I18n$1.t('shipping_options.' + reward.shipping_options, I18nScope$28()))])])])]));
     }
 };
 
@@ -9240,7 +10079,8 @@ var projectsContribution = {
         var rewards = function rewards() {
             return _$1.union([{
                 id: null,
-                description: '고마워. 나는이 프로젝트를 돕고 싶다..',
+                description: '고마워. 나는이 프로젝트를 돕고 싶다.',
+                //coffee description: 'Obrigado. Eu só quero ajudar o projeto.',
                 minimum_value: 10,
                 shipping_options: null,
                 row_order: -9999999
@@ -9252,6 +10092,7 @@ var projectsContribution = {
 
             if (valueFloat < rewardVM.selectedReward().minimum_value) {
                 rewardVM.error('\uC774 \uBCF4\uC0C1\uC5D0 \uB300\uD55C \uC9C0\uC6D0 \uAE08\uC561\uC740 \uC801\uC5B4\uB3C4 R$' + rewardVM.selectedReward().minimum_value);
+                //coffee rewardVM.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${rewardVM.selectedReward().minimum_value}`);
             } else {
                 rewardVM.error('');
                 h.navigateTo('/projects/' + projectVM.currentProject().project_id + '/contributions/fallback_create?contribution%5Breward_id%5D=' + rewardVM.selectedReward().id + '&contribution%5Bvalue%5D=' + valueFloat);
@@ -9278,7 +10119,10 @@ var projectsContribution = {
 
         return m('#contribution-new', !_$1.isEmpty(project()) ? [m('.w-section.section-product.' + project().mode), m(projectHeaderTitle, {
             project: project
-        }), m('.w-section.header-cont-new', m('.w-container', m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only', 'Escolha a recompensa e em seguida o valor do apoio'))), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-8', m('.w-form.back-reward-form', m('form.simple_form.new_contribution[accept-charset="UTF-8"][action="/pt/projects/' + project().id + '/contributions/fallback_create"][id="contribution_form"][method="get"][novalidate="novalidate"]', { onsubmit: ctrl.submitContribution }, [m('input[name="utf8"][type="hidden"][value="✓"]'), _$1.map(ctrl.sortedRewards(), function (reward) {
+        }), m('.w-section.header-cont-new', m('.w-container', m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only', '보상을 선택한 다음 지원액을 선택하십시오.'
+        //coffee '보상을 선택한 다음 지원액을 선택하십시오.'
+        //coffee  'Escolha a recompensa e em seguida o valor do apoio'
+        ))), m('.section', m('.w-container', m('.w-row', [m('.w-col.w-col-8', m('.w-form.back-reward-form', m('form.simple_form.new_contribution[accept-charset="UTF-8"][action="/pt/projects/' + project().id + '/contributions/fallback_create"][id="contribution_form"][method="get"][novalidate="novalidate"]', { onsubmit: ctrl.submitContribution }, [m('input[name="utf8"][type="hidden"][value="✓"]'), _$1.map(ctrl.sortedRewards(), function (reward) {
             return m(rewardSelectCard, { reward: reward });
         })]))), m('.w-col.w-col-4', [m('.card.u-marginbottom-20.u-radius.w-hidden-small.w-hidden-tiny', [m('.fontsize-small.fontweight-semibold', I18n$1.t('contribution_warning.title', I18nScope$26())), m('.fontsize-smaller.u-marginbottom-10', I18n$1.t('contribution_warning.subtitle', I18nScope$26())), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', I18n$1.t('contribution_warning.info', I18nScope$26())), m('a.alt-link.fontsize-smallest[target="__blank"][href="' + I18n$1.t('contribution_warning.link', I18nScope$26()) + '"]', I18n$1.t('contribution_warning.link_label', I18nScope$26()))]), m.component(faqBox, {
             mode: project().mode,
@@ -9297,7 +10141,13 @@ var userHeader = {
             profileImage = userVM.displayImage(user),
             coverImage = userVM.displayCover(user);
 
-        return !user.id ? m('') : m('.hero-' + (hideDetails ? 'small' : 'half'), [m('.w-container.content-hero-profile', m('.w-row.u-text-center', m('.w-col.w-col-8.w-col-push-2', [hideDetails ? '' : m('.u-marginbottom-20', m('.avatar_wrapper', m('img.thumb.big.u-round[alt=\'User\'][src=\'' + profileImage + '\']'))), m('.fontsize-larger.fontweight-semibold.u-marginbottom-20', userVM.displayName(user)), hideDetails ? '' : [m('.w-hidden-small.w-hidden-tiny.u-marginbottom-40.fontsize-base', ['Chegou junto em ' + h.momentify(user.created_at, 'MMMM [de] YYYY'), m('br'), user.total_contributed_projects === 0 ? '아직 프로젝트를 후원하지 않음' : 'Apoiou ' + h.pluralize(user.total_contributed_projects, ' 그래픽', ' 집'), user.total_published_projects > 0 ? ' e j\xE1 criou ' + h.pluralize(user.total_published_projects, ' 그래픽', ' 집') : '']), m('.w-row', [m('.w-col.w-col-4'), m('.w-col.w-col-4', m.component(UserFollowBtn, {
+        return !user.id ? m('') : m('.hero-' + (hideDetails ? 'small' : 'half'), [m('.w-container.content-hero-profile', m('.w-row.u-text-center', m('.w-col.w-col-8.w-col-push-2', [hideDetails ? '' : m('.u-marginbottom-20', m('.avatar_wrapper', m('img.thumb.big.u-round[alt=\'User\'][src=\'' + profileImage + '\']'))), m('.fontsize-larger.fontweight-semibold.u-marginbottom-20', userVM.displayName(user)), hideDetails ? '' : [m('.w-hidden-small.w-hidden-tiny.u-marginbottom-40.fontsize-base', ['Chegou junto em ' + h.momentify(user.created_at, 'MMMM [de] YYYY'), m('br'), user.total_contributed_projects === 0 ? '아직 프로젝트를 후원하지 않음' :
+        //coffee (user.total_contributed_projects === 0 ? 'Ainda não apoiou projetos' :
+        'Apoiou ' + h.pluralize(user.total_contributed_projects, ' 그래픽', ' 집'),
+        //coffee `Apoiou ${h.pluralize(user.total_contributed_projects, ' projeto', ' projetos')}`),
+        user.total_published_projects > 0 ? ' e j\xE1 criou ' + h.pluralize(user.total_published_projects, ' 그래픽', ' 집') : '']
+        //coffee ` e já criou ${h.pluralize(user.total_published_projects, ' projeto', ' projetos')}` : '')
+        ), m('.w-row', [m('.w-col.w-col-4'), m('.w-col.w-col-4', m.component(UserFollowBtn, {
             disabledClass: '.btn.btn-medium.btn-secondary-dark.w-button',
             following: user.following_this_user,
             follow_id: user.id })), m('.w-col.w-col-4')])]]))), m('.hero-profile', { style: 'background-image:url(\'' + coverImage + '\');' })]);
@@ -9365,13 +10215,16 @@ var userCreated = {
 
         return m('.content[id=\'created-tab\']', ctrl.error() ? m.component(inlineError, {
             message: '프로젝트 로드 오류.'
+            //coffee message: 'Erro ao carregar os projetos.'
         }) : !ctrl.loader() ? [!_$1.isEmpty(projects_collection) ? _$1.map(projects_collection, function (project) {
             return m.component(projectCard, {
                 project: project,
                 ref: 'user_contributed',
                 showFriends: false
             });
-        }) : m('.w-container', m('.u-margintop-30.u-text-center.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.fontsize-large.u-marginbottom-30', 'O que você está esperando para tirar seu projeto do papel aqui no Catarse?'), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('a.btn.btn-large[href=\'/start\']', '지금 시작하십시오!')), m('.w-col.w-col-3')])]), m('.w-col.w-col-3')])), !_$1.isEmpty(projects_collection) ? m('.w-row.u-marginbottom-40.u-margintop-30', [m(loadMoreBtn, {
+        }) : m('.w-container', m('.u-margintop-30.u-text-center.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.fontsize-large.u-marginbottom-30', 'O que você está esperando para tirar seu projeto do papel aqui no Catarse?'), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('a.btn.btn-large[href=\'/start\']', '지금 시작하십시오!'
+        //coffee 'Comece agora!'
+        )), m('.w-col.w-col-3')])]), m('.w-col.w-col-3')])), !_$1.isEmpty(projects_collection) ? m('.w-row.u-marginbottom-40.u-margintop-30', [m(loadMoreBtn, {
             collection: ctrl.projects,
             cssClass: '.w-col-push-5'
         })]) : ''] : h.loader());
@@ -9417,13 +10270,19 @@ var userContributed = {
     },
     view: function view(ctrl, args) {
         var projects_collection = ctrl.projects.collection();
-        return ctrl.error() ? m.component(inlineError, { message: '프로젝트 로드 오류.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'contributed-tab\']', [!_$1.isEmpty(projects_collection) ? _$1.map(projects_collection, function (project) {
+        return ctrl.error() ? m.component(inlineError, { message: '프로젝트 로드 오류.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'contributed-tab\']',
+        //coffee return (ctrl.error() ? m.component(inlineError, { message: 'Erro ao carregar os projetos.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'contributed-tab\']',
+        [!_$1.isEmpty(projects_collection) ? _$1.map(projects_collection, function (project) {
             return m.component(projectCard, {
                 project: project,
                 ref: 'user_contributed',
                 showFriends: false
             });
-        }) : m('.w-container', m('.u-margintop-30.u-text-center.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.fontsize-large.u-marginbottom-30', '당신은 아직 기빙와이어에서 어떤 프로젝트도 참여하지 않았습니다'), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('a.btn.btn-large[href=\'/explore\']', '지금 참여해 보세요!')), m('.w-col.w-col-3')])]), m('.w-col.w-col-3')])), !_$1.isEmpty(projects_collection) ? m('.w-row.u-marginbottom-40.u-margintop-30', [m(loadMoreBtn, { collection: ctrl.projects, cssClass: '.w-col-push-5' })]) : '']);
+        }) : m('.w-container', m('.u-margintop-30.u-text-center.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.fontsize-large.u-marginbottom-30', '당신은 아직 기빙와이어에서 어떤 프로젝트도 참여하지 않았습니다'),
+        //coffee 'Ora, ora... você ainda não apoiou nenhum projeto no Catarse!'),
+        m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('a.btn.btn-large[href=\'/explore\']', '지금 참여해 보세요!'
+        //coffee 'Que tal apoiar agora?'
+        )), m('.w-col.w-col-3')])]), m('.w-col.w-col-3')])), !_$1.isEmpty(projects_collection) ? m('.w-row.u-marginbottom-40.u-margintop-30', [m(loadMoreBtn, { collection: ctrl.projects, cssClass: '.w-col-push-5' })]) : '']);
     }
 };
 
@@ -9444,12 +10303,18 @@ var userCard = {
             contactModalC = [ownerMessageContent, ctrl.userDetails],
             profileImage = userVM.displayImage(user);
 
-        return m('#user-card', m('.card.card-user.u-radius.u-marginbottom-30[itemprop=\'author\']', [m('.w-row', [m('.w-col.w-col-4.w.col-small-4.w-col-tiny-4.w-clearfix', m('img.thumb.u-round[itemprop=\'image\'][src=\'' + profileImage + '\'][width=\'100\']')), m('.w-col.w-col-8.w-col-small-8.w-col-tiny-8', [m('.fontsize-small.fontweight-semibold.lineheight-tighter[itemprop=\'name\']', m('a.link-hidden[href="/users/' + user.id + '"]', userVM.displayName(user))), m('.fontsize-smallest.lineheight-looser[itemprop=\'address\']', user.address_city), m('.fontsize-smallest', h.pluralize(user.total_published_projects, ' projeto', ' projetos') + ' criados'), m('.fontsize-smallest', 'apoiou ' + h.pluralize(user.total_contributed_projects, ' projeto', ' projetos'))])]), m('.project-author-contacts', [m('ul.w-list-unstyled.fontsize-smaller.fontweight-semibold', [!_$1.isEmpty(user.facebook_link) ? m('li', [m('a.link-hidden[itemprop="url"][href="' + user.facebook_link + '"][target="_blank"]', '페이스북 프로필')]) : '', !_$1.isEmpty(user.twitter_username) ? m('li', [m('a.link-hidden[itemprop="url"][href="https://twitter.com/' + user.twitter_username + '"][target="_blank"]', '트위터 프로필')]) : '', _$1.map(user.links, function (link) {
+        return m('#user-card', m('.card.card-user.u-radius.u-marginbottom-30[itemprop=\'author\']', [m('.w-row', [m('.w-col.w-col-4.w.col-small-4.w-col-tiny-4.w-clearfix', m('img.thumb.u-round[itemprop=\'image\'][src=\'' + profileImage + '\'][width=\'100\']')), m('.w-col.w-col-8.w-col-small-8.w-col-tiny-8', [m('.fontsize-small.fontweight-semibold.lineheight-tighter[itemprop=\'name\']', m('a.link-hidden[href="/users/' + user.id + '"]', userVM.displayName(user))), m('.fontsize-smallest.lineheight-looser[itemprop=\'address\']', user.address_city), m('.fontsize-smallest', h.pluralize(user.total_published_projects, ' projeto', ' projetos') + ' criados'), m('.fontsize-smallest', 'apoiou ' + h.pluralize(user.total_contributed_projects, ' projeto', ' projetos'))])]), m('.project-author-contacts', [m('ul.w-list-unstyled.fontsize-smaller.fontweight-semibold', [!_$1.isEmpty(user.facebook_link) ? m('li', [m('a.link-hidden[itemprop="url"][href="' + user.facebook_link + '"][target="_blank"]', '페이스북 프로필')
+        //coffee m(`a.link-hidden[itemprop="url"][href="${user.facebook_link}"][target="_blank"]`, 'Perfil no Facebook')
+        ]) : '', !_$1.isEmpty(user.twitter_username) ? m('li', [m('a.link-hidden[itemprop="url"][href="https://twitter.com/' + user.twitter_username + '"][target="_blank"]', '트위터 프로필')
+        //coffee m(`a.link-hidden[itemprop="url"][href="https://twitter.com/${user.twitter_username}"][target="_blank"]`, 'Perfil no Twitter')
+        ]) : '', _$1.map(user.links, function (link) {
             return m('li', [m('a.link-hidden[itemprop="url"][href="' + link.link + '"][target="_blank"]', link.link)]);
         })])]), ctrl.displayModal() ? m.component(modalBox, {
             displayModal: ctrl.displayModal,
             content: contactModalC
-        }) : '', m(UserFollowBtn, { follow_id: user.id, following: user.follwing_this_user, enabledClass: '.btn.btn-medium.btn-message.u-marginbottom-10', disabledClass: '.btn.btn-medium.btn-message.u-marginbottom-10' }), !_$1.isEmpty(user.email) ? m('a.btn.btn-medium.btn-message[href=\'javascript:void(0);\']', { onclick: ctrl.displayModal.toggle }, '메시지 보내기') : '']));
+        }) : '', m(UserFollowBtn, { follow_id: user.id, following: user.follwing_this_user, enabledClass: '.btn.btn-medium.btn-message.u-marginbottom-10', disabledClass: '.btn.btn-medium.btn-message.u-marginbottom-10' }), !_$1.isEmpty(user.email) ? m('a.btn.btn-medium.btn-message[href=\'javascript:void(0);\']', { onclick: ctrl.displayModal.toggle }, '메시지 보내기') : '']
+        //coffee (!_.isEmpty(user.email) ? m('a.btn.btn-medium.btn-message[href=\'javascript:void(0);\']', { onclick: ctrl.displayModal.toggle }, 'Enviar mensagem') : '')
+        ));
     }
 };
 
@@ -9476,7 +10341,9 @@ var userAbout = {
     },
     view: function view(ctrl, args) {
         var user = ctrl.userDetails();
-        return ctrl.error() ? m.component(inlineError, { message: '데이터로드 중 오류가 발생했습니다.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'about-tab\']', m('.w-container[id=\'about-content\']', m('.w-row', [m('.w-col.w-col-8', m('.fontsize-base', user.about_html ? m.trust(user.about_html) : '')), m('.w-col.w-col-4', user.id ? m.component(userCard, { userId: user.id }) : h.loader)])));
+        return ctrl.error() ? m.component(inlineError, { message: '데이터로드 중 오류가 발생했습니다.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'about-tab\']',
+        //coffee return (ctrl.error() ? m.component(inlineError, { message: 'Erro ao carregar dados.' }) : ctrl.loader() ? h.loader() : m('.content[id=\'about-tab\']',
+        m('.w-container[id=\'about-content\']', m('.w-row', [m('.w-col.w-col-8', m('.fontsize-base', user.about_html ? m.trust(user.about_html) : '')), m('.w-col.w-col-4', user.id ? m.component(userCard, { userId: user.id }) : h.loader)])));
     }
 };
 
@@ -9526,7 +10393,15 @@ var usersShow = {
         return m('div', [m.component(userHeader, { user: user }), m('nav.project-nav.u-text-center.u-marginbottom-30.profile', { style: { 'z-index': '10', position: 'relative' } }, m('.w-container[data-anchor=\'created\']', [!_$1.isEmpty(user) ? user.is_owner_or_admin ? m('a.dashboard-nav-link.dashboard[href=\'/pt/users/' + user.id + '/edit\']', { config: m.route,
             onclick: function onclick() {
                 m.route('/users/edit/' + user.id, { user_id: user.id });
-            } }, [m('span.fa.fa-cog'), m.trust('&nbsp;'), ' Editar perfil']) : '' : h.loader(), m('a[data-target=\'#contributed-tab\'][href=\'#contributed\'][id=\'contributed_link\'][class=\'dashboard-nav-link ' + (ctrl.hash() === '#contributed' ? 'selected' : '') + '\']', ['Apoiados ', m.trust('&nbsp;'), m('span.badge', user.total_contributed_projects)]), m('a[data-target=\'#created-tab\'][href=\'#created\'][id=\'created_link\'][class=\'dashboard-nav-link ' + (ctrl.hash() === '#created' ? 'selected' : '') + '\']', ['Criados ', m.trust('&nbsp;'), m('span.badge', user.total_published_projects)]), m('a[data-target=\'#about-tab\'][href=\'#about\'][id=\'about_link\'][class=\'dashboard-nav-link ' + (ctrl.hash() === '#about' ? 'selected' : '') + '\']', 'Sobre')])), m('section.section', m('.w-container', m('.w-row', user.id ? ctrl.displayTabContent(user) : h.loader())))]);
+            } }, [m('span.fa.fa-cog'), m.trust('&nbsp;'), ' 프로필 수정'
+        //coffee ' Editar perfil'
+        ]) : '' : h.loader(), m('a[data-target=\'#contributed-tab\'][href=\'#contributed\'][id=\'contributed_link\'][class=\'dashboard-nav-link ' + (ctrl.hash() === '#contributed' ? 'selected' : '') + '\']', ['지원됨 ',
+        //coffee 'Apoiados ',
+        m.trust('&nbsp;'), m('span.badge', user.total_contributed_projects)]), m('a[data-target=\'#created-tab\'][href=\'#created\'][id=\'created_link\'][class=\'dashboard-nav-link ' + (ctrl.hash() === '#created' ? 'selected' : '') + '\']', ['생성됨 ',
+        //coffee 'Criados ',
+        m.trust('&nbsp;'), m('span.badge', user.total_published_projects)]), m('a[data-target=\'#about-tab\'][href=\'#about\'][id=\'about_link\'][class=\'dashboard-nav-link ' + (ctrl.hash() === '#about' ? 'selected' : '') + '\']', '위키 소개'
+        //coffee 'Sobre'
+        )])), m('section.section', m('.w-container', m('.w-row', user.id ? ctrl.displayTabContent(user) : h.loader())))]);
     }
 };
 
@@ -9619,13 +10494,17 @@ var nationalityRadio = {
         var international = ctrl.international,
             fields = args.fields;
 
-        return m('div', m('.w-row', [m('.w-col.w-col-4', m('.fontsize-small.fontweight-semibold', '국적:')), m('.w-col.w-col-4', m('.fontsize-small.w-radio', [m("input.w-radio-input[name='nationality'][type='radio']", {
+        return m('div', m('.w-row', [m('.w-col.w-col-4', m('.fontsize-small.fontweight-semibold', '국적:'
+        //coffee 'Nacionalidade:'
+        )), m('.w-col.w-col-4', m('.fontsize-small.w-radio', [m("input.w-radio-input[name='nationality'][type='radio']", {
             checked: !international(),
             onclick: function onclick() {
                 fields.countryID(ctrl.defaultCountryID);
                 international(false);
             }
-        }), m('label.w-form-label', 'Brasileiro (a)')])), m('.w-col.w-col-4', m('.fontsize-small.w-radio', [m("input.w-radio-input[name='nationality'][type='radio']", {
+        }), m('label.w-form-label', '브라질 사람 (a)'
+        //coffee'Brasileiro (a)'
+        )])), m('.w-col.w-col-4', m('.fontsize-small.w-radio', [m("input.w-radio-input[name='nationality'][type='radio']", {
             checked: international(),
             onclick: function onclick() {
                 if (fields.countryID() === ctrl.defaultCountryID) {
@@ -9633,7 +10512,9 @@ var nationalityRadio = {
                 }
                 international(true);
             }
-        }), m('label.w-form-label', '국제')]))]));
+        }), m('label.w-form-label', '국제'
+        //coffee 'International'
+        )]))]));
     }
 };
 
@@ -9818,38 +10699,55 @@ var addressForm = {
             international: international,
             defaultCountryID: defaultCountryID,
             defaultForeignCountryID: defaultForeignCountryID
-        }), m('div', [m('.w-row', m('.w-col.w-col-12', [m('.field-label.fontweight-semibold', '주소 *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
+        }), m('div', [m('.w-row', m('.w-col.w-col-12', [m('.field-label.fontweight-semibold', '주소 *'
+        //coffee 'Address *'
+        ), m("input.positive.text-field.w-input[required='required'][type='text']", {
             class: errors.addressStreet() ? '오류' : '',
+            //coffee  class: errors.addressStreet() ? 'error' : '',
             value: ctrl.fields.addressStreet(),
             onchange: m.withAttr('value', ctrl.fields.addressStreet)
         }), errors.addressStreet() ? m(inlineError, {
             message: '주소를 입력해 주세요.'
-        }) : ''])), m('div', m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', '우편 번호 *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
+            //coffee  message: 'Please fill in an address.'
+        }) : ''])), m('div', m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', '우편 번호 *'
+        //coffee  'Zip Code *'
+        ), m("input.positive.text-field.w-input[required='required'][type='text']", {
             class: errors.addressZipCode() ? '오류' : '',
             value: ctrl.fields.addressZipCode(),
             onchange: m.withAttr('value', ctrl.fields.addressZipCode)
         }), errors.addressZipCode() ? m(inlineError, {
             message: '우편 번호를 입력해 주세요.'
-        }) : '']), m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', '도시 *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
+            //coffee  message: 'ZipCode is required'
+        }) : '']), m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', '도시 *'
+        //coffee  'City *'
+        ), m("input.positive.text-field.w-input[required='required'][type='text']", {
             class: errors.addressCity() ? '오류' : '',
+            //coffee  class: errors.addressCity() ? 'error' : '',
             value: ctrl.fields.addressCity(),
             onchange: m.withAttr('value', ctrl.fields.addressCity)
         }), errors.addressCity() ? m(inlineError, {
             message: '도시를 입력해 주세요.'
-        }) : '']), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', 'State *'), m("input#address-state.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressState() ? 'error' : '',
+            //coffee  message: 'City is required.'
+        }) : '']), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', 'State *'
+        //coffee    '국가 *'
+        ), m("input#address-state.positive.text-field.w-input[required='required'][type='text']", {
+            class: errors.addressState() ? '오류' : '',
+            //coffee  class: errors.addressState() ? 'error' : '',
             value: ctrl.fields.addressState(),
             onchange: m.withAttr('value', ctrl.fields.addressState)
         }), errors.addressState() ? m(inlineError, {
             message: 'State is required'
+            //coffee    message: '국가를 입력해 주세요.'
         }) : ''])]))])]) : m('.w-form', [m('div', [m(countrySelect, {
             countryName: args.countryName,
             fields: fields,
             international: international,
             defaultCountryID: defaultCountryID,
             defaultForeignCountryID: defaultForeignCountryID
-        }), m('div', [m('.w-row', [m('.w-col.w-col-6', [m('.field-label', [m('span.fontweight-semibold', I18n$1.t('address_zip_code', I18nScope$31()) + ' *'), m("a.fontsize-smallest.alt-link.u-right[href='http://www.buscacep.correios.com.br/sistemas/buscacep/'][target='_blank']", I18n$1.t('zipcode_unknown', I18nScope$31()))]), m("input.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
+        }), m('div', [m('.w-row', [m('.w-col.w-col-6', [m('.field-label', [m('span.fontweight-semibold', I18n$1.t('address_zip_code', I18nScope$31()) + ' *'), m("a.fontsize-smallest.alt-link.u-right[href='http://www.buscacep.correios.com.br/sistemas/buscacep/'][target='_blank']", I18n$1.t('zipcode_unknown', I18nScope$31()))]), m("input.positive.text-field.w-input[placeholder='숫자만 입력해 주시길 바랍니다.'][required='required'][type='text']", {
+            //coffee  m("input.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
             class: errors.addressZipCode() ? '오류' : '',
+            //coffee  class: errors.addressZipCode() ? 'error' : '',
             value: ctrl.fields.addressZipCode(),
             onkeyup: m.withAttr('value', function (value) {
                 return ctrl.applyZipcodeMask(value);
@@ -9861,33 +10759,41 @@ var addressForm = {
             message: ctrl.zipCodeErrorMessage() ? ctrl.zipCodeErrorMessage() : '올바른 우편 번호를 입력해 주세요.'
         }) : '']), m('.w-col.w-col-6')]), m('.w-row', [m('.field-label.fontweight-semibold', I18n$1.t('address_street', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[maxlength='256'][required='required'][type='text']", {
             class: errors.addressStreet() ? '오류' : '',
+            //coffee  class: errors.addressStreet() ? 'error' : '',
             value: ctrl.fields.addressStreet(),
             onchange: m.withAttr('value', ctrl.fields.addressStreet)
         }), errors.addressStreet() ? m(inlineError, {
             message: '주소를 입력해 주세요.'
+            //coffee message: 'message: 'Informe um endereço.'
         }) : '']), m('.w-row', [m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('address_number', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
             class: errors.addressNumber() ? '오류' : '',
+            //coffee  class: errors.addressNumber() ? 'error' : '',
             value: ctrl.fields.addressNumber(),
             onchange: m.withAttr('value', ctrl.fields.addressNumber)
         }), errors.addressNumber() ? m(inlineError, {
             message: '번호를 입력해 주세요.'
+            //coffee  message: 'Informe um número.'
         }) : '']), m('.w-sub-col.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('address_complement', I18nScope$31())), m("input.positive.text-field.w-input[required='required'][type='text']", {
             value: ctrl.fields.addressComplement(),
             onchange: m.withAttr('value', ctrl.fields.addressComplement)
         })]), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('address_neighbourhood', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
             class: errors.addressNeighbourhood() ? '오류' : '',
+            //coffee class: errors.addressNeighbourhood() ? 'error' : '',
             value: ctrl.fields.addressNeighbourhood(),
             onchange: m.withAttr('value', ctrl.fields.addressNeighbourhood)
         }), errors.addressNeighbourhood() ? m(inlineError, {
             message: 'Informe um bairro.'
         }) : ''])]), m('.w-row', [m('.w-sub-col.w-col.w-col-6', [m('.field-label.fontweight-semibold', I18n$1.t('address_city', I18nScope$31()) + ' *'), m("input.positive.text-field.w-input[required='required'][type='text']", {
-            class: errors.addressCity() ? 'error' : '',
+            class: errors.addressCity() ? '오류' : '',
+            //coffee  class: errors.addressCity() ? 'error' : '',
             value: ctrl.fields.addressCity(),
             onchange: m.withAttr('value', ctrl.fields.addressCity)
         }), errors.addressCity() ? m(inlineError, {
             message: '도시 입력.'
+            //coffee  message: 'Informe uma cidade.'
         }) : '']), m('.w-sub-col.w-col.w-col-2', [m('.field-label.fontweight-semibold', I18n$1.t('address_state', I18nScope$31()) + ' *'), m('select#address-state.positive.text-field.w-select', {
-            class: errors.stateID() ? 'error' : '',
+            class: errors.stateID() ? '오류' : '',
+            //coffee  class: errors.stateID() ? 'error' : '',
             onchange: m.withAttr('value', ctrl.fields.stateID)
         }, [m('option', { value: '' }), !_$1.isEmpty(ctrl.states()) ? _$1.map(ctrl.states(), function (state) {
             return m('option', {
@@ -9896,15 +10802,19 @@ var addressForm = {
             }, state.acronym);
         }) : '']), errors.stateID() ? m(inlineError, {
             message: '상태 입력.'
-        }) : '']), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('phone_number', I18nScope$31()) + ' *'), m("input#phone.positive.text-field.w-input[placeholder='Digite apenas números'][required='required'][type='text']", {
+            //coffee  message: 'Informe um estado.'
+        }) : '']), m('.w-col.w-col-4', [m('.field-label.fontweight-semibold', I18n$1.t('phone_number', I18nScope$31()) + ' *'), m("input#phone.positive.text-field.w-input[placeholder='숫자만 입력해 주세요.'][required='required'][type='text']", {
+            //coffee  m("input#phone.positive.text-field.w-input[placeholder='Digite apenas números.'][required='required'][type='text']", {
             class: errors.phoneNumber() ? '오류' : '',
+            //coffee  class: errors.phoneNumber() ? 'error' : '',
             value: ctrl.fields.phoneNumber(),
             onkeyup: m.withAttr('value', function (value) {
                 return ctrl.applyPhoneMask(value);
             }),
             onchange: m.withAttr('value', ctrl.fields.phoneNumber)
         }), errors.phoneNumber() ? m(inlineError, {
-            message: '유효한 전화 번호를 입력해 주세요.'
+            message: '유효한 전화번호를 입력해 주세요.'
+            //coffee  message: 'Informe um telefone válido.'
         }) : ''])])])])])]);
     }
 };
@@ -10066,16 +10976,26 @@ var surveysShow = {
         }, _$1.isEmpty(user) ? '' : [ctrl.displayModal() ? m.component(modalBox, {
             displayModal: ctrl.displayModal,
             content: contactModalC
-        }) : '', ctrl.showThanks() ? m('.survey-thanks', [m('.bg-white.page-header', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.u-marginbottom-20.u-text-center', m('img.big.thumb.u-marginbottom-20.u-round[src=\'' + profileImage + '\']')), m('.u-text-center', m('.fontsize-larger.u-marginbottom-10', 'Valeu!')), m('.fontsize-base.u-text-center', ['As respostas abaixo foram enviadas para ' + project.user.name + '! Qualquer d\xFAvida sobre o andamento do projeto, visite a ', m('a.alt-link[href=\'/' + project.permalink + '#posts\'][target=\'_blank\']', 'aba de novidades da campanha'), ' ou ', m('a.alt-link[href=\'javascript:void(0);\']', {
+        }) : '', ctrl.showThanks() ? m('.survey-thanks', [m('.bg-white.page-header', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.u-marginbottom-20.u-text-center', m('img.big.thumb.u-marginbottom-20.u-round[src=\'' + profileImage + '\']')), m('.u-text-center', m('.fontsize-larger.u-marginbottom-10', '고마워!'
+        //coffee 'Valeu!'
+        )), m('.fontsize-base.u-text-center', ['\uC544\uB798 \uB2F5\uBCC0\uC740 ' + project.user.name + '\uB85C \uC804\uC1A1\uB418\uC5C8\uC2B5\uB2C8\uB2E4! \uD504\uB85C\uC81D\uD2B8 \uC9C4\uD589\uC5D0 \uB300\uD55C \uC758\uAD6C\uC2EC\uC774 \uC788\uC73C\uBA74 ',
+        //coffee `As respostas abaixo foram enviadas para ${project.user.name}! Qualquer dúvida sobre o andamento do projeto, visite a ` `,
+        m('a.alt-link[href=\'/' + project.permalink + '#posts\'][target=\'_blank\']', '캠페인 뉴스 탭'
+        //coffee 'aba de novidades da campanha'
+        ), ' ou ', m('a.alt-link[href=\'javascript:void(0);\']', {
             onclick: ctrl.sendMessage
-        }, 'envie uma mensagem'), '.'])]), m('.w-col.w-col-2')]))), m(surveyPreview, {
+        }, '메시지를 보낸다.'
+        //coffee 'envie uma mensagem'
+        ), '.'])]), m('.w-col.w-col-2')]))), m(surveyPreview, {
             confirmAddress: survey.confirm_address,
             countryName: countryName(),
             stateName: stateName(),
             fields: ctrl.fields().address(),
             openQuestions: openQuestions,
             multipleChoiceQuestions: multipleChoiceQuestions
-        })]) : ctrl.showPreview() ? m('.survey-preview', [m('.bg-white.page-header', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.u-marginbottom-20.u-text-center', m('img.big.thumb.u-marginbottom-20.u-round[src=\'' + profileImage + '\']')), m('.u-text-center', m('.fontsize-larger', 'Você confirma as respostas abaixo?'))]), m('.w-col.w-col-2')]))), m(surveyPreview, {
+        })]) : ctrl.showPreview() ? m('.survey-preview', [m('.bg-white.page-header', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.u-marginbottom-20.u-text-center', m('img.big.thumb.u-marginbottom-20.u-round[src=\'' + profileImage + '\']')), m('.u-text-center', m('.fontsize-larger', '아래 답변을 확인하십니까?'
+        //coffee 'Você confirma as respostas abaixo?'
+        ))]), m('.w-col.w-col-2')]))), m(surveyPreview, {
             confirmAddress: survey.confirm_address,
             countryName: countryName(),
             stateName: stateName(),
@@ -10084,15 +11004,29 @@ var surveysShow = {
             multipleChoiceQuestions: multipleChoiceQuestions
         }), m('div', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', m('.w-row', [m('.w-col-small-6.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col', m('a.btn.btn-large.btn-terciary', {
             onclick: ctrl.showPreview.toggle
-        }, 'Não')), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', m('a.btn.btn-large', {
+        }, '아니요'
+        //coffee 'Não'
+        )), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', m('a.btn.btn-large', {
             onclick: ctrl.sendAnswer
-        }, 'Sim'))])), m('.w-col.w-col-2')])))]) : m('.survey-show', !survey || !project ? h.loader() : [m('.dashboard-header.u-marginbottom-40.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('img.big.thumb.u-marginbottom-20.u-round[src=\'' + profileImage + '\']'), m('.fontsize-larger.u-marginbottom-10', 'Oi, ' + userVM.displayName(user)), m('.fontsize-base.u-marginbottom-20', project.user.name + ', do projeto ' + project.name + ', enviou algumas perguntas para que possa seguir com a produ\xE7\xE3o e entrega da recompensa que voc\xEA apoiou com R$' + reward.minimum_value + ':'), m(rewardCardBig, {
+        }, '예'
+        //coffee 'Sim'
+        ))])), m('.w-col.w-col-2')])))]) : m('.survey-show', !survey || !project ? h.loader() : [m('.dashboard-header.u-marginbottom-40.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('img.big.thumb.u-marginbottom-20.u-round[src=\'' + profileImage + '\']'), m('.fontsize-larger.u-marginbottom-10', '\uC548\uB155\uD558\uC138\uC694, ' + userVM.displayName(user)
+        //coffee `Oi, ${userVM.displayName(user)}`
+        ), m('.fontsize-base.u-marginbottom-20', project.user.name + ', do projeto ' + project.name + ', enviou algumas perguntas para que possa seguir com a produ\xE7\xE3o e entrega da recompensa que voc\xEA apoiou com R$' + reward.minimum_value + ':'), m(rewardCardBig, {
             reward: reward
-        })]), m('.w-col.w-col-2')]))), ctrl.finished() ? [m('div', m('.w-container', m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.card.card-terciary.medium.u-marginbottom-30', [m('.card.card-message.u-marginbottom-40.u-radius', m('.fontsize-base', [m('span.fa.fa-exclamation-circle', ''), ctrl.answeredAt() ? m('span', ' Esse question\xE1rio n\xE3o est\xE1 mais aberto para receber respostas. Segue abaixo as respostas que voc\xEA enviou no dia ' + h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY') + '. Qualquer d\xFAvida, ', m('a.alt-link[href=\'javascript:void(0);\']', {
+        })]), m('.w-col.w-col-2')]))), ctrl.finished() ? [m('div', m('.w-container', m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.card.card-terciary.medium.u-marginbottom-30', [m('.card.card-message.u-marginbottom-40.u-radius', m('.fontsize-base', [m('span.fa.fa-exclamation-circle', ''), ctrl.answeredAt() ? m('span', ' Esse question\xE1rio n\xE3o est\xE1 mais aberto para receber respostas. Segue abaixo as respostas que voc\xEA enviou no dia ' + h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY') + '. Qualquer d\xFAvida, ',
+        //coffee  m('span', ` Esse questionário não está mais aberto para receber respostas. Segue abaixo as respostas que você enviou no dia ${h.momentify(ctrl.answeredAt(), 'DD/MM/YYYY')}. Qualquer dúvida, `,
+        m('a.alt-link[href=\'javascript:void(0);\']', {
             onclick: ctrl.sendMessage
-        }, 'envie uma mensagem para ' + project.user.name)) : m('span', ' Oooops! Esse question\xE1rio n\xE3o est\xE1 mais aberto para respostas desde o dia ' + h.momentify(ctrl.survey().finished_at, 'DD/MM/YYYY') + '. Nossa recomenda\xE7\xE3o \xE9 que voc\xEA ', m('a.alt-link[href=\'javascript:void(0);\']', {
+        }, ' ' + project.user.name + '\uC5D0 \uBA54\uC2DC\uC9C0\uB97C \uBCF4\uB0B4\uB77C.'
+        //coffee ` envie uma mensagem para ${project.user.name}`
+        )) : m('span', ' Oooops! Esse question\xE1rio n\xE3o est\xE1 mais aberto para respostas desde o dia ' + h.momentify(ctrl.survey().finished_at, 'DD/MM/YYYY') + '. Nossa recomenda\xE7\xE3o \xE9 que voc\xEA ', m('a.alt-link[href=\'javascript:void(0);\']', {
             onclick: ctrl.sendMessage
-        }, 'envie uma mensagem para ' + project.user.name), ' para saber como é possível resolver o seu caso! ')]))])), ctrl.answeredAt() ? m(surveyPreview, {
+        }, project.user.name + '\uC5D0\uAC8C \uBA54\uC2DC\uC9C0 \uBCF4\uB0B4\uAE30'
+        //coffee `envie uma mensagem para ${project.user.name}`
+        ), ' 어떻게하면 사건을 해결할 수 있는지 알 수 있습니다! ')
+        //coffee ' para saber como é possível resolver o seu caso! ')
+        ]))])), ctrl.answeredAt() ? m(surveyPreview, {
             confirmAddress: survey.confirm_address,
             countryName: countryName(),
             stateName: stateName(),
@@ -10112,7 +11046,8 @@ var surveysShow = {
                 }), m("label.w-form-label[for='radio']", choice.option)]);
             })]]);
         }), _$1.map(openQuestions, function (item) {
-            return m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', item.question.question), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-20', item.question.description), m("input.positive.text-field.w-input[maxlength='256'][placeholder='Sua resposta'][required='required'][type='text']", {
+            return m('.u-marginbottom-30.w-form', [m('.fontcolor-secondary.fontsize-base.fontweight-semibold', item.question.question), m('.fontcolor-secondary.fontsize-smaller.u-marginbottom-20', item.question.description), m("input.positive.text-field.w-input[maxlength='256'][placeholder='귀하의 답변'][required='required'][type='text']", {
+                //coffee   m("input.positive.text-field.w-input[maxlength='256'][placeholder='Sua resposta'][required='required'][type='text']", {
                 value: item.value(),
                 onchange: m.withAttr('value', item.value)
             })]);
@@ -10120,7 +11055,9 @@ var surveysShow = {
             onclick: function onclick() {
                 ctrl.preview();
             }
-        }, 'Enviar')), m('.w-col.w-col-4')])))]])]);
+        }, '보내기'
+        //coffee 'Enviar'
+        )), m('.w-col.w-col-4')])))]])]);
     }
 };
 
@@ -10260,6 +11197,7 @@ var userAboutVM = {
 var projectEditSaveBtn = {
     view: function view(ctrl, args) {
         return m('.w-section.save-draft-btn-section', [m('.w-row', [m('.w-col.w-col-4.w-col-push-4', args.loading() ? h.loader() : [m('input[id="anchor"][name="anchor"][type="hidden"][value="about_me"]'), m('input.btn.btn.btn-large[name="commit"][type="submit"][value="저장"]', {
+            //coffee m('input.btn.btn.btn-large[name="commit"][type="submit"][value="Salvar"]', {
             onclick: args.onSubmit
         })]), m('.w-col.w-col-4')])]);
     }
@@ -10340,6 +11278,7 @@ var userAboutEdit = {
                         errorsArray(errorsArray().concat(err.errors));
                     } else {
                         errors('정보 업데이트 오류.');
+                        //coffee errors('Erro ao atualizar informações');
                     }
                     pushErrosMessage();
                     showError(true);
@@ -10389,6 +11328,7 @@ var userAboutEdit = {
                 }
                 parsedErrors = userAboutVM.mapRailsErrors(err.errors_json);
                 errors('정보 업데이트 오류.');
+                //coffee errors('Erro ao atualizar informações.');
 
                 showError(true);
                 loading(false);
@@ -10438,6 +11378,7 @@ var userAboutEdit = {
         },
             deleteAccount = function deleteAccount() {
             if (window.confirm('계정을 비활성화 하시겠습니까?')) {
+                //coffee if (window.confirm('Tem certeza que deseja desativar a sua conta?')) {
                 deleteUser();
             }
 
@@ -10447,9 +11388,11 @@ var userAboutEdit = {
             e.preventDefault();
             if (!validateEmailConfirmation()) {
                 errors('이메일 확인이 잘못되었습니다.');
+                //coffee errors('Confirmação de email está incorreta.');
                 showError(true);
             } else if (!validatePassword()) {
                 errors('새 비밀번호가 잘못되었습니다.');
+                //coffee errors('Nova senha está incorreta.');
                 showError(true);
             } else {
                 updateUser();
@@ -10486,28 +11429,42 @@ var userAboutEdit = {
 
         return m('#about-tab.content', [ctrl.showSuccess() && !ctrl.loading() && !ctrl.uploading() ? m.component(popNotification, {
             message: '귀하의 정보가 업데이트되었습니다.'
+            //coffee message: 'As suas informações foram atualizadas'
         }) : '', ctrl.showError() && !ctrl.loading() && !ctrl.uploading() ? m.component(popNotification, {
             message: m.trust(ctrl.errors()),
             error: true
         }) : '', m('form.simple_form.w-form', {
             onsubmit: ctrl.onSubmit
-        }, [m('input[name="utf8"][type="hidden"][value="✓"]'), m('input[name="_method"][type="hidden"][value="patch"]'), m('input[name="authenticity_token"][type="hidden"][value=' + h.authenticityToken() + ']'), m('div', m('.w-container', m('.w-row', m('.w-col.w-col-10.w-col-push-1', [!user.is_admin ? '' : m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', '내 프로필 주소'), m('label.field-label.fontsize-smallest.fontcolor-secondary', 'Seu perfil público pode ter uma URL personalizada. Escolha uma fácil de guardar!    ')]), m('.w-col.w-col-7', m('.w-row', [m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', m('input.string.optional.w-input.text-field.text-field.positive.prefix[id="user_permalink"][type="text"]', {
+        }, [m('input[name="utf8"][type="hidden"][value="✓"]'), m('input[name="_method"][type="hidden"][value="patch"]'), m('input[name="authenticity_token"][type="hidden"][value=' + h.authenticityToken() + ']'), m('div', m('.w-container', m('.w-row', m('.w-col.w-col-10.w-col-push-1', [!user.is_admin ? '' : m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', '내 프로필 주소'
+        //coffee 'Endereço do seu perfil'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary', 'Seu perfil público pode ter uma URL personalizada. Escolha uma fácil de guardar!    ')]), m('.w-col.w-col-7', m('.w-row', [m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', m('input.string.optional.w-input.text-field.text-field.positive.prefix[id="user_permalink"][type="text"]', {
             name: 'user[permalink]',
             value: fields.permalink(),
             onchange: m.withAttr('value', fields.permalink)
-        })), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.text-field.postfix.no-hover', m('.fontcolor-secondary.fontsize-smaller', '  .catarse.me'))]))]), m('.w-row.u-marginbottom-30.card.card-terciary', [m('.fontsize-base.fontweight-semibold', '이메일'), m('.fontsize-small.u-marginbottom-30', '이 이메일은 귀하, Catarse 팀 및 귀하가 지원 한 프로젝트 팀 간의 커뮤니케이션 채널이므로 최신으로 유지해 주시길 바랍니다. '), m('.fontsize-base.u-marginbottom-40', [m('span.fontweight-semibold.card.u-radius', user.email), m('a.alt-link.fontsize-small.u-marginleft-10[href=\'javascript:void(0);\'][id=\'update_email\']', {
+        })), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.text-field.postfix.no-hover', m('.fontcolor-secondary.fontsize-smaller', '  .catarse.me'))]))]), m('.w-row.u-marginbottom-30.card.card-terciary', [m('.fontsize-base.fontweight-semibold', '이메일'
+        //coffee 'Email'
+        ), m('.fontsize-small.u-marginbottom-30', '이 이메일은 귀하, Givingwire팀 및 귀하가 지원 한 프로젝트 팀 간의 커뮤니케이션 채널이므로 최신으로 유지해 주시길 바랍니다. '
+        //coffee 'Mantenha esse email atualizado pois ele é o canal de comunicação entre você, a equipe do Catarse e a equipe dos projetos que você apoiou.'
+        ), m('.fontsize-base.u-marginbottom-40', [m('span.fontweight-semibold.card.u-radius', user.email), m('a.alt-link.fontsize-small.u-marginleft-10[href=\'javascript:void(0);\'][id=\'update_email\']', {
             onclick: function onclick() {
                 ctrl.showEmailForm.toggle();
             }
-        }, '이메일 변경')]), m((ctrl.showEmailForm() ? '' : '.w-hidden') + '.u-marginbottom-20.w-row[id=\'email_update_form\']', [m('.w-col.w-col-6.w-sub-col', [m('label.field-label.fontweight-semibold', '새 이메일'), m('input.w-input.text-field.positive[id=\'new_email\'][name=\'new_email\'][type=\'email\']', {
+        }, '이메일 변경'
+        //coffee 'Alterar email'
+        )]), m((ctrl.showEmailForm() ? '' : '.w-hidden') + '.u-marginbottom-20.w-row[id=\'email_update_form\']', [m('.w-col.w-col-6.w-sub-col', [m('label.field-label.fontweight-semibold', '새 이메일'
+        //coffee 'Novo email'
+        ), m('input.w-input.text-field.positive[id=\'new_email\'][name=\'new_email\'][type=\'email\']', {
             class: ctrl.emailHasError() ? 'error' : '',
             value: fields.email(),
             onfocus: function onfocus() {
                 return ctrl.emailHasError(false);
             },
             onchange: m.withAttr('value', fields.email)
-        })]), m('.w-col.w-col-6', [m('label.field-label.fontweight-semibold', '새 이메일 확인'), m('input.string.required.w-input.text-field.w-input.text-field.positive[id=\'new_email_confirmation\'][name=\'user[email]\'][type=\'text\']', {
+        })]), m('.w-col.w-col-6', [m('label.field-label.fontweight-semibold', '새 이메일 확인'
+        //coffee 'Confirmar novo email'
+        ), m('input.string.required.w-input.text-field.w-input.text-field.positive[id=\'new_email_confirmation\'][name=\'user[email]\'][type=\'text\']', {
             class: ctrl.emailHasError() ? '오류' : '',
+            //coffee class: ctrl.emailHasError() ? 'error' : '',
             value: fields.email_confirmation(),
             onfocus: function onfocus() {
                 return ctrl.emailHasError(false);
@@ -10516,29 +11473,61 @@ var userAboutEdit = {
             onchange: m.withAttr('value', fields.email_confirmation)
         })]), ctrl.emailHasError() ? m(inlineError, {
             message: '이메일 확인이 잘못되었습니다.'
-        }) : ''])]), m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 공개 프로필의 이름'), m('label.field-label.fontsize-smallest.fontcolor-secondary', '사용자가 내 프로필에서 볼 수있는 이름입니다.')]), m('.w-col.w-col-7', m('input.string.optional.w-input.text-field.positive[id="user_public_name"][type="text"]', {
+            //coffee message: 'Confirmação de email está incorreta.'
+        }) : ''])]), m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 공개 프로필의 이름'
+        //coffee ' Nome no perfil público'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary', '사용자가 내 프로필에서 볼 수있는 이름입니다.'
+        //coffee 'Esse é o nome que os usuários irão ver no seu perfil.'
+        )]), m('.w-col.w-col-7', m('input.string.optional.w-input.text-field.positive[id="user_public_name"][type="text"]', {
             name: 'user[public_name]',
-            class: ctrl.parsedErrors.hasError('public_name') ? 'error' : false,
+            class: ctrl.parsedErrors.hasError('public_name') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('public_name') ? 'error' : false,
             value: fields.public_name(),
             onchange: m.withAttr('value', fields.public_name)
-        }), ctrl.parsedErrors.inlineError('public_name'))]), m('.w-form', [m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 프로필 사진'), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 이 이미지는 프로필 미리보기 이미지 (PNG, JPG 크기 280x280)로 사용됩니다.')]), m('.w-col.w-col-4.w-sub-col', m('.input.file.optional.user_uploaded_image.field_with_hint', [m('label.field-label'), m('span.hint', m('img[alt="Avatar do Usuario"][src="' + fields.uploaded_image() + '"]')), m('input.file.optional.w-input.text-field[id="user_uploaded_image"][type="file"]', {
+        }), ctrl.parsedErrors.inlineError('public_name'))]), m('.w-form', [m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 프로필 사진'
+        //coffee '  Imagem do perfil'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 이 이미지는 프로필 미리보기 이미지 (PNG, JPG 크기 280x280)로 사용됩니다.'
+        //coffee ' Essa imagem será utilizada como a miniatura de seu perfil (PNG, JPG tamanho 280 x 280)'
+        )]), m('.w-col.w-col-4.w-sub-col', m('.input.file.optional.user_uploaded_image.field_with_hint', [m('label.field-label'), m('span.hint', m('img[alt="Avatar do Usuario"][src="' + fields.uploaded_image() + '"]')), m('input.file.optional.w-input.text-field[id="user_uploaded_image"][type="file"]', {
             name: 'user[uploaded_image]',
             class: ctrl.parsedErrors.hasError('uploaded_image') ? '오류' : false
-        }), ctrl.parsedErrors.inlineError('uploaded_image')]))]), args.hideCoverImg ? '' : m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 프로필 표지 이미지'), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 이 이미지는 공개 프로필 헤더(PNG 또는 JPG)의 배경으로 사용됩니다. 여기에 이미지를 제출하지 않으면 귀하의 프로필 이미지가 대신 사용됩니다.')]), m('.w-col.w-col-4.w-sub-col', m('.input.file.optional.user_cover_image', [m('label.field-label'), m('span.hint', user.profile_cover_image ? m('img', {
+            //coffee class: ctrl.parsedErrors.hasError('uploaded_image') ? 'error' : false
+        }), ctrl.parsedErrors.inlineError('uploaded_image')]))]), args.hideCoverImg ? '' : m('.w-row.u-marginbottom-30.card.card-terciary', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 프로필 표지 이미지'
+        //coffee ' Imagem de capa do perfil'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 이 이미지는 공개 프로필 헤더(PNG 또는 JPG)의 배경으로 사용됩니다. 여기에 이미지를 제출하지 않으면 귀하의 프로필 이미지가 대신 사용됩니다.'
+        //coffee ' Essa imagem será utilizada como fundo do cabeçalho do seu perfil público (PNG ou JPG). Caso você não envie nenhum imagem aqui, utilizaremos sua imagem de perfil como alternativa.'
+        )]), m('.w-col.w-col-4.w-sub-col', m('.input.file.optional.user_cover_image', [m('label.field-label'), m('span.hint', user.profile_cover_image ? m('img', {
             src: fields.cover_image()
         }) : ''), m('input.file.optional.w-input.text-field[id="user_cover_image"][type="file"]', {
             name: 'user[cover_image]'
-        })]))])]), m('.w-row', m('.w-col', m('.card.card-terciary.u-marginbottom-30', [m('label.field-label.fontweight-semibold', '위키 소개'), m('label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20', '자신에 대해 이야기하고 방문자가 당신을 더 잘 알 수 있도록 가장 관련성있는 정보를 제공해 주시길 바랍니다. '), m('.w-form', m('.preview-container.u-marginbottom-40', {
+        })]))])]), m('.w-row', m('.w-col', m('.card.card-terciary.u-marginbottom-30', [m('label.field-label.fontweight-semibold', '위키 정보'
+        //coffee 'Sobre'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20', '자신에 대해 이야기하고 방문자가 당신을 더 잘 알 수 있도록 가장 관련성있는 정보를 제공해 주시길 바랍니다. '
+        //coffee 'Fale sobre você e tente fornecer as informações mais relevantes para que visitantes possam te conhecer melhor. '
+        ), m('.w-form', m('.preview-container.u-marginbottom-40', {
             class: ctrl.parsedErrors.hasError('about_html') ? '오류' : false
-        }, h.redactor('user[about_html]', fields.about_html)), ctrl.parsedErrors.inlineError('about_html'))]))), m('.w-form.card.card-terciary.u-marginbottom-30', [m('.w-row.u-marginbottom-10', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' Facebook 프로필'), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 프로필 링크 붙여 넣기')]), m('.w-col.w-col-7', m('input.string.optional.w-input.text-field.positive[type="text"]', {
+            //coffee class: ctrl.parsedErrors.hasError('about_html') ? 'error' : false
+        }, h.redactor('user[about_html]', fields.about_html)), ctrl.parsedErrors.inlineError('about_html'))]))), m('.w-form.card.card-terciary.u-marginbottom-30', [m('.w-row.u-marginbottom-10', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' Facebook 프로필'
+        //coffee 'Perfil do facebook'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 프로필 링크 붙여넣기'
+        //coffee '  Cole o link do seu perfil'
+        )]), m('.w-col.w-col-7', m('input.string.optional.w-input.text-field.positive[type="text"]', {
             name: 'user[facebook_link]',
             value: fields.facebook_link(),
             onchange: m.withAttr('value', fields.facebook_link)
-        }))]), m('.w-row.u-marginbottom-10', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 트위터 프로필'), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 프로필 링크 붙여 넣기')]), m('.w-col.w-col-7', m('input.string.optional.w-input.text-field.positive[type="text"]', {
+        }))]), m('.w-row.u-marginbottom-10', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold', ' 트위터 프로필'
+        //coffee '  Perfil do twitter'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary', ' 프로필 링크 붙여 넣기'
+        //coffee '  Cole o link do seu perfil'
+        )]), m('.w-col.w-col-7', m('input.string.optional.w-input.text-field.positive[type="text"]', {
             name: 'user[twitter]',
             value: fields.twitter(),
             onchange: m.withAttr('value', fields.twitter)
-        }))])]), m('.w-form.card.card-terciary.u-marginbottom-30', m('.w-row.u-marginbottom-10', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold[for="name-8"]', '인터넷상의 존재'), m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', '다른 사용자가 귀하를 더 잘 알 수 있도록 링크 포함 ')]), m('.w-col.w-col-7', [m('.w-row', [fields.links() && fields.links().length <= 0 ? '' : m('.link', _$1.map(fields.links(), function (link, idx) {
+        }))])]), m('.w-form.card.card-terciary.u-marginbottom-30', m('.w-row.u-marginbottom-10', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold[for="name-8"]', '인터넷상의 존재'
+        //coffee ' Presença na internet'
+        ), m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', '다른 사용자가 귀하를 더 잘 알 수 있도록 링크 포함 ')
+        //coffee m('label.field-label.fontsize-smallest.fontcolor-secondary[for="name-8"]', 'Inclua links que ajudem outros usuários a te conhecer melhor. ')
+        ]), m('.w-col.w-col-7', [m('.w-row', [fields.links() && fields.links().length <= 0 ? '' : m('.link', _$1.map(fields.links(), function (link, idx) {
             var toRemove = link._destroy;
 
             return m('div', {
@@ -10555,11 +11544,20 @@ var userAboutEdit = {
             })])]);
         }))]), m('.w-row', [m('.w-col.w-col-6.w-col-push-6', m('a.btn.btn-small.btn-terciary', {
             onclick: ctrl.addLink
-        }, m('span.translation_missing', 'Add Link')))])])])), args.hidePasswordChange ? '' : m('.w-form.card.card-terciary.u-marginbottom-30', m('.w-row.u-marginbottom-10', [m('.fontsize-base.fontweight-semibold', '내 비밀번호 변경'), m('.fontsize-small.u-marginbottom-20', '암호를 변경하려면 현재 암호를 확인해야합니다.'), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-6.w-sub-col', [m('label.field-label.fontweight-semibold', ' 현재 비밀번호'), m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_current_password\'][name=\'user[current_password]\'][type=\'password\']', {
+        }, m('span.translation_missing', 'Add Link')))])])])), args.hidePasswordChange ? '' : m('.w-form.card.card-terciary.u-marginbottom-30', m('.w-row.u-marginbottom-10', [m('.fontsize-base.fontweight-semibold', '내 비밀번호 변경'
+        //coffee 'Alterar minha senha'
+        ), m('.fontsize-small.u-marginbottom-20', '암호를 변경하려면 현재 암호를 확인해야합니다.'
+        //coffee 'Para que a senha seja alterada você precisa confirmar a sua senha atual.'
+        ), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-6.w-sub-col', [m('label.field-label.fontweight-semibold', ' 현재 비밀번호'
+        //coffee ' Senha atual'
+        ), m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_current_password\'][name=\'user[current_password]\'][type=\'password\']', {
             value: fields.current_password(),
             onchange: m.withAttr('value', fields.current_password)
-        })]), m('.w-col.w-col-6', [m('label.field-label.fontweight-semibold', ' 새 비밀번호'), m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_password\'][name=\'user[password]\'][type=\'password\']', {
-            class: ctrl.passwordHasError() ? 'error' : '',
+        })]), m('.w-col.w-col-6', [m('label.field-label.fontweight-semibold', ' 새 비밀번호'
+        //coffee ' Nova senha'
+        ), m('input.password.optional.w-input.text-field.w-input.text-field.positive[id=\'user_password\'][name=\'user[password]\'][type=\'password\']', {
+            class: ctrl.passwordHasError() ? '오류' : '',
+            //coffee class: ctrl.passwordHasError() ? 'error' : '',
             value: fields.password(),
             onfocus: function onfocus() {
                 return ctrl.passwordHasError(false);
@@ -10568,13 +11566,22 @@ var userAboutEdit = {
             onchange: m.withAttr('value', fields.password)
         }), !ctrl.passwordHasError() ? '' : m(inlineError, {
             message: '새 비밀번호는 6자 이상이어야 합니다.'
-        })])])])), args.hideDisableAcc || user.total_published_projects > 0 ? '' : m('.w-form.card.card-terciary.u-marginbottom-30', m('.w-row.u-marginbottom-10', [m('.fontweight-semibold.fontsize-smaller', '내 계정 사용 중지'), m('.fontsize-smallest', '모든 후원은 익명 백업으로 변환되고 데이터는 더 이상 보이지 않으며 시스템을 자동으로 종료하고 계정이 영구적으로 비활성화됩니다'), m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '\'][rel=\'nofollow\']', {
+            //coffee message: 'A sua nova senha deve ter no mínimo 6 caracteres.'
+        })])])])), args.hideDisableAcc || user.total_published_projects > 0 ? '' : m('.w-form.card.card-terciary.u-marginbottom-30', m('.w-row.u-marginbottom-10', [m('.fontweight-semibold.fontsize-smaller', '내 계정 사용 중지'
+        //coffee 'Desativar minha conta'
+        ), m('.fontsize-smallest', '모든 후원은 익명 백업으로 변환되고 데이터는 더 이상 보이지 않으며 시스템을 자동으로 종료하고 계정이 영구적으로 비활성화됩니다'
+        //coffee 'Todos os seus apoios serão convertidos em apoios anônimos, seus dados não serão mais visíveis, você sairá automaticamente do sistema e sua conta será desativada permanentemente.'
+        ), m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '\'][rel=\'nofollow\']', {
             onclick: ctrl.deleteAccount
-        }, '내 Givingwire 계정 사용 중지'), m('form.w-hidden', {
+        }, '내 Givingwire 계정 사용 중지'
+        //coffee 'Desativar minha conta no Catarse'
+        ), m('form.w-hidden', {
             action: '/pt/users/' + user.id,
             method: 'post',
             config: ctrl.setDeleteForm
-        }, [m('input[name=\'authenticity_token\'][type=\'hidden\'][value=\'' + h.authenticityToken() + '\']'), m('input[name=\'_method\'][type=\'hidden\'][value=\'delete\']')])]))]))), m(projectEditSaveBtn, {
+        }, [m('input[name=\'authenticity_token\'][type=\'hidden\'][value=\'' + h.authenticityToken() + '\']')]
+        //coffee m('input[name=\'_method\'][type=\'hidden\'][value=\'delete\']')
+        )]))]))), m(projectEditSaveBtn, {
             loading: ctrl.loading,
             onSubmit: ctrl.onSubmit
         }))])]);
@@ -10663,17 +11670,24 @@ var userPrivateContributed = {
 
         return m('.content[id=\'private-contributed-tab\']', ctrl.error() ? m.component(inlineError, {
             message: '프로젝트 로드 오류.'
-        }) : ctrl.loader() ? h.loader() : _$1.isEmpty(onlineCollection) && _$1.isEmpty(successfulCollection) && _$1.isEmpty(failedCollection) ? m('.w-container', m('.w-row.u-margintop-30.u-text-center', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.fontsize-large.u-marginbottom-30', ['아직 어떤 것도 후원하지 않았습니다.', m.trust('&nbsp;'), 'Catarse...']), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('a.btn.btn-large[href=\'/pt/explore\']', {
+            //coffee message: 'Erro ao carregar os projetos.'
+        }) : ctrl.loader() ? h.loader() : _$1.isEmpty(onlineCollection) && _$1.isEmpty(successfulCollection) && _$1.isEmpty(failedCollection) ? m('.w-container', m('.w-row.u-margintop-30.u-text-center', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.fontsize-large.u-marginbottom-30', ['아직 어떤 것도 후원하지 않았습니다.',
+        //coffee 'Você ainda não apoiou nenhum projeto no.',
+        m.trust('&nbsp;'), 'Catarse...']), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('a.btn.btn-large[href=\'/pt/explore\']', {
             config: m.route,
             onclick: function onclick() {
                 m.route('/explore');
             }
-        }, '지금 후원!')), m('.w-col.w-col-3')])]), m('.w-col.w-col-3')])) : [m.component(userContributedList, {
+        }, '지금 후원!'
+        //coffee 'Apoie agora!'
+        )), m('.w-col.w-col-3')])]), m('.w-col.w-col-3')])) : [m.component(userContributedList, {
             title: '진행중인 프로젝트',
+            //coffee title: 'Projetos em andamento',
             collection: onlineCollection,
             pagination: ctrl.onlinePages
         }), m.component(userContributedList, {
             title: '성공적인 프로젝트',
+            //coffee title: 'Projetos bem-sucedidos',
             collection: successfulCollection,
             pagination: ctrl.successfulPages
         }), m.component(userContributedList, {
@@ -10842,6 +11856,7 @@ var userSettings = {
                 }
                 parsedErrors = userSettingsVM.mapRailsErrors(err.errors_json);
                 error('정보 업데이트 오류.');
+                //coffee error('Erro ao atualizar informações.');
                 loading(false);
                 if (showSuccess()) {
                     showSuccess.toggle();
@@ -10929,12 +11944,14 @@ var userSettings = {
             }, I18n$1.t('account_types.mei', I18nScope$33()))])]))]), m('.w-row', [m('.w-col.w-col-6.w-sub-col', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_owner_name\']', I18n$1.t(fields.account_type() == 'pf' ? 'pf_label_name' : 'pj_label_name', I18nScope$33())), m('input.string.required.w-input.text-field.positive' + (disableFields ? '.text-field-disabled' : '') + '[id=\'user_bank_account_attributes_owner_name\'][type=\'text\']', {
                 value: fields.name(),
                 name: 'user[name]',
-                class: ctrl.parsedErrors.hasError('name') ? 'error' : false,
+                class: ctrl.parsedErrors.hasError('name') ? '오류' : false,
+                //coffee class: ctrl.parsedErrors.hasError('name') ? 'error' : false,
                 onchange: m.withAttr('value', fields.name),
                 disabled: disableFields
             }), ctrl.parsedErrors.inlineError('name')]), m('.w-col.w-col-6', [m('.w-row', [m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_owner_document\']', I18n$1.t(fields.account_type() == 'pf' ? 'pf_label_document' : 'pj_label_document', I18nScope$33())), m('input.string.tel.required.w-input.text-field.positive' + (disableFields ? '.text-field-disabled' : '') + '[data-validate-cpf-cnpj=\'true\'][id=\'user_bank_account_attributes_owner_document\'][type=\'tel\'][validation_text=\'true\']', {
                 value: fields.owner_document(),
-                class: ctrl.parsedErrors.hasError('owner_document') ? 'error' : false,
+                class: ctrl.parsedErrors.hasError('owner_document') ? '오류' : false,
+                //coffee class: ctrl.parsedErrors.hasError('owner_document') ? 'error' : false,
                 disabled: disableFields,
                 name: 'user[cpf]',
                 onchange: m.withAttr('value', ctrl.applyDocumentMask),
@@ -10942,13 +11959,15 @@ var userSettings = {
             }), ctrl.parsedErrors.inlineError('owner_document')]), m('.w-col.w-col-6.w-col-small-6.w-col-tiny-6', fields.account_type() == 'pf' ? [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_owner_document\']', I18n$1.t('label_birth_date', I18nScope$33())), m('input.string.tel.required.w-input.text-field.positive' + (disableFields && !_$1.isEmpty(user.birth_date) ? '.text-field-disabled' : '') + '[data-validate-cpf-cnpj=\'true\'][id=\'user_bank_account_attributes_owner_document\'][type=\'tel\'][validation_text=\'true\']', {
                 value: fields.birth_date(),
                 name: 'user[birth_date]',
-                class: ctrl.parsedErrors.hasError('birth_date') ? 'error' : false,
+                class: ctrl.parsedErrors.hasError('birth_date') ? '오류' : false,
+                //coffee class: ctrl.parsedErrors.hasError('birth_date') ? 'error' : false,
                 disabled: disableFields && !_$1.isEmpty(user.birth_date),
                 onchange: m.withAttr('value', ctrl.applyBirthDateMask),
                 onkeyup: m.withAttr('value', ctrl.applyBirthDateMask)
             }), ctrl.parsedErrors.inlineError('birth_date')] : [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark[for=\'user_bank_account_attributes_owner_document\']', I18n$1.t('label_state_inscription', I18nScope$33())), m('input.string.tel.required.w-input.text-field.positive[data-validate-cpf-cnpj=\'true\'][id=\'user_bank_account_attributes_owner_document\'][type=\'tel\'][validation_text=\'true\']', {
                 value: fields.state_inscription(),
-                class: ctrl.parsedErrors.hasError('state_inscription') ? 'error' : false,
+                class: ctrl.parsedErrors.hasError('state_inscription') ? '오류' : false,
+                //coffee class: ctrl.parsedErrors.hasError('state_inscription') ? 'error' : false,
                 name: 'user[state_inscription]',
                 onchange: m.withAttr('value', fields.state_inscription)
             }), ctrl.parsedErrors.inlineError('state_inscription')])])])])]
@@ -11056,8 +12075,11 @@ var userNotifications = {
             marketing_lists = ctrl.mailMarketingLists();
 
         return m('[id=\'notifications-tab\']', ctrl.error() ? m.component(inlineError, {
-            message: 'Erro ao carregar a página.'
-        }) : m('form.simple_form.edit_user[accept-charset=\'UTF-8\'][action=\'/pt/users/' + user.id + '\'][method=\'post\'][novalidate=\'novalidate\']', [m('input[name=\'utf8\'][type=\'hidden\'][value=\'✓\']'), m('input[name=\'_method\'][type=\'hidden\'][value=\'patch\']'), m('input[name=\'authenticity_token\'][type=\'hidden\'][value=\'' + h.authenticityToken() + '\']'), m('input[id=\'anchor\'][name=\'anchor\'][type=\'hidden\'][value=\'notifications\']'), m('.w-container', [m('.w-row', m('.w-col.w-col-10.w-col-push-1', m('.w-form.card.card-terciary', [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', '뉴스레터:')), m('.w-col.w-col-8', _$1.isEmpty(marketing_lists) ? h.loader() : _$1.map(marketing_lists, function (_item, i) {
+            message: '페이지로드 오류.'
+            //coffee message: 'Erro ao carregar a página.'
+        }) : m('form.simple_form.edit_user[accept-charset=\'UTF-8\'][action=\'/pt/users/' + user.id + '\'][method=\'post\'][novalidate=\'novalidate\']', [m('input[name=\'utf8\'][type=\'hidden\'][value=\'✓\']'), m('input[name=\'_method\'][type=\'hidden\'][value=\'patch\']'), m('input[name=\'authenticity_token\'][type=\'hidden\'][value=\'' + h.authenticityToken() + '\']'), m('input[id=\'anchor\'][name=\'anchor\'][type=\'hidden\'][value=\'notifications\']'), m('.w-container', [m('.w-row', m('.w-col.w-col-10.w-col-push-1', m('.w-form.card.card-terciary', [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', '뉴스레터:'
+        //coffee 'Newsletters:'
+        )), m('.w-col.w-col-8', _$1.isEmpty(marketing_lists) ? h.loader() : _$1.map(marketing_lists, function (_item, i) {
             var item = _item.item;
 
             return m('.card.u-marginbottom-20.u-radius.u-text-center-small-only', m('.w-row', [m('.w-sub-col.w-col.w-col-6', m('img', {
@@ -11080,15 +12102,25 @@ var userNotifications = {
                     _item.hovering(false);
                 }
             }, _item.in_list ? _item.hovering() ? 'Descadastrar' : 'Assinado' : 'Assinar')])]));
-        }))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', '후원한 프로젝트:')), m('.w-col.w-col-8', m('.w-checkbox.w-clearfix', [m('input[name=user[subscribed_to_project_posts]][type=\'hidden\'][value=\'0\']'), m('input.w-checkbox-input' + (user.subscribed_to_project_posts ? '[checked=\'checked\']' : '') + '[id=\'user_subscribed_to_project_posts\'][name=user[subscribed_to_project_posts]][type=\'checkbox\'][value=\'1\']'), m('label.w-form-label.fontsize-base.fontweight-semibold', ' 프로젝트 업데이트를 받고 싶습니다.'), m('.u-marginbottom-20', m('a.alt-link[href=\'javascript:void(0);\']', {
+        }))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', '후원한 프로젝트:'
+        //coffee 'Projetos que você apoiou:'
+        )), m('.w-col.w-col-8', m('.w-checkbox.w-clearfix', [m('input[name=user[subscribed_to_project_posts]][type=\'hidden\'][value=\'0\']'), m('input.w-checkbox-input' + (user.subscribed_to_project_posts ? '[checked=\'checked\']' : '') + '[id=\'user_subscribed_to_project_posts\'][name=user[subscribed_to_project_posts]][type=\'checkbox\'][value=\'1\']'), m('label.w-form-label.fontsize-base.fontweight-semibold', ' 프로젝트 업데이트를 받고 싶습니다.'
+        //coffee ' Quero receber atualizações dos projetos'
+        ), m('.u-marginbottom-20', m('a.alt-link[href=\'javascript:void(0);\']', {
             onclick: ctrl.showNotifications.toggle
-        }, ' Gerenciar as notifica\xE7\xF5es de ' + user.total_contributed_projects + ' projetos')), ctrl.showNotifications() ? m('ul.w-list-unstyled.u-radius.card.card-secondary[id=\'notifications-box\']', [!_$1.isEmpty(projects_collection) ? _$1.map(projects_collection, function (project) {
+        }, ' ' + user.total_contributed_projects + '\uAC1C\uC758 \uD504\uB85C\uC81D\uD2B8\uC5D0 \uB300\uD55C \uC54C\uB9BC \uAD00\uB9AC'
+        //coffee ` Gerenciar as notificações de ${user.total_contributed_projects} projetos`
+        )), ctrl.showNotifications() ? m('ul.w-list-unstyled.u-radius.card.card-secondary[id=\'notifications-box\']', [!_$1.isEmpty(projects_collection) ? _$1.map(projects_collection, function (project) {
             return m('li', m('.w-checkbox.w-clearfix', [m('input[id=\'unsubscribes_' + project.project_id + '\'][type=\'hidden\'][value=\'\']', {
                 name: 'unsubscribes[' + project.project_id + ']'
             }), m('input.w-checkbox-input' + (project.unsubscribed ? '' : '[checked=\'checked\']') + '[type=\'checkbox\'][value=\'1\'][id=\'user_unsubscribes_' + project.project_id + '\']', {
                 name: 'unsubscribes[' + project.project_id + ']'
             }), m('label.w-form-label.fontsize-small', project.project_name)]));
-        }) : '']) : '']))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', 'Social:')), m('.w-col.w-col-8', m('.w-checkbox.w-clearfix', [m('input[name=user[subscribed_to_friends_contributions]][type=\'hidden\'][value=\'0\']'), m('input.w-checkbox-input' + (user.subscribed_to_friends_contributions ? '[checked=\'checked\']' : '') + '[id=\'user_subscribed_to_friends_contributions\'][name=user[subscribed_to_friends_contributions]][type=\'checkbox\'][value=\'1\']'), m('label.w-form-label.fontsize-small', '친구가 프로젝트를 지원하거나 시작했습니다.')])), m('.w-col.w-col-8', m('.w-checkbox.w-clearfix', [m('input[name=user[subscribed_to_new_followers]][type=\'hidden\'][value=\'0\']'), m('input.w-checkbox-input' + (user.subscribed_to_new_followers ? '[checked=\'checked\']' : '') + '[id=\'user_subscribed_to_new_followers\'][name=user[subscribed_to_new_followers]][type=\'checkbox\'][value=\'1\']'), m('label.w-form-label.fontsize-small', 'Um amigo começou a me seguir')]))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', '프로젝트 미리 알림:')), m('.w-col.w-col-8', [!_$1.isEmpty(reminders) ? _$1.map(reminders, function (reminder) {
+        }) : '']) : '']))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', 'Social:')), m('.w-col.w-col-8', m('.w-checkbox.w-clearfix', [m('input[name=user[subscribed_to_friends_contributions]][type=\'hidden\'][value=\'0\']'), m('input.w-checkbox-input' + (user.subscribed_to_friends_contributions ? '[checked=\'checked\']' : '') + '[id=\'user_subscribed_to_friends_contributions\'][name=user[subscribed_to_friends_contributions]][type=\'checkbox\'][value=\'1\']'), m('label.w-form-label.fontsize-small', '친구가 프로젝트를 지원하거나 시작했습니다.'
+        //coffee 'Um amigo apoiou ou lançou um projeto'
+        )])), m('.w-col.w-col-8', m('.w-checkbox.w-clearfix', [m('input[name=user[subscribed_to_new_followers]][type=\'hidden\'][value=\'0\']'), m('input.w-checkbox-input' + (user.subscribed_to_new_followers ? '[checked=\'checked\']' : '') + '[id=\'user_subscribed_to_new_followers\'][name=user[subscribed_to_new_followers]][type=\'checkbox\'][value=\'1\']'), m('label.w-form-label.fontsize-small', 'Um amigo começou a me seguir')]))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4', m('.fontweight-semibold.fontsize-small.u-marginbottom-10', '프로젝트 미리 알림:'
+        //coffee '프로젝트 미리 알림:'
+        )), m('.w-col.w-col-8', [!_$1.isEmpty(reminders) ? _$1.map(reminders, function (reminder) {
             return m('.w-checkbox.w-clearfix', [m('input[id=\'user_reminders_' + reminder.project_id + '\'][type=\'hidden\'][value=\'false\']', {
                 name: 'user[reminders][' + reminder.project_id + ']'
             }), m('input.w-checkbox-input[checked=\'checked\'][type=\'checkbox\'][value=\'1\'][id=\'user_reminders_' + reminder.project_id + '\']', {
@@ -11103,7 +12135,9 @@ var UserOwnerBox = {
         var project = args.project,
             user = args.user;
 
-        return m('.card.card-terciary.u-radius.u-marginbottom-40', [m('.w-row', [args.hideAvatar ? '' : m('.w-col.w-col-2.w-col-small-2.w-col-tiny-2.w-hidden-tiny', [m('img.thumb.u-margintop-10.u-round[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"][width="100"]')]), m('.w-col.w-col-10.w-col-small-10.w-col-tiny-10', [m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', [project ? 'Dados do apoiador ' : '사용자 데이터 ', m('a.alt-link[href="/not-my-account' + (project ? '?project_id=' + project.project_id : '') + (args.reward ? '&reward_id=' + args.reward.id : '') + (args.value ? '&value=' + args.value : '') + '"]', 'Não é você?')]), m('.fontsize-base.fontweight-semibold', user.name), m('label.field-label', 'CPF/CNPJ: ' + user.owner_document)])])]);
+        return m('.card.card-terciary.u-radius.u-marginbottom-40', [m('.w-row', [args.hideAvatar ? '' : m('.w-col.w-col-2.w-col-small-2.w-col-tiny-2.w-hidden-tiny', [m('img.thumb.u-margintop-10.u-round[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"][width="100"]')]), m('.w-col.w-col-10.w-col-small-10.w-col-tiny-10', [m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', [project ? 'Dados do apoiador ' : '사용자 데이터 ',
+        //coffee (project ? 'Dados do apoiador ' : 'Dados do usuário '),
+        m('a.alt-link[href="/not-my-account' + (project ? '?project_id=' + project.project_id : '') + (args.reward ? '&reward_id=' + args.reward.id : '') + (args.value ? '&value=' + args.value : '') + '"]', 'Não é você?')]), m('.fontsize-base.fontweight-semibold', user.name), m('label.field-label', 'CPF/CNPJ: ' + user.owner_document)])])]);
     }
 };
 
@@ -11176,9 +12210,12 @@ var userBankForm = {
         var user = args.user,
             fields = args.fields,
             bankAccount = ctrl.bankAccount();
-        return m('div', [m('.w-row', [m('.w-col.w-col-5.w-sub-col' + (ctrl.showOtherBanksInput() ? '.w-hidden' : '') + '[id=\'bank_select\']', m('.input.select.required.user_bank_account_bank_id', [m('label.field-label.fontsize-smaller', '은행'), m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_bank_id\']', {
+        return m('div', [m('.w-row', [m('.w-col.w-col-5.w-sub-col' + (ctrl.showOtherBanksInput() ? '.w-hidden' : '') + '[id=\'bank_select\']', m('.input.select.required.user_bank_account_bank_id', [m('label.field-label.fontsize-smaller', '은행'
+        //coffee 'Banco'
+        ), m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_bank_id\']', {
             name: 'user[bank_account_attributes][bank_id]',
             class: ctrl.parsedErrors.hasError('bank_id') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('bank_id') ? 'error' : false,
             onchange: function onchange(e) {
                 m.withAttr('value', ctrl.bankCode)(e);
                 ctrl.showOtherBanksInput(ctrl.bankCode() == '0');
@@ -11193,19 +12230,33 @@ var userBankForm = {
             return bank.id === fields.bank_id();
         }) ? '' : m('option[value=\'' + fields.bank_id() + '\']', {
             selected: true
-        }, bankAccount.bank_code + ' . ' + bankAccount.bank_name), m('option[value=\'0\']', '기타')]), m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for=\'user_bank_account_attributes_bank_id\']', ' 은행을 선택해 주시길 바랍니다.'), ctrl.parsedErrors.inlineError('bank_id')])), ctrl.showOtherBanksInput() ? m('.w-col.w-col-5.w-sub-col', m('.w-row.u-marginbottom-20[id=\'bank_search\']', m('.w-col.w-col-12', [m('.input.string.optional.user_bank_account_input_bank_number', [m('label.field-label.fontsize-smaller', 'Número do banco (3 números)'), m('input.string.optional.w-input.text-field.bank_account_input_bank_number[id=\'user_bank_account_attributes_input_bank_number\'][maxlength=\'3\'][size=\'3\'][type=\'text\']', {
+        }, bankAccount.bank_code + ' . ' + bankAccount.bank_name), m('option[value=\'0\']', '기타'
+        //coffee 'Outro'
+        )]), m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for=\'user_bank_account_attributes_bank_id\']', ' 은행을 선택해 주시길 바랍니다.'
+        //coffee ' Selecione um banco'
+        ), ctrl.parsedErrors.inlineError('bank_id')])), ctrl.showOtherBanksInput() ? m('.w-col.w-col-5.w-sub-col', m('.w-row.u-marginbottom-20[id=\'bank_search\']', m('.w-col.w-col-12', [m('.input.string.optional.user_bank_account_input_bank_number', [m('label.field-label.fontsize-smaller', 'Número do banco (3 números)'), m('input.string.optional.w-input.text-field.bank_account_input_bank_number[id=\'user_bank_account_attributes_input_bank_number\'][maxlength=\'3\'][size=\'3\'][type=\'text\']', {
             name: 'user[bank_account_attributes][input_bank_number]',
             value: ctrl.bankInput(),
             onchange: m.withAttr('value', ctrl.bankInput)
         }), m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for=\'user_bank_account_attributes_input_bank_number\']', ' Número do banco inválido')]), m('a.w-hidden-small.w-hidden-tiny.alt-link.fontsize-smaller[href=\'javascript:void(0);\'][id=\'show_bank_list\']', {
             onclick: ctrl.showOtherBanks.toggle
-        }, ['Busca por nome  ', m.trust('&nbsp;'), m.trust('&gt;')]), m('a.w-hidden-main.w-hidden-medium.alt-link.fontsize-smaller[href=\'javascript:void(0);\'][id=\'show_bank_list\']', {
+        }, ['이름으로 검색  ',
+        //coffee 'Busca por nome  ',
+        m.trust('&nbsp;'), m.trust('&gt;')]), m('a.w-hidden-main.w-hidden-medium.alt-link.fontsize-smaller[href=\'javascript:void(0);\'][id=\'show_bank_list\']', {
             onclick: ctrl.showOtherBanks.toggle
-        }, ['이름으로 검색  ', m.trust('&nbsp;'), m.trust('&gt;')])]))) : '', ctrl.showOtherBanks() ? m('.w-row[id=\'bank_search_list\']', m('.w-col.w-col-12', m('.select-bank-list[data-ix=\'height-0-on-load\']', {
+        }, ['이름으로 검색  ',
+        //coffee 'Busca por nome  ',
+        m.trust('&nbsp;'), m.trust('&gt;')])]))) : '', ctrl.showOtherBanks() ? m('.w-row[id=\'bank_search_list\']', m('.w-col.w-col-12', m('.select-bank-list[data-ix=\'height-0-on-load\']', {
             style: {
                 height: '395px'
             }
-        }, m('.card.card-terciary', [m('.fontsize-small.fontweight-semibold.u-marginbottom-10.u-text-center', '아래에서 은행을 선택하십시오.'), m('.fontsize-smaller', [m('.w-row.card.card-secondary.fontweight-semibold', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('div', '번호')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('div', '이름'))]), !_$1.isEmpty(ctrl.banks()) ? _$1.map(ctrl.banks(), function (bank) {
+        }, m('.card.card-terciary', [m('.fontsize-small.fontweight-semibold.u-marginbottom-10.u-text-center', '아래에서 은행을 선택하십시오.'
+        //coffee 'Selecione o seu banco abaixo'
+        ), m('.fontsize-smaller', [m('.w-row.card.card-secondary.fontweight-semibold', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('div', '번호'
+        //coffee 'Número'
+        )), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('div', '이름'
+        //coffee 'Nome'
+        ))]), !_$1.isEmpty(ctrl.banks()) ? _$1.map(ctrl.banks(), function (bank) {
             return m('.w-row.card.fontsize-smallest', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('a.link-hidden.bank-resource-link[data-code=\'' + bank.code + '\'][data-id=\'' + bank.id + '\'][href=\'javascript:void(0)\']', {
                 onclick: function onclick() {
                     ctrl.bankInput(bank.code);
@@ -11217,36 +12268,57 @@ var userBankForm = {
                     ctrl.showOtherBanks.toggle();
                 }
             }, bank.code + ' . ' + bank.name))]);
-        }) : ''])])))) : '', m('.w-col.w-col-7', m('.w-row', [m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency\']', 'Agência'), m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_agency\'][type=\'text\']', {
+        }) : ''])])))) : '', m('.w-col.w-col-7', m('.w-row', [m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency\']', '에이전시'
+        //coffee 'Agência'
+        ), m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_agency\'][type=\'text\']', {
             value: fields.agency(),
-            class: ctrl.parsedErrors.hasError('agency') ? 'error' : false,
+            class: ctrl.parsedErrors.hasError('agency') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('agency') ? '오류' : false,
             name: 'user[bank_account_attributes][agency]',
             onchange: m.withAttr('value', fields.agency)
-        }), ctrl.parsedErrors.inlineError('agency')]), m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [m('label.text.optional.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency_digit\']', '대행사 수'), m('input.string.optional.w-input.text-field.positive[id=\'user_bank_account_attributes_agency_digit\'][type=\'text\']', {
+        }), ctrl.parsedErrors.inlineError('agency')]), m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [m('label.text.optional.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_agency_digit\']', '대행사 수'
+        //coffee 'Dígito agência'
+        ), m('input.string.optional.w-input.text-field.positive[id=\'user_bank_account_attributes_agency_digit\'][type=\'text\']', {
             value: fields.agency_digit(),
-            class: ctrl.parsedErrors.hasError('agency_digit') ? 'error' : false,
+            class: ctrl.parsedErrors.hasError('agency_digit') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('agency_digit') ? '오류' : false,
             name: 'user[bank_account_attributes][agency_digit]',
             onchange: m.withAttr('value', fields.agency_digit)
-        }), ctrl.parsedErrors.inlineError('agency_digit')])]))]), m('.w-row', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold.fontsize-smaller', '계정 유형'), m('.input.select.required.user_bank_account_account_type', [m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_account_type\']', {
+        }), ctrl.parsedErrors.inlineError('agency_digit')])]))]), m('.w-row', [m('.w-col.w-col-5.w-sub-col', [m('label.field-label.fontweight-semibold.fontsize-smaller', '계정 유형'
+        //coffee 'Tipo de conta'
+        ), m('.input.select.required.user_bank_account_account_type', [m('select.select.required.w-input.text-field.bank-select.positive[id=\'user_bank_account_attributes_account_type\']', {
             name: 'user[bank_account_attributes][account_type]',
-            class: ctrl.parsedErrors.hasError('account_type') ? 'error' : false,
+            class: ctrl.parsedErrors.hasError('account_type') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('account_type') ? '오류' : false,
             onchange: m.withAttr('value', fields.bank_account_type)
         }, [m('option[value=\'conta_corrente\']', {
             selected: fields.bank_account_type() === 'conta_corrente'
-        }, 'Conta corrente'), m('option[value=\'conta_poupanca\']', {
+        }, '당좌 계정'),
+        //coffee }, 'Conta corrente'),
+        m('option[value=\'conta_poupanca\']', {
             Selected: fields.bank_account_type() === 'conta_poupanca'
-        }, 'Conta poupança'), m('option[value=\'conta_corrente_conjunta\']', {
+        }, '저축 예금'),
+        //coffee }, 'Conta poupança'),
+        m('option[value=\'conta_corrente_conjunta\']', {
             selected: fields.bank_account_type() === 'conta_corrente_conjunta'
-        }, 'Conta corrente conjunta'), m('option[value=\'conta_poupanca_conjunta\']', {
+        }, '공동 당좌 예금 계좌'),
+        //coffee }, 'Conta corrente conjunta'),
+        m('option[value=\'conta_poupanca_conjunta\']', {
             selected: fields.bank_account_type() === 'conta_poupanca_conjunta'
-        }, 'Conta poupança conjunta')]), ctrl.parsedErrors.inlineError('account_type')])]), m('.w-col.w-col-7', m('.w-row', [m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_account\']', '계좌 번호'), m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account\'][type=\'text\']', {
+        }, '공동 저축 계좌')
+        //coffee }, 'Conta poupança conjunta')
+        ]), ctrl.parsedErrors.inlineError('account_type')])]), m('.w-col.w-col-7', m('.w-row', [m('.w-col.w-col-7.w-col-small-7.w-col-tiny-7.w-sub-col-middle', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_account\']', '계좌 번호'
+        //coffee 'No. da conta'
+        ), m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account\'][type=\'text\']', {
             value: fields.account(),
-            class: ctrl.parsedErrors.hasError('account') ? 'error' : false,
+            class: ctrl.parsedErrors.hasError('account') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('account') ? '오류' : false,
             onchange: m.withAttr('value', fields.account),
             name: 'user[bank_account_attributes][account]'
         }), ctrl.parsedErrors.inlineError('account')]), m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5', [m('label.text.required.field-label.field-label.fontweight-semibold.force-text-dark.fontsize-smaller[for=\'user_bank_account_attributes_account_digit\']', 'Dígito conta'), m('input.string.required.w-input.text-field.positive[id=\'user_bank_account_attributes_account_digit\'][type=\'text\']', {
             value: fields.account_digit(),
-            class: ctrl.parsedErrors.hasError('account_digit') ? 'error' : false,
+            class: ctrl.parsedErrors.hasError('account_digit') ? '오류' : false,
+            //coffee class: ctrl.parsedErrors.hasError('account_digit') ? 'error' : false,
             onchange: m.withAttr('value', fields.account_digit),
             name: 'user[bank_account_attributes][account_digit]'
         }), ctrl.parsedErrors.inlineError('account_digit')])]))]), bankAccount.bank_account_id ? m('input[id=\'user_bank_account_attributes_id\'][type=\'hidden\']', {
@@ -11588,14 +12660,28 @@ var usersEdit = {
                 'z-index': '10',
                 position: 'relative'
             }
-        }, m('.w-container', [m('a.dashboard-nav-link' + (ctrl.hash() === '#contributions' ? '.selected' : '') + '[data-target=\'#dashboard_contributions\'][href=\'#contributions\'][id=\'dashboard_contributions_link\']', 'Apoiados'), m('a.dashboard-nav-link' + (ctrl.hash() === '#projects' ? '.selected' : '') + '[data-target=\'#dashboard_projects\'][href=\'#projects\'][id=\'dashboard_projects_link\']', 'Criados'), m('a.dashboard-nav-link' + (ctrl.hash() === '#about_me' ? '.selected' : '') + '[data-target=\'#dashboard_about_me\'][href=\'#about_me\'][id=\'dashboard_about_me_link\']', 'Perfil Público'), m('a.dashboard-nav-link' + (ctrl.hash() === '#settings' ? '.selected' : '') + '[data-target=\'#dashboard_settings\'][href=\'#settings\'][id=\'dashboard_settings_link\']', 'Dados cadastrais'), m('a.dashboard-nav-link' + (ctrl.hash() === '#notifications' ? '.selected' : '') + '[data-target=\'#dashboard_notifications\'][href=\'#notifications\'][id=\'dashboard_notifications_link\']', 'Notificações'), m('a.dashboard-nav-link' + (ctrl.hash() === '#balance' ? '.selected' : '') + '[data-target=\'#dashboard_balance\'][href=\'#balance\'][id=\'dashboard_balance_link\']', 'Saldo'), m('a.dashboard-nav-link.u-right-big-only[href=\'/pt/users/' + user.id + '\']', {
+        }, m('.w-container', [m('a.dashboard-nav-link' + (ctrl.hash() === '#contributions' ? '.selected' : '') + '[data-target=\'#dashboard_contributions\'][href=\'#contributions\'][id=\'dashboard_contributions_link\']', '지원됨'),
+        //coffee m(`a.dashboard-nav-link${(ctrl.hash() === '#contributions' ? '.selected' : '')}[data-target='#dashboard_contributions'][href='#contributions'][id='dashboard_contributions_link']`, 'Apoiados'),
+        m('a.dashboard-nav-link' + (ctrl.hash() === '#projects' ? '.selected' : '') + '[data-target=\'#dashboard_projects\'][href=\'#projects\'][id=\'dashboard_projects_link\']', '생성됨'
+        //coffee 'Criados'
+        ), m('a.dashboard-nav-link' + (ctrl.hash() === '#about_me' ? '.selected' : '') + '[data-target=\'#dashboard_about_me\'][href=\'#about_me\'][id=\'dashboard_about_me_link\']', '공개 프로필'
+        //coffee 'Perfil Público
+        ), m('a.dashboard-nav-link' + (ctrl.hash() === '#settings' ? '.selected' : '') + '[data-target=\'#dashboard_settings\'][href=\'#settings\'][id=\'dashboard_settings_link\']', '지적 데이터'
+        //coffee 'Dados cadastrais'
+        ), m('a.dashboard-nav-link' + (ctrl.hash() === '#notifications' ? '.selected' : '') + '[data-target=\'#dashboard_notifications\'][href=\'#notifications\'][id=\'dashboard_notifications_link\']', '알림'
+        //coffee 'Notificações'
+        ), m('a.dashboard-nav-link' + (ctrl.hash() === '#balance' ? '.selected' : '') + '[data-target=\'#dashboard_balance\'][href=\'#balance\'][id=\'dashboard_balance_link\']', '균형'
+        //coffee 'Saldo'
+        ), m('a.dashboard-nav-link.u-right-big-only[href=\'/pt/users/' + user.id + '\']', {
             config: m.route,
             onclick: function onclick() {
                 m.route('/users/' + user.id, {
                     user_id: user.id
                 });
             }
-        }, 'Ir para o perfil público')])), m('section.section', m(ctrl.hash() == '#projects' ? '.w-container' : '.w-section', m('.w-row', user.id ? ctrl.displayTabContent(user) : h.loader())))] : '']);
+        }, '공개 프로필로 이동'
+        //coffee 'Ir para o perfil público'
+        )])), m('section.section', m(ctrl.hash() == '#projects' ? '.w-container' : '.w-section', m('.w-row', user.id ? ctrl.displayTabContent(user) : h.loader())))] : '']);
     }
 };
 
@@ -11715,12 +12801,15 @@ var projectGoalEdit = {
             }, [m('img[alt="Badge aon"][src="/assets/catarse_bootstrap/badge-aon.png"]')]), m('a.choose-mode.choose-flex.w-inline-block.btn-select.flex-column.u-text-center[data-mode="flex"][href="javascript:void(0);"]', {
                 onclick: vm.genClickChangeMode('flex'),
                 class: vm.fields.mode() == 'flex' ? 'selected' : false
-            }, [m('img[alt="Badge flex"][src="/assets/catarse_bootstrap/badge-flex.png"]')])]), m('.u-text-center.fontsize-smaller', [m('a.mode-diff-toggle.link-hidden-light.fontweight-semibold[href="javascript:void(0);"]', { onclick: ctrl.showModeDiff.toggle }, ['Veja a diferença entre os modelos ', m('span.fa.fa-chevron-down')])]), ctrl.showModeDiff() ? m('.mode-diff.u-margintop-30', [m('.flex-row', [m('.w-hidden-small.w-hidden-tiny.fontsize-smaller.flex-column', m.trust(I18n$1.t('aon_diff_html', I18nScope$39()))), m('.w-hidden-small.w-hidden-tiny.fontsize-smaller.flex-column', m.trust(I18n$1.t('flex_diff_html', I18nScope$39())))]), m('.u-text-center.u-margintop-30', [m('.divider.u-marginbottom-20'), m('.fontsize-base', I18n$1.t('want_more', I18nScope$39())), m.trust(I18n$1.t('mode_diff_ebook', I18nScope$39()))])]) : '']
+            }, [m('img[alt="Badge flex"][src="/assets/catarse_bootstrap/badge-flex.png"]')])]), m('.u-text-center.fontsize-smaller', [m('a.mode-diff-toggle.link-hidden-light.fontweight-semibold[href="javascript:void(0);"]', { onclick: ctrl.showModeDiff.toggle }, ['모델의 차이점보기',
+            //coffee 'Veja a diferença entre os modelos',
+            m('span.fa.fa-chevron-down')])]), ctrl.showModeDiff() ? m('.mode-diff.u-margintop-30', [m('.flex-row', [m('.w-hidden-small.w-hidden-tiny.fontsize-smaller.flex-column', m.trust(I18n$1.t('aon_diff_html', I18nScope$39()))), m('.w-hidden-small.w-hidden-tiny.fontsize-smaller.flex-column', m.trust(I18n$1.t('flex_diff_html', I18nScope$39())))]), m('.u-text-center.u-margintop-30', [m('.divider.u-marginbottom-20'), m('.fontsize-base', I18n$1.t('want_more', I18nScope$39())), m.trust(I18n$1.t('mode_diff_ebook', I18nScope$39()))])]) : '']
         }), m(bigCard, {
             label: I18n$1.t('goal_label', I18nScope$39()),
             label_hint: I18n$1.t('goal_hint', I18nScope$39()),
             children: [m('.w-row.u-marginbottom-30', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.w-row', [m('.w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.prefix.no-hover.medium.prefix-permalink', [m('.fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest', 'R$')]), m('.w-col.w-col-8.w-col-small-6.w-col-tiny-6.label-hide', [m('.input.tel.optional.project_goal', [m('label.field-label'), m('input.string.optional.w-input.text-field.postfix.positive.medium[autocomplete="off"][id="project-goal-input"][name="project[goal]"][type="tel"]', {
-                class: vm.e.hasError('goal') ? 'error' : false,
+                class: vm.e.hasError('goal') ? '오류' : false,
+                //coffee class: vm.e.hasError('goal') ? 'error' : false,
                 value: vm.fields.goal(),
                 maxlength: 14,
                 onkeyup: m.withAttr('value', ctrl.applyGoalMask)
@@ -11734,7 +12823,10 @@ var projectGoalEdit = {
                 onchange: m.withAttr('value', vm.fields.online_days),
                 value: vm.fields.online_days(),
                 class: vm.e.hasError('online_days') ? '오류' : false
-            })])]), m('.w-col.w-col-4', [m('.text-field.medium.prefix-permalink.u-text-center', [m('', '일')])])]), vm.e.inlineError('online_days')])])] : [m('.flex-row', [m('a.choose-time.choose-unlimited.w-inline-block.btn-select.flex-column.u-text-center', {
+                //coffee class: vm.e.hasError('online_days') ? 'error' : false
+            })])]), m('.w-col.w-col-4', [m('.text-field.medium.prefix-permalink.u-text-center', [m('', '일')])
+            //coffee m('', 'dias')])
+            ])]), vm.e.inlineError('online_days')])])] : [m('.flex-row', [m('a.choose-time.choose-unlimited.w-inline-block.btn-select.flex-column.u-text-center', {
                 class: _$1.isEmpty(vm.fields.online_days().toString()) ? 'selected' : '',
                 onclick: function onclick() {
                     vm.fields.online_days('');
@@ -11748,9 +12840,13 @@ var projectGoalEdit = {
                 onchange: m.withAttr('value', vm.fields.online_days),
                 value: vm.fields.online_days(),
                 class: vm.e.hasError('online_days') ? '오류' : false
+                //coffee class: vm.e.hasError('online_days') ? 'error' : false
             })])]), m('.w-col.w-col-6', [m('.text-field.medium.prefix-permalink', {
                 class: vm.e.hasError('online_days') ? '오류' : false
-            }, [m('', 'dias')])])]), m('.w-row', vm.e.inlineError('online_days'))])])]
+                //coffee class: vm.e.hasError('online_days') ? 'error' : false
+            }, [m('', '일')
+            //coffee m('', 'dias')
+            ])])]), m('.w-row', vm.e.inlineError('online_days'))])])]
         })])])]), m(projectEditSaveBtn, { loading: ctrl.loading, onSubmit: ctrl.onSubmit })])]);
     }
 };
@@ -12067,7 +13163,8 @@ var projectBasicsEdit = {
             label_hint: I18n$1.t('name_hint', I18nScope$40()),
             children: [m('input.string.required.w-input.text-field.positive.medium[type="text"][maxlength="50"]', {
                 value: vm.fields.name(),
-                class: vm.e.hasError('name') ? 'error' : '',
+                class: vm.e.hasError('name') ? '오류' : '',
+                //coffee class: vm.e.hasError('name') ? 'error' : '',
                 onchange: m.withAttr('value', vm.fields.name)
             }), vm.e.inlineError('name')]
         }), m(inputCard, {
@@ -12078,13 +13175,18 @@ var projectBasicsEdit = {
             },
             children: [m('input.string.optional.w-input.text-field.positive.medium[type="text"]', {
                 config: ctrl.editTag,
-                class: vm.e.hasError('public_tags') ? 'error' : '',
+                class: vm.e.hasError('public_tags') ? '오류' : '',
+                //coffee class: vm.e.hasError('public_tags') ? 'error' : '',
                 onfocus: function onfocus() {
                     return vm.e.inlineError('public_tags', false);
                 }
-            }), ctrl.isEditingTags() ? m('.options-list.table-outer', ctrl.tagEditingLoading() ? m('.dropdown-link', m('.fontsize-smallest', '로드 중...')) : ctrl.tagOptions().length ? _$1.map(ctrl.tagOptions(), function (tag) {
+            }), ctrl.isEditingTags() ? m('.options-list.table-outer', ctrl.tagEditingLoading() ? m('.dropdown-link', m('.fontsize-smallest', '로드 중...'))
+            //coffee ? m('.dropdown-link', m('.fontsize-smallest', 'Carregando...'))
+            : ctrl.tagOptions().length ? _$1.map(ctrl.tagOptions(), function (tag) {
                 return m('.dropdown-link', { onclick: ctrl.addTag(tag) }, m('.fontsize-smaller', tag.name));
-            }) : m('.dropdown-link', m('.fontsize-smallest', '관련 태그 없음...'))) : '', vm.e.inlineError('public_tags'), m('div.tag-choices', _$1.map(ctrl.selectedTags(), function (choice) {
+            }) : m('.dropdown-link', m('.fontsize-smallest', '관련 태그 없음...'))
+            //coffee : m('.dropdown-link', m('.fontsize-smallest', 'Nenhuma tag relacionada...'))
+            ) : '', vm.e.inlineError('public_tags'), m('div.tag-choices', _$1.map(ctrl.selectedTags(), function (choice) {
                 return m('.tag-div', m('div', [m('a.tag-close-btn.fa.fa-times-circle', { onclick: ctrl.removeTag(choice) }), ' ' + choice.name]));
             }))]
         }), m(inputCard, {
@@ -12092,9 +13194,11 @@ var projectBasicsEdit = {
             label_hint: I18n$1.t('permalink_hint', I18nScope$40()),
             children: [m('.w-row', [m('.w-col.w-col-4.w-col-small-6.w-col-tiny6.text-field.prefix.no-hover.medium.prefix-permalink', {
                 class: vm.e.hasError('permalink') ? '오류' : ''
+                //coffee class: vm.e.hasError('permalink') ? 'error' : ''
             }, m('.fontcolor-secondary.u-text-center.fontcolor-secondary.u-text-center.fontsize-smallest', 'www.catarse.me/')), m('.w-col.w-col-8.w-col-small-6.w-col-tiny-6', [m('input.string.required.w-input.text-field.postfix.positive.medium[type="text"]', {
                 value: vm.fields.permalink(),
                 class: vm.e.hasError('permalink') ? '오류' : '',
+                //coffee class: vm.e.hasError('permalink') ? 'error' : '',
                 onchange: m.withAttr('value', vm.fields.permalink)
             })])]), m('.w-row', vm.e.inlineError('permalink'))]
         }), m(inputCard, {
@@ -12102,7 +13206,8 @@ var projectBasicsEdit = {
             label_hint: I18n$1.t('category_hint', I18nScope$40()),
             children: [m('select.required.w-input.text-field.w-select.positive.medium', {
                 value: vm.fields.category_id(),
-                class: vm.e.hasError('category_id') ? 'error' : '',
+                class: vm.e.hasError('category_id') ? '오류' : '',
+                //coffee class: vm.e.hasError('category_id') ? 'error' : '',
                 onchange: m.withAttr('value', vm.fields.category_id)
             }, ctrl.categories()), vm.e.inlineError('category_id')]
         }), m(inputCard, {
@@ -12111,6 +13216,7 @@ var projectBasicsEdit = {
             children: [m('input.string.required.w-input.text-field.positive.medium[type="text"]', {
                 value: vm.fields.city_name(),
                 class: vm.e.hasError('city_id') ? '오류' : '',
+                //coffee class: vm.e.hasError('city_id') ? 'error' : '',
                 onkeyup: vm.generateSearchCity(ctrl.cities)
             }), vm.e.inlineError('city_id'), ctrl.cities()]
         })])])]), m(projectEditSaveBtn, { loading: ctrl.loading, onSubmit: ctrl.onSubmit })])]);
@@ -12231,6 +13337,7 @@ var projectDescriptionEdit = {
             label_hint: I18n$1.t('description_hint', I18nScope$41()),
             children: [m('.preview-container', {
                 class: vm.e.hasError('about_html') ? '오류' : false
+                //coffee class: vm.e.hasError('about_html') ? 'error' : false
             }, h.redactor('project[about_html]', vm.fields.about_html)), vm.e.inlineError('about_html')]
         })])])]), m(projectEditSaveBtn, { loading: ctrl.loading, onSubmit: ctrl.onSubmit })])]);
     }
@@ -12343,6 +13450,7 @@ var projectBudgetEdit = {
             children: [m('input.string.required.w-input.text-field.positive.medium[type="text"]', {
                 value: vm.fields.video_url(),
                 class: vm.e.hasError('video_url') ? '오류' : '',
+                //coffee class: vm.e.hasError('video_url') ? 'error' : '',
                 onchange: m.withAttr('value', vm.fields.video_url)
             }), vm.e.inlineError('video_url')]
         })])])]), m(projectEditSaveBtn, { loading: ctrl.loading, onSubmit: ctrl.onSubmit })])]);
@@ -12455,6 +13563,7 @@ var projectBudgetEdit$1 = {
             label: I18n$1.t('budget_label', I18nScope$43()),
             children: [m('.preview-container', {
                 class: vm.e.hasError('budget') ? '오류' : false
+                //coffee class: vm.e.hasError('budget') ? 'error' : false
             }, h.redactor('project[budget]', vm.fields.budget)), vm.e.inlineError('budget')]
         })])])]), m(projectEditSaveBtn, { loading: ctrl.loading, onSubmit: ctrl.onSubmit })])]);
     }
@@ -12550,8 +13659,12 @@ var shippingFeeInput = {
             value: 'others'
         }), m('label.field-label.fontsize-smallest', othersCount > 0 ? 'Resto do Brasil' : 'Todos os estados do Brasil')] : ctrl.fee.destination() === 'international' ? [m('input[type=\'hidden\']', {
             value: '국제'
-        }), m('label.field-label.fontsize-smallest', '국제')] : m('select.fontsize-smallest.text-field.text-field-light.w-select', {
+            //coffee value: 'international'
+        }), m('label.field-label.fontsize-smallest', '국제'
+        //coffee 'Internacional'
+        )] : m('select.fontsize-smallest.text-field.text-field-light.w-select', {
             class: ctrl.fee.error ? '오류' : false,
+            //coffee class: ctrl.fee.error ? 'error' : false,
             value: ctrl.fee.destination(),
             onchange: m.withAttr('value', ctrl.fee.destination)
         }, [_$1.map(states(), function (state) {
@@ -12609,6 +13722,7 @@ var editRewardCard = {
             validate = function validate() {
             args.error(false);
             args.errors('정보를 저장하는 중 오류가 발생했습니다. 보고 된 데이터 확인.');
+            //coffee args.errors('Erro ao salvar informações. Confira os dados informados');
             descriptionError(false);
             minimumValueError(false);
             deliverAtError(false);
@@ -12693,7 +13807,8 @@ var editRewardCard = {
             states(data);
             states().unshift({
                 acronym: null,
-                name: 'Estado'
+                name: '주'
+                //coffee name: 'Estado'
             });
 
             if (!reward.newReward) {
@@ -12737,18 +13852,28 @@ var editRewardCard = {
             return m('.fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle', m('span', message));
         };
 
-        return ctrl.destroyed() ? m('div', '') : m('.w-row.card.card-terciary.u-marginbottom-20.card-edition.medium', [m('.card', m('.w-form', [m('.w-row', [m('.w-col.w-col-5', m('label.fontsize-smaller', '제목:')), m('.w-col.w-col-7', m('input.w-input.text-field.positive[aria-required=\'true\'][autocomplete=\'off\'][type=\'tel\']', {
+        return ctrl.destroyed() ? m('div', '') : m('.w-row.card.card-terciary.u-marginbottom-20.card-edition.medium', [m('.card', m('.w-form', [m('.w-row', [m('.w-col.w-col-5', m('label.fontsize-smaller', '제목:'
+        //coffee 'Título:'
+        )), m('.w-col.w-col-7', m('input.w-input.text-field.positive[aria-required=\'true\'][autocomplete=\'off\'][type=\'tel\']', {
             value: ctrl.reward.title(),
             oninput: m.withAttr('value', ctrl.reward.title)
-        }))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-5', m('label.fontsize-smaller', '최솟값:')), m('.w-col.w-col-7', [m('.w-row', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3.text-field.positive.prefix.no-hover', m('.fontsize-smallest.fontcolor-secondary.u-text-center', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.string.tel.required.w-input.text-field.project-edit-reward.positive.postfix[aria-required=\'true\'][autocomplete=\'off\'][required=\'required\'][type=\'tel\']', {
+        }))]), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-5', m('label.fontsize-smaller', '최솟값:'
+        //coffee 'Valor mínimo:'
+        )), m('.w-col.w-col-7', [m('.w-row', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3.text-field.positive.prefix.no-hover', m('.fontsize-smallest.fontcolor-secondary.u-text-center', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.string.tel.required.w-input.text-field.project-edit-reward.positive.postfix[aria-required=\'true\'][autocomplete=\'off\'][required=\'required\'][type=\'tel\']', {
 
             class: ctrl.minimumValueError() ? '오류' : false,
+            //coffee class: ctrl.minimumValueError() ? 'error' : false,
             value: ctrl.reward.minimum_value(),
             oninput: function oninput(e) {
                 return ctrl.acceptNumeric(e);
             }
-        }))]), ctrl.minimumValueError() ? inlineError('Valor deve ser igual ou superior a R$10.') : '', m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_minimum_value']", '10보다 크거나 같은 최솟값을 입력하십시오.')])]), m('.w-row', [m('.w-col.w-col-5', m('label.fontsize-smaller', 'Previsão de entrega:')), m('.w-col.w-col-7', m('.w-row', m('.w-col.w-col-12', m('.w-row', [m('input[type=\'hidden\'][value=\'1\']'), m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
-            class: ctrl.deliverAtError() ? 'error' : false,
+        }))]), ctrl.minimumValueError() ? inlineError('Valor deve ser igual ou superior a R$10.') : '', m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_minimum_value']", '10보다 크거나 같은 최솟값을 입력하십시오.'
+        //coffee 'Informe um valor mínimo maior ou igual a 10'
+        )])]), m('.w-row', [m('.w-col.w-col-5', m('label.fontsize-smaller', '배송 예상:'
+        //coffee 'Previsão de entrega:'
+        )), m('.w-col.w-col-7', m('.w-row', m('.w-col.w-col-12', m('.w-row', [m('input[type=\'hidden\'][value=\'1\']'), m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
+            class: ctrl.deliverAtError() ? '오류' : false,
+            //coffee class: ctrl.deliverAtError() ? 'error' : false,
             onchange: function onchange(e) {
                 ctrl.reward.deliver_at(moment(ctrl.reward.deliver_at()).month(parseInt(e.target.value) - 1).format());
             }
@@ -12758,7 +13883,8 @@ var editRewardCard = {
                 selected: moment(ctrl.reward.deliver_at()).format('M') == monthIndex + 1
             }, h.capitalize(month));
         })]), m('select.date.required.w-input.text-field.w-col-6.positive[aria-required=\'true\'][discard_day=\'true\'][required=\'required\'][use_short_month=\'true\']', {
-            class: ctrl.deliverAtError() ? 'error' : false,
+            class: ctrl.deliverAtError() ? '오류' : false,
+            //coffee class: ctrl.deliverAtError() ? '오류' : false,
             onchange: function onchange(e) {
                 ctrl.reward.deliver_at(moment(reward.deliver_at()).year(parseInt(e.target.value)).format());
             }
@@ -12767,17 +13893,31 @@ var editRewardCard = {
                 value: year,
                 selected: moment(ctrl.reward.deliver_at()).format('YYYY') === String(year)
             }, year);
-        })])]))), ctrl.deliverAtError() ? inlineError('Data de entrega não pode ser no passado.') : '')]), m('.w-row', m('label.fontsize-smaller', '상품 설명:')), m('.w-row', [m('textarea.text.required.w-input.text-field.positive.height-medium[aria-required=\'true\'][placeholder=\'Descreva sua recompensa\'][required=\'required\']', {
+        })])]))), ctrl.deliverAtError() ? inlineError('Data de entrega não pode ser no passado.') : ''
+        //coffee ctrl.deliverAtError() ? inlineError('배송 날짜는 과거 일 수 없습니다..') : ''
+        )]), m('.w-row', m('label.fontsize-smaller', '상품 설명:'
+        //coffee 'Descrição:'
+        )), m('.w-row', [m('textarea.text.required.w-input.text-field.positive.height-medium[aria-required=\'true\'][placeholder=\'보상에 대해 설명해주십시오.\'][required=\'required\']', {
+            //coffee m('textarea.text.required.w-input.text-field.positive.height-medium[aria-required=\'true\'][placeholder=\'Descreva sua recompensa\'][required=\'required\']', {
             value: ctrl.reward.description(),
-            class: ctrl.descriptionError() ? 'error' : false,
+            class: ctrl.descriptionError() ? '오류' : false,
+            //coffee class: ctrl.descriptionError() ? 'error' : false,
             oninput: m.withAttr('value', ctrl.reward.description)
-        }), m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_description']", '설명은 비워 둘 수 없습니다.')]), ctrl.descriptionError() ? inlineError('Descrição não pode ficar em branco.') : '',, m('.u-marginbottom-30.w-row', [m('.w-col.w-col-3', m("label.fontsize-smaller[for='field-2']", 'Tipo de entrega')), m('.w-col.w-col-9', [m('select.positive.text-field.w-select', {
+        }), m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_description']", '설명은 비워 둘 수 없습니다.'
+        //coffee 'Descrição não pode ficar em branco'
+        )]), ctrl.descriptionError() ? inlineError('설명은 비워 둘 수 없습니다.') : '',,
+        //coffee ctrl.descriptionError() ? inlineError('Descrição não pode ficar em branco.') : '', ,
+        m('.u-marginbottom-30.w-row', [m('.w-col.w-col-3', m("label.fontsize-smaller[for='field-2']", '배송 유형'
+        //coffee 'Tipo de entrega'
+        )), m('.w-col.w-col-9', [m('select.positive.text-field.w-select', {
             value: ctrl.reward.shipping_options() || 'free',
             onchange: function onchange(e) {
                 ctrl.reward.shipping_options(e.target.value);
                 ctrl.updateOptions();
             }
-        }, [m('option[value=\'international\']', '국내 및 국제화물'), m('option[value=\'national\']', 'Frete Nacional'), m('option[value=\'free\']', 'Sem frete envolvido'), m('option[value=\'presential\']', 'Retirada presencial')]), ctrl.reward.shipping_options() === 'national' || ctrl.reward.shipping_options() === 'international' ? m('.card.card-terciary', [
+        }, [m('option[value=\'international\']', '국내 및 국제화물'
+        //coffee 'Frete Nacional e Internacional'
+        ), m('option[value=\'national\']', 'Frete Nacional'), m('option[value=\'free\']', 'Sem frete envolvido'), m('option[value=\'presential\']', 'Retirada presencial')]), ctrl.reward.shipping_options() === 'national' || ctrl.reward.shipping_options() === 'international' ? m('.card.card-terciary', [
 
         // state fees
         _$1.map(fees, function (fee, feeIndex) {
@@ -12792,15 +13932,21 @@ var editRewardCard = {
                 ctrl.fees().push(newFee);
                 return false;
             }
-        }, 'Adicionar destino'))]) : ''])]), m('.w-row.u-margintop-30', [m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5.w-sub-col-middle', m('a.w-button.btn.btn-small', {
+        }, '목적지 추가'
+        //coffee 'Adicionar destino'
+        ))]) : ''])]), m('.w-row.u-margintop-30', [m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5.w-sub-col-middle', m('a.w-button.btn.btn-small', {
             onclick: function onclick() {
                 ctrl.saveReward();
             }
-        }, '저장')), reward.newReward ? '' : m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5.w-sub-col-middle', m('a.w-button.btn-terciary.btn.btn-small.reward-close-button', {
+        }, '저장')
+        //coffee }, 'Salvar')
+        ), reward.newReward ? '' : m('.w-col.w-col-5.w-col-small-5.w-col-tiny-5.w-sub-col-middle', m('a.w-button.btn-terciary.btn.btn-small.reward-close-button', {
             onclick: function onclick() {
                 reward.edit.toggle();
             }
-        }, '취소')), m('.w-col.w-col-1.w-col-small-1.w-col-tiny-1', [m('input[type=\'hidden\'][value=\'false\']'), m('a.remove_fields.existing', { onclick: ctrl.confirmDelete }, m('.btn.btn-small.btn-terciary.fa.fa-lg.fa-trash.btn-no-border'))])])]))]);
+        }, '취소')
+        //coffee }, 'Cancelar')
+        ), m('.w-col.w-col-1.w-col-small-1.w-col-tiny-1', [m('input[type=\'hidden\'][value=\'false\']'), m('a.remove_fields.existing', { onclick: ctrl.confirmDelete }, m('.btn.btn-small.btn-terciary.fa.fa-lg.fa-trash.btn-no-border'))])])]))]);
     }
 };
 
@@ -12825,6 +13971,7 @@ var dashboardRewardCard = {
             limitError(false);
             args.error(false);
             args.errors('정보 저장 오류.');
+            //coffee args.errors('Erro ao salvar informações.');
             if (reward.maximum_contributions() && reward.paid_count() > reward.maximum_contributions()) {
                 limitError(true);
                 args.error(true);
@@ -12872,7 +14019,10 @@ var dashboardRewardCard = {
             maximum: reward.maximum_contributions()
         }))])) : '', reward.deliver_at() ? m('.fontsize-smallest', [m('b', I18n$1.t('delivery_estimation', I18nScope$45())), h.momentify(reward.deliver_at(), 'MMM/YYYY')]) : '', m('.fontsize-smallest', m('b', I18n$1.t('delivery', I18nScope$45()) + ': '), I18n$1.t('shipping_options.' + reward.shipping_options(), I18nScope$45())), m('.u-margintop-40.w-row', [ctrl.showLimited() ? '' : m('.w-col.w-col-4', [m('button.btn.btn-small.btn-terciary.w-button', {
             onclick: ctrl.toggleShowLimit
-        }, '한도 변경')]), m('.w-col.w-col-8')]), m('div' + (ctrl.showLimited() ? '' : '.w-hidden'), m('.card.card-terciary.div-display-none.u-radius', {
+        }, '한도 변경')
+        //coffee }, 'Alterar limite')
+
+        ]), m('.w-col.w-col-8')]), m('div' + (ctrl.showLimited() ? '' : '.w-hidden'), m('.card.card-terciary.div-display-none.u-radius', {
             style: {
                 display: 'block'
             }
@@ -12880,13 +14030,19 @@ var dashboardRewardCard = {
             onclick: ctrl.toggleLimit,
             checked: reward.limited()
         }), m('label.fontsize-smaller.fontweight-semibold.w-form-label', I18n$1.t('reward_limited_input', I18nScope$45()))])), m('.w-col.w-col-6', m('input.string.tel.optional.w-input.text-field.u-marginbottom-30.positive[placeholder=\'Quantidade disponível\'][type=\'tel\']', {
-            class: ctrl.limitError() ? 'error' : false,
+            class: ctrl.limitError() ? '오류' : false,
+            //coffee class: ctrl.limitError() ? 'error' : false,
             value: reward.maximum_contributions(),
             onchange: m.withAttr('value', reward.maximum_contributions)
-        }))]), m('.w-row', [m('.w-sub-col.w-col.w-col-4', m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, 'Salvar')), m('.w-sub-col.w-col.w-col-4', m('button.btn.btn-small.btn-terciary.w-button', {
+        }))]), m('.w-row', [m('.w-sub-col.w-col.w-col-4', m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, '저장')
+        //coffee m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, 'Salvar')
+        ), m('.w-sub-col.w-col.w-col-4', m('button.btn.btn-small.btn-terciary.w-button', {
             onclick: ctrl.toggleShowLimit
-        }, '취소')), m('.w-clearfix.w-col.w-col-4')])]]))), ctrl.limitError() ? m(inlineError, {
+        }, '취소'
+        //coffee 'Cancelar'
+        )), m('.w-clearfix.w-col.w-col-4')])]]))), ctrl.limitError() ? m(inlineError, {
             message: '한도는 후원 금액보다 커야합니다.'
+            //coffee message: 'Limite deve ser maior que quantidade de apoios.'
         }) : '']), m('.u-margintop-20', [m('.fontcolor-secondary.fontsize-smallest.fontweight-semibold', I18n$1.t('reward_link_label', I18nScope$45())), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', I18n$1.t('reward_link_hint', I18nScope$45())), m('.w-form', m('.w-col.w-col-6', m.component(copyTextInput, {
             value: 'https://www.catarse.me/pt/projects/' + args.project_id + '/contributions/new?reward_id=' + reward.id()
         })))])]);
@@ -12993,6 +14149,7 @@ var projectEditReward = {
 
         return m("[id='dashboard-rewards-tab']", project() ? [m('.w-section.section', m('.w-container', [ctrl.showSuccess() ? m.component(popNotification, {
             message: '보상이 성공적으로 저장되었습니다.'
+            //coffee message: 'Recompensa salva com sucesso'
         }) : '', ctrl.error() ? m.component(popNotification, {
             message: ctrl.errors(),
             error: true
@@ -13174,6 +14331,7 @@ var projectCardEdit = {
             label_hint: I18n$1.t('uploaded_image_hint', I18nScope$46()),
             children: [m('input.file.optional.w-input.text-field[id="project_uploaded_image"][name="project[uploaded_image]"][type="file"]', {
                 class: vm.e.hasError('uploaded_image') ? '오류' : false,
+                //coffee class: vm.e.hasError('uploaded_image') ? 'error' : false,
                 onchange: vm.prepareForUpload
             }), vm.e.inlineError('uploaded_image')]
         }), m(inputCard, {
@@ -13182,6 +14340,7 @@ var projectCardEdit = {
             children: [m('textarea.text.optional.w-input.text-field.positive[id="project_headline"][maxlength="100"][name="project[headline]"][rows="3"]', {
                 onchange: m.withAttr('value', vm.fields.headline),
                 class: vm.e.hasError('headline') ? '오류' : false
+                //coffee class: vm.e.hasError('headline') ? 'error' : false
             }, vm.fields.headline()), vm.e.inlineError('headline')]
         })]), m(projectCard, { project: vm.currentProject(), type: 'small' })])])]), m(projectEditSaveBtn, { loading: ctrl.loading, onSubmit: ctrl.onSubmit })])]);
     }
@@ -13206,15 +14365,23 @@ var projectEditCard = {
 
 var projectPreview = {
     view: function view(ctrl, args) {
-        return args.project() ? m('div', [m('.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-8.w-col-push-2', [m('.fontweight-semibold.fontsize-large.u-margintop-40', '피드백 시간입니다!'), m('p.fontsize-base', '아래의 링크를 친구와 공유하고 캠페인 조정에 시간을 할애하십시오.'), m('.w-row.u-marginbottom-30', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('input.w-input.text-field[type=\'text\'][value=\'https://www.catarse.me/' + args.project().permalink + '\']')), m('.w-col.w-col-3')])]), m('.w-col.w-col-2')]))), m(projectsShow, args)]) : h.loader();
+        return args.project() ? m('div', [m('.u-text-center', m('.w-container', m('.w-row', [m('.w-col.w-col-8.w-col-push-2', [m('.fontweight-semibold.fontsize-large.u-margintop-40', '피드백 시간입니다!'
+        //coffee 'É hora dos feedbacks!'
+        ), m('p.fontsize-base', '아래의 링크를 친구와 공유하고 캠페인 조정에 시간을 할애하십시오.'
+        //coffee 'Compartilhe o link abaixo com seus amigos e aproveite o momento para fazer ajustes finos que ajudem na sua campanha.'
+        ), m('.w-row.u-marginbottom-30', [m('.w-col.w-col-3'), m('.w-col.w-col-6', m('input.w-input.text-field[type=\'text\'][value=\'https://www.catarse.me/' + args.project().permalink + '\']')), m('.w-col.w-col-3')])]), m('.w-col.w-col-2')]))), m(projectsShow, args)]) : h.loader();
     }
 };
 
 var announceExpirationModal = {
     view: function view(ctrl, args) {
-        return m('div', [m('.modal-dialog-content', [m('.fontsize-large.u-text-center.u-marginbottom-30.fontweight-semibold', 'Você confirma?'), m('.fontsize-large.u-text-center.u-marginbottom-30', ['귀하의 컬렉션은 당일에 종료됩니다.', m('span.expire-date', args.expirationDate), ', as 23h59. Até lá, você pode captar recursos e seguir firme na sua campanha! Assim que o seu prazo chegar ao fim, você deverá confirmar os seus dados bancários. A partir de então, depositaremos o dinheiro na sua conta em até 10 dias úteis.'])]), m('.modal-dialog-nav-bottom', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-4', [m("input[id='anchor'][name='anchor'][type='hidden'][value='announce_expiration']"), m("input.btn.btn.btn-large[id='budget-save'][name='commit'][type='submit'][value='Sim']")]), m('.w-col.w-col-4', m('button.btn.btn-large.btn-terciary', {
+        return m('div', [m('.modal-dialog-content', [m('.fontsize-large.u-text-center.u-marginbottom-30.fontweight-semibold', 'Você confirma?'), m('.fontsize-large.u-text-center.u-marginbottom-30', ['귀하의 컬렉션은 당일에 종료됩니다.',
+        //coffee 'Sua arrecadação irá terminar no dia',
+        m('span.expire-date', args.expirationDate), ', as 23h59. Até lá, você pode captar recursos e seguir firme na sua campanha! Assim que o seu prazo chegar ao fim, você deverá confirmar os seus dados bancários. A partir de então, depositaremos o dinheiro na sua conta em até 10 dias úteis.'])]), m('.modal-dialog-nav-bottom', m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-4', [m("input[id='anchor'][name='anchor'][type='hidden'][value='announce_expiration']"), m("input.btn.btn.btn-large[id='budget-save'][name='commit'][type='submit'][value='Sim']")]), m('.w-col.w-col-4', m('button.btn.btn-large.btn-terciary', {
             onclick: args.displayModal.toggle
-        }, ' Não')), m('.w-col.w-col-2')]))]);
+        }, ' 아니요'
+        //coffee ' Não'
+        )), m('.w-col.w-col-2')]))]);
     }
 };
 
@@ -13230,16 +14397,26 @@ var projectAnnounceExpiration = {
     view: function view(ctrl, args) {
         var days = ctrl.days,
             expirationDate = moment().add(ctrl.days(), 'days').format('DD/MM/YYYY');
-        return m("[id='dashboard-announce_expiration-tab']", m('form.simple_form.project-form.w-form[accept-charset=\'UTF-8\'][action=\'/pt/flexible_projects/' + args.project_id + '\'][id=\'expiration-form\'][method=\'post\'][novalidate=\'novalidate\']', [m("input[name='utf8'][type='hidden'][value='✓']"), m("input[name='_method'][type='hidden'][value='patch']"), m('input[name=\'authenticity_token\'][type=\'hidden\'][value=\'' + h.authenticityToken() + '\']'), m('.w-section', m('.w-container', m('.w-row.u-marginbottom-60', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.card-big.card.card-terciary.u-radius', [m('.u-marginbottom-30.w-row', [m('.w-sub-col.w-col.w-col-6', m('.fontsize-small.u-marginbottom-10', ['지금부터 며칠 후에 컬렉션을 닫으시겠습니까??', m('br'), m('span.fontsize-smaller.fontweight-semibold', '(최소 2 일)')])), m('.w-col.w-col-6', m('.w-row', [m('.w-col.w-col-8.w-col-small-6.w-col-tiny-6', m("input.numeric.numeric.optional.w-input.text-field.positive.medium[id='flexible_project_online_days'][step='any'][type='number']", {
+        return m("[id='dashboard-announce_expiration-tab']", m('form.simple_form.project-form.w-form[accept-charset=\'UTF-8\'][action=\'/pt/flexible_projects/' + args.project_id + '\'][id=\'expiration-form\'][method=\'post\'][novalidate=\'novalidate\']', [m("input[name='utf8'][type='hidden'][value='✓']"), m("input[name='_method'][type='hidden'][value='patch']"), m('input[name=\'authenticity_token\'][type=\'hidden\'][value=\'' + h.authenticityToken() + '\']'), m('.w-section', m('.w-container', m('.w-row.u-marginbottom-60', [m('.w-col.w-col-1'), m('.w-col.w-col-10', m('.card-big.card.card-terciary.u-radius', [m('.u-marginbottom-30.w-row', [m('.w-sub-col.w-col.w-col-6', m('.fontsize-small.u-marginbottom-10', ['지금부터 며칠 후에 컬렉션을 닫으시겠습니까?',
+        //coffee 'Em quantos dias, contados a partir de agora, você quer encerrar a sua arrecadação?',
+        m('br'), m('span.fontsize-smaller.fontweight-semibold', '(최소 2 일)'
+        //coffee '(mínimo de 2 dias)'
+        )])), m('.w-col.w-col-6', m('.w-row', [m('.w-col.w-col-8.w-col-small-6.w-col-tiny-6', m("input.numeric.numeric.optional.w-input.text-field.positive.medium[id='flexible_project_online_days'][step='any'][type='number']", {
             name: 'flexible_project[online_days]',
             value: days(),
             onchange: m.withAttr('value', ctrl.days)
-        })), m('.medium.no-hover.postfix.prefix-permalink.text-field.w-col.w-col-4.w-col-small-6.w-col-tiny-6', m('.fontcolor-secondary.fontsize-base.lineheight-tightest.u-text-center', '일'))]))]), m('.fontcolor-secondary.u-text-center', [m('.fontsize-smaller', 'Você poderá receber apoios até:'), m('.fontsize-base', [m('span.expire-date', expirationDate), ' as 23h59m'])])])), m('.w-col.w-col-1')]))), m('.w-section', m('.w-container', m('.w-row', [m('.w-col.w-col-4'), m('.w-col.w-col-4', m('button.btn.btn-large.u-marginbottom-20', {
+        })), m('.medium.no-hover.postfix.prefix-permalink.text-field.w-col.w-col-4.w-col-small-6.w-col-tiny-6', m('.fontcolor-secondary.fontsize-base.lineheight-tightest.u-text-center', '일'
+        //coffee 'Dias'
+        ))]))]), m('.fontcolor-secondary.u-text-center', [m('.fontsize-smaller', '후원을 받을 때까지:'
+        //coffee 'Você poderá receber apoios até:'
+        ), m('.fontsize-base', [m('span.expire-date', expirationDate), ' as 23h59m'])])])), m('.w-col.w-col-1')]))), m('.w-section', m('.w-container', m('.w-row', [m('.w-col.w-col-4'), m('.w-col.w-col-4', m('button.btn.btn-large.u-marginbottom-20', {
             onclick: function onclick(e) {
                 ctrl.showModal.toggle();
                 e.preventDefault();
             }
-        }, '  확인'))]))), ctrl.showModal() ? m.component(modalBox, {
+        }, '  확인'
+        //coffee '  Confirmar'
+        ))]))), ctrl.showModal() ? m.component(modalBox, {
             displayModal: ctrl.showModal,
             content: [announceExpirationModal, {
                 expirationDate: expirationDate,
@@ -13379,11 +14556,20 @@ var paymentSlip = {
         };
     },
     view: function view(ctrl, args) {
-        return m('.w-row', m('.w-col.w-col-12', m('.u-margintop-30.u-marginbottom-60.u-radius.card-big.card', [m('.fontsize-small.u-marginbottom-20', ctrl.slipPaymentDate() ? 'Esse boleto banc\xE1rio vence no dia ' + h.momentify(ctrl.slipPaymentDate().slip_expiration_date) + '.' : '로딩...'), m('.fontsize-small.u-marginbottom-40', 'Ao gerar o boleto, o realizador já está contando com o seu apoio. Pague até a data de vencimento pela internet, casas lotéricas, caixas eletrônicos ou agência bancária.'), m('.w-row', m('.w-col.w-col-8.w-col-push-2', [ctrl.loading() ? h.loader() : ctrl.completed() ? '' : m('input.btn.btn-large.u-marginbottom-20', {
+        return m('.w-row', m('.w-col.w-col-12', m('.u-margintop-30.u-marginbottom-60.u-radius.card-big.card', [m('.fontsize-small.u-marginbottom-20', ctrl.slipPaymentDate() ? '\uC774 \uC740\uD589 \uC804\uD45C\uB294 ' + h.momentify(ctrl.slipPaymentDate().slip_expiration_date) + '\uC5D0 \uB9CC\uB8CC\uB429\uB2C8\uB2E4.' : '로딩...'
+        //coffee ctrl.slipPaymentDate() ? `Esse boleto bancário vence no dia ${h.momentify(ctrl.slipPaymentDate().slip_expiration_date)}.` : 'carregando...'
+        ), m('.fontsize-small.u-marginbottom-40', 'Ao gerar o boleto, o realizador já está contando com o seu apoio. Pague até a data de vencimento pela internet, casas lotéricas, caixas eletrônicos ou agência bancária.'), m('.w-row', m('.w-col.w-col-8.w-col-push-2', [ctrl.loading() ? h.loader() : ctrl.completed() ? '' : m('input.btn.btn-large.u-marginbottom-20', {
             onclick: ctrl.buildSlip,
-            value: 'Imprimir Boleto',
+            value: '티켓 인쇄',
+            //coffee value: 'Imprimir Boleto',
             type: 'submit'
-        }), ctrl.error() ? m.component(inlineError, { message: ctrl.error() }) : '', m('.fontsize-smallest.u-text-center.u-marginbottom-30', ['Ao apoiar, você concorda com os ', m('a.alt-link[href=\'/pt/terms-of-use\']', '이용 약관'), 'e ', m('a.alt-link[href=\'/pt/privacy-policy\']', '개인 정보 보호 정책')])]))])));
+        }), ctrl.error() ? m.component(inlineError, { message: ctrl.error() }) : '', m('.fontsize-smallest.u-text-center.u-marginbottom-30', ['지원함으로써 귀하는 ',
+        //coffee 'Ao apoiar, você concorda com os ',
+        m('a.alt-link[href=\'/pt/terms-of-use\']', '이용 약관'
+        //coffee 'Termos de Uso'
+        ), 'e ', m('a.alt-link[href=\'/pt/privacy-policy\']', '개인 정보 보호 정책'
+        //coffee 'Política de Privacidade'
+        )])]))])));
     }
 };
 
@@ -14109,12 +15295,14 @@ var paymentCreditCard = {
         })) : ctrl.loadingSavedCreditCards() ? m('.fontsize-small.u-marginbottom-40', I18n$1.t('credit_card.loading', ctrl.scope())) : '', !ctrl.showForm() ? '' : m('#credit-card-payment-form.u-marginbottom-40', [m('div#credit-card-name', [m('.w-row', [m(isInternational ? '.w-col.w-col-12' : '.w-col.w-col-6.w-col-tiny-6.w-sub-col-middle', [m('label.field-label.fontweight-semibold[for="credit-card-name"]', I18n$1.t('credit_card.name', ctrl.scope())), m('.fontsize-smallest.fontcolor-terciary.u-marginbottom-10.field-label-tip.u-marginbottom-10', I18n$1.t('credit_card.name_tip', ctrl.scope())), m('input.w-input.text-field[name="credit-card-name"][type="text"]', {
             onfocus: ctrl.vm.resetCreditCardFieldError('name'),
             class: ctrl.fieldHasError('name') ? '오류' : '',
+            //coffee class: ctrl.fieldHasError('name') ? 'error' : '',
             onblur: ctrl.checkCreditCardName,
             onkeyup: m.withAttr('value', ctrl.applyCreditCardNameMask),
             value: ctrl.creditCard.name()
         }), ctrl.fieldHasError('name')]), !isInternational ? m('.w-col.w-col-6.w-col-tiny-6.w-sub-col-middle', [m('label.field-label.fontweight-semibold[for="credit-card-document"]', I18n$1.t('credit_card.document', ctrl.scope())), m('.fontsize-smallest.fontcolor-terciary.u-marginbottom-10.field-label-tip.u-marginbottom-10', I18n$1.t('credit_card.document_tip', ctrl.scope())), m('input.w-input.text-field[name="credit-card-document"]', {
             onfocus: ctrl.vm.resetCreditCardFieldError('cardOwnerDocument'),
             class: ctrl.fieldHasError('cardOwnerDocument') ? '오류' : '',
+            //coffee class: ctrl.fieldHasError('cardOwnerDocument') ? 'error' : '',
             onblur: ctrl.checkCardOwnerDocument,
             onkeyup: m.withAttr('value', ctrl.applyDocumentMask),
             value: ctrl.creditCard.cardOwnerDocument()
@@ -14122,19 +15310,22 @@ var paymentCreditCard = {
             onfocus: ctrl.vm.resetCreditCardFieldError('number'),
             onblur: ctrl.checkCreditCard,
             class: ctrl.fieldHasError('number') ? '오류' : '',
+            //coffee class: ctrl.fieldHasError('number') ? 'error' : '',
             value: ctrl.creditCard.number,
             name: 'credit-card-number',
             type: ctrl.creditCardType
         }), ctrl.fieldHasError('number')]), m('div#credit-card-date', [m('label.field-label.fontweight-semibold[for="expiration-date"]', [I18n$1.t('credit_card.expiry', ctrl.scope())]), m('.fontsize-smallest.fontcolor-terciary.u-marginbottom-10.field-label-tip.u-marginbottom-10', I18n$1.t('credit_card.expiry_tip', ctrl.scope())), m('.w-row', [m('.w-col.w-col-6.w-col-tiny-6.w-sub-col-middle', m('select.w-select.text-field[name="expiration-date_month"]', {
             onfocus: ctrl.vm.resetCreditCardFieldError('expiry'),
             class: ctrl.fieldHasError('expiry') ? '오류' : '',
+            //coffee class: ctrl.fieldHasError('expiry') ? 'error' : '',
             onchange: m.withAttr('value', ctrl.creditCard.expMonth),
             value: ctrl.creditCard.expMonth()
         }, _$1.map(ctrl.expMonths, function (month) {
             return m('option', { value: month[0] }, month[1]);
         }))), m('.w-col.w-col-6.w-col-tiny-6', m('select.w-select.text-field[name="expiration-date_year"]', {
             onfocus: ctrl.vm.resetCreditCardFieldError('expiry'),
-            class: ctrl.fieldHasError('expiry') ? 'error' : '',
+            class: ctrl.fieldHasError('expiry') ? '오류' : '',
+            //coffee class: ctrl.fieldHasError('expiry') ? 'error' : '',
             onchange: m.withAttr('value', ctrl.creditCard.expYear),
             onblur: ctrl.checkExpiry,
             value: ctrl.creditCard.expYear()
@@ -14143,6 +15334,7 @@ var paymentCreditCard = {
         }))), m('.w-col.w-col-12', ctrl.fieldHasError('expiry'))])]), m('div#credit-card-cvv', [m('label.field-label.fontweight-semibold[for="credit-card-cvv"]', [I18n$1.t('credit_card.cvv', ctrl.scope()), ctrl.buildTooltip(I18n$1.t('credit_card.cvv_tooltip', ctrl.scope()))]), m('.fontsize-smallest.fontcolor-terciary.u-marginbottom-10.field-label-tip.u-marginbottom-10', I18n$1.t('credit_card.cvv_tip', ctrl.scope())), m('.w-row', [m('.w-col.w-col-8.w-col-tiny-6.w-sub-col-middle', m('input.w-input.text-field[name="credit-card-cvv"][type="tel"]', {
             onfocus: ctrl.vm.resetCreditCardFieldError('cvv'),
             class: ctrl.fieldHasError('cvv') ? '오류' : '',
+            //coffee class: ctrl.fieldHasError('cvv') ? 'error' : '',
             onkeyup: m.withAttr('value', ctrl.applyCvvMask),
             onblur: ctrl.checkcvv,
             value: ctrl.creditCard.cvv()
@@ -14178,12 +15370,12 @@ var paymentForm = {
             onclick: function onclick() {
                 return ctrl.isSlip(false);
             },
-            class: !ctrl.isSlip() ? '선택된' : ''
+            class: !ctrl.isSlip() ? 'selected' : ''
         }, [m('.fontsize-base.fontweight-semibold', I18n$1.t('credit_card_select', ctrl.scope())), m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-20', I18n$1.t('debit_card_info', ctrl.scope())), m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/57299bd8f326a24d4828a0fd_credit-cards.png\']')]), !args.vm.isInternational() ? m('a.w-inline-block.btn-select.flex-column.u-marginbottom-20.u-text-center[href=\'javascript:void(0);\']', {
             onclick: function onclick() {
                 return ctrl.isSlip(true);
             },
-            class: ctrl.isSlip() ? '선택된' : ''
+            class: ctrl.isSlip() ? 'selected' : ''
         }, [m('.fontsize-base.fontweight-semibold.u-marginbottom-20', 'Boleto bancário'), m('img[src=\'https://daks2k3a4ib2z.cloudfront.net/54b440b85608e3f4389db387/57299c6ef96a6e44489a7a07_boleto.png\'][width=\'48\']')]) : m('.flex-column')]), !ctrl.isSlip() ? m('#credit-card-section', [m.component(paymentCreditCard, { vm: args.vm, contribution_id: args.contribution_id, project_id: args.project_id, user_id: args.user_id })]) : !args.vm.isInternational() ? m('#boleto-section', [m.component(paymentSlip, { vm: args.vm, contribution_id: args.contribution_id, project_id: args.project_id })]) : '']);
     }
 };
@@ -14310,7 +15502,9 @@ var projectsPayment = {
             checked: ctrl.vm.fields.anonymous()
         }), m('label.w-form-label.fontsize-smallest[for=\'anonymous\']', I18n$1.t('fields.anonymous', ctrl.scope()))]), ctrl.vm.fields.anonymous() ? m('.card.card-message.u-radius.zindex-10.fontsize-smallest', m('div', [m('span.fontweight-bold', [I18n$1.t('anonymous_confirmation_title', ctrl.scope()), m('br')]), m('br'), I18n$1.t('anonymous_confirmation', ctrl.scope())])) : '']);
 
-        return m('#project-payment.w-section.w-clearfix.section', addVM && !_$1.isEmpty(project) ? [m('.w-col', m('.w-clearfix.w-hidden-main.w-hidden-medium.card.u-radius.u-marginbottom-20', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-20', I18n$1.t('selected_reward.value', ctrl.scope())), m('.w-clearfix', [m('.fontsize-larger.text-success.u-left', 'R$ ' + formatedValue), m('a.alt-link.fontsize-smaller.u-right[href="/projects/' + projectVM.currentProject().project_id + '/contributions/new' + (ctrl.reward().id ? '?reward_id=' + ctrl.reward().id : '') + '"]', '수정')]), m('.divider.u-marginbottom-10.u-margintop-10'), m('.back-payment-info-reward', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-10', I18n$1.t('selected_reward.reward', ctrl.scope())), m('.fontsize-smallest.fontweight-semibold', ctrl.reward().title), m('.fontsize-smallest.reward-description.opened.fontcolor-secondary', {
+        return m('#project-payment.w-section.w-clearfix.section', addVM && !_$1.isEmpty(project) ? [m('.w-col', m('.w-clearfix.w-hidden-main.w-hidden-medium.card.u-radius.u-marginbottom-20', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-20', I18n$1.t('selected_reward.value', ctrl.scope())), m('.w-clearfix', [m('.fontsize-larger.text-success.u-left', 'R$ ' + formatedValue), m('a.alt-link.fontsize-smaller.u-right[href="/projects/' + projectVM.currentProject().project_id + '/contributions/new' + (ctrl.reward().id ? '?reward_id=' + ctrl.reward().id : '') + '"]', '수정'
+        //coffee 'Editar'
+        )]), m('.divider.u-marginbottom-10.u-margintop-10'), m('.back-payment-info-reward', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-10', I18n$1.t('selected_reward.reward', ctrl.scope())), m('.fontsize-smallest.fontweight-semibold', ctrl.reward().title), m('.fontsize-smallest.reward-description.opened.fontcolor-secondary', {
             class: ctrl.isLongDescription(ctrl.reward()) ? ctrl.toggleDescription() ? 'extended' : '' : 'extended'
         }, ctrl.reward().description ? ctrl.reward().description : m.trust(I18n$1.t('selected_reward.review_without_reward_html', ctrl.scope(_$1.extend({
             value: formatedValue
@@ -14318,7 +15512,11 @@ var projectsPayment = {
             onclick: ctrl.toggleDescription.toggle
         }, [ctrl.toggleDescription() ? 'menos ' : 'mais ', m('span.fa.fa-angle-down', {
             class: ctrl.toggleDescription() ? 'reversed' : ''
-        })]) : '', ctrl.reward().deliver_at ? m('.fontcolor-secondary.fontsize-smallest.u-margintop-10', [m('span.fontweight-semibold', '예상 배송:'), ' ' + h.momentify(ctrl.reward().deliver_at, 'MMM/YYYY')]) : '', rewardVM.hasShippingOptions(ctrl.reward()) || ctrl.reward().shipping_options === 'presential' ? m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '배송 방법: '), I18n$1.t('shipping_options.' + ctrl.reward().shipping_options, {
+        })]) : '', ctrl.reward().deliver_at ? m('.fontcolor-secondary.fontsize-smallest.u-margintop-10', [m('span.fontweight-semibold', '예상 배송:'
+        //coffee 'Entrega prevista:'
+        ), ' ' + h.momentify(ctrl.reward().deliver_at, 'MMM/YYYY')]) : '', rewardVM.hasShippingOptions(ctrl.reward()) || ctrl.reward().shipping_options === 'presential' ? m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '배송 방법: '
+        //coffee 'Forma de envio: '
+        ), I18n$1.t('shipping_options.' + ctrl.reward().shipping_options, {
             scope: 'projects.contributions'
         })]) : ''])])), m('.w-container', m('.w-row', [m('.w-col.w-col-8', [m('.w-form', [m('form.u-marginbottom-40', [m('.u-marginbottom-40.u-text-center-small-only', [m('.fontweight-semibold.lineheight-tight.fontsize-large', I18n$1.t('title', ctrl.scope())), m('.fontsize-smaller', I18n$1.t('required', ctrl.scope()))]), user.name && user.owner_document ? m('.card.card-terciary.u-radius.u-marginbottom-40', [m('.w-row.u-marginbottom-20', [m('.w-col.w-col-2.w-col-small-2.w-col-tiny-2.w-hidden-tiny', [m('img.thumb.u-margintop-10.u-round[src="' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '"][width="100"]')]), m('.w-col.w-col-10.w-col-small-10.w-col-tiny-10', [m('.fontcolor-secondary.fontsize-smallest.u-marginbottom-10', [project ? 'Dados do apoiador ' : 'Dados do usuário ', m('a.alt-link[href="/not-my-account' + (project ? '?project_id=' + project.project_id : '') + (ctrl.reward() ? '&reward_id=' + ctrl.reward().id : '') + (ctrl.value ? '&value=' + ctrl.value * 100 : '') + '"]', 'Não é você?')]), m('.fontsize-base.fontweight-semibold', user.name), user.owner_document ? m('label.field-label', 'CPF/CNPJ: ' + user.owner_document) : ''])]), anonymousCheckbox]) : '', m('.card.card-terciary.u-marginbottom-30.u-radius.w-form', m(nationalityRadio, {
             fields: addVM.fields,
@@ -14328,13 +15526,16 @@ var projectsPayment = {
         })), user.name && user.owner_document ? '' : m('.card.card-terciary.u-radius.u-marginbottom-40', [m('.w-row', [m('.w-col.w-col-7.w-sub-col', [m('label.field-label.fontweight-semibold[for=\'complete-name\']', I18n$1.t('fields.complete_name', ctrl.scope())), m('input.positive.w-input.text-field[id=\'complete-name\'][name=\'complete-name\']', {
             onfocus: ctrl.vm.resetFieldError('completeName'),
             class: ctrl.fieldHasError('completeName') ? '오류' : false,
+            //coffee class: ctrl.fieldHasError('completeName') ? 'error' : false,
             type: 'text',
             onchange: m.withAttr('value', ctrl.vm.fields.completeName),
             value: ctrl.vm.fields.completeName(),
             placeholder: '성명'
+            //coffee placeholder: 'Nome Completo'
         }), ctrl.fieldHasError('completeName')]), m('.w-col.w-col-5', addVM.international() ? '' : [m('label.field-label.fontweight-semibold[for=\'document\']', I18n$1.t('fields.owner_document', ctrl.scope())), m('input.positive.w-input.text-field[id=\'document\']', {
             onfocus: ctrl.vm.resetFieldError('ownerDocument'),
             class: ctrl.fieldHasError('ownerDocument') ? '오류' : false,
+            //coffee class: ctrl.fieldHasError('ownerDocument') ? 'error' : false,
             type: 'tel',
             onkeyup: m.withAttr('value', ctrl.applyDocumentMask),
             value: ctrl.vm.fields.ownerDocument()
@@ -14355,7 +15556,9 @@ var projectsPayment = {
             contribution_id: ctrl.contribution().id,
             project_id: projectVM.currentProject().project_id,
             user_id: user.id
-        }) : '']), m('.w-col.w-col-4', [m('.card.u-marginbottom-20.u-radius.w-hidden-small.w-hidden-tiny', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-20', I18n$1.t('selected_reward.value', ctrl.scope())), m('.w-clearfix', [m('.fontsize-larger.text-success.u-left', 'R$ ' + formatedValue), m('a.alt-link.fontsize-smaller.u-right[href="/projects/' + projectVM.currentProject().project_id + '/contributions/new' + (ctrl.reward().id ? '?reward_id=' + ctrl.reward().id : '') + '"]', '수정')]), m('.divider.u-marginbottom-10.u-margintop-10'), m('.back-payment-info-reward', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-10', I18n$1.t('selected_reward.reward', ctrl.scope())), m('.fontsize-smallest.fontweight-semibold', ctrl.reward().title), m('.fontsize-smallest.reward-description.opened.fontcolor-secondary', {
+        }) : '']), m('.w-col.w-col-4', [m('.card.u-marginbottom-20.u-radius.w-hidden-small.w-hidden-tiny', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-20', I18n$1.t('selected_reward.value', ctrl.scope())), m('.w-clearfix', [m('.fontsize-larger.text-success.u-left', 'R$ ' + formatedValue), m('a.alt-link.fontsize-smaller.u-right[href="/projects/' + projectVM.currentProject().project_id + '/contributions/new' + (ctrl.reward().id ? '?reward_id=' + ctrl.reward().id : '') + '"]', '수정'
+        //coffee 'Editar'
+        )]), m('.divider.u-marginbottom-10.u-margintop-10'), m('.back-payment-info-reward', [m('.fontsize-smaller.fontweight-semibold.u-marginbottom-10', I18n$1.t('selected_reward.reward', ctrl.scope())), m('.fontsize-smallest.fontweight-semibold', ctrl.reward().title), m('.fontsize-smallest.reward-description.opened.fontcolor-secondary', {
             class: ctrl.isLongDescription(ctrl.reward()) ? ctrl.toggleDescription() ? 'extended' : '' : 'extended'
         }, ctrl.reward().description ? ctrl.reward().description : m.trust(I18n$1.t('selected_reward.review_without_reward_html', ctrl.scope(_$1.extend({
             value: Number(ctrl.value).toFixed()
@@ -14363,16 +15566,22 @@ var projectsPayment = {
             onclick: ctrl.toggleDescription.toggle
         }, [ctrl.toggleDescription() ? 'menos ' : 'mais ', m('span.fa.fa-angle-down', {
             class: ctrl.toggleDescription() ? 'reversed' : ''
-        })]) : '', ctrl.reward().deliver_at ? m('.fontcolor-secondary.fontsize-smallest.u-margintop-10', [m('span.fontweight-semibold', '예상 배송:'), ' ' + h.momentify(ctrl.reward().deliver_at, 'MMM/YYYY')]) : '', rewardVM.hasShippingOptions(ctrl.reward()) || ctrl.reward().shipping_options === 'presential' ? m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '배송 방법: '), I18n$1.t('shipping_options.' + ctrl.reward().shipping_options, {
+        })]) : '', ctrl.reward().deliver_at ? m('.fontcolor-secondary.fontsize-smallest.u-margintop-10', [m('span.fontweight-semibold', '예상 배송:'
+        //coffee 'Entrega prevista:'
+        ), ' ' + h.momentify(ctrl.reward().deliver_at, 'MMM/YYYY')]) : '', rewardVM.hasShippingOptions(ctrl.reward()) || ctrl.reward().shipping_options === 'presential' ? m('.fontcolor-secondary.fontsize-smallest', [m('span.fontweight-semibold', '배송 방법: '
+        //coffee 'Forma de envio: '
+        ), I18n$1.t('shipping_options.' + ctrl.reward().shipping_options, {
             scope: 'projects.contributions'
         })]) : '', m('div' //,
         // ctrl.contribution().shipping_fee_id ? [
         //     m('.divider.u-marginbottom-10.u-margintop-10'),
         //     m('.fontsize-smaller.fontweight-semibold',
         //         '보상 목적지:'
+        //         //coffee 'Destino da recompensa:'
         //     ),
         //     m(`a.alt-link.fontsize-smaller.u-right[href="/projects/${projectVM.currentProject().project_id}/contributions/new${ctrl.reward().id ? `?reward_id=${ctrl.reward().id}` : ''}"]`,
         //         '수정'
+        //         //coffee 'Editar'
         //     ),
         //     m('.fontsize-smaller', { style: 'padding-right: 42px;' },
         //         `${rewardVM.feeDestination(ctrl.reward(), ctrl.contribution().shipping_fee_id)}`
@@ -14403,6 +15612,7 @@ var projectsReward = {
 
             if (valueFloat < vm.selectedReward().minimum_value) {
                 vm.error('\uC774 \uBCF4\uC0C1\uC5D0 \uB300\uD55C \uC9C0\uC6D0 \uAE08\uC561\uC740 \uC801\uC5B4\uB3C4 R$' + vm.selectedReward().minimum_value);
+                //coffee vm.error(`O valor de apoio para essa recompensa deve ser de no mínimo R$${vm.selectedReward().minimum_value}`);
             } else if (!h.getUser()) {
                 h.storeObject(storeKey, { value: valueFloat, reward: vm.selectedReward() });
 
@@ -14442,7 +15652,9 @@ var projectsReward = {
     view: function view(ctrl, args) {
         var project = ctrl.project;
 
-        return m('#project-rewards', [m('.w-section.page-header.u-text-center', [m('.w-container', [m('h1.fontsize-larger.fontweight-semibold.project-name[itemprop="name"]', h.selfOrEmpty(project().name || project().project_name)), m('h2.fontsize-base.lineheight-looser[itemprop="author"]', ['por ', project().user ? project().user.name : project().owner_name ? project().owner_name : ''])])]), m('.w-section.header-cont-new', m('.w-container', m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only', '보상을 선택한 다음 지원액을 선택하십시오.'))), m('.section[id=\'new-contribution\']', m('.w-container', m('.w-row', [m('.w-col.w-col-8', m('.w-form.back-reward-form', m('form.simple_form.new_contribution', {
+        return m('#project-rewards', [m('.w-section.page-header.u-text-center', [m('.w-container', [m('h1.fontsize-larger.fontweight-semibold.project-name[itemprop="name"]', h.selfOrEmpty(project().name || project().project_name)), m('h2.fontsize-base.lineheight-looser[itemprop="author"]', ['por ', project().user ? project().user.name : project().owner_name ? project().owner_name : ''])])]), m('.w-section.header-cont-new', m('.w-container', m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only', '보상을 선택한 다음 지원액을 선택하십시오.'
+        //coffee 'Escolha a recompensa e em seguida o valor do apoio'
+        ))), m('.section[id=\'new-contribution\']', m('.w-container', m('.w-row', [m('.w-col.w-col-8', m('.w-form.back-reward-form', m('form.simple_form.new_contribution', {
             onsubmit: ctrl.submitContribution
         }, _$1.map(ctrl.rewards, function (reward, index) {
             var isSelected = ctrl.isSelected(reward),
@@ -14455,12 +15667,17 @@ var projectsReward = {
             }, m('label[for=\'contribution_reward_id_' + reward.id + '\']', [m('input.radio_buttons.optional.w-input.text-field.w-radio-input.back-reward-radio-button[id=\'contribution_reward_id_' + reward.id + '\'][name=\'contribution[reward_id]\'][type=\'radio\'][value=\'' + reward.id + '\']', {
                 checked: !!isSelected
             }), m('label.w-form-label.fontsize-base.fontweight-semibold.u-marginbottom-10[for=\'contribution_reward_' + reward.id + '\']', reward.id === -1 ? 'Não quero recompensa' : 'R$ ' + reward.minimum_value + ' ou mais'), isSelected ? m('.w-row.back-reward-money', [m('.w-col.w-col-8.w-col-small-8.w-col-tiny-8.w-sub-col-middle.w-clearfix', [m('.w-row', [m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3', m('.back-reward-input-reward.placeholder', 'R$')), m('.w-col.w-col-9.w-col-small-9.w-col-tiny-9', m('input.user-reward-value.back-reward-input-reward[autocomplete=\'off\'][type=\'tel\']', {
-                class: ctrl.error() ? 'error' : '',
+                class: ctrl.error() ? '오류' : '',
+                //coffee class: ctrl.error() ? 'error' : '',
                 min: monetaryMinimum,
                 placeholder: monetaryMinimum,
                 onkeyup: m.withAttr('value', ctrl.applyMask),
                 value: ctrl.contributionValue()
-            }))]), ctrl.error().length > 0 ? m('.text-error', [m('br'), m('span.fa.fa-exclamation-triangle'), ' ' + ctrl.error()]) : '']), m('.submit-form.w-col.w-col-4.w-col-small-4.w-col-tiny-4', m('button.btn.btn-large', ['Continuar  ', m('span.fa.fa-chevron-right')]))]) : '', m('.back-reward-reward-description', [m('.fontsize-smaller.u-marginbottom-10', reward.description), reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', '\uBC30\uC1A1 \uC608\uC815: ' + h.momentify(reward.deliver_at, 'MMM/YYYY')) : ''])])); // End map return
+            }))]), ctrl.error().length > 0 ? m('.text-error', [m('br'), m('span.fa.fa-exclamation-triangle'), ' ' + ctrl.error()]) : '']), m('.submit-form.w-col.w-col-4.w-col-small-4.w-col-tiny-4', m('button.btn.btn-large', ['계속하기  ',
+            //coffee 'Continuar  ',
+            m('span.fa.fa-chevron-right')]))]) : '', m('.back-reward-reward-description', [m('.fontsize-smaller.u-marginbottom-10', reward.description), reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', '\uBC30\uC1A1 \uC608\uC815: ' + h.momentify(reward.deliver_at, 'MMM/YYYY')) : ''
+            //coffee reward.deliver_at ? m('.fontsize-smallest.fontcolor-secondary', `Estimativa de entrega: ${h.momentify(reward.deliver_at, 'MMM/YYYY')}`) : ''
+            ])])); // End map return
         })))), m('.w-col.w-col-4', m.component(faqBox, { mode: ctrl.project().mode, faq: ctrl.faq }))])))]);
     }
 };
@@ -14521,20 +15738,114 @@ var publish = {
         var project = _$1.first(ctrl.projectDetails()),
             account = _$1.first(ctrl.projectAccount()),
             flexTerms = function flexTerms(project) {
-            return [m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '1/9'), ' ', m('span.fontweight-semibold', '출판물의 프로젝트 페이지에서 무엇을 바꿀 수 있고 바꿀 수 없습니까?')]), m('div', [m('span.fontweight-semibold', '변경할 수 없습니다.'), ': a identidade do responsável pelo projeto (Nome / CPF ou Razão Social / CNPJ), a Modalidade de financiamento, o título do projeto, a URL (link) do projeto, a categoria do projeto, a meta de arrecadação,  o prazo (caso já tenha definido), e as recompensas onde existirem apoios já efetuados.', m('br'), m('br'), m('span.fontweight-semibold', 'Você poderá alterar'), ': o vídeo principal da campanha, o conteúdo da descrição, a imagem do projeto, a frase de efeito, as recompensas onde não existirem apoios efetuados, além de adicionar novas recompensas durante a arrecadação'])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '2/9'), ' ', m('span.fontweight-semibold', 'Regras da modalidade FLEX')]), m('div', 'Você escolheu a campanha flexível. Dessa maneira, você irá receber todos os recursos arrecadados junto aos apoiadores ao final do prazo da campanha (descontando a taxa do Catarse) e deverá cumprir com a execução do projeto e com a entrega das recompensas oferecidas independente do quanto arrecadar.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '3/9'), ' ', m('span.fontweight-semibold', 'Meta de arrecadação')]), m('div', 'A meta não poderá ser alterada após o publicação do projeto.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '4/9'), ' ', m('span.fontweight-semibold', 'Taxas')]), m('div', ['Ao final da campanha, cobraremos 13% sobre o ', m('span.fontweight-semibold', 'valor total arrecadado.')])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '5/9'), ' ', m('span.fontweight-semibold', 'Prazo da campanha')]), m('div', 'Uma vez definido, o prazo de encerramento não poderá ser alterado. Caso você tenha iniciado a campanha com o prazo em aberto, deverá defini-lo durante a campanha, podendo deixar a campanha aberta por no máximo 12 meses.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '6/9'), ' ', m('span.fontweight-semibold', 'Prazo para repasse')]), m('div', m.trust('Quando o prazo do seu projeto chegar ao fim, você deverá inscrever e confirmar seus dados bancários. Você poderá alterar o Banco, Conta e a Agência <strong>somente se a nova conta cadastrada for de sua titularidade</strong>. Após a confirmação, o Catarse depositará na sua conta corrente em até 10 dias úteis. O valor depositado já estará considerando o desconto de 13% da taxa.'))]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '7/9'), ' ', m('span.fontweight-semibold', 'Responsabilidade do Catarse')]), [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'O Catarse é responsável:'), ' pelo desenvolvimento tecnológico da plataforma, atendimento de dúvidas e problemas (tanto de apoiadores quanto de realizadores), por hospedar o projeto na plataforma e por garantir a segurança das transações financeiras.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'O Catarse não é responsável:'), ' pelo financiamento, divulgação e execução, nem pela entrega de recompensas dos projetos inscritos.'])]]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '8/9'), ' ', m('span.fontweight-semibold', 'Suas responsabilidades')]), m('div', 'É sua responsabilidade o recebimento do dinheiro da campanha e tudo aquilo que diz respeito a formatação do projeto, planejamento e divulgação da campanha de arrecadação, mobilização de apoiadores, execução do projeto, comunicação com apoiadores e produção e entrega de recompensas dentro do prazo estimado.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '9/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Retiradas de projetos no ar')]), m('div', [m('span.fontweight-semibold'), 'O CATARSE reserva-se o direito de, a seu exclusivo critério e uma vez notificado a respeito, cancelar projetos e encerrar as contas de CRIADORES DE PROJETOS que violem nossas ', m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-cria%C3%A7%C3%A3o-de-projetos\'][target=\'_blank\']', 'Regras do Jogo'), ' e ', m('a.alt-link[href=\'http://www.catarse.me/terms-of-use\'][target=\'_blank\']', 'Termos de Uso'), '.'])])];
+            return [m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '1/9'), ' ', m('span.fontweight-semibold', '출판물의 프로젝트 페이지에서 무엇을 바꿀 수 있고 바꿀 수 없습니까?')
+            //coffee m('span.fontweight-semibold', 'O que pode e não pode alterar na página do projeto a partir da publicação?')
+            ]), m('div', [m('span.fontweight-semibold', '변경할 수 없습니다.'),
+            //coffee m('span.fontweight-semibold', 'Você não poderá alterar'),
+            ': a identidade do responsável pelo projeto (Nome / CPF ou Razão Social / CNPJ), a Modalidade de financiamento, o título do projeto, a URL (link) do projeto, a categoria do projeto, a meta de arrecadação,  o prazo (caso já tenha definido), e as recompensas onde existirem apoios já efetuados.', m('br'), m('br'), m('span.fontweight-semibold', '너는 바꿀 수있어'),
+            //coffee m('span.fontweight-semibold', 'Você poderá alterar'),
+            ': 캠페인의 주요 비디오, 설명의 내용, 프로젝트 이미지, 효과 문구, 지원이없는 경우의 보상, 컬렉션 중 새로운 보상 추가하기'
+            //coffee ': o vídeo principal da campanha, o conteúdo da descrição, a imagem do projeto, a frase de efeito, as recompensas onde não existirem apoios efetuados, além de adicionar novas recompensas durante a arrecadação'
+            ])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '2/9'), ' ', m('span.fontweight-semibold', '플렉스 규칙')
+            //coffee m('span.fontweight-semibold', 'Regras da modalidade FLEX')
+            ]), m('div', 'Você escolheu a campanha flexível. Dessa maneira, você irá receber todos os recursos arrecadados junto aos apoiadores ao final do prazo da campanha (descontando a taxa do Catarse) e deverá cumprir com a execução do projeto e com a entrega das recompensas oferecidas independente do quanto arrecadar.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '3/9'), ' ', m('span.fontweight-semibold', '컬렉션의 목표')
+            //coffee m('span.fontweight-semibold', 'Meta de arrecadação')
+            ]), m('div', '프로젝트가 게시된 후 목표를 변경할 수 없습니다.')
+            //coffee m('div', 'A meta não poderá ser alterada após o publicação do projeto.')
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '4/9'), ' ', m('span.fontweight-semibold', '요금')
+            //coffee m('span.fontweight-semibold', 'Taxas')
+            ]), m('div', ['Ao final da campanha, cobraremos 13% sobre o ', m('span.fontweight-semibold', '징수 된 총 금액.')
+            //coffee m('span.fontweight-semibold', 'valor total arrecadado.')
+            ])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '5/9'), ' ', m('span.fontweight-semibold', '캠페인 마감')
+            //coffee m('span.fontweight-semibold', 'Prazo da campanha')
+            ]), m('div', '일단 설정되면 마감 기한을 변경할 수 없습니다. 기한이 지난 캠페인을 시작한 경우 캠페인 기간 중에 캠페인을 설정해야하며 최대 12 개월 동안 캠페인을 열어 둘 수 있습니다.')
+            //coffee m('div', 'Uma vez definido, o prazo de encerramento não poderá ser alterado. Caso você tenha iniciado a campanha com o prazo em aberto, deverá defini-lo durante a campanha, podendo deixar a campanha aberta por no máximo 12 meses.')
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '6/9'), ' ', m('span.fontweight-semibold', '양도 기한')
+            //coffee m('span.fontweight-semibold', 'Prazo para repasse')
+            ]), m('div', m.trust('프로젝트 기한이 끝나면 은행 정보를 입력하고 확인해야합니다. 은행, 계좌 및 대행사를 변경할 수 있습니다. <strong>귀하가 새로 등록 된 계정을 소유 한 경우에만</strong>. 확인시, Givingwire는 영업일 기준 10 일 이내에 당좌 계좌에 입금됩니다. 기탁 된 금액은 이미 요금의 13 % 할인을 고려할 것입니다.'))
+            //coffee m('div', m.trust('Quando o prazo do seu projeto chegar ao fim, você deverá inscrever e confirmar seus dados bancários. Você poderá alterar o Banco, Conta e a Agência <strong>somente se a nova conta cadastrada for de sua titularidade</strong>. Após a confirmação, o Catarse depositará na sua conta corrente em até 10 dias úteis. O valor depositado já estará considerando o desconto de 13% da taxa.'))
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '7/9'), ' ', m('span.fontweight-semibold', 'Responsabilidade do Catarse')]), [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'Givingwire는 책임이있다.:'), ' pelo desenvolvimento tecnológico da plataforma, atendimento de dúvidas e problemas (tanto de apoiadores quanto de realizadores), por hospedar o projeto na plataforma e por garantir a segurança das transações financeiras.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'O Catarse não é responsável:'), ' pelo financiamento, divulgação e execução, nem pela entrega de recompensas dos projetos inscritos.'])]]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '8/9'), ' ', m('span.fontweight-semibold', '당신의 책임')
+            //coffee m('span.fontweight-semibold', 'Suas responsabilidades')
+            ]), m('div', '캠페인 및 기금 모금 캠페인에 대한 기금 모금 캠페인 계획 및 공개, 후원자 동원, 프로젝트 실행, 후원자와의 커뮤니케이션, 예상 시간 내에 보상 생성 및 제공과 관련된 모든 금액을 캠페인에서 수령하는 것은 귀하의 책임입니다.')
+            //coffee m('div', 'É sua responsabilidade o recebimento do dinheiro da campanha e tudo aquilo que diz respeito a formatação do projeto, planejamento e divulgação da campanha de arrecadação, mobilização de apoiadores, execução do projeto, comunicação com apoiadores e produção e entrega de recompensas dentro do prazo estimado')
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '9/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Retiradas de projetos no ar')]), m('div', [m('span.fontweight-semibold'), 'Givingwire는 단독 재량에 따라 통지를 받은 후 프로젝트를 취소하고 당사의 프로젝트를 위반한 프로젝트 생성자의 계정을 해지 할 권한을 보유합니다. ', m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-cria%C3%A7%C3%A3o-de-projetos\'][target=\'_blank\']', '게임 규칙'), ' e ', m('a.alt-link[href=\'http://www.catarse.me/terms-of-use\'][target=\'_blank\']', '이용 약관'), '.'])
+            //coffee m('div', [m('span.fontweight-semibold'), 'O CATARSE reserva-se o direito de, a seu exclusivo critério e uma vez notificado a respeito, cancelar projetos e encerrar as contas de CRIADORES DE PROJETOS que violem nossas ', m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-cria%C3%A7%C3%A3o-de-projetos\'][target=\'_blank\']', 'Regras do Jogo'), ' e ', m('a.alt-link[href=\'http://www.catarse.me/terms-of-use\'][target=\'_blank\']', 'Termos de Uso'), '.'])
+            ])];
         },
             terms = function terms(project) {
-            return [m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '1/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'O que pode e não pode alterar na página do projeto a partir da publicação?')]), m('div', [m('span.fontweight-semibold', 'Você não poderá alterar'), ': a identidade do responsável pelo projeto (Nome / CPF ou Razão Social / CNPJ), a Modalidade de financiamento, o título do projeto, a URL (link) do projeto, a categoria do projeto, a meta de arrecadação, prazo escolhido e as recompensas onde existirem apoios já efetuados. ', m('br'), m('br'), m('span.fontweight-semibold', 'Você poderá alterar'), ': o vídeo principal da campanha, o conteúdo da descrição, a imagem do projeto, a frase de efeito, as recompensas onde não existirem apoios efetuados, além de adicionar novas recompensas durante a arrecadação'])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '2/9'), ' ', m('span.fontweight-semibold', 'Regras da modalidade Tudo-ou-nada')]), m('div', ['Você escolheu a campanha tudo-ou-nada. Dessa maneira, você só irá receber os recursos arrecadados ', m('span.fontweight-semibold', 'caso atinja ou supere a meta de arrecadação'), '. Caso contrário, todos seus apoiadores serão reembolsados. Você será responsável pela entrega das recompensas oferecidas se seu projeto alcançar a meta de arrecadação.'])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '3/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Meta de arrecadação')]), m('div', 'A meta não poderá ser alterada após o publicação do projeto.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '4/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Taxas')]), m('div', ['Cobramos 13% sobre o ', m('span.fontweight-semibold', 'valor total arrecadado'), ' pelo seu projeto caso ele atinja ou supere a meta dentro do prazo da campanha. Se o projeto não atingir a meta, nenhuma taxa será cobrada.', m('span.fontweight-semibold')])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '5/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Prazo da campanha')]), m('div', 'Seu projeto estar\xE1 em arrecada\xE7\xE3o no Catarse at\xE9 o dia ' + h.momentify(ctrl.expiresAt()) + ' \xE0s 23h59min59s. Este prazo n\xE3o poder\xE1 ser alterado ap\xF3s a publica\xE7\xE3o do projeto.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '6/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Regras do repasse e reembolso'), m('div', [m.trust('Quando o prazo do seu projeto chegar ao fim, você deverá inscrever e confirmar seus dados bancários. Você poderá alterar o Banco, Conta e a Agência <strong>somente se a nova conta cadastrada for de sua titularidade</strong>. Após essa confirmação, o Catarse depositará o valor arrecadado, já descontada a taxa, na sua conta em 10 dias úteis. Caso o projeto não atinja 100% da meta dentro do prazo, o Catarse irá reembolsar os apoiadores. <a href="http://suporte.catarse.me/hc/pt-br/articles/202365507" target="blank">Saiba mais sobre o processo de reembolso</a>')])]), m('div', '')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '7/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Responsabilidade do Catarse')]), [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'O Catarse é responsável:'), ' pelo desenvolvimento tecnológico da plataforma, atendimento de dúvidas e problemas (tanto de apoiadores quanto de realizadores), por hospedar o projeto na plataforma e por garantir a segurança das transações financeiras.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'O Catarse não é responsável:'), ' pelo financiamento, divulgação e execução, nem pela entrega de recompensas dos projetos inscritos.'])]]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '8/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Suas responsabilidades')]), m('div', 'É sua responsabilidade o recebimento do dinheiro da campanha e tudo aquilo que diz respeito a formatação do projeto, planejamento e divulgação da campanha de arrecadação, mobilização de apoiadores, execução do projeto, comunicação com apoiadores e produção e entrega de recompensas dentro do prazo estimado.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '9/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Retiradas de projetos no ar')]), m('div', [m('span.fontweight-semibold'), 'O CATARSE reserva-se o direito de, a seu exclusivo critério e uma vez notificado a respeito, cancelar projetos e encerrar as contas de CRIADORES DE PROJETOS que violem nossas ', m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-cria%C3%A7%C3%A3o-de-projetos\'][target=\'_blank\']', 'Regras do Jogo'), ' e ', m('a.alt-link[href=\'http://www.catarse.me/terms-of-use\'][target=\'_blank\']', 'Termos de Uso'), '.'])])];
+            return [m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '1/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, '출판물의 프로젝트 페이지에서 무엇을 바꿀 수 있고 바꿀 수 없습니까?')
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'O que pode e não pode alterar na página do projeto a partir da publicação?')
+            ]), m('div', [m('span.fontweight-semibold', '변경할 수 없습니다.'), ': 프로젝트 책임자 이름 (이름 / CPF 또는 사회 이성 / CNPJ), 자금 모달, 프로젝트 제목, 프로젝트의 URL, 프로젝트 카테고리, 수금 목표, 선택한 기한 및 보상 이미 지원이있는 곳. ',
+            //coffee m('span.fontweight-semibold', 'Você não poderá alterar.'), ': a identidade do responsável pelo projeto (Nome / CPF ou Razão Social / CNPJ), a Modalidade de financiamento, o título do projeto, a URL (link) do projeto, a categoria do projeto, a meta de arrecadação, prazo escolhido e as recompensas onde existirem apoios já efetuados.. ',
+            m('br'), m('br'), m('span.fontweight-semibold', 'Você poderá alterar'), ': o vídeo principal da campanha, o conteúdo da descrição, a imagem do projeto, a frase de efeito, as recompensas onde não existirem apoios efetuados, além de adicionar novas recompensas durante a arrecadação'])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '2/9'), ' ', m('span.fontweight-semibold', '전부 또는 일부 규칙')
+            //coffee m('span.fontweight-semibold', 'Regras da modalidade Tudo-ou-nada')
+            ]), m('div', ['당신은 all-or-nothing 캠페인을 선택했습니다. 이 방법으로, 당신은 수집 된 자금만을 받을 것입니다 ', m('span.fontweight-semibold', '수집 목표에 도달하거나 초과하면'), '. 그렇지 않으면 모든 후원자가 상환됩니다. 프로젝트가 수집 목표에 도달하면 제공되는 보상 제공에 대한 책임은 귀하에게 있습니다.'])
+            //coffee m('div', ['Você escolheu a campanha tudo-ou-nada. Dessa maneira, você só irá receber os recursos arrecadados ', m('span.fontweight-semibold', 'caso atinja ou supere a meta de arrecadação'), '. Caso contrário, todos seus apoiadores serão reembolsados. Você será responsável pela entrega das recompensas oferecidas se seu projeto alcançar a meta de arrecadação.'])
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '3/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, '컬렉션의 목표')
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Meta de arrecadação')
+            ]), m('div', '프로젝트가 게시 된 후 목표를 변경할 수 없습니다.')
+            //coffee m('div', 'A meta não poderá ser alterada após o publicação do projeto')
+
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '4/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, '요금')
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Taxas')
+            ]), m('div', ['Cobramos 13% sobre o ', m('span.fontweight-semibold', '징수 된 총 금액'),
+            //coffee m('span.fontweight-semibold', 'valor total arrecadado'),
+            ' 캠페인 기한 내에 목표를 초과하거나 초과하는 경우 귀하의 프로젝트에 의해 프로젝트가 목표를 달성하지 못하면 수수료가 부과되지 않습니다..',
+            //coffee ' pelo seu projeto caso ele atinja ou supere a meta dentro do prazo da campanha. Se o projeto não atingir a meta, nenhuma taxa será cobrada.',
+            m('span.fontweight-semibold')])]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '5/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, '캠페인 마감')
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Prazo da campanha')
+            ]), m('div', '\uADC0\uD558\uC758 \uD504\uB85C\uC81D\uD2B8\uB294 \uB2F9\uC77C\uAE4C\uC9C0 Givingwire\uC5D0\uC11C \uC218\uC9D1\uB429\uB2C8\uB2E4. ' + h.momentify(ctrl.expiresAt()) + ' \xE0s 23h59min59s. Este prazo n\xE3o poder\xE1 ser alterado ap\xF3s a publica\xE7\xE3o do projeto.')
+            //coffee m('div', `Seu projeto estará em arrecadação no Catarse até o dia ${h.momentify(ctrl.expiresAt())} às 23h59min59s. Este prazo não poderá ser alterado após a publicação do projeto.`)
+            ]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '6/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, '이체 및 환불 규칙'),
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Regras do repasse e reembolso'),
+            m('div', [m.trust('프로젝트 기한이 끝나면 은행 정보를 입력하고 확인해야합니다. 은행, 계좌 및 대행사를 변경할 수 있습니다. <strong>귀하가 새로 등록된 계정을 소유 한 경우에만</strong>. 이 확인 후, Givingwire는 수집된 금액을 영업일 기준 10일 내에 계좌에 입금합니다. 프로젝트가 기한까지 목표의 100%에 도달하지 못하면 Givingwire는 지원자에게 배상금을 지급합니다.. <a href="http://suporte.catarse.me/hc/pt-br/articles/202365507" target="blank">상환 절차에 대해 자세히 알아보기</a>')
+            //coffee m.trust('Quando o prazo do seu projeto chegar ao fim, você deverá inscrever e confirmar seus dados bancários. Você poderá alterar o Banco, Conta e a Agência <strong>somente se a nova conta cadastrada for de sua titularidade</strong>. Após essa confirmação, o Catarse depositará o valor arrecadado, já descontada a taxa, na sua conta em 10 dias úteis. Caso o projeto não atinja 100% da meta dentro do prazo, o Catarse irá reembolsar os apoiadores. <a href="http://suporte.catarse.me/hc/pt-br/articles/202365507" target="blank">Saiba mais sobre o processo de reembolso</a>')
+            ])]), m('div', '')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '7/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Givingwire의 책임')
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Responsabilidade do Catarse')
+            ]), [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'O Catarse é responsável:'), ' 플랫폼의 기술적 발전, 의심과 문제의 출석 (후원자와 감독 모두), 플랫폼에서 프로젝트를 주최하고 금융 거래의 보안을 보장하기위한 것.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'Givingwire는 책임지지 않습니다.:'), ' 자금 조달, 보급 및 집행, 등록 된 프로젝트의 보상금 납부.'])]]),
+            //coffee [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'O Catarse é responsável:'), ' pelo desenvolvimento tecnológico da plataforma, atendimento de dúvidas e problemas (tanto de apoiadores quanto de realizadores), por hospedar o projeto na plataforma e por garantir a segurança das transações financeiras.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'O Catarse não é responsável:'), ' pelo financiamento, divulgação e execução, nem pela entrega de recompensas dos projetos inscritos'])]]),
+
+            m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '8/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, '당신의 책임')
+            //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Suas responsabilidades')
+            ]), m('div', 'É sua responsabilidade o recebimento do dinheiro da campanha e tudo aquilo que diz respeito a formatação do projeto, planejamento e divulgação da campanha de arrecadação, mobilização de apoiadores, execução do projeto, comunicação com apoiadores e produção e entrega de recompensas dentro do prazo estimado.')]), m('.w-col.w-col-11', [m('div', [m('span.fontsize-smallest.fontcolor-secondary', '9/9'), ' ', m('span', { style: { 'font-weight': ' 600' } }, 'Retiradas de projetos no ar')]), m('div', [m('span.fontweight-semibold'), 'Givingwire는 단독 재량에 따라 통지를받은 후 프로젝트를 취소하고 당사의 프로젝트를 위반 한 프로젝트 생성자의 계정을 해지 할 권한을 보유합니다. ', m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-cria%C3%A7%C3%A3o-de-projetos\'][target=\'_blank\']', '게임 규칙'), ' e ', m('a.alt-link[href=\'http://www.catarse.me/terms-of-use\'][target=\'_blank\']', '이용 약관'), '.'])
+            //coffee m('div', [m('span.fontweight-semibold'), 'O CATARSE reserva-se o direito de, a seu exclusivo critério e uma vez notificado a respeito, cancelar projetos e encerrar as contas de CRIADORES DE PROJETOS que violem nossas ', m('a.alt-link[href=\'http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-cria%C3%A7%C3%A3o-de-projetos\'][target=\'_blank\']', 'Regras do Jogo'), ' e ', m('a.alt-link[href=\'http://www.catarse.me/terms-of-use\'][target=\'_blank\']', 'Termos de Uso'), '.'])
+            ])];
         };
 
         return [project && account ? [project.is_owner_or_admin ? m.component(projectDashboardMenu, {
             project: m.prop(project),
             hidePublish: true
-        }) : '', m('.w-section.section-product.' + project.mode), m('.w-section.section', [m('.w-container', [m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.u-text-center', [m('img.u-marginbottom-20[src=\'/assets/catarse_bootstrap/launch-icon.png\'][width=\'94\']'), m('.fontsize-large.fontweight-semibold.u-marginbottom-20', 'Pronto para lançar sua campanha?'), m('.fontsize-base.u-marginbottom-30', 'Preparamos uma lista com informações importantes para você checar antes de colocar seu projeto no ar!')])]), m('.w-col.w-col-3')])])]), m('.divider'), m('.w-section.section-one-column.bg-gray.section.before-footer', [m('.w-container', [m('.card.medium.u-marginbottom-60.card-terciary', [m('.w-row', [m('.w-col.w-col-6.w-clearfix', [m('img.card-project-thumb.u-right[src=' + project.large_image + ']')]), m('.w-col.w-col-6', [m('.u-marginbottom-30.fontsize-base', [m('div', [m('span.fontweight-semibold', 'Título: '), project.name]), m('div', [m('span.fontweight-semibold', 'Link: '), 'www.catarse.me/' + project.permalink]), m('div', [m('span.fontweight-semibold', 'Modalidade de financiamento: '), I18n$1.t(project.mode, I18nScope$51())]), m('div', [m('span.fontweight-semibold', 'Meta de arrecadação: '), 'R$ ' + h.formatNumber(project.goal, 2, 3)]), project.online_days !== null ? m('div', [m('span.fontweight-semibold', 'Prazo: ' + project.online_days + ' ' + (project.online_days > 1 ? 'dias' : 'dia'))]) : '', m('div', [m('span.fontweight-semibold', 'Responsável: '), account.owner_name]), m('div', [m('span.fontweight-semibold', 'CPF/CNPJ: '), account.owner_document])])])]), m('.u-text-center', [m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', [m('.divider.u-marginbottom-10'), m('.fontsize-small.fontcolor-secondary', 'Os dados acima não podem ser alterados após o projeto entrar no ar. Se você precisa fazer mudanças, navegue na barra lateral e volte aqui quando estiver tudo pronto!')]), m('.w-col.w-col-1')])])]), m('.card.medium.u-radius.u-marginbottom-60', [m('.u-text-center.u-marginbottom-60', [m('.fontsize-large.fontweight-semibold', 'Relembre nossas regras'), m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-small', ['Antes de publicar, clique nos círculos abaixo e confirme que você está ciente de como funciona o Catarse. Qualquer dúvida, ', m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/requests/new"][target="_blank"]', 'entre em contato'), '!'])]), m('.w-col.w-col-2')])]), _$1.map(project.mode === 'flex' ? flexTerms(project) : terms(project), function (term, index) {
+        }) : '', m('.w-section.section-product.' + project.mode), m('.w-section.section', [m('.w-container', [m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-6', [m('.u-text-center', [m('img.u-marginbottom-20[src=\'/assets/catarse_bootstrap/launch-icon.png\'][width=\'94\']'), m('.fontsize-large.fontweight-semibold.u-marginbottom-20', '캠페인을 시작할 준비가 되셨습니까?'),
+        //coffee m('.fontsize-large.fontweight-semibold.u-marginbottom-20', 'Pronto para lançar sua campanha?'),
+        m('.fontsize-base.u-marginbottom-30', '프로젝트를 진행하기 전에 확인해야 할 중요한 정보 목록을 준비했습니다!')
+        //coffee m('.fontsize-base.u-marginbottom-30', 'Preparamos uma lista com informações importantes para você checar antes de colocar seu projeto no ar!')
+        ])]), m('.w-col.w-col-3')])])]), m('.divider'), m('.w-section.section-one-column.bg-gray.section.before-footer', [m('.w-container', [m('.card.medium.u-marginbottom-60.card-terciary', [m('.w-row', [m('.w-col.w-col-6.w-clearfix', [m('img.card-project-thumb.u-right[src=' + project.large_image + ']')]), m('.w-col.w-col-6', [m('.u-marginbottom-30.fontsize-base', [m('div', [m('span.fontweight-semibold', '제목: '), project.name]),
+        //coffee m('div', [m('span.fontweight-semibold', 'Título: '), project.name]),
+        m('div', [m('span.fontweight-semibold', '링크: '), 'www.catarse.me/' + project.permalink]),
+        //coffee m('div', [m('span.fontweight-semibold', 'Link: '), `www.catarse.me/${project.permalink}`]),
+        m('div', [m('span.fontweight-semibold', 'Modalidade de financiamento: '), I18n$1.t(project.mode, I18nScope$51())]), m('div', [m('span.fontweight-semibold', '컬렉션의 목표: '), 'R$ ' + h.formatNumber(project.goal, 2, 3)]),
+        //coffee m('div', [m('span.fontweight-semibold', 'Meta de arrecadação: '), `R$ ${h.formatNumber(project.goal, 2, 3)}`]),
+        project.online_days !== null ? m('div', [m('span.fontweight-semibold', '\uB9C8\uAC10\uC77C: ' + project.online_days + ' ' + (project.online_days > 1 ? 'dias' : 'dia'))]) : '',
+        //coffee (project.online_days !== null) ? m('div', [m('span.fontweight-semibold', `Prazo: ${project.online_days} ${(project.online_days > 1) ? 'dias' : 'dia'}`)]) : '',
+        m('div', [m('span.fontweight-semibold', 'Responsável: '), account.owner_name])]
+        //coffee m('div', [m('span.fontweight-semibold', 'CPF/CNPJ: '), account.owner_document])
+        )])]), m('.u-text-center', [m('.w-row', [m('.w-col.w-col-1'), m('.w-col.w-col-10', [m('.divider.u-marginbottom-10'), m('.fontsize-small.fontcolor-secondary', '프로젝트가 시작된 후 위의 데이터를 변경할 수 없습니다. 변경해야 할 경우 사이드 바를 탐색하고 완료되면 여기로 돌아와주세요.')
+        //coffee m('.fontsize-small.fontcolor-secondary', 'Os dados acima não podem ser alterados após o projeto entrar no ar. Se você precisa fazer mudanças, navegue na barra lateral e volte aqui quando estiver tudo pronto!')
+        ]), m('.w-col.w-col-1')])])]), m('.card.medium.u-radius.u-marginbottom-60', [m('.u-text-center.u-marginbottom-60', [m('.fontsize-large.fontweight-semibold', '우리 규칙을 기억해'),
+        //coffee m('.fontsize-large.fontweight-semibold', 'Relembre nossas regras'),
+        m('.w-row', [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-small', ['Antes de publicar, clique nos círculos abaixo e confirme que você está ciente de como funciona o Catarse. Qualquer dúvida, ', m('a.alt-link[href="http://suporte.catarse.me/hc/pt-br/requests/new"][target="_blank"]', '문의하기'), '!'])]), m('.w-col.w-col-2')])]), _$1.map(project.mode === 'flex' ? flexTerms(project) : terms(project), function (term, index) {
             return m('.u-marginbottom-30.fontsize-base' + (index === 0 ? '' : '.w-hidden.publish-rules'), [m('.w-row[id=\'rule-' + index + '\']', [m('.w-col.w-col-1.u-text-center', [m('div', [m((project.mode === 'flex' ? ctrl.flexAcceptTerm() : ctrl.acceptTerm())[index] ? 'a.w-inline-block.checkbox-big[href=\'#rule-' + (index + 1) + '\']' : 'a.w-inline-block.checkbox-big.checkbox--selected.fa.fa-check.fa-lg[href=\'#rule-' + (index + 1) + '\']', { onclick: function onclick() {
                     return ctrl.showNextTerm(index, project.mode === 'flex' ? ctrl.flexAcceptTerm : ctrl.acceptTerm);
                 } })])]), term])]);
-        })]), m('.w-row.publish-btn-section.w-hidden', [m('.w-col.w-col-4'), m('.w-col.w-col-4', [m('a.btn.btn-large.u-marginbottom-20[href=/' + (project.mode === 'flex' ? 'flexible_projects' : 'projects') + '/' + project.project_id + '/push_to_online]', 'Publicar agora!'), m('.u-text-center.fontsize-smaller', ['Ao publicar o seu projeto, você está aceitando os ', m('a.alt-link[href=\'/terms-of-use\'][target=\'_blank\']', 'Termos de Uso'), ' e ', m('a.alt-link[href=\'/privacy-policy\'][target=\'_blank\']', 'Politica de Privacidade')])]), m('.w-col.w-col-4')])])]), '\
+        })]), m('.w-row.publish-btn-section.w-hidden', [m('.w-col.w-col-4'), m('.w-col.w-col-4', [m('a.btn.btn-large.u-marginbottom-20[href=/' + (project.mode === 'flex' ? 'flexible_projects' : 'projects') + '/' + project.project_id + '/push_to_online]', '지금 게시하십시오!'),
+        //coffee m(`a.btn.btn-large.u-marginbottom-20[href=/${project.mode === 'flex' ? 'flexible_projects' : 'projects'}/${project.project_id}/push_to_online]`, '지금 게시하십시오!'),
+        m('.u-text-center.fontsize-smaller', ['프로젝트를 게시하면 ',
+        //coffee 'Ao publicar o seu projeto, você está aceitando os ',
+        m('a.alt-link[href=\'/terms-of-use\'][target=\'_blank\']', '이용 약관'),
+        //coffee m('a.alt-link[href=\'/terms-of-use\'][target=\'_blank\']', 'Termos de Uso'),
+        ' e ', m('a.alt-link[href=\'/privacy-policy\'][target=\'_blank\']', '개인 정보 보호 정책')
+        //coffee m('a.alt-link[href=\'/privacy-policy\'][target=\'_blank\']', 'Politica de Privacidade')
+        ])]), m('.w-col.w-col-4')])])]), '\
     '] : h.loader()];
     }
 };
@@ -14788,10 +16099,14 @@ var start = {
             });
         };
 
-        return m('#start', { config: h.setPageTitle(I18n$1.t('header_html', I18nScope$52())) }, [m('.w-section.hero-full.hero-start', [m('.w-container.u-text-center', [m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n$1.t('slogan', I18nScope$52())), m('.w-row.u-marginbottom-40', [m('.w-col.w-col-4.w-col-push-4', [m('a.btn.btn-large.u-marginbottom-10[href="#start-form"]', {
+        return m('#start', { config: h.setPageTitle(I18n$1.t('header_html', I18nScope$52())) }, [m('.w-section.hero-full.hero-start', [m('.w-container.u-text-center', [m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n$1.t('슬로건', I18nScope$52())),
+        //coffee m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('slogan', I18nScope())),
+        m('.w-row.u-marginbottom-40', [m('.w-col.w-col-4.w-col-push-4', [m('a.btn.btn-large.u-marginbottom-10[href="#start-form"]', {
             config: h.scrollTo(),
             onclick: h.analytics.event({ cat: 'project_start', act: 'start_btnstart_click' })
-        }, I18n$1.t('submit', I18nScope$52()))])]), m('.w-row', _$1.isEmpty(stats) ? '' : [m('.w-col.w-col-4', [m('.fontsize-largest.lineheight-loose', h.formatNumber(stats.total_contributors, 0, 3)), m('p.fontsize-small.start-stats', I18n$1.t('header.people', I18nScope$52()))]), m('.w-col.w-col-4', [m('.fontsize-largest.lineheight-loose', stats.total_contributed.toString().slice(0, 2) + ' milh\xF5es'), m('p.fontsize-small.start-stats', I18n$1.t('header.money', I18nScope$52()))]), m('.w-col.w-col-4', [m('.fontsize-largest.lineheight-loose', h.formatNumber(stats.total_projects_success, 0, 3)), m('p.fontsize-small.start-stats', I18n$1.t('header.success', I18nScope$52()))])])])]), m('.w-section.section', [m('.w-container', [m('.w-row', [m('.w-col.w-col-10.w-col-push-1.u-text-center', [m('.fontsize-larger.u-marginbottom-10.fontweight-semibold', I18n$1.t('page-title', I18nScope$52())), m('.fontsize-small', I18n$1.t('page-subtitle', I18nScope$52()))])]), m('.w-clearfix.how-row', [m('.w-hidden-small.w-hidden-tiny.how-col-01', [m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.1', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.2', I18nScope$52()))]), m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.3', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.4', I18nScope$52()))])]), m('.how-col-02'), m('.how-col-03', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.5', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.6', I18nScope$52())), m('.fontweight-semibold.fontsize-large.u-margintop-30', I18n$1.t('banner.7', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.8', I18nScope$52()))]), m('.w-hidden-main.w-hidden-medium.how-col-01', [m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.1', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.2', I18nScope$52()))]), m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.3', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.4', I18nScope$52()))])])])])]), m('.w-section.divider'), m('.w-section.section-large', [m('.w-container.u-text-center.u-marginbottom-60', [m('div', [m('span.fontsize-largest.fontweight-semibold', I18n$1.t('features.title', I18nScope$52()))]), m('.w-hidden-small.w-hidden-tiny.fontsize-large.u-marginbottom-20', I18n$1.t('features.subtitle', I18nScope$52())), m('.w-hidden-main.w-hidden-medium.u-margintop-30', [m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_1', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_2', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_3', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_4', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_5', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_6', I18nScope$52()))])]), m('.w-container', [m('.w-tabs.w-hidden-small.w-hidden-tiny', [m('.w-tab-menu.w-col.w-col-4', _$1.map(ctrl.paneImages, function (pane, idx) {
+        }, I18n$1.t('submit', I18nScope$52()))])]), m('.w-row', _$1.isEmpty(stats) ? '' : [m('.w-col.w-col-4', [m('.fontsize-largest.lineheight-loose', h.formatNumber(stats.total_contributors, 0, 3)), m('p.fontsize-small.start-stats', I18n$1.t('header.people', I18nScope$52()))]), m('.w-col.w-col-4', [m('.fontsize-largest.lineheight-loose', stats.total_contributed.toString().slice(0, 2) + ' \uBC31\uB9CC'),
+        //coffee m('.fontsize-largest.lineheight-loose', `${stats.total_contributed.toString().slice(0, 2)} milhões`),
+        m('p.fontsize-small.start-stats', I18n$1.t('header.money', I18nScope$52()))]), m('.w-col.w-col-4', [m('.fontsize-largest.lineheight-loose', h.formatNumber(stats.total_projects_success, 0, 3)), m('p.fontsize-small.start-stats', I18n$1.t('header.success', I18nScope$52()))])])])]), m('.w-section.section', [m('.w-container', [m('.w-row', [m('.w-col.w-col-10.w-col-push-1.u-text-center', [m('.fontsize-larger.u-marginbottom-10.fontweight-semibold', I18n$1.t('page-title', I18nScope$52())), m('.fontsize-small', I18n$1.t('page-subtitle', I18nScope$52()))])]), m('.w-clearfix.how-row', [m('.w-hidden-small.w-hidden-tiny.how-col-01', [m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.1', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.2', I18nScope$52()))]), m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.3', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.4', I18nScope$52()))])]), m('.how-col-02'), m('.how-col-03', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.5', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.6', I18nScope$52())), m('.fontweight-semibold.fontsize-large.u-margintop-30', I18n$1.t('banner.7', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.8', I18nScope$52()))]), m('.w-hidden-main.w-hidden-medium.how-col-01', [m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.1', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.2', I18nScope$52()))]), m('.info-howworks-backers', [m('.fontweight-semibold.fontsize-large', I18n$1.t('banner.3', I18nScope$52())), m('.fontsize-base', I18n$1.t('banner.4', I18nScope$52()))])])])])]), m('.w-section.divider'), m('.w-section.section-large', [m('.w-container.u-text-center.u-marginbottom-60', [m('div', [m('span.fontsize-largest.fontweight-semibold', I18n$1.t('features.title', I18nScope$52()))]), m('.w-hidden-small.w-hidden-tiny.fontsize-large.u-marginbottom-20', I18n$1.t('features.subtitle', I18nScope$52())), m('.w-hidden-main.w-hidden-medium.u-margintop-30', [m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_1', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_2', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_3', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_4', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_5', I18nScope$52())), m('.fontsize-large.u-marginbottom-30', I18n$1.t('features.feature_6', I18nScope$52()))])]), m('.w-container', [m('.w-tabs.w-hidden-small.w-hidden-tiny', [m('.w-tab-menu.w-col.w-col-4', _$1.map(ctrl.paneImages, function (pane, idx) {
             return m('btn.w-tab-link.w-inline-block.tab-list-item' + (idx === ctrl.selectedPane() ? '.selected' : ''), {
                 onclick: h.analytics.event({ cat: 'project_start', act: 'start_solution_click', lbl: pane.label }, ctrl.selectPane(idx))
             }, pane.label);
@@ -14807,7 +16122,11 @@ var start = {
         })), m('.w-tab-content.u-margintop-40', [m('.w-tab-pane.w--tab-active', [m('.w-row', ctrl.selectedCategoryIdx() !== -1 ? _$1.map(ctrl.selectedCategory(), function (category) {
             return [m('.w-col.w-col-5', [m('.fontsize-jumbo.u-marginbottom-20', category.name), m('a.w-button.btn.btn-medium.btn-inline.btn-dark[href="#start-form"]', {
                 config: h.scrollTo()
-            }, I18n$1.t('submit', I18nScope$52()))]), m('.w-col.w-col-7', [m('.fontsize-megajumbo.fontcolor-negative', 'R$ ' + (category.total_successful_value ? h.formatNumber(category.total_successful_value, 2, 3) : '...')), m('.fontsize-large.u-marginbottom-20', 'Doados para projetos'), m('.fontsize-megajumbo.fontcolor-negative', category.successful_projects ? category.successful_projects : '...'), m('.fontsize-large.u-marginbottom-30', 'Projetos financiados'), !_$1.isEmpty(ctrl.featuredProjects()) ? _$1.map(ctrl.featuredProjects(), function (project) {
+            }, I18n$1.t('submit', I18nScope$52()))]), m('.w-col.w-col-7', [m('.fontsize-megajumbo.fontcolor-negative', 'R$ ' + (category.total_successful_value ? h.formatNumber(category.total_successful_value, 2, 3) : '...')), m('.fontsize-large.u-marginbottom-20', '프로젝트에 기부'),
+            //coffee m('.fontsize-large.u-marginbottom-20', 'Doados para projetos'),
+            m('.fontsize-megajumbo.fontcolor-negative', category.successful_projects ? category.successful_projects : '...'), m('.fontsize-large.u-marginbottom-30', '재정 지원 프로젝트'),
+            //coffee m('.fontsize-large.u-marginbottom-30', 'Projetos financiados'),
+            !_$1.isEmpty(ctrl.featuredProjects()) ? _$1.map(ctrl.featuredProjects(), function (project) {
                 return !_$1.isUndefined(project) ? m('.w-row.u-marginbottom-10', [m('.w-col.w-col-1', [m('img.user-avatar[src="' + h.useAvatarOrDefault(project.userThumb) + '"]')]), m('.w-col.w-col-11', [m('.fontsize-base.fontweight-semibold', project.user.public_name || project.user.name), m('.fontsize-smallest', [I18n$1.t('categories.pledged', I18nScope$52({ pledged: h.formatNumber(project.pledged), contributors: project.total_contributors })), m('a.link-hidden[href="/' + project.permalink + '"]', project.name)])])]) : m('.fontsize-base', I18n$1.t('categories.loading_featured', I18nScope$52()));
             }) : ''])];
         }) : '')])])])])]), m.component(slider, {
@@ -14828,14 +16147,17 @@ var start = {
                 answer: question.answer,
                 onclick: h.analytics.event({ cat: 'project_start', act: 'start_qa_click', lbl: question.question })
             });
-        }))])]), m('#start-form.w-section.section-large.u-text-center.bg-purple.before-footer', [m('.w-container', [m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', 'Crie o seu rascunho gratuitamente!'), m('form[action="/projects/fallback_create"][method="GET"].w-row.w-form', {
+        }))])]), m('#start-form.w-section.section-large.u-text-center.bg-purple.before-footer', [m('.w-container', [m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', '초안을 무료로 만들어 보세요!'),
+        //coffee m('.fontsize-jumbo.fontcolor-negative.u-marginbottom-60', 'Crie o seu rascunho gratuitamente!'),
+        m('form[action="/projects/fallback_create"][method="GET"].w-row.w-form', {
             onsubmit: function onsubmit(e) {
                 h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_submit' })(e);
                 return ctrl.validateProjectForm();
             }
         }, [m('.w-col.w-col-2'), m('.w-col.w-col-8', [m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', I18n$1.t('form.title', I18nScope$52())), m('input[name="utf8"][type="hidden"][value="✓"]'), m('input[name="authenticity_token"][type="hidden"][value="' + h.authenticityToken() + '"]'), m('input.w-input.text-field.medium.u-marginbottom-30[type="text"]', {
             name: 'project[name]',
-            class: ctrl.projectNameError() ? 'error' : '',
+            class: ctrl.projectNameError() ? '오류' : '',
+            //coffee class: ctrl.projectNameError() ? 'error' : '',
             onfocus: function onfocus() {
                 return ctrl.projectNameError(false);
             },
@@ -14843,9 +16165,12 @@ var start = {
                 h.analytics.oneTimeEvent({ cat: 'project_create', act: 'create_form_change', lbl: 'name' })(e);
                 m.withAttr('value', ctrl.projectName)(e);
             }
-        }), m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', 'na categoria'), m('select.w-select.text-field.medium.u-marginbottom-40', {
+        }), m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', '카테고리'),
+        //coffee m('.fontsize-larger.fontcolor-negative.u-marginbottom-10', 'na categoria'),
+        m('select.w-select.text-field.medium.u-marginbottom-40', {
             name: 'project[category_id]',
-            class: ctrl.projectCategoryError() ? 'error' : '',
+            class: ctrl.projectCategoryError() ? '오류' : '',
+            //coffee class: ctrl.projectCategoryError() ? 'error' : '',
             onfocus: function onfocus() {
                 return ctrl.projectCategoryError(false);
             },
@@ -14855,7 +16180,9 @@ var start = {
             }
         }, [m('option[value="-1"]', I18n$1.t('form.select_default', I18nScope$52())), _$1.map(ctrl.categories(), function (category) {
             return m('option', { value: category.id, selected: ctrl.projectCategory() === category.id }, category.name);
-        })])]), m('.w-col.w-col-2'), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4.w-col-push-4.u-margintop-40', [m('input[type="submit"][value="' + I18n$1.t('form.submit', I18nScope$52()) + '"].w-button.btn.btn-large')])]), m('.w-row.u-marginbottom-80', ctrl.projectNameError() || ctrl.projectCategoryError() ? m.component(inlineError, { message: 'Por favor, verifique novamente os campos acima!' }) : '')])])])]);
+        })])]), m('.w-col.w-col-2'), m('.w-row.u-marginbottom-20', [m('.w-col.w-col-4.w-col-push-4.u-margintop-40', [m('input[type="submit"][value="' + I18n$1.t('form.submit', I18nScope$52()) + '"].w-button.btn.btn-large')])]), m('.w-row.u-marginbottom-80', ctrl.projectNameError() || ctrl.projectCategoryError() ? m.component(inlineError, { message: '위의 필드를 다시 확인하십시오!' }) : '')
+        //coffee m('.w-row.u-marginbottom-80', (ctrl.projectNameError() || ctrl.projectCategoryError()) ? m.component(inlineError, { message: 'Por favor, verifique novamente os campos acima!' }) : '')
+        ])])])]);
     }
 };
 
@@ -14910,13 +16237,19 @@ var teamMembers = {
 
 var team = {
     view: function view() {
-        return m('#static-team-app', [m('.w-section.hero-who.hero-full', [m('.w-container.u-text-center', [m('img.icon-hero[src="https://catarse.me/assets/logo-yellow.png"]'), m('.u-text-center.u-marginbottom-20.fontsize-largest', 'Conheça nosso time')])]), m.component(teamTotal), m.component(teamMembers)]);
+        return m('#static-team-app', [m('.w-section.hero-who.hero-full', [m('.w-container.u-text-center', [m('img.icon-hero[src="https://catarse.me/assets/logo-yellow.png"]'), m('.u-text-center.u-marginbottom-20.fontsize-largest', '우리 팀을 만나십시오')
+        //coffee 'Conheça nosso time')
+        ])]), m.component(teamTotal), m.component(teamMembers)]);
     }
 };
 
 var menuSearch = {
     view: function view(ctrl, args) {
-        return m('span#menu-search', [m('.w-form.w-hidden-small.w-hidden-tiny.header-search[id=\'discover-form-wrapper\']', [m('form.discover-form[accept-charset=\'UTF-8\'][action=\'/pt/explore?ref=ctrse_header\'][id=\'search-form\'][method=\'get\']', [m('div', { style: { display: 'none' } }, m('input[name=\'utf8\'][type=\'hidden\'][value=\'✓\']')), m('input.w-input.text-field.prefix.search-input[autocomplete=\'off\'][id=\'pg_search\'][name=\'pg_search\'][placeholder=\'검색어를 입력하세요\'][type=\'text\']')]), m('.search-pre-result.w-hidden[data-searchpath=\'/pt/auto_complete_projects\']', [m('.result', m('.u-text-center', m('img[alt=\'Loader\'][src=\'/assets/catarse_bootstrap/loader.gif\']'))), m('a.btn.btn-small.btn-terciary.see-more-projects[href=\'javascript:void(0);\']', ' 모두보기')])]), m('a.w-inline-block.w-hidden-small.w-hidden-tiny.btn.btn-dark.btn-attached.postfix[href=\'javascript:void(0);\'][id=\'pg_search_submit\']', { onclick: function onclick() {
+        return m('span#menu-search', [m('.w-form.w-hidden-small.w-hidden-tiny.header-search[id=\'discover-form-wrapper\']', [m('form.discover-form[accept-charset=\'UTF-8\'][action=\'/pt/explore?ref=ctrse_header\'][id=\'search-form\'][method=\'get\']', [m('div', { style: { display: 'none' } }, m('input[name=\'utf8\'][type=\'hidden\'][value=\'✓\']')), m('input.w-input.text-field.prefix.search-input[autocomplete=\'off\'][id=\'pg_search\'][name=\'pg_search\'][placeholder=\'검색어를 입력하세요\'][type=\'text\']')
+        //coffee m('input.w-input.text-field.prefix.search-input[autocomplete=\'off\'][id=\'pg_search\'][name=\'pg_search\'][placeholder=\'검색어를 입력하세요\'][type=\'text\']')
+        ]), m('.search-pre-result.w-hidden[data-searchpath=\'/pt/auto_complete_projects\']', [m('.result', m('.u-text-center', m('img[alt=\'Loader\'][src=\'/assets/catarse_bootstrap/loader.gif\']'))), m('a.btn.btn-small.btn-terciary.see-more-projects[href=\'javascript:void(0);\']', ' 모두보기'
+        //coffee ' ver todos'
+        )])]), m('a.w-inline-block.w-hidden-small.w-hidden-tiny.btn.btn-dark.btn-attached.postfix[href=\'javascript:void(0);\'][id=\'pg_search_submit\']', { onclick: function onclick() {
                 $('#search-form').submit();
             } }, m('img.header-lupa[alt=\'Lupa\'][data-pin-nopin=\'true\'][src=\'/assets/catarse_bootstrap/lupa.png\']'))]);
     }
@@ -14962,14 +16295,54 @@ var menuProfile = {
 
         return m('.w-dropdown.user-profile', [m('.w-dropdown-toggle.dropdown-toggle.w-clearfix[id=\'user-menu\']', {
             onclick: ctrl.toggleMenu.toggle
-        }, [m('.user-name-menu', [m('.fontsize-smaller.lineheight-tightest.text-align-right', ctrl.userName()), ctrl.userBalance() > 0 ? m('.fontsize-smallest.fontweight-semibold.text-success', 'R$ ' + h.formatNumber(ctrl.userBalance(), 2, 3)) : '']), m('img.user-avatar[alt=\'Thumbnail - ' + user.name + '\'][height=\'40\'][src=\'' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '\'][width=\'40\']')]), ctrl.toggleMenu() ? m('nav.w-dropdown-list.dropdown-list.user-menu.w--open[id=\'user-menu-dropdown\']', { style: 'display:block;' }, [m('.w-row', [m('.w-col.w-col-12', [m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10', 'Meu histórico'), m('ul.w-list-unstyled.u-marginbottom-20', [m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#balance\']', m('span', ['균형 ', ctrl.userBalance() > 0 ? m('span.fontcolor-secondary', 'R$ ' + h.formatNumber(ctrl.userBalance(), 2, 3)) : '']))), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#contributions\']', 'Histórico de apoio')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#projects\']', '생성 된 프로젝트')), m('li.w-hidden-main.w-hidden-medium.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#projects\']', '생성 된 프로젝트'))]), m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10', '설정'), m('ul.w-list-unstyled.u-marginbottom-20', [m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/connect-facebook/\']', '친구 찾기')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#about_me\']', '공개 프로필')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#notifications\']', '알림')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#settings\']', '지적 데이터'))]), m('.divider.u-marginbottom-20'), args.user.is_admin_role ? m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10', '관리자') : '', args.user.is_admin_role ? m('ul.w-list-unstyled.u-marginbottom-20', [m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/users\']', '사용자')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin\']', '후원')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/balance-transfers\']', 'Saques')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/admin/financials\']', '재무 관계')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/projects\']', '관리 프로젝트')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/dbhero\']', '데이터 클립'))]) : '', m('.fontsize-mini', '귀하의 이메일 주소 : '), m('.fontsize-smallest.u-marginbottom-20', [m('span.fontweight-semibold', user.email + ' '), m('a.alt-link[href=\'/pt/users/' + user.id + '/edit#about_me\']', 'alterar e-mail')]), m('.divider.u-marginbottom-20'), m('a.alt-link[href=\'/pt/logout\']', '출구')])]
+        }, [m('.user-name-menu', [m('.fontsize-smaller.lineheight-tightest.text-align-right', ctrl.userName()), ctrl.userBalance() > 0 ? m('.fontsize-smallest.fontweight-semibold.text-success', 'R$ ' + h.formatNumber(ctrl.userBalance(), 2, 3)) : '']), m('img.user-avatar[alt=\'Thumbnail - ' + user.name + '\'][height=\'40\'][src=\'' + h.useAvatarOrDefault(user.profile_img_thumbnail) + '\'][width=\'40\']')]), ctrl.toggleMenu() ? m('nav.w-dropdown-list.dropdown-list.user-menu.w--open[id=\'user-menu-dropdown\']', { style: 'display:block;' }, [m('.w-row', [m('.w-col.w-col-12', [m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10', '내 역사'
+        //coffee 'Meu histórico'
+        ), m('ul.w-list-unstyled.u-marginbottom-20', [m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#balance\']', m('span', ['균형 ',
+        //coffee 'Saldo ',
+        ctrl.userBalance() > 0 ? m('span.fontcolor-secondary', 'R$ ' + h.formatNumber(ctrl.userBalance(), 2, 3)) : '']))), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#contributions\']', '후원 내역'
+        //coffee 'Histórico de apoio'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#projects\']', '생성된 프로젝트'
+        //coffee 'Projetos criados'
+        )), m('li.w-hidden-main.w-hidden-medium.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#projects\']', '생성된 프로젝트'
+        //coffee 'Projetos criados'
+        ))]), m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10', '설정'
+        //coffee 'Configurações'
+        ), m('ul.w-list-unstyled.u-marginbottom-20', [m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/connect-facebook/\']', '친구 찾기'
+        //coffee 'Encontre amigos'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#about_me\']', '공개 프로필'
+        //coffee 'Perfil público'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#notifications\']', '알림'
+        //coffee 'Notificações'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/users/' + user.id + '/edit#settings\']', '지적 데이터'
+        //coffee 'Dados cadastrais'
+        ))]), m('.divider.u-marginbottom-20'), args.user.is_admin_role ? m('.fontweight-semibold.fontsize-smaller.u-marginbottom-10', '관리자'
+        //coffee 'Admin'
+        ) : '', args.user.is_admin_role ? m('ul.w-list-unstyled.u-marginbottom-20', [m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/users\']', '사용자'
+        //coffee 'Usuários'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin\']', '후원'
+        //coffee 'Apoios'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/balance-transfers\']', 'Saques')), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/admin/financials\']', '재무 관계'
+        //coffee 'Rel. Financeiros'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/new-admin#/projects\']', '관리 프로젝트'
+        //coffee 'Admin projetos'
+        )), m('li.lineheight-looser', m('a.alt-link.fontsize-smaller[href=\'/pt/dbhero\']', '데이터 클립'
+        //coffee 'Dataclips'
+        ))]) : '', m('.fontsize-mini', '귀하의 이메일 주소 : '),
+        //coffee m('.fontsize-mini', 'Seu e-mail de cadastro é : '),
+        m('.fontsize-smallest.u-marginbottom-20', [m('span.fontweight-semibold', user.email + ' '), m('a.alt-link[href=\'/pt/users/' + user.id + '/edit#about_me\']', '이메일 변경')
+        //coffee m(`a.alt-link[href='/pt/users/${user.id}/edit#about_me']`, 'alterar e-mail')
+        ]), m('.divider.u-marginbottom-20'), m('a.alt-link[href=\'/pt/logout\']', '출구'
+        //coffee 'Sair'
+        )])]
         //m(`.w-col.w-col-4.w-hidden-small.w-hidden-tiny`,
         //    [
         //        m(`.fontweight-semibold.fontsize-smaller.u-marginbottom-10`,
-        //            `Projetos apoiados`
+        //            `후원 프로젝트`
+        //            //coffee `Projetos apoiados`
         //        ),
         //        m(`ul.w-list-unstyled.u-marginbottom-20`, ctrl.contributedProjects() ?
         //            _.isEmpty(ctrl.contributedProjects) ? '프로젝트 없음.' :
+        //            //coffee _.isEmpty(ctrl.contributedProjects) ? 'Nenhum projeto.' :
         //            m.component(quickProjectList, {
         //                projects: m.prop(_.map(ctrl.contributedProjects(), (contribution) => {
         //                    return {
@@ -14984,6 +16357,7 @@ var menuProfile = {
         //                loadMoreHref: '/pt/users/${user.id}/edit#contributions',
         //                ref: 'user_menu_my_contributions'
         //            }) : '로딩...'
+        //            //coffee }) : 'carregando...'
         //        )
         //    ]
         //),
@@ -14991,14 +16365,17 @@ var menuProfile = {
         //    [
         //        m(`.fontweight-semibold.fontsize-smaller.u-marginbottom-10`,
         //            `생성 된 프로젝트`
+        //            //coffee `Projetos criados`
         //        ),
         //        m(`ul.w-list-unstyled.u-marginbottom-20`, ctrl.latestProjects() ?
         //            _.isEmpty(ctrl.latestProjects) ? '프로젝트 없음.' :
+        //            //coffee _.isEmpty(ctrl.latestProjects) ? 'Nenhum projeto.' :
         //            m.component(quickProjectList, {
         //                projects: ctrl.latestProjects,
         //                loadMoreHref: '/pt/users/${user.id}/edit#contributions',
         //                ref: 'user_menu_my_projects'
         //            }) : '로딩...'
+        //            //coffee }) : 'carregando...'
         //        )
         //    ]
         //)
@@ -15034,17 +16411,95 @@ var menu = {
     view: function view(ctrl, args) {
         return m('header.main-header', {
             class: ctrl.menuCss()
-        }, [m('.w-row', [m('.w-clearfix.w-col.w-col-8.w-col-small-8.w-col-tiny-8', [m('a.header-logo.w-inline-block[href=\'/?ref=ctrse_header\'][title=\'GivingWire\']', ctrl.homeAttrs(), m('img[alt=\'Logo big\'][src=\'/assets/catarse_bootstrap/logo_big.png\']')), args.menuShort ? '' : m('div#menu-components', [m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/start?ref=ctrse_header\']', { config: m.route }, '새 프로젝트 시작하기'), m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/explore?ref=ctrse_header\']', { config: m.route }, '프로젝트 검색'), m.component(menuSearch)])]), m('.text-align-right.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [ctrl.user ? m.component(menuProfile, { user: ctrl.user }) : m('a.w-nav-link.header-link.w-nav-link.btn-edit.u-right[href=\'/en/login?ref=ctrse_header\']', '로그인')])]), args.menuShort ? '' : m('.header-controls-mobile.w-hidden-main.w-hidden-medium', [m('a.header-link.w-nav-link[href=\'/en/start?ref=ctrse_header\']', { onclick: function onclick() {
+        }, [m('.w-row', [m('.w-clearfix.w-col.w-col-8.w-col-small-8.w-col-tiny-8', [m('a.header-logo.w-inline-block[href=\'/?ref=ctrse_header\'][title=\'GivingWire\']', ctrl.homeAttrs(), m('img[alt=\'Logo big\'][src=\'/assets/catarse_bootstrap/logo_big.png\']')), args.menuShort ? '' : m('div#menu-components', [m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/start?ref=ctrse_header\']', { config: m.route }, '새 프로젝트 시작하기'),
+        //coffee m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/start?ref=ctrse_header\']', { config: m.route }, '새 프로젝트 시작하기'),
+        m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/explore?ref=ctrse_header\']', { config: m.route }, '프로젝트 검색'),
+        //coffee m('a.w-hidden-small.w-hidden-tiny.header-link.w-nav-link[href=\'/explore?ref=ctrse_header\']', { config: m.route }, '프로젝트 검색'),
+        m.component(menuSearch)])]), m('.text-align-right.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [ctrl.user ? m.component(menuProfile, { user: ctrl.user }) : m('a.w-nav-link.header-link.w-nav-link.btn-edit.u-right[href=\'/en/login?ref=ctrse_header\']', '로그인')
+        //coffee ctrl.user ? m.component(menuProfile, { user: ctrl.user }) : m('a.w-nav-link.header-link.w-nav-link.btn-edit.u-right[href=\'/en/login?ref=ctrse_header\']', '로그인')
+        ])]), args.menuShort ? '' : m('.header-controls-mobile.w-hidden-main.w-hidden-medium', [m('a.header-link.w-nav-link[href=\'/en/start?ref=ctrse_header\']', { onclick: function onclick() {
                 return m.route('/start');
-            } }, '새 프로젝트 시작하기'), m('a.header-link.w-nav-link[href=\'/en/explore?ref=ctrse_header\']', { onclick: function onclick() {
+            } }, '새 프로젝트 시작하기'
+        //coffee '새 프로젝트 시작하기'
+        ), m('a.header-link.w-nav-link[href=\'/en/explore?ref=ctrse_header\']', { onclick: function onclick() {
                 return m.route('/explore');
-            } }, '프로젝트 검색')])]);
+            } }, '프로젝트 검색'
+        //coffee '프로젝트 검색'
+        )])]);
     }
 };
 
 var footer = {
     view: function view() {
-        return m('footer.main-footer.main-footer-neg', [m('section.w-container', m('.w-row', [m('.w-col.w-col-9', m('.w-row', [m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.w-hidden-tiny', [m('.footer-full-signature-text.fontsize-small', '환영합니다'), m('a.link-footer[href=\'http://crowdfunding.catarse.me/paratodos?ref=ctrse_footer\']', ' 작동 원리'), m('a.link-footer[href=\'http://blog.catarse.me\']', ' 블로그'), m('a.link-footer[href=\'https://www.catarse.me/pt/team?ref=ctrse_footer\']', [' 우리 팀 ', m.trust('&lt;'), '3']), m('a.link-footer[href=\'https://www.catarse.me/pt/jobs\']', ' 우리와 함께 일하십시오.'), m('a.link-footer[href=\'https://www.catarse.me/pt/press?ref=ctrse_footer\']', ' 보도 자료'), m('a.u-marginbottom-30.link-footer[href=\'https://ano.catarse.me/2016?ref=ctrse_footer\']', ' 2016년 회고전'), m('.footer-full-signature-text.fontsize-small', '소셜 네트워킹'), m('a.link-footer[href=\'http://facebook.com/catarse.me\']', [m('span.fa.fa-facebook-square.fa-lg'), m.trust('&nbsp;&nbsp;'), '페이스북']), m('a.link-footer[href=\'http://twitter.com/catarse\']', [m('span.fa.fa-twitter-square.fa-lg'), m.trust('&nbsp;&nbsp;'), '트위터']), m('a.link-footer[href=\'http://instagram.com/catarse\']', [m('span.fa.fa-instagram.fa-lg'), m.trust('&nbsp;&nbsp;'), '인스타그램']), m('a.link-footer[href=\'http://github.com/catarse/catarse\']', [m('span.fa.fa-github-square.fa-lg'), m.trust('&nbsp;&nbsp;'), '깃허브'])]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.footer-full-firstcolumn', [m('.footer-full-signature-text.fontsize-small', '도움말'), m('a.link-footer[href=\'http://suporte.catarse.me?ref=ctrse_footer/\']', ' 지원 센터'), m('a.link-footer[href=\'http://suporte.catarse.me/hc/pt-br/requests/new\'][target="_BLANK"]', ' 연락처'), m('a.link-footer[href=\'https://www.ofinanciamentocoletivo.com.br/?ref=ctrse_footer\']', ['Escola Catarse', m.trust('&nbsp;'), m('span.badge.badge-success', '뉴스')]), m('a.link-footer[href=\'http://crowdfunding.catarse.me/nossa-taxa?ref=ctrse_footer\']', '우리 요금'), m('a.link-footer[href=\'http://pesquisa.catarse.me/\']', ' Retrato FC Brasil 2013/2014'), m('a.link-footer[href=\'http://suporte.catarse.me/hc/pt-br/articles/115002214043-Responsabilidades-e-Seguran%C3%A7a?ref=ctrse_footer\']', ' 책임과 보안'), m('a.link-footer[href=\'/pt/terms-of-use\']', ' 이용 약관'), m('a.link-footer[href=\'/pt/privacy-policy\']', ' 개인 정보 보호 정책')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.footer-full-lastcolumn', [m('.footer-full-signature-text.fontsize-small', '캠페인 만들기'), m('a.link-footer[href=\'/pt/start?ref=ctrse_footer\']', ' 프로젝트 시작'), m('a.link-footer[href=\'http://crowdfunding.catarse.me/financiamento-coletivo-musica-independente?ref=ctrse_footer\']', ['음악이 아닙니다.', m.trust('&nbsp;'), m('span.badge.badge-success', '뉴스')]), m('a.u-marginbottom-30.link-footer[href=\'https://crowdfunding.catarse.me/publicacoes-independentes-financiamento-coletivo?ref=ctrse_footer\']', ['독립 출판물', m.trust('&nbsp;'), m('span.badge.badge-success', '뉴스')]), m('.footer-full-signature-text.fontsize-small', 'Givingwire에서 지원 프로젝트'), m('a.link-footer[href=\'/pt/explore?ref=ctrse_footer\']', '프로젝트 탐색'), m('a.w-hidden-main.w-hidden-medium.w-hidden-small.link-footer[href=\'http://blog.catarse.me?ref=ctrse_footer\']', ' 블로그'), m('a.w-hidden-main.w-hidden-medium.w-hidden-small.link-footer[href=\'http://suporte.catarse.me/hc/pt-br/requests/new\']', ' 연락처'), m('a.w-hidden-tiny.link-footer[href=\'/pt/explore?filter=score&ref=ctrse_footer\']', ' Populares'), m('a.w-hidden-tiny.link-footer[href=\'/pt/explore?filter=online&ref=ctrse_footer\']', ' No ar'), m('a.w-hidden-tiny.link-footer[href=\'/pt/explore?filter=finished&ref=ctrse_footer\']', ' Finalizados')])])), m('.w-col.w-col-3.column-social-media-footer', [m('.footer-full-signature-text.fontsize-small', '우리의 뉴스를 구독하십시오'), m('.w-form', m('form[accept-charset=\'UTF-8\'][action=\'' + h.getNewsletterUrl() + '\'][id=\'mailee-form\'][method=\'post\']', [m('.w-form.footer-newsletter', m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'Digite seu email\'][type=\'email\']')), m('button.w-inline-block.btn.btn-edit.postfix.btn-attached[style="padding:0;"]', m('img.footer-news-icon[alt=\'Icon newsletter\'][src=\'/assets/catarse_bootstrap/icon-newsletter.png\']'))])), m('.footer-full-signature-text.fontsize-small', '언어 변경'), m('[id=\'google_translate_element\']')])])), m('.w-container', m('.footer-full-copyleft', [m('img.u-marginbottom-20[alt=\'Logo footer\'][src=\'/assets/logo-footer.png\']'), m('.lineheight-loose', m('a.link-footer-inline[href=\'http://github.com/catarse/catarse\']', ' Feito com amor | ' + new Date().getFullYear() + ' | Open source'))]))]);
+        return m('footer.main-footer.main-footer-neg', [m('section.w-container', m('.w-row', [m('.w-col.w-col-9', m('.w-row', [m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.w-hidden-tiny', [m('.footer-full-signature-text.fontsize-small', '환영합니다'
+        //coffee 'Bem-vindo'
+        ), m('a.link-footer[href=\'http://crowdfunding.catarse.me/paratodos?ref=ctrse_footer\']', ' 작동 원리'
+        //coffee ' Como funciona'
+        ), m('a.link-footer[href=\'http://blog.catarse.me\']', ' 블로그'
+        //coffee ' Blog'
+        ), m('a.link-footer[href=\'https://www.catarse.me/pt/team?ref=ctrse_footer\']', [' 우리 팀 ',
+        //coffee ' Nosso time ',
+        m.trust('&lt;'), '3']), m('a.link-footer[href=\'https://www.catarse.me/pt/jobs\']', ' 우리와 함께 일하십시오.'
+        //coffee ' Trabalhe conosco'
+        ), m('a.link-footer[href=\'https://www.catarse.me/pt/press?ref=ctrse_footer\']', ' 보도 자료'
+        //coffee ' Imprensa'
+        ), m('a.u-marginbottom-30.link-footer[href=\'https://ano.catarse.me/2016?ref=ctrse_footer\']', ' 2016년 회고전'
+        //coffee 'Retrospectiva 2016'
+        ), m('.footer-full-signature-text.fontsize-small', '소셜 네트워킹'
+        //coffee 'Redes Sociais'
+        ), m('a.link-footer[href=\'http://facebook.com/catarse.me\']', [m('span.fa.fa-facebook-square.fa-lg'), m.trust('&nbsp;&nbsp;'), '페이스북'
+        //coffee 'Facebook'
+        ]), m('a.link-footer[href=\'http://twitter.com/catarse\']', [m('span.fa.fa-twitter-square.fa-lg'), m.trust('&nbsp;&nbsp;'), '트위터'
+        //coffee 'Twitter'
+        ]), m('a.link-footer[href=\'http://instagram.com/catarse\']', [m('span.fa.fa-instagram.fa-lg'), m.trust('&nbsp;&nbsp;'), '인스타그램'
+        //coffee 'Instagram'
+        ]), m('a.link-footer[href=\'http://github.com/catarse/catarse\']', [m('span.fa.fa-github-square.fa-lg'), m.trust('&nbsp;&nbsp;'), '깃허브'
+        //coffee 'Github'
+        ])]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.footer-full-firstcolumn', [m('.footer-full-signature-text.fontsize-small', '도움말'
+        //coffee 'Ajuda'
+        ), m('a.link-footer[href=\'http://suporte.catarse.me?ref=ctrse_footer/\']', ' 지원 센터'
+        //coffee ' Central de Suporte'
+        ), m('a.link-footer[href=\'http://suporte.catarse.me/hc/pt-br/requests/new\'][target="_BLANK"]', ' 연락처'
+        //coffee ' Contato'
+        ), m('a.link-footer[href=\'https://www.ofinanciamentocoletivo.com.br/?ref=ctrse_footer\']', ['Escola Catarse', m.trust('&nbsp;'), m('span.badge.badge-success', '뉴스'
+        //coffee 'Novidade'
+        )]), m('a.link-footer[href=\'http://crowdfunding.catarse.me/nossa-taxa?ref=ctrse_footer\']', '우리 요금'
+        //coffee 'Nossa Taxa'
+        ), m('a.link-footer[href=\'http://pesquisa.catarse.me/\']', ' Retrato FC Brasil 2013/2014'), m('a.link-footer[href=\'http://suporte.catarse.me/hc/pt-br/articles/115002214043-Responsabilidades-e-Seguran%C3%A7a?ref=ctrse_footer\']', ' 책임과 보안'
+        //coffee '  Responsabilidades e Segurança'
+        ), m('a.link-footer[href=\'/pt/terms-of-use\']', ' 이용 약관'
+        //coffee ' Termos de uso'
+        ), m('a.link-footer[href=\'/pt/privacy-policy\']', ' 개인 정보 보호 정책'
+        //coffee ' Política de privacidade'
+        )]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.footer-full-lastcolumn', [m('.footer-full-signature-text.fontsize-small', '캠페인 만들기'
+        //coffee 'Faça uma campanha'
+        ), m('a.link-footer[href=\'/pt/start?ref=ctrse_footer\']', ' 프로젝트 시작'
+        //coffee ' Comece seu projeto'
+        ), m('a.link-footer[href=\'http://crowdfunding.catarse.me/financiamento-coletivo-musica-independente?ref=ctrse_footer\']', ['음악이 아닙니다.',
+        //coffee 'Música no Catarse',
+        m.trust('&nbsp;'), m('span.badge.badge-success', '뉴스'
+        //coffee 'Novidade'
+        )]), m('a.u-marginbottom-30.link-footer[href=\'https://crowdfunding.catarse.me/publicacoes-independentes-financiamento-coletivo?ref=ctrse_footer\']', ['독립 출판물',
+        //coffee 'Publicações Independentes',
+        m.trust('&nbsp;'), m('span.badge.badge-success', '뉴스'
+        //coffee 'Novidade'
+        )]), m('.footer-full-signature-text.fontsize-small', 'Givingwire에서 지원 프로젝트'
+        //coffee 'Apoie projetos no Catarse'
+        ), m('a.link-footer[href=\'/pt/explore?ref=ctrse_footer\']', '프로젝트 탐색'
+        //coffee ' Explore projetos'
+        ), m('a.w-hidden-main.w-hidden-medium.w-hidden-small.link-footer[href=\'http://blog.catarse.me?ref=ctrse_footer\']', ' 블로그'
+        //coffee ' Blog'
+        ), m('a.w-hidden-main.w-hidden-medium.w-hidden-small.link-footer[href=\'http://suporte.catarse.me/hc/pt-br/requests/new\']', ' 연락처'
+        //coffee ' Contato'
+        ), m('a.w-hidden-tiny.link-footer[href=\'/pt/explore?filter=score&ref=ctrse_footer\']', ' Populares'), m('a.w-hidden-tiny.link-footer[href=\'/pt/explore?filter=online&ref=ctrse_footer\']', ' No ar'), m('a.w-hidden-tiny.link-footer[href=\'/pt/explore?filter=finished&ref=ctrse_footer\']', ' Finalizados')])])), m('.w-col.w-col-3.column-social-media-footer', [m('.footer-full-signature-text.fontsize-small', '우리의 뉴스를 구독하십시오'
+        //coffee 'Assine nossa news'
+        ), m('.w-form', m('form[accept-charset=\'UTF-8\'][action=\'' + h.getNewsletterUrl() + '\'][id=\'mailee-form\'][method=\'post\']', [m('.w-form.footer-newsletter', m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'이메일을 입력해 주시길 바랍니다.\'][type=\'email\']')
+        //coffee m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'Digite seu email\'][type=\'email\']')
+        ), m('button.w-inline-block.btn.btn-edit.postfix.btn-attached[style="padding:0;"]', m('img.footer-news-icon[alt=\'Icon newsletter\'][src=\'/assets/catarse_bootstrap/icon-newsletter.png\']'))])), m('.footer-full-signature-text.fontsize-small', '언어 변경'
+        //coffee 'Change language'
+        ), m('[id=\'google_translate_element\']')])])), m('.w-container', m('.footer-full-copyleft', [m('img.u-marginbottom-20[alt=\'Logo footer\'][src=\'/assets/logo-footer.png\']'), m('.lineheight-loose', m('a.link-footer-inline[href=\'http://github.com/catarse/catarse\']', ' Feito com amor | ' + new Date().getFullYear() + ' | \uC624\uD508 \uC18C\uC2A4'
+        //coffee ` Feito com amor | ${new Date().getFullYear()} | Open source`
+        ))]))]);
     }
 };
 
@@ -15117,7 +16572,9 @@ var userFriends = {
         var listVM = ctrl.friendListVM;
         return m('.w-section.bg-gray.before-footer.section', [m('.w-container', [m('.w-row.u-marginbottom-40.card.u-radius.card-terciary', [m('.w-col.w-col-7.w-col-small-6.w-col-tiny-6', [m('.fontsize-small', 'Comece agora! Siga todos os seus amigos ou somente alguns deles para descobrir projetos juntos!')]), m('.w-col.w-col-5.w-col-small-6.w-col-tiny-6', [ctrl.allLoading() ? h.loader() : m('a.w-button.btn.btn-medium', {
             onclick: ctrl.followAll
-        }, 'Siga todos os seus ' + (listVM.total() ? listVM.total() : '') + ' amigos')])]), m('.w-row', [_$1.map(listVM.collection(), function (friend) {
+        }, 'Siga todos os seus ' + (listVM.total() ? listVM.total() : '') + ' \uCE5C\uAD6C')]
+        //coffee }, `Siga todos os seus ${listVM.total() ? listVM.total() : ''} amigos`))
+        )]), m('.w-row', [_$1.map(listVM.collection(), function (friend) {
             return m.component(UserFollowCard, { friend: friend });
         })]), m('.w-section.section.bg-gray', [m('.w-container', [m('.w-row.u-marginbottom-60', [m('.w-col.w-col-5', [m('.u-marginright-20')]), m.component(loadMoreBtn, { collection: listVM }), m('.w-col.w-col-5')])])])])]);
     }
@@ -15283,7 +16740,15 @@ var FollowFoundFriends = {
         };
     },
     view: function view(ctrl, args) {
-        return m('div', [m('.w-section.dashboard-header', [m('.w-container', [m('.w-row.u-margintop-20.u-marginbottom-20', [m('.w-col.w-col-1'), m('.w-col.w-col-10.u-text-center', [m('.fontsize-larger.fontweight-semibold.u-marginbottom-10', 'Descubra projetos com seus amigos'), m('.fontsize-small', '친구를 따라 가면 프로젝트를 시작하거나 후원할 때마다 알려드립니다.')]), m('.w-col.w-col-1')])])]), m('.divider.u-margintop-30'), m('.project-nav', m('.u-text-center.w-container', [m('a[id="creators-link"][class="dashboard-nav-link ' + (h.hashMatch('#creators') ? 'selected' : '') + '"] [href="#creators"]', '영화 제작자 찾기'), m('a[id="friends-link"][class="dashboard-nav-link ' + (h.hashMatch('#friends') || h.hashMatch('') ? 'selected' : '') + '"] [href="#friends"]', '친구 찾기'), m('a[id="follows-link"][class="dashboard-nav-link ' + (h.hashMatch('#follows') ? 'selected' : '') + '"] [href="#follows"]', ['팔로잉', m.trust('&nbsp;'), m('span.w-hidden-small.w-hidden-tiny.badge', ctrl.user.follows_count)]), m('a[id="followers-link"][class="dashboard-nav-link ' + (h.hashMatch('#followers') ? 'selected' : '') + '"] [href="#followers"]', ['Seguidores', m.trust('&nbsp;'), m('span.w-hidden-small.w-hidden-tiny.badge', ctrl.user.followers_count)])])), ctrl.displayTabContent()]);
+        return m('div', [m('.w-section.dashboard-header', [m('.w-container', [m('.w-row.u-margintop-20.u-marginbottom-20', [m('.w-col.w-col-1'), m('.w-col.w-col-10.u-text-center', [m('.fontsize-larger.fontweight-semibold.u-marginbottom-10', 'Descubra projetos com seus amigos'), m('.fontsize-small', '친구를 따라 가면 프로젝트를 시작하거나 후원할 때마다 알려드립니다.')
+        //coffee m('.fontsize-small', 'Siga os seus amigos e nós iremos te notificar sempre que eles lançarem ou apoiarem algum projeto')
+        ]), m('.w-col.w-col-1')])])]), m('.divider.u-margintop-30'), m('.project-nav', m('.u-text-center.w-container', [m('a[id="creators-link"][class="dashboard-nav-link ' + (h.hashMatch('#creators') ? 'selected' : '') + '"] [href="#creators"]', '영화 제작자 찾기'
+        //coffee 'Encontre realizadores'
+        ), m('a[id="friends-link"][class="dashboard-nav-link ' + (h.hashMatch('#friends') || h.hashMatch('') ? 'selected' : '') + '"] [href="#friends"]', '친구 찾기'
+        //coffee 'Encontre amigos'
+        ), m('a[id="follows-link"][class="dashboard-nav-link ' + (h.hashMatch('#follows') ? 'selected' : '') + '"] [href="#follows"]', ['팔로잉',
+        //coffee 'Seguindo',
+        m.trust('&nbsp;'), m('span.w-hidden-small.w-hidden-tiny.badge', ctrl.user.follows_count)]), m('a[id="followers-link"][class="dashboard-nav-link ' + (h.hashMatch('#followers') ? 'selected' : '') + '"] [href="#followers"]', ['Seguidores', m.trust('&nbsp;'), m('span.w-hidden-small.w-hidden-tiny.badge', ctrl.user.followers_count)])])), ctrl.displayTabContent()]);
     }
 };
 
@@ -15323,7 +16788,9 @@ var thankYou = {
             email: args.contribution.contribution_email,
             link2: '/pt/users/' + h.getUser().user_id + '/edit#contributions',
             link_email: '/pt/users/' + h.getUser().user_id + '/edit#about_me'
-        })))), m('.fontsize-base.fontweight-semibold.u-marginbottom-20', 'Compartilhe com seus amigos e ajude esse projeto a bater a meta!')] : [m('#slip-thank-you.fontsize-largest.text-success.u-marginbottom-20', I18n$1.t('thank_you_slip.thank_you', I18nScope$53())), m('.fontsize-base.u-marginbottom-40', m.trust(I18n$1.t('thank_you_slip.thank_you_text_html', I18nScope$53({
+        })))), m('.fontsize-base.fontweight-semibold.u-marginbottom-20', '친구들과 공유하고 이 프로젝트가 목표를 달성하도록 도와주세요!'
+        //coffee 'Compartilhe com seus amigos e ajude esse projeto a bater a meta!'
+        )] : [m('#slip-thank-you.fontsize-largest.text-success.u-marginbottom-20', I18n$1.t('thank_you_slip.thank_you', I18nScope$53())), m('.fontsize-base.u-marginbottom-40', m.trust(I18n$1.t('thank_you_slip.thank_you_text_html', I18nScope$53({
             email: args.contribution.contribution_email,
             link_email: '/pt/users/' + h.getUser().user_id + '/edit#about_me'
         }))))]), ctrl.isSlip ? '' : m('.w-row', [m('.w-hidden-small.w-hidden-tiny', [m('.w-sub-col.w-col.w-col-4', m.component(facebookButton, {
@@ -15333,9 +16800,13 @@ var thankYou = {
             messenger: true,
             big: true,
             url: 'https://www.catarse.me/' + args.contribution.project.permalink + '?ref=ctrse_thankyou&utm_source=facebook.com&utm_medium=messenger&utm_campaign=thanks_share'
-        })), m('.w-col.w-col-4', m('a.btn.btn-large.btn-tweet.u-marginbottom-20[href="https://twitter.com/intent/tweet?text=Acabei%20de%20apoiar%20o%20projeto%20' + encodeURIComponent(args.contribution.project.name) + '%20https://www.catarse.me/' + args.contribution.project.permalink + '%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share"][target="_blank"]', [m('span.fa.fa-twitter'), ' Twitter']))]), m('.w-hidden-main.w-hidden-medium', [m('.u-marginbottom-30.u-text-center-small-only', m('button.btn.btn-large.btn-terciary.u-marginbottom-40', {
+        })), m('.w-col.w-col-4', m('a.btn.btn-large.btn-tweet.u-marginbottom-20[href="https://twitter.com/intent/tweet?text=Acabei%20de%20apoiar%20o%20projeto%20' + encodeURIComponent(args.contribution.project.name) + '%20https://www.catarse.me/' + args.contribution.project.permalink + '%3Fref%3Dtwitter%26utm_source%3Dtwitter.com%26utm_medium%3Dsocial%26utm_campaign%3Dproject_share"][target="_blank"]', [m('span.fa.fa-twitter'), ' 트위터'
+        //coffee m('span.fa.fa-twitter'), ' Twitter'
+        ]))]), m('.w-hidden-main.w-hidden-medium', [m('.u-marginbottom-30.u-text-center-small-only', m('button.btn.btn-large.btn-terciary.u-marginbottom-40', {
             onclick: ctrl.displayShareBox.toggle
-        }, 'Compartilhe')), ctrl.displayShareBox() ? m(projectShareBox, {
+        }, '이것을 공유하십시오')),
+        //coffee }, 'Compartilhe')),
+        ctrl.displayShareBox() ? m(projectShareBox, {
             // Mocking a project m.prop
             project: m.prop({
                 permalink: args.contribution.project.permalink,
@@ -15395,7 +16866,11 @@ var CheckEmail = {
 
             return user && !userCreatedRecently && !user.email_active && !ctrl.hideAlert() ? m('.card-alert.section.u-text-center', { style: args.menuTransparency ? { 'padding-top': '100px' } : {} }, [m('.w-container', ctrl.confirmedEmail() ? [m('.fontsize-large.fontweight-semibold', I18n$1.t('confirmed_title', I18nScope$54())), m('.fontsize-large.fontweight-semibold.u-marginbottom-20', I18n$1.t('confirmed_sub', I18nScope$54()))] : [m('.fontsize-large.fontweight-semibold', _$1.isNull(user.name) ? 'Olá' : I18n$1.t('hello', I18nScope$54({ name: user.name }))), m('.fontsize-large.fontweight-semibold.u-marginbottom-20', I18n$1.t('hello_sub', I18nScope$54())), m('.fontsize-base.u-marginbottom-10', I18n$1.t('hello_email', I18nScope$54({ email: user.email }))), m('.w-row', [m('.w-col.w-col-3'), m('.w-col.w-col-3', [m('button.btn.btn-medium.btn-terciary.w-button', {
                 onclick: ctrl.checkEmail
-            }, '예!')]), m('.w-col.w-col-3', [m('a.btn.btn-medium.w-button[href="/users/' + user.id + '/edit#about_me"]', '이메일 수정')]), m('.w-col.w-col-3')])])]) : m('div');
+            }, '예!')
+            //coffee }, 'Sim!')
+            ]), m('.w-col.w-col-3', [m('a.btn.btn-medium.w-button[href="/users/' + user.id + '/edit#about_me"]', '이메일 수정')
+            //coffee m(`a.btn.btn-medium.w-button[href="/users/${user.id}/edit#about_me"]`, 'Editar o email')
+            ]), m('.w-col.w-col-3')])])]) : m('div');
         }
 
         return m('div');
@@ -15452,4 +16927,4 @@ var c = {
 return c;
 
 }(m,I18n,_,moment,$,postgrest,CatarseAnalytics,replaceDiacritics,Chart,select));
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3JjLyoqLyouanMiLCJzb3VyY2VzIjpbXSwic291cmNlc0NvbnRlbnQiOltdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OyIsInByZUV4aXN0aW5nQ29tbWVudCI6Ii8vIyBzb3VyY2VNYXBwaW5nVVJMPWRhdGE6YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04O2Jhc2U2NCxleUoyWlhKemFXOXVJam96TENKbWFXeGxJanB1ZFd4c0xDSnpiM1Z5WTJWeklqcGJYU3dpYzI5MWNtTmxjME52Ym5SbGJuUWlPbHRkTENKdVlXMWxjeUk2VzEwc0ltMWhjSEJwYm1keklqb2lPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3lKOSJ9
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3JjLyoqLyouanMiLCJzb3VyY2VzIjpbXSwic291cmNlc0NvbnRlbnQiOltdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7IiwicHJlRXhpc3RpbmdDb21tZW50IjoiLy8jIHNvdXJjZU1hcHBpbmdVUkw9ZGF0YTphcHBsaWNhdGlvbi9qc29uO2NoYXJzZXQ9dXRmLTg7YmFzZTY0LGV5SjJaWEp6YVc5dUlqb3pMQ0ptYVd4bElqcHVkV3hzTENKemIzVnlZMlZ6SWpwYlhTd2ljMjkxY21ObGMwTnZiblJsYm5RaU9sdGRMQ0p1WVcxbGN5STZXMTBzSW0xaGNIQnBibWR6SWpvaU96czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdPenM3T3pzN096czdJbjA9In0=
