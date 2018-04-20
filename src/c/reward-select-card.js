@@ -121,7 +121,8 @@ const rewardSelectCard = {
                         class: rewardVM.hasShippingOptions(reward) ?
                             'w-col-4' : 'w-col-8'
                     }, [
-                        m('.fontcolor-secondary.u-marginbottom-10', 'Valor do apoio'),
+                        m('.fontcolor-secondary.u-marginbottom-10', '지원의 가치'),
+                        //coffee m('.fontcolor-secondary.u-marginbottom-10', 'Valor do apoio'),
                         m('.w-row.u-marginbottom-20', [
                             m('.w-col.w-col-3.w-col-small-3.w-col-tiny-3',
                                 m('.back-reward-input-reward.medium.placeholder',

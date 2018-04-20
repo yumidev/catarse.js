@@ -50,7 +50,8 @@ const dashboardMultipleChoiceQuestion = {
                         ),
                     m('.w-col.w-col-8',
                             m('input.positive.text-field.w-input[type="text"]', {
-                                class: question.error ? 'error' : null,
+                                class: question.error ? '오류' : null,
+                                //coffee class: question.error ? 'error' : null,
                                 name: `reward[surveys_attributes][questions][${index}][question]`,
                                 onchange: m.withAttr('value', newValue => question.question = newValue),
                                 onfocus: () => {

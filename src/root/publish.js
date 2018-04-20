@@ -75,7 +75,8 @@ const publish = {
                         //coffee m('span.fontweight-semibold', 'Você não poderá alterar'),
                         ': a identidade do responsável pelo projeto (Nome / CPF ou Razão Social / CNPJ), a Modalidade de financiamento, o título do projeto, a URL (link) do projeto, a categoria do projeto, a meta de arrecadação,  o prazo (caso já tenha definido), e as recompensas onde existirem apoios já efetuados.',
                         m('br'), m('br'),
-                        m('span.fontweight-semibold', 'Você poderá alterar'),
+                        m('span.fontweight-semibold', '너는 바꿀 수있어'),
+                        //coffee m('span.fontweight-semibold', 'Você poderá alterar'),
                         ': 캠페인의 주요 비디오, 설명의 내용, 프로젝트 이미지, 효과 문구, 지원이없는 경우의 보상, 컬렉션 중 새로운 보상 추가하기'
                         //coffee ': o vídeo principal da campanha, o conteúdo da descrição, a imagem do projeto, a frase de efeito, as recompensas onde não existirem apoios efetuados, além de adicionar novas recompensas durante a arrecadação'
                     ])
@@ -86,7 +87,7 @@ const publish = {
                         m('span.fontsize-smallest.fontcolor-secondary', '2/9'),
                         ' ',
                         m('span.fontweight-semibold', '플렉스 규칙')
-                        //coffee m('span.fontweight-semibold', 'Regras da modalidade FLEX칙')
+                        //coffee m('span.fontweight-semibold', 'Regras da modalidade FLEX')
                     ]),
                     m('div', 'Você escolheu a campanha flexível. Dessa maneira, você irá receber todos os recursos arrecadados junto aos apoiadores ao final do prazo da campanha (descontando a taxa do Catarse) e deverá cumprir com a execução do projeto e com a entrega das recompensas oferecidas independente do quanto arrecadar.')
                 ]),
@@ -250,7 +251,8 @@ const publish = {
                     m('div', [
                         m('span.fontsize-smallest.fontcolor-secondary', '7/9'),
                         ' ',
-                        m('span', { style: { 'font-weight': ' 600' } }, 'Responsabilidade do Catarse')
+                        m('span', { style: { 'font-weight': ' 600' } }, 'Givingwire의 책임')
+                        //coffee m('span', { style: { 'font-weight': ' 600' } }, 'Responsabilidade do Catarse')
                     ]),
                       [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'O Catarse é responsável:'), ' 플랫폼의 기술적 발전, 의심과 문제의 출석 (후원자와 감독 모두), 플랫폼에서 프로젝트를 주최하고 금융 거래의 보안을 보장하기위한 것.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'Givingwire는 책임지지 않습니다.:'), ' 자금 조달, 보급 및 집행, 등록 된 프로젝트의 보상금 납부.'])]]),
                 //coffee [m('div', [m('span.fontweight-semibold'), m('span.fontweight-semibold', 'O Catarse é responsável:'), ' pelo desenvolvimento tecnológico da plataforma, atendimento de dúvidas e problemas (tanto de apoiadores quanto de realizadores), por hospedar o projeto na plataforma e por garantir a segurança das transações financeiras.\ ', m('br'), m('br'), m('span.fontweight-semibold', 'O Catarse não é responsável:'), ' pelo financiamento, divulgação e execução, nem pela entrega de recompensas dos projetos inscritos'])]]),

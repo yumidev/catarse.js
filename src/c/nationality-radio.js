@@ -34,7 +34,8 @@ const nationalityRadio = {
                             }
                         }),
                         m('label.w-form-label',
-                            'Brasileiro (a)'
+                            '브라질 사람 (a)'
+                            //coffee'Brasileiro (a)'
                         )
                     ])
                 ),

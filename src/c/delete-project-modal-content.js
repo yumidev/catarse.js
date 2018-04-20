@@ -87,7 +87,7 @@ const deleteProjectModalContent = {
                       m('.text-error.u-marginbottom-10', ctrl.error()),
                           [
                               m('div',
-                          m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: ctrl.confirmed() ? false : 'error', placeholder: '초안 삭제', onchange: m.withAttr('value', ctrl.check) })
+                          m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: ctrl.confirmed() ? false : '오류', placeholder: '초안 삭제', onchange: m.withAttr('value', ctrl.check) })
                                   //coffee m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: ctrl.confirmed() ? false : 'error', placeholder: 'deletar-rascunho', onchange: m.withAttr('value', ctrl.check) })
                         )
                           ]

@@ -30,7 +30,7 @@ const projectAnnounceExpiration = {
                                     m('.u-marginbottom-30.w-row', [
                                         m('.w-sub-col.w-col.w-col-6',
                                             m('.fontsize-small.u-marginbottom-10', [
-                                                '지금부터 며칠 후에 컬렉션을 닫으시겠습니까??',
+                                                '지금부터 며칠 후에 컬렉션을 닫으시겠습니까?',
                                                 //coffee 'Em quantos dias, contados a partir de agora, você quer encerrar a sua arrecadação?',
                                                 m('br'),
                                                 m('span.fontsize-smaller.fontweight-semibold',

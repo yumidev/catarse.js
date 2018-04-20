@@ -105,8 +105,7 @@ const adminProjects = {
             }, { // goal
                 component: filterNumberRange,
                 data: {
-                    label: '목표 중',
-                    //coffee label: 'Meta entre',
+                    label: 'Meta entre',
                     first: filterVM.goal.gte,
                     last: filterVM.goal.lte
                 }

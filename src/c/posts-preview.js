@@ -68,7 +68,8 @@ const postsPreview = {
                 ),
                 ' os apoiadores e ficará ',
                 m('span.fontweight-semibold',
-                    'visível publicamente '
+                    '공개적으로 볼 수 있음'
+                    //coffee 'visível publicamente '
                 ),
                 'na plataforma.'
             ]) :
@@ -77,7 +78,7 @@ const postsPreview = {
                 m('span.fontweight-semibold', '모든 후원자에게 이메일로 보냄'),
                 //coffee m('span.fontweight-semibold', 'enviada por email para todos os apoiadores'),
                 m('span', ' e ficará '),
-                m('span.fontweight-semibold', '플랫폼에있는 사람들 만 볼 수있다.')
+                m('span.fontweight-semibold', '플랫폼에있는 사람들만 볼 수있다.')
                 //coffee m('span.fontweight-semibold', 'visível somente para esses na plataforma.')
             ]);
 

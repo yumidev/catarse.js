@@ -128,13 +128,13 @@ const Flex = {
                         m('.fontsize-larger.u-text-center.u-marginbottom-60.u-margintop-40', 'Dúvidas'), m('.w-row.u-marginbottom-60', [
                             m('.w-col.w-col-6', [
                                 m.component(landingQA, {
-                                    question: '유연한 모드 요금이란 무엇입니까?? ',
+                                    question: '유연한 모드 요금이란 무엇입니까? ',
                                     //coffee question: 'Quais são as taxas da modalidade flexível? ',
                                     answer: 'Givinwire와 마찬가지로 프로젝트를 보내는 데는 비용이 들지 않습니다! 캐럿 플렉스 서비스 이용료는 수집 된 금액의 13 %입니다.'
                                     //coffee answer: 'Como no Catarse, enviar um projeto não custa nada! A taxa cobrada no serviço Catarse flex é de 13% sobre o valor arrecadado.'
                                 }),
                                 m.component(landingQA, {
-                                    question: '내 프로젝트에서 나온 돈은 어디에서 왔습니까??',
+                                    question: '내 프로젝트에서 나온 돈은 어디에서 왔습니까?',
                                     //coffee question: 'De onde vem o dinheiro do meu projeto?',
                                     answer: '귀하가 소속 된 가족, 친구, 팬 및 지역 사회 구성원은 귀하의 가장 큰 공헌자입니다. 그들이 알고있는 사람들에게 선거 운동을 퍼뜨리는 것은 바로 그 사람들입니다. 그래서 서포터들의 서클이 커지고 캠페인의 힘이 생깁니다.'
                                     //coffee answer: 'Família, amigos, fãs e membros de comunidades que você faz parte são seus maiores colaboradores. São eles que irão divulgar sua campanha para as pessoas que eles conhecem, e assim o círculo de apoiadores vai aumentando e a sua campanha ganha força.'
@@ -157,7 +157,7 @@ const Flex = {
                                     answer: 'Acreditamos que o ambiente do crowdfunding brasileiro ainda tem espaço para muitas ações, testes e experimentações para entender de fato o que as pessoas precisam. Sonhamos com tornar o financiamento coletivo um hábito no Brasil. O Catarse flex é mais um passo nessa direção.'
                                 }),
                                 m.component(landingQA, {
-                                    question: 'Givingwire flex는 언제 시작합니까??',
+                                    question: 'Givingwire flex는 언제 시작합니까?',
                                     //coffee question: 'Quando vocês irão lançar o Catarse flex?',
                                     answer: '우리는 일반 대중을 위해 언제 Flex를 열지 모르지만 이 페이지에 이메일을 등록하고 프로젝트 제출 방법에 대한 특별한 자료를 받을 수 있습니다.'
                                     //coffee answer: 'Ainda não sabemos quando abriremos o flex para o público em geral, mas você pode cadastrar seu email nessa página e receber um material especial de como inscrever seu projeto.'
@@ -223,7 +223,8 @@ const Flex = {
                 ]), m('.w-section.section-large.bg-greenlime', [
                     m('.w-container', [
                         m('#participe-do-debate.u-text-center', { config: h.toAnchor() }, [
-                            m('h1.fontsize-largest.fontcolor-negative', 'Construa o flex conosco'), m('.fontsize-base.u-marginbottom-60.fontcolor-negative', 'Inicie uma conversa, pergunte, comente, critique e faça sugestões!')
+                            m('h1.fontsize-largest.fontcolor-negative', 'Construa o flex conosco'), m('.fontsize-base.u-marginbottom-60.fontcolor-negative', '대화를 시작하고, 의견을 말하고, 비평하고, 비평하고, 제안을하십시오!')
+                            //coffee m('h1.fontsize-largest.fontcolor-negative', 'Construa o flex conosco'), m('.fontsize-base.u-marginbottom-60.fontcolor-negative', 'Inicie uma conversa, pergunte, comente, critique e faça sugestões!')
                         ]),
                         m('#disqus_thread.card.u-radius[style="min-height: 50vh;"]', {
                             config: ctrl.addDisqus

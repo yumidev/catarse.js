@@ -33,6 +33,7 @@ const errorContributionModalContent = {
                             //coffee 'Se quiser adicionar alguma informação nessa mensagem, use o espaço abaixo (ex: você pode pedir confirmação de endereço de entrega ou explicar motivos do erro)'
                         ),
                         m("textarea.height-mini.text-field.w-input[placeholder='메시지 입력 (선택 사항)']", {
+                        //coffee m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
                             value: args.message(),
                             onchange: m.withAttr('value', args.message)
                         })

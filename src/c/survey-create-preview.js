@@ -188,7 +188,8 @@ const surveyCreatePreview = {
                     m('.w-col.w-col-8', [
                         m('.u-marginbottom-30.u-text-center', [
                             m('.fontsize-small.fontweight-semibold.u-marginbottom-10',
-                                `O questionário acima será enviado para os ${args.reward.paid_count} apoiadores da recompensa`
+                                `위 퀴즈는 $ {args.reward.paid_count} 포상금 지원자에게 발송됩니다.`
+                                //coffee `O questionário acima será enviado para os ${args.reward.paid_count} apoiadores da recompensa`
                             ),
                             m(rewardCardBig, { reward: args.reward })
                         ]),

@@ -179,7 +179,8 @@ const menuProfile = {
                                         //coffee m('.fontsize-mini', 'Seu e-mail de cadastro é : '),
                                         m('.fontsize-smallest.u-marginbottom-20', [
                                             m('span.fontweight-semibold', `${user.email} `),
-                                            m(`a.alt-link[href='/pt/users/${user.id}/edit#about_me']`, 'alterar e-mail')
+                                            m(`a.alt-link[href='/pt/users/${user.id}/edit#about_me']`, '이메일 변경')
+                                            //coffee m(`a.alt-link[href='/pt/users/${user.id}/edit#about_me']`, 'alterar e-mail')
                                         ]),
                                         m('.divider.u-marginbottom-20'),
                                         m('a.alt-link[href=\'/pt/logout\']',
@@ -191,7 +192,8 @@ const menuProfile = {
                                 //m(`.w-col.w-col-4.w-hidden-small.w-hidden-tiny`,
                                 //    [
                                 //        m(`.fontweight-semibold.fontsize-smaller.u-marginbottom-10`,
-                                //            `Projetos apoiados`
+                                //            `후원 프로젝트`
+                                //            //coffee `Projetos apoiados`
                                 //        ),
                                 //        m(`ul.w-list-unstyled.u-marginbottom-20`, ctrl.contributedProjects() ?
                                 //            _.isEmpty(ctrl.contributedProjects) ? '프로젝트 없음.' :

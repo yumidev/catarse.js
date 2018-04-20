@@ -134,7 +134,8 @@ const projectsReward = {
                                                                         ),
                                                             m('.submit-form.w-col.w-col-4.w-col-small-4.w-col-tiny-4',
                                                                             m('button.btn.btn-large', [
-                                                                                'Continuar  ',
+                                                                                '계속하기  ',
+                                                                                //coffee 'Continuar  ',
                                                                                 m('span.fa.fa-chevron-right')
                                                                             ])
                                                                         )

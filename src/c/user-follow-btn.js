@@ -69,7 +69,8 @@ const UserFollowBtn = {
             }
             return m(`a${disableClass}`,
                          { onclick: ctrl.follow },
-                         'Seguir');
+                         '따라 가기');
+                         //coffee 'Seguir');
         }
         return m('');
     }

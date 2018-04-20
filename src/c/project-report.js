@@ -106,7 +106,7 @@ const projectReport = {
                        m('.w-form',
                         m('p',
                           '신고가 접수되었습니다.'
-                          //coffee 'Obrigado! A sua denúncia foi recebida.'
+                          //coffee 'Obrigado! A sua denúncia foi recebida.(고마워요! 귀하의 불만이 접수되었습니다.)'
                         )
                       ) :
                 [
@@ -120,7 +120,7 @@ const projectReport = {
                               [
                                   m('.fontsize-small.fontweight-semibold.u-marginbottom-10',
                                 '이 프로젝트를 신고하시는 이유가 무엇인가요?'
-                                 //coffee 'Por que você está denunciando este projeto?'
+                                 //coffee 'Por que você está denunciando este projeto?(왜 이 프로젝트를 비난하고 있니?)'
                               ),
                                   m('select.w-select.text-field.positive[required=\'required\']', { onchange: m.withAttr('value', ctrl.reason) },
                                       [
@@ -128,15 +128,18 @@ const projectReport = {
                                     '이유 선택'
                                      //coffee 'Selecione um motivo'
                                   ),
-                                          m('option[value=\'Violação de propriedade intelectual\']',
+                                          m('option[value=\'지적 재산권 침해\']',
+                                          //coffee m('option[value=\'Violação de propriedade intelectual\']',
                                     '지적 재산권 침해'
                                      //coffee 'Violação de propriedade intelectual'
                                   ),
-                                          m('option[value=\'Calúnia, injúria, difamação ou discriminação\']',
+                                          m('option[value=\'중상, 명예 훼손, 명예 훼손 또는 차별\']',
+                                              //coffee m('option[value=\'Calúnia, injúria, difamação ou discriminação\']',
                                     '중상, 명예 훼손, 명예 훼손 또는 차별'
                                      //coffee 'Calúnia, injúria, difamação ou discriminação'
                                   ),
-                                          m('option[value=\'Escopo de projeto proibido\']',
+                                          m('option[value=\'금지 된 프로젝트의 범위\']',
+                                              //coffee m('option[value=\'Escopo de projeto proibido\']',
                                     '금지 된 프로젝트의 범위'
                                     //coffee 'Escopo de projeto proibido'
                                   ),
@@ -147,10 +150,12 @@ const projectReport = {
                                     'Cenas de sexo explícitas e gratuitas'
                                   ),
                                           m('option[value=\'Abuso de SPAM\']',
+                                              //coffee m('option[value=\'스팸 남용']',
                                     '스팸 남용'
                                     //coffee 'Abuso de SPAM용'
                                   ),
                                           m('option[value=\'Outros\']',
+                                              //coffee m('option[value=\'기타\']',
                                     '기타'
                                      //coffee 'Outros'
                                   )

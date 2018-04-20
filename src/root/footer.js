@@ -200,7 +200,8 @@ const footer = {
                                         m(`form[accept-charset='UTF-8'][action='${h.getNewsletterUrl()}'][id='mailee-form'][method='post']`,
                                             [
                                                 m('.w-form.footer-newsletter',
-                                                    m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'Digite seu email\'][type=\'email\']')
+                                                    m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'이메일을 입력해 주시길 바랍니다.\'][type=\'email\']')
+                                                    //coffee m('input.w-input.text-field.prefix[id=\'EMAIL\'][label=\'email\'][name=\'EMAIL\'][placeholder=\'Digite seu email\'][type=\'email\']')
                                                 ),
                                                 m('button.w-inline-block.btn.btn-edit.postfix.btn-attached[style="padding:0;"]',
                                                     m('img.footer-news-icon[alt=\'Icon newsletter\'][src=\'/assets/catarse_bootstrap/icon-newsletter.png\']')

@@ -71,7 +71,8 @@ const usersShow = {
                       ) : '') : h.loader()),
                       m(`a[data-target=\'#contributed-tab\'][href=\'#contributed\'][id=\'contributed_link\'][class=\'dashboard-nav-link ${(ctrl.hash() === '#contributed' ? 'selected' : '')}\']`,
                           [
-                              'Apoiados ',
+                              '지원됨 ',
+                              //coffee 'Apoiados ',
                               m.trust('&nbsp;'),
                               m('span.badge',
                                   user.total_contributed_projects
@@ -80,7 +81,8 @@ const usersShow = {
                       ),
                       m(`a[data-target=\'#created-tab\'][href=\'#created\'][id=\'created_link\'][class=\'dashboard-nav-link ${(ctrl.hash() === '#created' ? 'selected' : '')}\']`,
                           [
-                              'Criados ',
+                              '생성됨 ',
+                              //coffee 'Criados ',
                               m.trust('&nbsp;'),
                               m('span.badge',
                                   user.total_published_projects

@@ -30,7 +30,7 @@ const adminTransactionHistory = {
             }, {
                 date: contribution.chargeback_at,
                 name: '후원 거절'
-                //coffee name: 'Chargeback'
+                //coffee name: 'Chargeback(지불 거절)'
             }], (memo, item) => {
                 if (item.date !== null && item.date !== undefined) {
                     item.originalDate = item.date;

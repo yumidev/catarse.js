@@ -19,6 +19,7 @@ const popNotification = {
             //coffee class: args.error ? 'card-error' : ''
         }, [
             m('img.icon-close[src="/assets/catarse_bootstrap/x.png"][width="12"][alt="닫기"]', {
+            //coffee m('img.icon-close[src="/assets/catarse_bootstrap/x.png"][width="12"][alt="fechar"]', {
                 onclick: ctrl.displayNotification.toggle
             }),
             m('.fontsize-small', m.trust(args.message))

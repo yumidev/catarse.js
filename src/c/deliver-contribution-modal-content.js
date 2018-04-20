@@ -30,7 +30,8 @@ const deliverContributionModalContent = {
                         m('.fontsize-smaller',
                             'Se quiser adicionar alguma informação nessa mensagem, use o espaço abaixo! É um ótimo momento para agradecer a essas pessoas que acreditaram em você!'
                         ),
-                        m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
+                        m("textarea.height-mini.text-field.w-input[placeholder='메시지 입력 (선택 사항)']", {
+                        //coffee m("textarea.height-mini.text-field.w-input[placeholder='Digite sua mensagem (opcional)']", {
                             value: args.message(),
                             onchange: m.withAttr('value', args.message)
                         })
@@ -40,7 +41,8 @@ const deliverContributionModalContent = {
                     m('.w-col.w-col-1'),
                     m('.w-col.w-col-10',
                         m('.fontsize-small.fontweight-semibold.u-marginbottom-20.u-text-center',
-                            'Você confirma que a recompensa dos apoios selecionados foram enviadas?'
+                            '선택한 후원에 대한 보상이 발송되었음을 확인합니까?'
+                            //coffee 'Você confirma que a recompensa dos apoios selecionados foram enviadas?'
                         )
                     ),
                     m('.w-col.w-col-1')

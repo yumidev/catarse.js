@@ -9,6 +9,7 @@ const projectEditSaveBtn = {
                   (args.loading() ? h.loader() : [
                       m('input[id="anchor"][name="anchor"][type="hidden"][value="about_me"]'),
                       m('input.btn.btn.btn-large[name="commit"][type="submit"][value="저장"]', {
+                      //coffee m('input.btn.btn.btn-large[name="commit"][type="submit"][value="Salvar"]', {
                           onclick: args.onSubmit
                       })
                   ])

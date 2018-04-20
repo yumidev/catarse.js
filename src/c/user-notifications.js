@@ -90,7 +90,8 @@ const userNotifications = {
             marketing_lists = ctrl.mailMarketingLists();
 
         return m('[id=\'notifications-tab\']', ctrl.error() ? m.component(inlineError, {
-            message: 'Erro ao carregar a página.'
+            message: '페이지로드 오류.'
+            //coffee message: 'Erro ao carregar a página.'
         }) :
             m(`form.simple_form.edit_user[accept-charset='UTF-8'][action='/pt/users/${user.id}'][method='post'][novalidate='novalidate']`, [
                 m('input[name=\'utf8\'][type=\'hidden\'][value=\'✓\']'),

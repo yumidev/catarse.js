@@ -35,7 +35,7 @@ const cancelProjectModalContent = {
                         //coffee 'Após o cancelamento, sua campanha será expirada e os seus apoiadores serão reembolsados dentro das próximas 24h horas.',
                         m('span.fontweight-semibold',
                                 '이 작업은 취소할 수 없습니다!'
-                            //coffee 'Essa ação não poderá ser desfeita!'
+                            //coffee 'Essa ação não poderá ser desfeita(이 작업은 실행 취소 할 수 없습니다.)!'
                             ),
                         m('br'),
                         m('span.fontweight-semibold')
@@ -54,7 +54,8 @@ const cancelProjectModalContent = {
                 ),
                 m('.w-form',
                     [
-                        m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : 'error', placeholder: 'cancelar-projeto', onchange: m.withAttr('value', ctrl.check) })
+                        m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : '오류', placeholder: '프로젝트 취소', onchange: m.withAttr('value', ctrl.check) })
+                        //coffee m('input.positive.text-field.u-marginbottom-40.w-input[maxlength=\'256\'][type=\'text\']', { class: !ctrl.checkError() ? false : 'error', placeholder: 'cancelar-projeto', onchange: m.withAttr('value', ctrl.check) })
                     ]
                     ),
                 m('div',
