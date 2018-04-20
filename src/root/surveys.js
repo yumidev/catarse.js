@@ -110,7 +110,8 @@ const surveys = {
                         ),
                         m('.u-right', [
                             m('.fontcolor-secondary.fontsize-mini.lineheight-tighter',
-                                'Enviado em:'
+                                '전송 됨:'
+                                //coffee 'Enviado em:'
                             ),
                             m('.fontcolor-secondary.fontsize-mini.lineheight-tighter',
                                 h.momentify(reward.survey_sent_at, 'DD/MM/YYYY')
@@ -212,12 +213,14 @@ const surveys = {
                                         m('.w-row', [
                                             m('.w-col.w-col-6',
                                                 m('div',
-                                                    'Enviados'
+                                                    '전송 됨'
+                                                    //coffee 'Enviados'
                                                 )
                                             ),
                                             m('.w-col.w-col-6',
                                                 m('div',
-                                                    'Respondidos'
+                                                    '답변 됨'
+                                                    //coffee 'Respondidos'
                                                 )
                                             )
                                         ])

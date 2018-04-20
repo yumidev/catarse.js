@@ -116,7 +116,8 @@ const editRewardCard = {
             states(data);
             states().unshift({
                 acronym: null,
-                name: 'Estado'
+                name: '주'
+                //coffee name: 'Estado'
             });
 
             if (!reward.newReward) {
@@ -214,7 +215,8 @@ const editRewardCard = {
                     m('.w-row', [
                         m('.w-col.w-col-5',
                             m('label.fontsize-smaller',
-                                'Previsão de entrega:'
+                                '배송 예상:'
+                                //coffee 'Previsão de entrega:'
                             )
                         ),
                         m('.w-col.w-col-7',
@@ -256,6 +258,7 @@ const editRewardCard = {
                                 )
                             ),
                             ctrl.deliverAtError() ? inlineError('Data de entrega não pode ser no passado.') : ''
+                            //coffee ctrl.deliverAtError() ? inlineError('배송 날짜는 과거 일 수 없습니다..') : ''
                         )
                     ]),
                     m('.w-row',
@@ -265,9 +268,11 @@ const editRewardCard = {
                         )
                     ),
                     m('.w-row', [
-                        m('textarea.text.required.w-input.text-field.positive.height-medium[aria-required=\'true\'][placeholder=\'Descreva sua recompensa\'][required=\'required\']', {
+                        m('textarea.text.required.w-input.text-field.positive.height-medium[aria-required=\'true\'][placeholder=\'보상에 대해 설명해주십시오.\'][required=\'required\']', {
+                        //coffee m('textarea.text.required.w-input.text-field.positive.height-medium[aria-required=\'true\'][placeholder=\'Descreva sua recompensa\'][required=\'required\']', {
                             value: ctrl.reward.description(),
-                            class: ctrl.descriptionError() ? 'error' : false,
+                            class: ctrl.descriptionError() ? '오류' : false,
+                            //coffee class: ctrl.descriptionError() ? 'error' : false,
                             oninput: m.withAttr('value', ctrl.reward.description)
                         }),
                         m(".fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for='reward_description']",

@@ -126,10 +126,12 @@ const paymentVM = () => {
 
         if (document.length > 14) {
             isValid = h.validateCnpj(document);
-            errorMessage = 'CNPJ inválido.';
+            errorMessage = '잘못된 CNPJ입니다.';
+            //coffee errorMessage = 'CNPJ inválido.';
         } else {
             isValid = h.validateCpf(striped);
-            errorMessage = 'CPF inválido.';
+            errorMessage = '잘못된 CPF입니다.';
+            //coffee errorMessage = 'CPF inválido.';
         }
 
         if (!isValid) {

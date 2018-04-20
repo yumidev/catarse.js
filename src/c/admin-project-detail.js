@@ -130,7 +130,7 @@ const adminProjectDetail = {
                 ]),
                 m('.w-col.w-col-2', [
                     m('a.btn.btn-small.btn-terciary', {href: `/projects/${item.project_id}/contributions_report`}, '후원 보고서')
-                    //coffee m('a.btn.btn-small.btn-terciary', {href: `/projects/${item.project_id}/contributions_report`}, 'Relatório de apoios')
+                    //coffee m('a.btn.btn-small.btn-terciary', {href: `/projects/${item.project_id}/contributions_report`}, 'Relatório de apoios(지원 보고서)')
                 ])
             ]),
             m('.w-row.card.card-terciary.u-radius', [

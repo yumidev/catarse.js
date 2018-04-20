@@ -38,7 +38,6 @@ const adminTransaction = {
                 //coffee `Operadora: ${contribution.gateway_data && contribution.gateway_data.acquirer_name}`,
                 m('br'),
                 contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2차 노선')] : ''
-                //coffee contribution.is_second_slip ? [m('a.link-hidden[href="#"]', 'Boleto bancário'), ' ', m('span.badge', '2a via')] : ''
             ])
         ]);
     }

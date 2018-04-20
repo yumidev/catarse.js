@@ -145,7 +145,8 @@ const dashboardRewardCard = {
                                     ),
                                     m('.w-col.w-col-6',
                                         m('input.string.tel.optional.w-input.text-field.u-marginbottom-30.positive[placeholder=\'Quantidade disponível\'][type=\'tel\']', {
-                                            class: ctrl.limitError() ? 'error' : false,
+                                            class: ctrl.limitError() ? '오류' : false,
+                                            //coffee class: ctrl.limitError() ? 'error' : false,
                                             value: reward.maximum_contributions(),
                                             onchange: m.withAttr('value', reward.maximum_contributions)
                                         })
@@ -154,6 +155,7 @@ const dashboardRewardCard = {
                                 m('.w-row', [
                                     m('.w-sub-col.w-col.w-col-4',
                                         m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, '저장')
+                                        //coffee m('button.btn.btn-small.w-button', { onclick: ctrl.saveReward }, 'Salvar')
                                     ),
                                     m('.w-sub-col.w-col.w-col-4',
                                         m('button.btn.btn-small.btn-terciary.w-button', {

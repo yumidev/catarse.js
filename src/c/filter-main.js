@@ -14,6 +14,7 @@ const filterMain = {
             ]),
             m('.w-col.w-col-4', [
                 m(`input#filter-btn${btnClass}[type="submit"][value="검색"]`)
+                //coffee m(`input#filter-btn${btnClass}[type="submit"][value="Buscar"]`)
             ])
         ]);
     }

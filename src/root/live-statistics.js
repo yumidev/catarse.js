@@ -73,7 +73,8 @@ const liveStatistics = {
             ]) : ''),
             m('.u-text-center.fontsize-large.u-marginbottom-10.fontcolor-negative', [
                 m('a.link-hidden.fontcolor-negative[href="https://github.com/catarse"][target="_blank"]', [
-                    m('span.fa.fa-github', '.'), ' Open Source com orgulho! '
+                    m('span.fa.fa-github', '.'), ' 자존심을 가진 오픈 소스! '
+                    //coffee m('span.fa.fa-github', '.'), ' Open Source com orgulho! '
                 ])
             ])
         ]);

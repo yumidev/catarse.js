@@ -26,7 +26,8 @@ const SignedFriendFacebookConnect = {
                             //coffee m('.fontsize-small', 'O universo do Catarse junto com a sua rede do Facebook te farão descobrir projetos incríveis!')
                         ]),
                         m('.w-col.w-col-4.u-text-center', [
-                            m('.fontsize-smallest.u-marginbottom-10', `${total} dos seus amigos estão no Catarse!`),
+                            m('.fontsize-smallest.u-marginbottom-10', `${total}명의 친구들이 기빙와이어에 있습니다!`),
+                            //coffee m('.fontsize-smallest.u-marginbottom-10', `${total} dos seus amigos estão no Catarse!`),
                             m('.u-marginbottom-20', [
                                 _.map(ctrl.mapWithAvatar(), item => m(`img.thumb.small.u-round.u-marginbottom-10[src="${item.avatar}"]`))
                             ]),

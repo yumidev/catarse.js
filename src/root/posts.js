@@ -214,7 +214,8 @@ const posts = {
                                         name: 'posts[title]',
                                         value: ctrl.fields.title(),
                                         onfocus: () => ctrl.titleHasError(false),
-                                        class: ctrl.titleHasError() ? 'error' : '',
+                                        class: ctrl.titleHasError() ? '오류' : '',
+                                        //coffee class: ctrl.titleHasError() ? 'error' : '',
                                         onchange: m.withAttr('value', ctrl.fields.title)
                                     }),
                                     m('label.field-label.fontweight-semibold',

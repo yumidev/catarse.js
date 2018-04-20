@@ -225,7 +225,8 @@ const projectGoalEdit = {
                                                         class: vm.e.hasError('online_days') ? '오류' : false
                                                         //coffee class: vm.e.hasError('online_days') ? 'error' : false
                                                     }, [
-                                                        m('', 'dias')
+                                                        m('', '일')
+                                                        //coffee m('', 'dias')
                                                     ])
                                                 ])
                                             ]),

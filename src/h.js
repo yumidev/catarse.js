@@ -810,13 +810,15 @@ const
 
             {
                 tag: 'p',
-                title: 'Cabeçalho 1',
+                title: '헤더 1',
+                //coffee title: 'Cabeçalho 1',
                 class: 'fontsize-larger fontweight-semibold',
                 clear: true
             },
             {
                 tag: 'p',
-                title: 'Cabeçalho 2',
+                title: '헤더 2',
+                //coffee title: 'Cabeçalho 2',
                 class: 'fontsize-large',
                 clear: true
             }],

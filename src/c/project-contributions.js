@@ -113,7 +113,7 @@ const projectContributions = {
                                   `${Math.floor(stats.new_percent)}%`
                                  ),
                                 m('.fontsize-smallest',
-                                  '카타르에서 프로젝트를 후원해 본적이 없는 후원자들'
+                                  '기빙와이어에서 프로젝트를 후원해 본적이 없는 후원자들'
                                   //coffee 'apoiadores que nunca tinham apoiado um projeto no Catarse'
                                  )
                             ]),

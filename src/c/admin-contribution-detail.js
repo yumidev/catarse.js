@@ -40,10 +40,10 @@ const adminContributionDetail = {
                     outerLabel: 'Transferir Apoio',
                     placeholder: '예: 129908',
                     //coffee  placeholder: 'ex: 129908',
-                    successMessage: 'Apoio transferido com sucesso!',
-                    //coffee   successMessage: '후원이 성공적으로 이루어 졌습니다!',
+                    successMessage: '후원이 성공적으로 이루어 졌습니다!',
+                    //coffee   successMessage: 'Apoio transferido com sucesso!(지원이 성공적으로 전송되었습니다.)',
                     errorMessage: '후원을 실패하였습니다!',
-                    //coffee   errorMessage: 'O apoio não foi transferido!',
+                    //coffee   errorMessage: 'O apoio não foi transferido(지원이 이전되지 않았습니다.)!',
                     model: models.contributionDetail
                 },
                 reward: {
@@ -70,10 +70,10 @@ const adminContributionDetail = {
                     updateKey: 'id',
                     callToAction: '직접 상환',
                     //coffee   callToAction: 'Reembolso direto',
-                    innerLabel: '이 지원금을 환급 받으시겠습니까?',
+                    innerLabel: '이 후원금을 환급 받으시겠습니까?',
                     //coffee   innerLabel: 'Tem certeza que deseja reembolsar esse apoio?',
                     outerLabel: '환불',
-                    //coffee   outerLabel: 'Reembolsar Apoio',
+                    //coffee   outerLabel: 'Reembolsar Apoio(환불지원)',
                     model: models.contributionDetail
                 },
                 remove: {
