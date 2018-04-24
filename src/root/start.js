@@ -143,7 +143,7 @@ const start = {
         return m('#start', { config: h.setPageTitle(I18n.t('header_html', I18nScope())) }, [
             m('.w-section.hero-full.hero-start', [
                 m('.w-container.u-text-center', [
-                    m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('슬로건', I18nScope())),
+                    m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('slogan', I18nScope())),
                     //coffee m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('slogan', I18nScope())),
                     m('.w-row.u-marginbottom-40', [
                         m('.w-col.w-col-4.w-col-push-4', [

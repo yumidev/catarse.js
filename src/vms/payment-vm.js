@@ -97,7 +97,7 @@ const paymentVM = () => {
 
     const getLocale = () => isInternational()
             ? { locale: 'en' }
-            : { locale: 'pt' };
+            : { locale: 'en' };
 
     const faq = (mode = 'aon') => I18n.translations[I18n.currentLocale()].projects.faq[mode],
         currentUser = h.getUser() || {};
