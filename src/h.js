@@ -21,7 +21,7 @@ const
     },
   	selfOrEmpty = (obj: any, emptyState: string = ''): any => obj || emptyState,
     setMomentifyLocale = (): void => {
-        moment.locale('pt', {
+        moment.locale('kr', {
             months: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
             //coffee months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
             monthsShort: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_')
@@ -34,7 +34,7 @@ const
 
     momentify = (date: string, format: string): string => {
         format = format || 'DD/MM/YYYY';
-        return date ? moment(date).locale('pt').format(format) : 'no date';
+        return date ? moment(date).locale('kr').format(format) : 'no date';
     },
 
     getRandomInt = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min,
@@ -822,7 +822,7 @@ const
                 class: 'fontsize-large',
                 clear: true
             }],
-        lang: 'pt_br',
+        lang: 'en_br',
         maxHeight: 800,
         minHeight: 300,
         convertVideoLinks: true,
