@@ -291,7 +291,7 @@ var selfOrEmpty = function selfOrEmpty(obj) {
     return obj || emptyState;
 };
 var setMomentifyLocale = function setMomentifyLocale() {
-    moment.locale('pt', {
+    moment.locale('kr', {
         months: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
         //coffee months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
         monthsShort: '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_')
@@ -306,7 +306,7 @@ var slugify = function slugify(str) {
 };
 var momentify = function momentify(date, format) {
     format = format || 'DD/MM/YYYY';
-    return date ? moment(date).locale('pt').format(format) : 'no date';
+    return date ? moment(date).locale('kr').format(format) : 'no date';
 };
 var getRandomInt = function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1112,7 +1112,7 @@ var redactorConfig = function redactorConfig(params) {
             class: 'fontsize-large',
             clear: true
         }],
-        lang: 'pt_br',
+        lang: 'en_br',
         maxHeight: 800,
         minHeight: 300,
         convertVideoLinks: true,
@@ -4484,7 +4484,7 @@ var projectCard = {
             if (project.expires_at) {
                 return isFinished(project) ? [m('.fontsize-smaller.fontweight-loose', '휴무일'),
                 //coffee m('.fontsize-smaller.fontweight-loose', 'Encerrado'),
-                m('.fontsize-smallest.lineheight-tightest', h.momentify(project.expires_at))] : [m('.fontsize-smaller.fontweight-semibold', remainingTextObj.total + ' ' + remainingTextObj.unit), m('.fontsize-smallest.lineheight-tightest', remainingTextObj.total > 1 ? 'Restantes' : 'Restante')];
+                m('.fontsize-smallest.lineheight-tightest', h.momentify(project.expires_at))] : [m('.fontsize-smaller.fontweight-semibold', remainingTextObj.total + ' ' + remainingTextObj.unit), m('.fontsize-smallest.lineheight-tightest', remainingTextObj.total > 1 ? '일' : '일')];
             }
             return [m('.fontsize-smallest.lineheight-tight', ['Iniciado há', m('br'), elapsedTextObj.total + ' ' + elapsedTextObj.unit])];
         };
@@ -4514,7 +4514,7 @@ var projectCard = {
             onclick: projectVM.routeToProject(project, args.ref)
         }, project.project_name || project.name)]), m(ctrl.css().author, I18n$1.t('by', I18nScope$4()) + ' ' + projectOwnerName), m(ctrl.css().headline, [m('a.link-hidden[href="/' + project.permalink + '?ref=' + args.ref + '"]', {
             onclick: projectVM.routeToProject(project, args.ref)
-        }, project.headline)])]), m(ctrl.css().city, [m('.fontsize-smallest.fontcolor-secondary', [m('span.fa.fa-fw.fa-map-marker.fa-1', ' '), projectAddress])]), m(progressMeter, { progress: ctrl.progress, project: project }), m('.card-project-stats', [m('.w-row', [m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.fontsize-base.fontweight-semibold', Math.floor(project.progress) + '%')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only', [m('.fontsize-smaller.fontweight-semibold', 'R$ ' + h.formatNumber(project.pledged)), m('.fontsize-smallest.lineheight-tightest', 'Levantados')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-right', ctrl.cardCopy(project))])])]), args.showFriends && ctrl.type === 'big' ? m('.w-col.w-col-4.w-col-medium-6', [m.component(projectFriends, { project: project })]) : '']), args.showFriends && ctrl.type !== 'big' ? m.component(projectFriends, { project: project }) : '']);
+        }, project.headline)])]), m(ctrl.css().city, [m('.fontsize-smallest.fontcolor-secondary', [m('span.fa.fa-fw.fa-map-marker.fa-1', ' '), projectAddress])]), m(progressMeter, { progress: ctrl.progress, project: project }), m('.card-project-stats', [m('.w-row', [m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4', [m('.fontsize-base.fontweight-semibold', Math.floor(project.progress) + '%')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only', [m('.fontsize-smaller.fontweight-semibold', h.formatNumber(project.pledged) + ' \uC6D0'), m('.fontsize-smallest.lineheight-tightest', '개시')]), m('.w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-right', ctrl.cardCopy(project))])])]), args.showFriends && ctrl.type === 'big' ? m('.w-col.w-col-4.w-col-medium-6', [m.component(projectFriends, { project: project })]) : '']), args.showFriends && ctrl.type !== 'big' ? m.component(projectFriends, { project: project }) : '']);
     }
 };
 
@@ -7577,7 +7577,7 @@ var projectsExplore = {
                 tooltipText = 'O nosso fator popularidade é uma mistura da seleção do time do Catarse com um valor que é calculado pela velocidade de arrecadação do projeto';
             } else if (currentFilter().keyName === 'finished') {
                 hasHint = true;
-                hintText = '달성 한 R $로 정렬 ';
+                hintText = '달성 한 금액으로 정렬 ';
                 //coffee hintText = '달성 한 R $로 정렬 ';
                 //cofffee   hintText = 'Ordenados por R$ alcançado ';
                 tooltipText = '가장 높은 목표를 달성한 프로젝트가 가장 위에 표시됩니다.';
@@ -8595,7 +8595,7 @@ var projectHeaderTitle = {
     view: function view(ctrl, args) {
         var project = args.project;
 
-        return !_$1.isUndefined(project()) ? m('.w-section.page-header', [m('.w-container', [m('h1.u-text-center.fontsize-larger.fontweight-semibold.project-name[itemprop="name"]', h.selfOrEmpty(project().name || project().project_name)), m('h2.u-text-center.fontsize-base.lineheight-looser[itemprop="author"]', ['por ', project().user ? userVM.displayName(project().user) : project().owner_public_name ? project().owner_public_name : project().owner_name]), args.children])]) : m('div', '');
+        return !_$1.isUndefined(project()) ? m('.w-section.page-header', [m('.w-container', [m('h1.u-text-center.fontsize-larger.fontweight-semibold.project-name[itemprop="name"]', h.selfOrEmpty(project().name || project().project_name)), m('h2.u-text-center.fontsize-base.lineheight-looser[itemprop="author"]', ['개설자: ', project().user ? userVM.displayName(project().user) : project().owner_public_name ? project().owner_public_name : project().owner_name]), args.children])]) : m('div', '');
     }
 };
 
@@ -9552,7 +9552,7 @@ var paymentVM = function paymentVM() {
     };
 
     var getLocale = function getLocale() {
-        return isInternational() ? { locale: 'en' } : { locale: 'pt' };
+        return isInternational() ? { locale: 'en' } : { locale: 'en' };
     };
 
     var faq = function faq() {
@@ -15652,7 +15652,7 @@ var projectsReward = {
     view: function view(ctrl, args) {
         var project = ctrl.project;
 
-        return m('#project-rewards', [m('.w-section.page-header.u-text-center', [m('.w-container', [m('h1.fontsize-larger.fontweight-semibold.project-name[itemprop="name"]', h.selfOrEmpty(project().name || project().project_name)), m('h2.fontsize-base.lineheight-looser[itemprop="author"]', ['por ', project().user ? project().user.name : project().owner_name ? project().owner_name : ''])])]), m('.w-section.header-cont-new', m('.w-container', m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only', '보상을 선택한 다음 지원액을 선택하십시오.'
+        return m('#project-rewards', [m('.w-section.page-header.u-text-center', [m('.w-container', [m('h1.fontsize-larger.fontweight-semibold.project-name[itemprop="name"]', h.selfOrEmpty(project().name || project().project_name)), m('h2.fontsize-base.lineheight-looser[itemprop="author"]', ['개설자: ', project().user ? project().user.name : project().owner_name ? project().owner_name : ''])])]), m('.w-section.header-cont-new', m('.w-container', m('.fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only', '보상을 선택한 다음 지원액을 선택하십시오.'
         //coffee 'Escolha a recompensa e em seguida o valor do apoio'
         ))), m('.section[id=\'new-contribution\']', m('.w-container', m('.w-row', [m('.w-col.w-col-8', m('.w-form.back-reward-form', m('form.simple_form.new_contribution', {
             onsubmit: ctrl.submitContribution
@@ -16099,7 +16099,7 @@ var start = {
             });
         };
 
-        return m('#start', { config: h.setPageTitle(I18n$1.t('header_html', I18nScope$52())) }, [m('.w-section.hero-full.hero-start', [m('.w-container.u-text-center', [m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n$1.t('슬로건', I18nScope$52())),
+        return m('#start', { config: h.setPageTitle(I18n$1.t('header_html', I18nScope$52())) }, [m('.w-section.hero-full.hero-start', [m('.w-container.u-text-center', [m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n$1.t('slogan', I18nScope$52())),
         //coffee m('.fontsize-megajumbo.fontweight-semibold.u-marginbottom-40', I18n.t('slogan', I18nScope())),
         m('.w-row.u-marginbottom-40', [m('.w-col.w-col-4.w-col-push-4', [m('a.btn.btn-large.u-marginbottom-10[href="#start-form"]', {
             config: h.scrollTo(),
